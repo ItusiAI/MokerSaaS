@@ -5,6 +5,19 @@ import { sendPasswordResetEmail } from '@/lib/email'
 import { eq } from 'drizzle-orm'
 import crypto from 'crypto'
 
+// 获取客户端IP地址
+function getClientIP(request: NextRequest): string | undefined {
+  const forwarded = request.headers.get('x-forwarded-for')
+  const realIP = request.headers.get('x-real-ip')
+  const cfConnectingIP = request.headers.get('cf-connecting-ip') // Cloudflare
+  
+  if (cfConnectingIP) return cfConnectingIP
+  if (realIP) return realIP
+  if (forwarded) return forwarded.split(',')[0].trim()
+  
+  return undefined
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { email, locale } = await request.json()
@@ -14,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     if (!email) {
       return NextResponse.json(
-        { error: language === 'en' ? 'Email is required' : '邮箱地址是必填项' },
+        { errorKey: 'email_required' },
         { status: 400 }
       )
     }
@@ -24,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     if (user.length === 0) {
       return NextResponse.json(
-        { error: language === 'en' ? 'User not found' : '用户不存在' },
+        { errorKey: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -41,19 +54,34 @@ export async function POST(request: NextRequest) {
       })
       .where(eq(users.email, email))
 
+    // 获取客户端IP地址
+    const clientIP = getClientIP(request)
+
     // 发送重置密码邮件（根据语言）
-    await sendPasswordResetEmail(email, resetToken, language as 'zh' | 'en')
+    const emailResult = await sendPasswordResetEmail(email, resetToken, language as 'zh' | 'en', clientIP)
+
+    if (!emailResult.success) {
+      // 如果是频率限制错误，返回429状态码
+      if (emailResult.error?.includes('频繁') || emailResult.error?.includes('Too many')) {
+        return NextResponse.json(
+          { errorKey: 'rate_limit' },
+          { status: 429 }
+        )
+      }
+      return NextResponse.json(
+        { errorKey: 'send_failed' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json(
-      { message: language === 'en' 
-        ? 'Password reset email sent successfully' 
-        : '密码重置邮件已发送成功' },
+      { messageKey: 'success_message' },
       { status: 200 }
     )
   } catch (error) {
     console.error('Forgot password error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { errorKey: 'send_failed' },
       { status: 500 }
     )
   }

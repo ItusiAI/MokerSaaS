@@ -1,8 +1,6 @@
 "use client"
 
 import { useParams } from 'next/navigation'
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 
 export function CookieContent() {
   const params = useParams()
@@ -11,7 +9,6 @@ export function CookieContent() {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-foreground mb-8">
@@ -19,7 +16,7 @@ export function CookieContent() {
           </h1>
           <div className="prose prose-lg max-w-none">
             <p className="text-muted-foreground mb-8">
-              {isZh ? '最后更新：2025年7月1日' : 'Last updated: July 1, 2025'}
+              {isZh ? '最后更新：2026年1月6日' : 'Last updated: January 6, 2026'}
             </p>
             
             <section className="mb-8">
@@ -33,9 +30,9 @@ export function CookieContent() {
                 }
               </p>
               <p className="mb-4">
-                {isZh 
-                  ? 'ITSAI Agent使用Cookie和类似技术来增强您的用户体验，分析网站使用情况，并提供相关的服务功能。'
-                  : 'ITSAI Agent uses cookies and similar technologies to enhance your user experience, analyze website usage, and provide relevant service features.'
+                {isZh
+                  ? 'MokerSaaS使用Cookie和类似技术来增强您的用户体验，分析网站使用情况，并提供相关的AI服务功能。'
+                  : 'MokerSaaS uses cookies and similar technologies to enhance your user experience, analyze website usage, and provide relevant AI service features.'
                 }
               </p>
             </section>
@@ -110,6 +107,10 @@ export function CookieContent() {
                   <strong>{isZh ? '表单数据' : 'Form Data'}</strong>：
                   {isZh ? '暂时保存表单输入以防意外丢失' : 'Temporarily saving form inputs to prevent accidental loss'}
                 </li>
+                <li>
+                  <strong>{isZh ? 'AI服务偏好' : 'AI Service Preferences'}</strong>：
+                  {isZh ? '记住您常用的AI模型、参数设置和生成历史' : 'Remembering your frequently used AI models, parameter settings, and generation history'}
+                </li>
               </ul>
 
               <h3 className="text-xl font-semibold mb-3">
@@ -130,6 +131,14 @@ export function CookieContent() {
                 <li>
                   <strong>{isZh ? '内容分发' : 'Content Delivery'}</strong>：
                   {isZh ? '优化内容加载速度' : 'Optimizing content loading speed'}
+                </li>
+                <li>
+                  <strong>{isZh ? 'AI模型提供商' : 'AI Model Providers'}</strong>：
+                  {isZh ? '第三方AI服务（如OpenAI、Replicate等）可能使用Cookie来提供服务' : 'Third-party AI services (such as OpenAI, Replicate, etc.) may use cookies to provide services'}
+                </li>
+                <li>
+                  <strong>{isZh ? '推广追踪' : 'Affiliate Tracking'}</strong>：
+                  {isZh ? '记录推广来源以支持联盟营销计划' : 'Recording referral sources to support affiliate marketing programs'}
                 </li>
               </ul>
             </section>
@@ -264,13 +273,12 @@ export function CookieContent() {
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{isZh ? '邮箱：app@itusi.cn' : 'Email: app@itusi.cn'}</li>
-                <li>{isZh ? '网站：https://itsaiagent.com' : 'Website: https://itsaiagent.com'}</li>
+                <li>{isZh ? '网站：https://getsaas.co' : 'Website: https://getsaas.co'}</li>
               </ul>
             </section>
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 } 

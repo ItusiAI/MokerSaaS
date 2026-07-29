@@ -251,7 +251,24 @@ export async function getUserPaymentStats(userId: string) {
       .select({
         totalPayments: sql<number>`count(*)`,
         totalAmount: sql<number>`sum(${stripePayments.amount})`,
-        totalPointsPurchased: sql<number>`sum(${stripePayments.pointsAmount})`,
+        totalPointsPurchased: sql<number>`
+          coalesce(sum(
+            case 
+              when ${stripePayments.pointsType} = 'purchased' 
+                then ${stripePayments.pointsAmount} 
+              else 0 
+            end
+          ), 0)
+        `,
+        totalPointsGifted: sql<number>`
+          coalesce(sum(
+            case 
+              when ${stripePayments.pointsType} = 'gifted' 
+                then ${stripePayments.pointsAmount} 
+              else 0 
+            end
+          ), 0)
+        `,
         successfulPayments: sql<number>`count(case when ${stripePayments.paymentStatus} = 'succeeded' then 1 end)`,
         failedPayments: sql<number>`count(case when ${stripePayments.paymentStatus} = 'failed' then 1 end)`,
         refundedPayments: sql<number>`count(case when ${stripePayments.paymentStatus} = 'refunded' then 1 end)`,
@@ -265,6 +282,7 @@ export async function getUserPaymentStats(userId: string) {
       totalPayments: 0,
       totalAmount: 0,
       totalPointsPurchased: 0,
+      totalPointsGifted: 0,
       successfulPayments: 0,
       failedPayments: 0,
       refundedPayments: 0,

@@ -5,6 +5,12 @@ import { users, accounts, sessions, verificationTokens } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
 import { giveRegisterBonus } from '@/lib/points'
+import {
+  findAffiliateByCode,
+  getOrCreateAffiliateProfile,
+  createAffiliateRelation,
+} from '@/lib/affiliate'
+import { cookies } from 'next/headers'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
@@ -84,6 +90,31 @@ export const authOptions: NextAuthOptions = {
         } catch (pointsError) {
           console.error('第三方注册赠送积分失败:', pointsError)
           // 积分赠送失败不影响用户创建流程
+        }
+        
+        // ========== 处理推广返利系统（完全独立于推荐系统） ==========
+        // 从 Cookie 中读取推广码（?aff={affiliateCode}）
+        try {
+          const cookieStore = await cookies()
+          const affiliateCodeFromCookie = cookieStore.get('aff')?.value
+
+          if (affiliateCodeFromCookie) {
+            // 查找推广人
+            const affiliateInfo = await findAffiliateByCode(affiliateCodeFromCookie.trim())
+            
+            if (affiliateInfo) {
+              // 确保推广人资料存在
+              const affiliateProfileId = await getOrCreateAffiliateProfile(affiliateInfo.userId)
+              
+              // 创建推广关系（30天有效期）
+              await createAffiliateRelation(affiliateProfileId, id)
+              
+              console.log(`新用户 ${id} 通过第三方登录注册成功，已创建推广关系`)
+            }
+          }
+        } catch (affiliateError) {
+          console.error('第三方注册处理推广关系失败:', affiliateError)
+          // 推广关系处理失败不影响用户创建流程
         }
         
         return newUser[0]

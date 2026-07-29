@@ -1,34 +1,5 @@
 {
-  "version": "7",
+  "version": "1",
   "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1751521559633,
-      "tag": "0000_fixed_spiral",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1751851524760,
-      "tag": "0001_large_zuras",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1751869535832,
-      "tag": "0002_large_blindfold",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1752305503670,
-      "tag": "0003_spicy_nuke",
-      "breakpoints": true
-    }
-  ]
+  "entries": []
 }

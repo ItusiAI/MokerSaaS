@@ -4,7 +4,12 @@ import { eq, sql } from 'drizzle-orm'
 import { v4 as uuidv4 } from 'uuid'
 
 // 积分使用策略：优先使用赠送积分，再使用购买积分
-export async function usePoints(userId: string, pointsToUse: number, description: string) {
+export async function usePoints(
+  userId: string,
+  pointsToUse: number,
+  description: string,
+  action: string = 'use'
+) {
   try {
     // 获取用户当前积分信息
     const user = await db.select().from(users).where(eq(users.id, userId)).limit(1)
@@ -55,8 +60,8 @@ export async function usePoints(userId: string, pointsToUse: number, description
         userId,
         points: -giftedPointsUsed,
         pointsType: 'gifted',
-        action: 'use',
-        description: `${description} - 使用赠送积分`,
+        action,
+        description: description,
         createdAt: new Date(),
       })
     }
@@ -67,8 +72,8 @@ export async function usePoints(userId: string, pointsToUse: number, description
         userId,
         points: -purchasedPointsUsed,
         pointsType: 'purchased',
-        action: 'use',
-        description: `${description} - 使用购买积分`,
+        action,
+        description: description,
         createdAt: new Date(),
       })
     }

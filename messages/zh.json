@@ -1,88 +1,348 @@
 {
   "metadata": {
-    "title": "Get SaaS - 专为出海设计的现代化SaaS模版",
-    "description": "Get SaaS是专为出海设计的现代化SaaS模版，集成完整的用户认证、支付系统、多语言支持、SEO优化等功能。基于Next.js构建，帮助开发者快速启动SaaS产品。",
+    "title": "MokerSaaS - 极速构建SaaS · 数小时上线 · 开源免费",
+    "description": "极速构建 SaaS，数小时完成产品上线。MokerSaaS 提供开箱即用的企业级 SaaS 解决方案，内置用户认证、Stripe 支付、多语言国际化、SEO 优化、后台管理、推荐与推广系统等完整功能。基于 Next.js 现代化技术栈，帮助您大幅缩短从想法到盈利的时间。",
+    "shortTitle": "MokerSaaS - 极速构建SaaS",
+    "keywords": "MokerSaaS, 极速构建SaaS, 开源SaaS, SaaS模版, Next.js模版, 免费SaaS, TypeScript SaaS, Stripe集成, 多语言SaaS, 后台管理, 推荐系统, 推广返利, 数小时上线",
     "terms": {
-      "title": "服务条款 - Get SaaS",
-      "description": "查看Get SaaS SaaS模版的使用条款，了解模版使用规则、许可协议和用户权利责任。"
+      "title": "服务条款 - MokerSaaS 开源SaaS模版",
+      "description": "查看MokerSaaS开源SaaS模版的使用条款，了解模版使用规则、许可协议和用户权利责任。"
     },
     "privacy": {
-      "title": "隐私政策 - Get SaaS",
-      "description": "了解Get SaaS如何处理用户数据和隐私保护，确保您的个人信息安全。"
+      "title": "隐私政策 - MokerSaaS 开源SaaS模版",
+      "description": "了解MokerSaaS开源SaaS模版如何处理用户数据和隐私保护，确保您的个人信息安全。"
     },
     "cookies": {
-      "title": "Cookie政策 - Get SaaS",
-      "description": "了解Get SaaS如何使用Cookie和相关技术来优化用户体验和网站性能。"
+      "title": "Cookie政策 - MokerSaaS 开源SaaS模版",
+      "description": "了解MokerSaaS开源SaaS模版如何使用Cookie和相关技术来优化用户体验和网站性能。"
     }
-  },
-  "demoBanner": {
-    "prefix": "这是",
-    "productName": "Get SaaS",
-    "suffix": "演示站点，体验完整功能后",
-    "cta": "立即购买完整版"
   },
   "navbar": {
     "home": "首页",
-    "features": "功能特性",
+    "featuresArchitecture": "特性架构",
+    "demo": "功能演示",
     "pricing": "定价方案",
-    "blog": "技术博客",
     "signUp": "立即注册",
     "signIn": "登录",
     "profile": "个人中心",
+    "affiliate": "推广计划",
+    "referral": "推荐计划",
     "accountSettings": "账户设置",
-    "signOut": "退出登录"
+    "signOut": "退出登录",
+    "language": "切换语言",
+    "switchLanguage": "切换语言",
+    "chinese": "中文",
+    "english": "English",
+    "currentLocale": "中",
+    "currentLocaleEn": "EN"
   },
   "hero": {
-    "title": "专为出海设计的现代化SaaS模版\n快速启动您的全球化SaaS产品",
-    "description": "Get SaaS集成完整的用户认证、支付系统、多语言支持、SEO优化等功能。基于Next.js和现代化技术栈构建，让您专注于业务逻辑，快速推向全球市场。",
-    "badge": "🚀 现代化SaaS解决方案",
-    "features": {
-      "readyToUse": "开箱即用",
-      "multiScenario": "全球化支持",
-      "professionalOutput": "企业级架构"
+    "title": "极速构建 SaaS，",
+    "highlight": "数小时完成产品上线。",
+    "description": "提供开箱即用的企业级 SaaS 解决方案，内置用户认证、Stripe 支付、多语言国际化、SEO 优化、后台管理、推荐与推广系统等完整功能。基于 Next.js 现代化技术栈，帮助您大幅缩短从想法到盈利的时间。",
+    "badge": "100% 开源免费",
+    "primaryCta": "免费获取模板",
+    "secondaryCta": "查看架构",
+    "techStackLabel": "核心技术栈：",
+    "techStack": {
+      "nextjs": "Next.js 16",
+      "nextjsTitle": "Next.js 16 App Router",
+      "neon": "Neon",
+      "neonTitle": "Neon Serverless Postgres 数据库",
+      "stripe": "Stripe",
+      "stripeTitle": "Stripe 订阅支付"
+    },
+    "uptimeBadge": {
+      "label": "上线效率提升",
+      "value": "10X 极速上线"
+    },
+    "code": {
+      "tabTitle": "推荐返利 · route.ts",
+      "runTitle": "运行测试",
+      "runLabel": "运行",
+      "copyTitle": "复制代码",
+      "simulateLog1": "[04:22:01] 正在初始化 Next.js 16 App Router 流程...",
+      "simulateLog2": "[04:22:02] 查询 Neon Postgres 推荐关系链与积分流水...",
+      "simulateLog3": "[04:22:03] 验证 NextAuth.js & 推荐返利奖励分发成功。",
+      "simulateSuccess": "✓ 模拟运行成功：推荐返利 API 已完成积分与天数奖励自动发放！"
     }
   },
 
-  "features": {
-    "title": "现代化SaaS模版，为出海产品提供完整解决方案",
-    "liveGeneration": "快速部署",
-    "contentSummaryAgent": {
-      "title": "用户认证系统",
-      "description": "集成完整的用户注册、登录、密码重置功能，支持多种认证方式，确保用户数据安全。"
+  "orchestration": {
+    "sectionBadge": "全栈技术栈 · 现代化 SaaS 基础架构",
+    "sectionTitle": "全栈开源技术",
+    "sectionHighlight": "架构体系.",
+    "sectionSubtitle": "生产级现代开发框架集成，零配置开箱即用，帮助您专注核心业务逻辑。",
+    "left1": {
+      "title": "Next.js 16 App Router",
+      "meta": "技术栈：",
+      "metaValue": "React 19 + TS",
+      "desc": "基于 Next.js 最新 App Router 规范，内置服务端渲染 SSR 与边缘 Edge 渲染优化，极速首屏加载。"
     },
-    "podcastAgent": {
-      "title": "支付集成",
-      "description": "内置Stripe支付系统，支持订阅计费、一次性付款等多种支付模式，助您快速实现商业化。"
+    "left2": {
+      "title": "Neon + Drizzle",
+      "meta": "状态：",
+      "metaValue": "类型安全 ORM",
+      "desc": "高性能 Neon Serverless Postgres 数据库，配合轻量级 Drizzle ORM，提供完全类型安全的数据库交互。"
+    },
+    "node1": { "label": "NEXT_JS_16" },
+    "node2": { "label": "NEON_POSTGRES" },
+    "node3": { "label": "STRIPE_BILLING" },
+    "floatingBadge1": {
+      "label": "开发周期节省",
+      "value": "超过 200 小时"
+    },
+    "floatingBadge2": {
+      "label": "代码许可",
+      "value": "MIT 商业开源"
+    },
+    "terminal": {
+      "title": "框架实时测试状态",
+      "simulateBtn": "模拟 API 请求流程",
+      "log1": "> [04:22:11] Next.js 16 App Router 路由加载完成... OK",
+      "log2": "> [04:22:15] Neon Postgres 数据库 Serverless 连接池初始化成功（耗时 12ms）",
+      "log3": "> [04:22:19] Stripe SDK & Webhook 监听到事件: checkout.session.completed",
+      "simulateLog": "模拟处理新增用户注册 & Stripe 自动扣款生成账单..."
+    },
+    "right1": {
+      "title": "Stripe 订阅集成",
+      "meta": "集成：",
+      "metaValue": "Webhook + Portal",
+      "desc": "内置完善的 Stripe Checkout、按月/按年订阅、Webhook 接收端点与客户自助账单门户。"
+    },
+    "right2": {
+      "title": "100% 开源且自由",
+      "meta": "部署：",
+      "metaValue": "Vercel / Docker",
+      "desc": "没有云厂商绑定，可一键部署至 Vercel、Cloud Run 或任何支持 Node.js / Docker 的服务器。"
+    },
+    "metrics": {
+      "1": { "label": "开发效率提升", "value": "10 倍以上" },
+      "2": { "label": "包含核心组件", "value": "40+ 开箱即用" },
+      "3": { "label": "数据库兼容", "value": "Neon Postgres 全兼容" },
+      "4": { "label": "开源许可", "value": "MIT License" }
     }
   },
+
+  "engineeringValidation": {
+    "sectionBadge": "真实开发者评价",
+    "sectionTitlePrefix": "深受开发者与创作者 ",
+    "sectionTitleHighlight": "信赖.",
+    "testimonials": [
+      {
+        "name": "张明",
+        "title": "独立开发者 @ AI 写作助手创始人",
+        "badge": "已验证使用",
+        "quote": "MokerSaaS 开源模板省去了我搭建 Next.js App Router 和 Stripe 订阅支付的大大量重复工作。项目 3 天就成功上线并收到了第一笔海外订阅支付！",
+        "icon": "star"
+      },
+      {
+        "name": "Alex Chen",
+        "title": "CTO @ CloudScale 全栈团队",
+        "badge": "已验证使用",
+        "quote": "开箱即用的 PostgreSQL 数据库与 Drizzle ORM Schema 配置非常优雅。代码结构干净利落，做二次开发极其顺手。",
+        "icon": "cloud"
+      },
+      {
+        "name": "王小蕾",
+        "title": "全栈工程师 @ 海外 SaaS 极客",
+        "badge": "已验证使用",
+        "quote": "这是目前见过最干净的 Next.js 开源模板。去除了臃肿的第三方依赖，专注于核心鉴权、数据库与 Stripe 订阅，非常值得推荐！",
+        "icon": "terminal"
+      }
+    ]
+  },
+
+  "technicalFAQ": {
+    "sectionBadge": "常见问题解答",
+    "sectionTitlePrefix": "技术与部署 ",
+    "sectionTitleHighlight": "FAQ.",
+    "sectionSubtitle": "为独立开发者与创业团队解答关于模板使用、架构选型与部署上线的常见疑问。",
+    "faqs": [
+      {
+        "question": "模板包含哪些技术栈和框架？",
+        "answer": "模板基于全栈 Next.js 16 (App Router)、NextAuth.js 鉴权系统、Resend 邮件服务、Neon Serverless Postgres 数据库 (Drizzle ORM) 以及 Stripe 订阅支付 SDK。"
+      },
+      {
+        "question": "这个 SaaS 模板是完全开源免费的吗？",
+        "answer": "是的！基础版 100% 采用 MIT 开源许可协议，您可以自由地将其用于商业项目、个人开发或客户端交付，无需支付版权或许可费用。"
+      },
+      {
+        "question": "如何快速部署并上线项目？",
+        "answer": "只需要 Fork 代码仓库，克隆到本地配置环境变量（如 Neon Postgres 数据库连接串和 Stripe API Key），即可一键部署到 Vercel、Cloud Run 或自己的 Docker 服务器。"
+      },
+      {
+        "question": "Stripe 支付如何配置和测试？",
+        "answer": "我们提供了预设的 API Route 与 Webhook 事件处理程序。您只需在 Stripe 控制台获取 Test/Live API Key 与 Webhook Secret，填入 .env 即可自动开启按月/按年订阅流程。"
+      }
+    ]
+  },
+
+  "missionControl": {
+    "sectionBadge": "全功能 SaaS 开源解决方案",
+    "sectionTitlePrefix": "开箱即用的",
+    "sectionTitleHighlight": "核心商业功能模块.",
+    "sectionSubtitle": "涵盖后台管理、用户工作台、Stripe 多方案订阅与推广返利体系，无需重复造轮子。",
+    "moduleCounter": "模块 {current} / {total}",
+    "nextButton": "下一个功能模块",
+    "readyBadge": "模块已就绪",
+    "metrics": {
+      "savedTime": {
+        "label": "平均开发省时",
+        "value": "200+ 小时",
+        "caption": "即刻投入业务研发"
+      },
+      "commission": {
+        "label": "裂变推荐佣金",
+        "value": "30% 比例",
+        "caption": "自动结算与提现"
+      }
+    },
+    "tabs": {
+      "admin": {
+        "tabTitle": "后台管理中心",
+        "title": "后台管理中心",
+        "highlight": "全盘掌舵企业运营.",
+        "description": "强大的后台管理系统，支持用户管理、角色权限控制、数据统计、积分调整等功能，让您轻松管理整个平台。",
+        "items": [
+          "用户管理与角色权限 (Admin / Member) 细粒度划分",
+          "全平台活跃用户数、MRR 营收与订阅转化率统计",
+          "用户积分余额人工/自动调整与异动审计日志"
+        ]
+      },
+      "dashboard": {
+        "tabTitle": "用户仪表盘",
+        "title": "用户仪表盘",
+        "highlight": "直观高效的工作台.",
+        "description": "直观的用户仪表盘界面，展示订阅状态、积分余额、推荐统计、账户设置等关键信息，让用户一目了然。",
+        "items": [
+          "实时订阅状态、按月用量与剩余积分额度",
+          "个人推广效果统计、推荐码管理与受邀用户记录",
+          "邮箱验证、已连接账号与会话安全状态"
+        ]
+      },
+      "subscriptions": {
+        "tabTitle": "多种订阅方案",
+        "title": "多种订阅方案",
+        "highlight": "自动化计费引擎.",
+        "description": "灵活的订阅管理系统，支持 Trial、Pro、Annual 等多种订阅方案，自动处理订阅续费、取消和到期提醒。",
+        "items": [
+          "支持 Trial 试用、Pro 月付、Annual 年付等模式",
+          "自动处理订阅续费、过期提醒与升降级逻辑",
+          "集成 Stripe Customer Portal，自助取消与开票"
+        ]
+      },
+      "affiliate": {
+        "tabTitle": "推广计划",
+        "title": "推广计划",
+        "highlight": "裂变增长返利系统.",
+        "description": "完整的推广返利系统，支持自定义推广码、佣金统计、提现管理等功能，通过推广获得 30% 首单佣金，帮助您实现收益增长。",
+        "items": [
+          "专属推广链接与自定义推广优惠码生成",
+          "30% 首单高额佣金实时计算与累计收益面板",
+          "佣金提现申请管理、明细流水与状态追踪"
+        ]
+      }
+    },
+    "previews": {
+      "admin": {
+        "title": "超级管理员面板 (Admin Console)",
+        "subtitle": "全站用户、权限、积分异动与财务汇总数据分析",
+        "badge": "SUPER_ADMIN",
+        "imageAlt": "后台管理中心预览",
+        "imageCaption": "数据看板 + 用户管理 + 角色权限"
+      },
+      "dashboard": {
+        "title": "用户个人中心 (User Workspace)",
+        "subtitle": "积分购买 · 推荐奖励 · 支付历史 · 订阅记录一站式查看",
+        "badge": "Pro 会员已激活",
+        "imageAlt": "用户仪表盘预览",
+        "imageCaption": "积分充值 · 推荐链接 · 支付记录 · 已连接账号"
+      },
+      "subscriptions": {
+        "title": "Stripe 订阅与计费管理",
+        "subtitle": "支持 Trial 试用、Pro 按月订阅与 Annual 优惠年付",
+        "badge": "Stripe 支付",
+        "imageAlt": "Stripe 订阅方案预览",
+        "imageCaption": "Trial / Pro / Annual 三档套餐对比"
+      },
+      "affiliate": {
+        "title": "推广返利系统 (Affiliate Program)",
+        "subtitle": "帮助创作者搭建分销网络，最高获得 30% 首单现金佣金",
+        "badge": "30% 首单佣金规则",
+        "imageAlt": "推广返利系统预览",
+        "imageCaption": "推广码 · 佣金统计 · 提现管理"
+      }
+    }
+  },
+
   "pricing": {
     "title": "选择适合您的SaaS模版方案",
     "recommended": "推荐",
-    "free": {
-      "name": "开源版",
-      "price": "$0",
-      "description": "适合个人开发者和小型项目",
+    "header": {
+      "badge": "100% 透明商业许可",
+      "titlePrefix": "灵活方案，",
+      "titleHighlight": "助力独立开发与团队成长",
+      "subtitle": "开源版本永久免费，提供专业商业授权与深度定制支持，加速您的 SaaS 项目上线变现。",
+      "fetchStatusError": "获取订阅状态失败:"
+    },
+    "trial": {
+      "name": "Trial",
+      "price": "$4.99",
+      "periodUnit": "/ 7 天体验",
+      "description": "短期体验完整功能的试用方案",
       "features": {
-        "template": "完整SaaS模版源码",
-        "auth": "基础用户认证系统",
-        "support": "社区技术支持"
+        "period": "订阅时长：7天",
+        "points": "赠送积分：1,000积分",
+        "template": "完整SaaS模版 + 高级功能",
+        "auth": "完整用户认证系统"
       },
-      "cta": "免费下载"
+      "cta": "开始试用",
+      "trial_only_once": "仅限试用一次",
+      "not_available_for_pro": "Pro用户不可购买试用订阅",
+      "not_available_for_annual": "Annual用户不可购买试用订阅"
     },
     "pro": {
-      "name": "专业版",
-      "price": "$49",
-      "originalPrice": "$99",
-      "discountPercent": "50",
-      "savings": "$50",
-      "discountBadge": "限时50%折扣",
+      "name": "Pro",
+      "price": "$15.9",
+      "periodUnit": "/ 月",
+      "originalPrice": "$19.9",
+      "discountPercent": "20",
+      "savings": "$4",
+      "discountBadge": "限时20%折扣",
       "description": "适合初创公司和中小企业",
       "features": {
+        "period": "订阅时长：30天",
+        "points": "赠送积分：1,000积分",
         "template": "完整SaaS模版 + 高级功能",
         "payment": "Stripe支付集成",
         "support": "1年技术支持"
       },
-      "cta": "立即购买"
+      "cta": "立即购买",
+      "renew": "续费Pro",
+      "cannot_downgrade": "Annual订阅不能降级"
+    },
+    "annual": {
+      "name": "Annual",
+      "price": "$159",
+      "periodUnit": "/ 年",
+      "originalPrice": "$240",
+      "discountPercent": "34",
+      "savings": "$81",
+      "discountBadge": "限时34%折扣",
+      "description": "年度订阅，最佳价值选择",
+      "features": {
+        "period": "订阅时长：365天",
+        "template": "完整SaaS模版 + 高级功能",
+        "points": "赠送积分：15,000积分",
+        "payment": "Stripe支付集成",
+        "support": "1年技术支持",
+        "value": "最佳价值 - 节省34%"
+      },
+      "cta": "立即购买",
+      "upgrade": "升级到Annual",
+      "renew": "续费Annual",
+      "cannot_downgrade": "Annual订阅不能降级"
     },
     "discount": {
       "was": "原价",
@@ -103,76 +363,8 @@
       "cta": "咨询方案"
     }
   },
-  "faq": {
-    "title": "关于Get SaaS模版的常见问题",
-    "categories": {
-      "usage": "使用相关",
-      "pricing": "价格方案"
-    },
-    "usage": {
-      "howToStart": {
-        "question": "如何开始使用Get SaaS模版？",
-        "answer": "非常简单！下载模版后，按照文档说明配置环境变量（数据库、Stripe等），然后运行npm install和npm run dev即可启动。模版包含完整的用户认证、支付系统和多语言支持，您只需专注于业务逻辑开发。"
-      },
-      "voiceQuality": {
-        "question": "模版的代码质量如何？",
-        "answer": "Get SaaS采用现代化技术栈，包括Next.js、TypeScript、Tailwind CSS等。代码遵循最佳实践，具有良好的类型安全、组件复用性和可维护性。所有功能都经过充分测试。"
-      },
-      "contentOwnership": {
-        "question": "购买模版后的使用权限如何？",
-        "answer": "购买Get SaaS后，您获得完整的源码使用权。可以自由修改、定制和商业化使用，无需支付额外费用。我们提供终身更新和技术支持。"
-      },
-      "dataPrivacy": {
-        "question": "模版是否包含数据安全保护？",
-        "answer": "是的，模版内置了完整的安全措施，包括用户认证、数据加密、CSRF保护等。遵循GDPR等数据保护法规，确保用户数据安全。"
-      }
-    },
-    "pricing": {
-      "pointsExpiry": {
-        "question": "购买后是否提供技术支持？",
-        "answer": "是的，专业版提供1年技术支持，企业版提供7×24小时技术支持。包括安装指导、功能咨询、问题解决等。开源版用户可通过社区获得支持。"
-      },
-      "upgradeAnytime": {
-        "question": "我可以随时升级SaaS模版方案吗？",
-        "answer": "当然可以！您可以随时升级到更高版本的SaaS模版。升级后立即获得新功能和更长的技术支持期，已购买的许可证继续有效。"
-      },
-      "enterpriseFeatures": {
-        "question": "企业版SaaS模版包括哪些特殊功能？",
-        "answer": "企业版提供定制化开发服务、私有化部署支持、7×24小时技术支持、团队培训与咨询，以及专属客户成功经理服务。完全根据您的业务需求量身打造解决方案。"
-      }
-    }
-  },
   "footer": {
-    "description": "专为出海设计的现代化SaaS模版，集成完整的用户认证、支付系统、多语言支持等功能，助您快速启动全球化SaaS产品。",
-    "services": {
-      "title": "服务",
-      "features": "功能特性",
-      "pricing": "定价方案",
-      "blog": "技术博客"
-    },
-    "product": {
-      "title": "SaaS模版",
-      "template": "模版下载",
-      "features": "功能特性",
-      "pricing": "定价方案"
-    },
-    "company": {
-      "title": "公司",
-      "about": "关于我们",
-      "careers": "加入我们",
-      "blog": "博客"
-    },
     "newsletter": {
-      "title": "订阅资讯",
-      "description": "获取最新的SaaS开发技术动态和模版更新",
-      "placeholder": "请输入您的邮箱地址",
-      "subscribe_button": "订阅",
-      "success": "订阅成功！",
-      "subscribe": {
-        "successMessage": "订阅成功！感谢您的订阅，我们会定期向您发送SaaS开发相关的最新资讯。",
-        "subscribeError": "订阅失败，请稍后重试",
-        "networkError": "网络错误，请稍后重试"
-      },
       "unsubscribe": {
         "title": "取消订阅邮件列表",
         "description": "我们很遗憾看到您离开，但我们尊重您的选择",
@@ -187,17 +379,61 @@
         "unsubscribeError": "取消订阅失败"
       }
     },
-    "copyright": "Get SaaS. 版权所有."
+
+    "home": {
+      "brand": {
+        "name": "MokerSaaS 开源模板",
+        "description": "基于 Next.js 16、Neon Postgres 与 Stripe 打造的全栈商业化 SaaS 开发模版，助您快速搭建产品、打通订阅并开始获客变现。",
+        "statusBadge": "系统与 API 运行正常"
+      },
+      "products": {
+        "title": "产品方案",
+        "items": {
+          "orchestration": "全栈架构",
+          "missionControl": "功能演示",
+          "pricing": "价格与许可"
+        }
+      },
+      "productsColumn": {
+        "title": "产品",
+        "items": {
+          "magiviz": "Magiviz",
+          "editf": "Editf",
+          "voiceCanvas": "VoiceCanvas"
+        }
+      },
+      "newsletter": {
+        "title": "订阅技术周刊 & 模版更新",
+        "heading": "获取最新的 Next.js & SaaS 变现指南",
+        "subtitle": "每周推送最新的全栈架构最佳实践、Stripe 支付配置技巧与 MokerSaaS 模版更新动态。",
+        "emailPlaceholder": "输入您的电子邮箱地址...",
+        "subscribeButton": "订阅",
+        "loadingButton": "订阅中",
+        "subscribedBadge": "已订阅",
+        "successMessage": "✓ 感谢您的订阅！我们已将第一期指南推送到您的邮箱。",
+        "errorMessage": "订阅失败，请稍后重试",
+        "serverError": "服务器异常，请稍后再试",
+        "networkError": "网络错误，请检查连接后重试"
+      },
+      "bottomBar": {
+        "copyright": "© {year} MokerSaaS 开源模板. 基于 Next.js 16, Neon Postgres & Stripe 打造.",
+        "social": {
+          "github": "GitHub 仓库",
+          "twitter": "X / Twitter"
+        }
+      }
+    }
   },
   "verify": {
     "title": "邮箱验证",
     "description": "验证您的邮箱地址以完成账户注册",
     "meta_title": "邮箱验证",
-    "meta_description": "验证您的 Get SaaS 账户邮箱，完成账户激活",
+    "meta_description": "验证您的 MokerSaaS 账户邮箱，完成账户激活",
     "verifying": "正在验证您的邮箱...",
     "success": "邮箱验证成功！",
     "failed": "邮箱验证失败",
     "token_missing": "验证令牌缺失",
+    "token_invalid": "验证令牌无效或已过期",
     "failed_retry": "验证失败，请稍后重试",
     "please_wait": "请稍候，正在验证您的邮箱地址...",
     "login_now": "立即登录",
@@ -206,11 +442,11 @@
     "back_to_login": "返回登录"
   },
   "auth": {
-    "meta_title": "用户认证 - Get SaaS",
+    "meta_title": "用户认证 - MokerSaaS",
     "signin_title": "登录",
-    "signin_description": "登录您的 Get SaaS 账户，开始使用现代化SaaS模版",
+    "signin_description": "登录您的 MokerSaaS 账户，开始使用现代化SaaS模版",
     "signup_title": "注册",
-    "signup_description": "注册 Get SaaS 账户，开启SaaS开发之旅",
+    "signup_description": "注册 MokerSaaS 账户，开启SaaS开发之旅",
     "error_title": "认证错误",
     "error_description": "认证过程中遇到问题，请重试或联系技术支持",
     "error_page_title": "登录失败",
@@ -237,7 +473,7 @@
       "default": "认证过程中发生未知错误，请重试"
     },
     "welcome_back": "欢迎回来",
-    "login_description": "登录您的 Get SaaS 账户",
+    "login_description": "登录您的 MokerSaaS 账户",
     "email": "邮箱地址",
     "password": "密码",
     "email_placeholder": "请输入您的邮箱",
@@ -261,6 +497,12 @@
     "register_retry": "注册失败，请稍后重试",
     "registering": "注册中...",
     "register_success": "注册成功",
+    "register_success_check_email": "注册成功！请检查邮箱并点击验证链接完成激活。",
+    "missing_fields": "请填写所有必填字段",
+    "email_exists": "该邮箱已被注册",
+    "invalid_referral_code": "无效的推荐码",
+    "verification_email_failed": "注册成功，但发送验证邮件失败，请稍后重试",
+    "rate_limit": "请求过于频繁，请稍后再试",
     "has_account": "已有账户？",
     "login_now": "立即登录",
     "terms_agreement": "注册即表示您同意我们的",
@@ -268,7 +510,12 @@
     "and": "和",
     "privacy_policy": "隐私政策",
     "loginRequiredMessage": "请先登录后再使用音频总结功能。",
-    "loginNow": "立即登录"
+    "loginNow": "立即登录",
+    "or_register_with_email": "或使用邮箱注册",
+    "referral_code": "推荐码（可选）",
+    "referral_code_placeholder": "请输入推荐码",
+    "affiliate_code": "推广码（可选）",
+    "affiliate_code_placeholder": "请输入推广码"
   },
   "common": {
     "cancel": "取消",
@@ -284,7 +531,7 @@
     "title": "找回密码",
     "description": "输入您的邮箱地址，我们将向您发送重置密码的链接",
     "meta_title": "找回密码",
-    "meta_description": "找回您的 Get SaaS 账户密码，通过邮箱重置密码",
+    "meta_description": "找回您的 MokerSaaS 账户密码，通过邮箱重置密码",
     "email_label": "邮箱地址",
     "email_placeholder": "请输入您的邮箱地址",
     "send_reset_link": "发送重置链接",
@@ -302,7 +549,7 @@
     "title": "重置密码",
     "description": "请输入您的新密码",
     "meta_title": "重置密码",
-    "meta_description": "重置您的 Get SaaS 账户密码，设置新的安全密码",
+    "meta_description": "重置您的 MokerSaaS 账户密码，设置新的安全密码",
     "password_label": "新密码",
     "password_placeholder": "请输入新密码",
     "confirm_password_label": "确认密码",
@@ -334,16 +581,16 @@
     "verification_email_sent": "验证邮件已发送，请检查您的邮箱",
     "verification_email_failed": "发送验证邮件失败，请稍后重试",
     "loading": "加载中...",
-    "points": "许可权益",
-    "points_history": "权益记录",
-    "points_history_description": "查看您的许可权益和使用记录",
-    "no_points_history": "暂无权益记录",
-    "register_bonus": "注册权益",
-    "email_verify_bonus": "邮箱验证权益",
-    "daily_login_bonus": "每日登录权益",
-    "referral_bonus": "推荐好友权益",
+    "points": "积分",
+    "points_history": "积分记录",
+    "points_history_description": "查看您的积分获取和使用记录",
+    "no_points_history": "暂无积分记录",
+    "register_bonus": "注册赠送积分",
+    "email_verify_bonus": "邮箱验证赠送积分",
+    "daily_login_bonus": "每日登录赠送积分",
+    "referral_bonus": "推荐好友赠送积分",
     "manual_operation": "管理员操作",
-    "points_operation": "权益操作",
+    "points_operation": "积分操作",
     "pagination": {
       "page_info": "第 {current} 页，共 {total} 页",
       "total_records": "共 {total} 条记录",
@@ -351,15 +598,17 @@
       "next": "下一页"
     },
     "points_actions": {
-      "register": "注册权益",
-      "email_verify": "邮箱验证权益",
-      "daily_login": "每日登录权益",
-      "referral": "推荐好友权益",
+      "register": "注册赠送积分",
+      "email_verify": "邮箱验证赠送积分",
+      "daily_login": "每日登录赠送积分",
+      "referral": "推荐好友赠送积分",
       "manual": "管理员操作",
-      "purchase": "购买许可",
-      "subscription_gift": "专业版许可权益",
-      "subscription_renewal_gift": "续订专业版许可权益",
-      "subscription_expired": "许可过期",
+      "purchase": "购买积分",
+      "subscription_gift": "{plan}赠送积分",
+      "subscription_renewal_gift": "续订{plan}赠送积分",
+      "subscription_upgrade_gift": "升级{plan}赠送积分",
+      "subscription_reward": "推荐好友订阅赠送积分",
+      "subscription_expired": "积分过期",
       "unknown": "未知操作",
       "pay_amount": "支付 {amount}"
     },
@@ -418,9 +667,9 @@
     "password_min_length": "密码至少需要6个字符",
     "password_mismatch": "两次输入的密码不一致",
     "current_password_incorrect": "当前密码不正确",
-    "subscription_info": "许可信息",
-    "subscription_info_description": "查看和管理您的许可计划",
-    "subscription_status": "许可状态",
+    "subscription_info": "订阅计划",
+    "subscription_info_description": "查看和管理您的订阅计划",
+    "subscription_status": "订阅状态",
     "subscription_active": "已激活",
     "subscription_cancelled": "已取消",
     "subscription_past_due": "逾期未付",
@@ -429,25 +678,29 @@
     "subscription_expiring_soon": "即将到期",
     "subscription_expired": "已过期",
     "plan_free": "免费计划",
-    "plan_pro": "专业版",
+    "plan_trial": "Trial",
+    "plan_pro": "Pro",
+    "plan_annual": "Annual",
     "plan_enterprise": "企业版",
     "plan_free_description": "基础模版，适合个人开发者",
+    "plan_trial_description": "7天试用，体验完整功能",
     "plan_pro_description": "完整功能，适合专业开发",
+    "plan_annual_description": "年度订阅，最佳价值选择，包含15,000积分",
     "plan_enterprise_description": "定制服务，适合企业团队",
-    "manage_subscription": "管理许可",
-    "upgrade_to_pro": "升级到专业版",
-    "upgrade_benefits_title": "升级获得更多权益",
+    "manage_subscription": "管理订阅",
+      "upgrade_to_pro": "升级到Pro",
+    "upgrade_benefits_title": "升级获得更多积分",
     "upgrade_benefits_1": "完整SaaS模版源码",
     "upgrade_benefits_2": "优先技术支持",
     "upgrade_benefits_3": "高级功能组件",
     "upgrade_benefits_4": "定制化开发服务",
-    "points_purchase": "许可购买",
-    "points_purchase_description": "购买许可以获得SaaS模版完整权益",
+    "points_purchase": "积分购买",
+    "points_purchase_description": "需要更多积分？选择一个套餐，立即获取",
     "points_package_starter": "入门套餐",
     "points_package_popular": "热门套餐",
     "points_package_premium": "高级套餐",
-    "points_usage_title": "许可权益",
-    "points_usage_ai_service": "SaaS模版完整源码",
+    "points_usage_title": "积分用途",
+    "points_usage_ai_service": "SaaS模版功能使用",
     "points_usage_premium_features": "高级功能组件",
     "points_usage_priority_support": "优先技术支持",
     "purchase_now": "立即购买",
@@ -465,17 +718,39 @@
     "view_pricing": "查看定价",
     "purchased_points_label": "购买积分（永不过期）",
     "gifted_points_label": "赠送积分（订阅到期清零）",
-    "subscription_gift_notice": "您当前订阅专业版，已获得10,000赠送积分",
+    "subscription_gift_notice": "您当前已订阅，已获得1,000赠送积分",
     "purchased_points": "购买积分",
     "purchased_points_description": "通过支付购买的积分，永不过期，可长期使用",
     "gifted_points": "赠送积分",
-    "gifted_points_description": "订阅专业版赠送的积分，订阅到期时将被清零",
+    "gifted_points_description": "订阅赠送的积分，订阅到期时将被清零",
     "usage_priority": "使用优先级",
     "usage_priority_description": "系统会优先使用赠送积分，再使用购买积分",
     "recommended": "推荐",
     "processing": "处理中...",
     "payment_history": "支付记录",
     "payment_history_description": "查看所有支付记录和交易详情",
+    "referral": {
+      "title": "推荐好友",
+      "description": "邀请好友注册，双方都能获得奖励",
+      "total_referrals": "总推荐人数",
+      "subscribed_referrals": "已订阅人数",
+      "referral_code": "推荐码",
+      "referral_link": "推荐链接",
+      "history": "推荐历史",
+      "no_history": "暂无推荐记录",
+      "code_copied": "推荐码已复制",
+      "link_copied": "推荐链接已复制",
+      "copy_failed": "复制失败",
+      "action_register_bonus": "注册奖励",
+      "action_referrer_bonus": "推荐奖励",
+      "action_subscription_reward": "推荐好友订阅奖励",
+      "days": "天",
+      "records": "推荐记录",
+      "no_records": "暂无推荐记录",
+      "subscribed": "已订阅",
+      "not_subscribed": "未订阅",
+      "anonymous_user": "匿名用户"
+    },
     "payment_history_details": {
       "title": "支付记录",
       "stats": {
@@ -483,6 +758,7 @@
         "total_payments": "总支付次数",
         "total_amount": "总支付金额",
         "total_points_purchased": "总购买积分",
+        "total_points_gifted": "订阅赠送积分",
         "successful_payments": "成功支付次数"
       },
       "payment_types": {
@@ -519,32 +795,250 @@
       }
     }
   },
+  "referral_page": {
+    "title": "推荐计划",
+    "subtitle": "邀请好友注册，共享奖励",
+    "custom_code": {
+      "title": "自定义推荐码",
+      "description": "设置一个专属的推荐码，让好友更容易记住",
+      "current_code": "当前推荐码",
+      "placeholder": "输入自定义推荐码（4-20个字符）",
+      "button": "设置推荐码",
+      "button_updating": "设置中...",
+      "success": "推荐码设置成功",
+      "error": "推荐码设置失败",
+      "already_set": "推荐码已设置，不可修改",
+      "invalid_format": "推荐码格式不正确（4-20个字符，仅支持字母和数字）",
+      "already_taken": "该推荐码已被使用",
+      "note": "注意：推荐码只能设置一次，设置后不可修改"
+    },
+    "stats": {
+      "title": "推荐统计",
+      "total_invites": "累计邀请",
+      "people": "人",
+      "total_rewards": "累计奖励",
+      "points": "积分",
+      "subscribed_users": "已订阅用户",
+      "pending_users": "待订阅用户"
+    },
+    "share": {
+      "title": "分享推荐",
+      "copy_code": "复制推荐码",
+      "copy_link": "复制推荐链接",
+      "share_text": "分享给好友"
+    },
+    "rules": {
+      "title": "奖励规则",
+      "rule1_title": "注册奖励",
+      "rule1_desc": "好友通过您的推荐码注册，双方各获得 100 积分（永久有效）",
+      "rule2_title": "订阅返利",
+      "rule2_desc": "好友订阅任意方案，您将获得同等时长的订阅延长 + 对应方案的赠送积分",
+      "rule3_title": "多次奖励",
+      "rule3_desc": "好友每次续费或升级订阅，您都会获得相应奖励（不限次数）",
+      "rule4_title": "时效限制",
+      "rule4_desc": "邀请关系建立后30天内有效，超过30天将不再发放订阅奖励",
+      "note": "注：所有奖励将在好友完成注册或订阅后自动发放，无需手动操作"
+    },
+    "recent_referrals": {
+      "title": "最近推荐",
+      "view_all": "查看全部",
+      "registered_at": "注册于"
+    },
+    "records": {
+      "title": "推荐记录",
+      "description": "查看通过您的推荐码注册的用户",
+      "loading": "加载中...",
+      "empty": "暂无推荐记录",
+      "unknown_user": "未知用户",
+      "subscribed": "已订阅",
+      "pending": "待订阅",
+      "filter_all": "全部",
+      "table": {
+        "user": "用户",
+        "email": "邮箱",
+        "register_time": "注册时间",
+        "status": "状态"
+      }
+    },
+    "rewards": {
+      "title": "赠送记录",
+      "description": "查看每笔订阅赠送的积分和订阅延长记录",
+      "loading": "加载中...",
+      "empty": "暂无赠送记录",
+      "unknown_user": "未知用户",
+      "points": "积分",
+      "days": "天",
+      "filter_all": "全部",
+      "action_register_bonus": "注册奖励",
+      "action_referrer_bonus": "推荐人奖励",
+      "action_subscription_reward": "订阅返利",
+      "table": {
+        "action": "操作类型",
+        "from": "来自",
+        "reward": "奖励",
+        "create_time": "创建时间"
+      }
+    }
+  },
+  "affiliate_page": {
+    "title": "推广返利系统",
+    "subtitle": "通过推广获得返利，每单30%佣金",
+    "loading": "加载中...",
+    "stats": {
+      "total_invites": "总邀请人数",
+      "converted": "已转化人数",
+      "available_balance": "可用余额",
+      "frozen_balance": "冻结余额"
+    },
+    "code_setting": {
+      "title": "推广码设置",
+      "description": "设置您的推广码，只能修改一次",
+      "current_code": "当前推广码",
+      "placeholder": "输入新推广码（8-20个字母或数字）",
+      "placeholder_set": "输入推广码（8-20个字母或数字）",
+      "button_update": "更新推广码",
+      "button_set": "设置推广码",
+      "updating": "更新中...",
+      "setting": "设置中...",
+      "note": "注意：推广码只能修改一次，请谨慎设置",
+      "already_changed": "推广码已修改过，无法再次修改",
+      "enter_code": "请输入推广码",
+      "invalid_format": "推广码格式无效，必须为8-20个字母或数字",
+        "update_success": "推广码更新成功",
+        "update_failed": "更新推广码失败",
+        "already_taken": "该推广码已被使用",
+        "code_copied": "推广码已复制",
+        "link_copied": "推广链接已复制",
+        "copy_failed": "复制失败",
+        "set_first": "请先设置推广码"
+    },
+    "share": {
+      "title": "分享推广",
+      "link_label": "推广链接",
+      "copy_code": "复制推广码",
+      "copy_link": "复制链接"
+    },
+    "relations": {
+      "title": "邀请数据",
+      "description": "查看通过您的推广码注册的用户",
+      "loading": "加载中...",
+      "empty": "暂无邀请数据",
+      "unknown_user": "未知用户",
+      "register_time": "注册时间",
+      "converted": "已转化",
+      "expired": "已过期",
+      "pending": "待转化",
+      "filter_all": "全部",
+      "table": {
+        "user": "用户",
+        "email": "邮箱",
+        "register_time": "注册时间",
+        "status": "状态"
+      }
+    },
+    "earnings": {
+      "title": "佣金记录",
+      "description": "查看您的佣金收入和状态",
+      "loading": "加载中...",
+      "empty": "暂无佣金记录",
+      "from": "来自",
+      "create_time": "创建时间",
+      "release_time": "解冻时间",
+      "frozen": "冻结中",
+      "released": "已解冻",
+      "cancelled": "已取消",
+      "unknown_user": "未知用户",
+      "filter_all": "全部",
+      "table": {
+        "amount": "金额",
+        "from": "来自",
+        "status": "状态",
+        "create_time": "创建时间",
+        "release_time": "解冻时间"
+      }
+    },
+    "withdraw": {
+      "title": "提现申请",
+      "description": "将可用余额提现到您的账户",
+      "button": "提现",
+      "amount": "提现金额",
+      "amount_placeholder": "请输入提现金额",
+      "min_amount": "最小提现金额",
+      "min_amount_error": "最小提现金额为$10",
+      "payment_method": "支付方式",
+      "alipay": "支付宝",
+      "paypal": "PayPal",
+      "account_name": "账户姓名",
+      "account_name_placeholder": "请输入账户姓名",
+      "alipay_account": "支付宝账号",
+      "alipay_placeholder": "请输入支付宝账号或手机号",
+      "paypal_email": "PayPal邮箱",
+      "paypal_placeholder": "请输入PayPal邮箱",
+      "available_balance": "可提现金额",
+      "exceeds_balance": "提现金额超过可用余额",
+      "submit": "提交申请",
+      "processing": "处理中...",
+      "success": "提现申请已提交",
+      "failed": "提现申请失败",
+      "invalid_amount": "提现金额无效",
+      "invalid_payment_method": "支付方式无效",
+      "invalid_account_info": "账户信息无效",
+      "insufficient_balance": "可用余额不足",
+      "account_info_required": "请输入账户信息"
+    },
+    "withdrawals": {
+      "title": "提现记录",
+      "description": "查看您的提现申请记录",
+      "loading": "加载中...",
+      "empty": "暂无提现记录",
+      "pending": "待处理",
+      "processing": "处理中",
+      "completed": "已完成",
+      "failed": "失败",
+      "cancelled": "已取消",
+      "failure_reason": "失败原因",
+      "create_time": "申请时间",
+      "processed_time": "处理时间",
+      "filter_all": "全部",
+      "table": {
+        "amount": "金额",
+        "payment_method": "支付方式",
+        "account": "账户信息",
+        "status": "状态",
+        "create_time": "申请时间",
+        "processed_time": "处理时间"
+      }
+    }
+  },
   "dashboard": {
     "payment_success": {
       "title": "购买成功！",
-      "subtitle": "欢迎使用Get SaaS专业版",
+      "subtitle": "欢迎使用MokerSaaS",
+      "subtitle_with_plan": "欢迎使用MokerSaaS {plan}",
       "processing_title": "处理支付结果",
       "processing_description": "请稍候，我们正在确认您的购买状态...",
       "verifying_title": "验证购买状态",
-      "verifying_description": "正在确认您的专业版购买...",
-      "success_toast": "🎉 专业版购买成功！您已获得完整的SaaS模版和技术支持",
+      "verifying_description": "正在确认您的购买...",
+      "success_toast": "🎉 购买成功！您已获得完整的SaaS模版和技术支持",
+      "success_toast_with_plan": "🎉 {plan}购买成功！您已获得完整的SaaS模版和技术支持",
       "no_session_toast": "💡 您已到达购买成功页面，请使用下方按钮导航"
     },
     "subscription_info": {
-      "title": "专业版许可",
-      "status_label": "许可状态：",
+      "title": "订阅信息",
+      "title_with_plan": "{plan}订阅",
+      "status_label": "订阅状态：",
       "status_active": "已激活",
       "status_processing": "处理中",
-      "plan_label": "许可类型：",
-      "plan_pro": "专业版",
+      "plan_label": "订阅类型：",
+      "plan_pro": "Pro",
       "expires_label": "支持到期："
     },
     "points_reward": {
-      "title": "购买权益",
-      "total_points": "总权益",
-      "purchased_points": "购买权益",
-      "gifted_points": "赠送权益",
-      "gift_notice": "🎁 您已获得专业版完整权益，包括源码、文档和技术支持！"
+      "title": "积分奖励",
+      "total_points": "总积分",
+      "purchased_points": "购买积分",
+      "gifted_points": "赠送积分",
+      "gift_notice": "🎁 您已获得订阅赠送积分，可用于使用各项功能！"
     },
     "actions": {
       "view_profile": "查看个人中心",
@@ -557,8 +1051,114 @@
     }
   },
   "admin": {
+    "dashboard": {
+      "meta_title": "管理员控制台 - MokerSaaS",
+      "meta_description": "管理员控制台，统一管理用户、邮件订阅、系统设置等功能。",
+      "title": "管理员控制台",
+      "sidebar": {
+        "title": "管理功能"
+      },
+      "menu": {
+        "overview": "概览",
+        "overview_desc": "实时查看系统核心数据统计和趋势分析",
+        "users": "用户管理",
+        "users_desc": "管理注册用户和权限",
+        "referral": "推荐管理",
+        "referral_desc": "管理所有用户的推荐记录和奖励",
+        "affiliate": "推广管理",
+        "affiliate_desc": "管理所有用户的推广记录和佣金",
+        "newsletter": "邮件订阅",
+        "newsletter_desc": "管理邮件订阅用户",
+        "traffic": "流量分析",
+        "traffic_desc": "查看网站流量统计和访客洞察"
+      },
+      "overview": {
+        "title": "系统概览",
+        "description": "实时查看系统核心数据统计和趋势分析",
+        "categories": {
+          "users_revenue": "用户与收入",
+          "referral_affiliate": "推荐与推广"
+        },
+        "cards": {
+          "users": {
+            "title": "用户管理",
+            "description": "管理注册用户、角色和权限"
+          },
+          "newsletter": {
+            "title": "邮件订阅",
+            "description": "管理邮件订阅和发送统计"
+          }
+        },
+        "quick_actions": {
+          "title": "快速操作",
+          "manage_users": "管理用户",
+          "manage_users_desc": "查看和管理所有注册用户",
+          "manage_newsletter": "管理订阅",
+          "manage_newsletter_desc": "查看和管理邮件订阅"
+        },
+        "stats": {
+          "total_users": "总用户数",
+          "subscribed_users": "订阅用户数",
+          "subscription_revenue": "订阅总收入",
+          "points_revenue": "积分总收入",
+          "total_points": "总积分",
+          "total_referrals": "总推荐数",
+          "referral_subscribed": "推荐订阅人数",
+          "referral_reward_points": "推荐奖励总积分",
+          "affiliate_count": "推广人数",
+          "affiliate_earnings": "推广总佣金",
+          "affiliate_withdrawals": "总提现佣金",
+          "newsletter_subscribers": "邮箱订阅人数"
+        },
+        "trends": {
+          "title": "趋势分析",
+          "days_7": "7天",
+          "days_30": "30天",
+          "days_90": "90天",
+          "registration": "注册人数趋势",
+          "registration_count": "注册人数",
+          "subscription": "订阅数和收入趋势",
+          "subscription_count": "订阅数",
+          "subscription_revenue": "订阅收入",
+          "total_revenue": "总收入趋势",
+          "revenue": "收入"
+        }
+      }
+    },
+    "traffic": {
+      "days_7": "7天",
+      "days_30": "30天",
+      "days_90": "90天",
+      "stats": {
+        "pageviews": "页面浏览量",
+        "visitors": "独立访客",
+        "visits": "访问次数",
+        "bounce_rate": "跳出率",
+        "avg_time": "平均时长"
+      },
+      "charts": {
+        "pageviews_trend": "页面浏览量趋势",
+        "top_pages": "热门页面",
+        "devices": "设备分布",
+        "browsers": "浏览器分布",
+        "countries": "访客国家/地区",
+        "referrers": "来源网站"
+      },
+      "not_configured": {
+        "title": "未接入 Umami 统计",
+        "description": "要启用流量分析功能，请在环境变量中配置 Umami：",
+        "frontend_tracking": "前端追踪配置（必需）",
+        "backend_api": "后端 API 配置（必需）",
+        "authentication": "认证配置（二选一）",
+        "umami_cloud": "方式一：Umami Cloud - 使用 API Key",
+        "self_hosted": "方式二：自部署 Umami - 使用用户名密码（推荐）",
+        "learn_more": "了解更多关于 Umami"
+      },
+      "error_title": "加载分析数据失败",
+      "error_message": "无法获取分析数据，请稍后重试。"
+    },
     "newsletter": {
-      "meta_title": "邮件订阅统计 - Get SaaS",
+      "meta_title": "邮件订阅统计 - MokerSaaS",
       "meta_description": "查看和管理邮件订阅统计数据，包括订阅用户数量、语言分布等信息。",
       "title": "邮件订阅统计",
       "stats": {
@@ -574,6 +1174,9 @@
       "subscription_list": {
         "title": "订阅列表",
         "description": "所有邮件订阅用户的详细信息",
+        "export": "导出",
+        "export_success": "导出成功",
+        "export_failed": "导出失败",
         "active_tab": "活跃订阅",
         "inactive_tab": "已取消订阅",
         "no_data": "暂无数据",
@@ -584,18 +1187,312 @@
           "subscribed_at": "订阅时间",
           "unsubscribed_at": "取消订阅时间",
           "chinese": "中文",
-          "english": "English",
+          "english": "英文",
           "active": "活跃",
           "cancelled": "已取消"
         }
       },
       "actions": {
         "retry": "重试",
-        "refresh": "刷新"
+        "refresh": "刷新",
+        "export": "导出"
       },
       "error": {
         "fetch_stats_failed": "获取统计数据失败",
         "fetch_subscriptions_failed": "获取订阅列表失败"
+      }
+    },
+    "users": {
+      "meta_title": "用户管理 - MokerSaaS",
+      "meta_description": "查看和管理所有注册用户的详细信息，包括用户统计、角色管理、积分调整等功能。",
+      "title": "用户管理",
+      "stats": {
+        "total_users": "总用户数",
+        "total_users_desc": "注册用户总数",
+        "verified_users": "已验证用户",
+        "verified_users_desc": "邮箱已验证",
+        "admin_users": "管理员",
+        "admin_users_desc": "管理员用户",
+        "subscribed_users": "订阅用户",
+        "subscribed_users_desc": "活跃订阅",
+        "total_points": "总积分",
+        "total_points_desc": "用户积分总和",
+        "total_payments": "总收入",
+        "total_payments_desc": "成功支付总额"
+      },
+      "user_list": {
+        "title": "用户列表",
+        "description": "管理所有注册用户的详细信息",
+        "search_placeholder": "搜索邮箱或用户名...",
+        "filter_role": "筛选角色",
+        "filter_email_status": "验证状态",
+        "all_roles": "所有角色",
+        "all_statuses": "全部邮箱状态",
+        "role_user": "普通用户",
+        "role_admin": "管理员",
+        "email_verified": "已验证",
+        "email_unverified": "未验证",
+        "filter_subscription_status": "订阅状态",
+        "all_subscription_statuses": "全部订阅状态",
+        "subscription_active": "活跃",
+        "subscription_cancelled": "已取消",
+        "subscription_past_due": "逾期",
+        "subscription_paused": "暂停",
+        "subscription_none": "无订阅",
+        "no_data": "暂无用户数据",
+        "table": {
+          "user_info": "用户信息",
+          "role": "角色",
+          "email_status": "邮箱状态",
+          "points": "积分",
+          "subscription": "订阅状态",
+          "subscription_expiry": "订阅到期",
+          "created_at": "注册时间",
+          "actions": "操作",
+          "edit_role": "编辑角色",
+          "adjust_points": "调整积分",
+          "manage_subscription": "管理订阅",
+          "no_name": "未设置",
+          "role_admin": "管理员",
+          "role_user": "用户",
+          "email_verified": "已验证",
+          "email_unverified": "未验证",
+          "points_total": "总计",
+          "points_purchased": "购买",
+          "points_gifted": "赠送",
+          "no_subscription": "无订阅",
+          "plan_trial": "Trial",
+          "plan_pro": "Pro",
+          "plan_annual": "Annual",
+          "status_active": "活跃",
+          "status_cancelled": "已取消",
+          "status_past_due": "逾期未付",
+          "status_paused": "暂停",
+          "status_expired": "已过期",
+          "expired": "已过期",
+          "expiring_soon": "即将到期"
+        }
+      },
+      "actions": {
+        "refresh": "刷新",
+        "retry": "重试",
+        "edit_role": "修改角色",
+        "adjust_points": "调整积分",
+        "manage_subscription": "管理订阅",
+        "view_details": "查看详情"
+      },
+      "dialogs": {
+        "user_info": "用户: {name} ({email})",
+        "no_name": "未设置",
+        "cancel": "取消",
+        "confirm": "确认",
+        "edit_role": {
+          "title": "修改用户角色",
+          "description": "修改用户的系统角色权限",
+          "role_label": "用户角色",
+          "role_placeholder": "选择角色",
+          "role_user": "普通用户",
+          "role_admin": "管理员"
+        },
+        "adjust_points": {
+          "title": "调整用户积分",
+          "description": "增加或扣除用户积分",
+          "points_label": "积分变动",
+          "points_placeholder": "输入积分数量（正数增加，负数扣除）",
+          "points_type_label": "积分类型",
+          "points_type_purchased": "购买积分",
+          "points_type_gifted": "赠送积分",
+          "description_label": "操作说明",
+          "description_placeholder": "请输入操作说明（可选）",
+          "purchased_points_info": "购买积分永不过期，可以随时使用",
+          "gifted_points_expiry_label": "关联订阅到期时间",
+          "gifted_points_expiry_info": "赠送积分将在订阅到期时自动清零，到期时间与用户订阅到期时间一致",
+          "gifted_points_requires_subscription": "⚠️ 赠送积分需要订阅到期时间",
+          "gifted_points_no_subscription": "该用户尚未设置订阅，无法添加赠送积分。请先为用户设置订阅后再添加赠送积分",
+          "subscription_expired_error": "用户订阅已过期，无法添加赠送积分。请先更新订阅到期时间"
+        },
+        "manage_subscription": {
+          "title": "管理用户订阅",
+          "description": "修改用户的订阅状态和计划",
+          "status_label": "订阅状态",
+          "status_placeholder": "选择订阅状态",
+          "status_active": "活跃",
+          "status_cancelled": "已取消",
+          "status_past_due": "逾期未付",
+          "status_paused": "暂停",
+          "plan_label": "订阅计划",
+          "plan_placeholder": "选择订阅计划",
+          "plan_trial": "Trial",
+          "plan_pro": "Pro",
+          "plan_annual": "Annual",
+          "end_date_label": "订阅到期日期",
+          "end_date_placeholder": "选择到期日期",
+          "auto_calculated": "到期时间根据订阅计划自动计算",
+          "cumulative_calculated": "在现有订阅基础上累计增加时间",
+          "select_plan_first": "请选择订阅计划"
+        }
+      },
+      "pagination": {
+        "page_info": "第 {page} 页，共 {totalPages} 页",
+        "total_records": "总共 {total} 条记录",
+        "previous": "上一页",
+        "next": "下一页"
+      },
+      "messages": {
+        "role_updated": "用户角色更新成功",
+        "points_updated": "用户积分调整成功",
+        "subscription_updated": "用户订阅更新成功",
+        "update_failed": "更新失败",
+        "fetch_stats_failed": "获取统计数据失败",
+        "fetch_users_failed": "获取用户列表失败"
+      }
+    },
+    "referral": {
+      "stats": {
+        "total_referrals": "总推荐数",
+        "subscribed_referrals": "已订阅推荐",
+        "total_points": "总奖励积分"
+      },
+      "tabs": {
+        "records": "推荐记录",
+        "rewards": "赠送记录"
+      },
+      "records": {
+        "title": "推荐记录",
+        "description": "查看所有用户的推荐关系",
+        "empty": "暂无推荐记录",
+        "subscribed": "已订阅",
+        "pending": "待订阅",
+        "table": {
+          "referrer": "推荐人",
+          "referred": "被推荐人",
+          "code": "推荐码",
+          "status": "状态",
+          "created_at": "创建时间"
+        }
+      },
+      "rewards": {
+        "title": "赠送记录",
+        "description": "查看所有推荐奖励记录",
+        "empty": "暂无赠送记录",
+        "days": "天",
+        "table": {
+          "user": "用户",
+          "from": "来自",
+          "action": "操作类型",
+          "reward": "奖励",
+          "created_at": "创建时间"
+        },
+        "actions": {
+          "register_bonus": "注册奖励",
+          "referrer_bonus": "推荐人奖励",
+          "subscription_reward": "订阅奖励",
+          "unknown": "其他（{action}）"
+        }
+      }
+    },
+    "affiliate": {
+      "stats": {
+        "total_profiles": "推广人数",
+        "total_relations": "推广关系",
+        "converted_relations": "已转化",
+        "total_earnings": "总佣金",
+        "total_withdrawals": "总提现"
+      },
+      "tabs": {
+        "profiles": "推广人",
+        "relations": "推广关系",
+        "earnings": "佣金记录",
+        "withdrawals": "提现记录"
+      },
+      "profiles": {
+        "title": "推广人列表",
+        "description": "查看所有推广人资料",
+        "loading": "加载中...",
+        "empty": "暂无推广人",
+        "table": {
+          "user": "用户",
+          "code": "推广码",
+          "balance": "可用余额",
+          "frozen_balance": "冻结余额",
+          "created_at": "创建时间"
+        }
+      },
+      "relations": {
+        "title": "推广关系",
+        "description": "查看所有推广关系",
+        "loading": "加载中...",
+        "empty": "暂无推广关系",
+        "converted": "已转化",
+        "expired": "已过期",
+        "pending": "待转化",
+        "table": {
+          "referrer": "推广人",
+          "invitee": "被推广人",
+          "status": "状态",
+          "expires_at": "过期时间",
+          "created_at": "创建时间"
+        }
+      },
+      "earnings": {
+        "title": "佣金记录",
+        "description": "查看所有佣金记录",
+        "loading": "加载中...",
+        "empty": "暂无佣金记录",
+        "frozen": "冻结中",
+        "released": "已解冻",
+        "cancelled": "已取消",
+        "table": {
+          "affiliate": "推广人",
+          "invitee": "被推广人",
+          "amount": "金额",
+          "status": "状态",
+          "created_at": "创建时间"
+        }
+      },
+      "withdrawals": {
+        "title": "提现记录",
+        "description": "查看所有提现记录",
+        "loading": "加载中...",
+        "empty": "暂无提现记录",
+        "pending": "待处理",
+        "processing": "处理中",
+        "completed": "已完成",
+        "failed": "失败",
+        "cancelled": "已取消",
+        "table": {
+          "user": "用户",
+          "amount": "金额",
+          "payment_method": "支付方式",
+          "account": "账户信息",
+          "status": "状态",
+          "created_at": "创建时间",
+          "actions": "操作"
+        },
+        "process": {
+          "title": "处理提现申请",
+          "description": "更新提现申请的状态",
+          "button": "处理",
+          "update": "更新",
+          "user": "用户",
+          "amount": "金额",
+          "payment_method": "支付方式",
+          "account_info": "账户信息",
+          "status": "状态",
+          "select_status": "选择状态",
+          "transaction_id": "交易ID",
+          "transaction_id_placeholder": "请输入第三方交易ID",
+          "failure_reason": "失败原因",
+          "failure_reason_placeholder": "请输入失败原因",
+          "status_required": "请选择状态",
+          "transaction_id_required": "完成提现需要填写交易ID",
+          "failure_reason_required": "标记为失败需要填写失败原因",
+          "success": "提现处理成功",
+          "failed": "处理失败",
+          "processing": "处理中...",
+          "submit": "提交",
+          "cancel": "取消"
+        }
       }
     }
   },
@@ -611,74 +1508,5 @@
     "errorMessage": "如果您认为这是一个错误，请联系系统管理员。",
     "backToHome": "返回首页",
     "signInAgain": "重新登录"
-  },
-  "testimonials": {
-    "title": "用户评价",
-    "description": "加入数千名已经在使用 Get SaaS 快速构建和部署SaaS产品的开发者和创业者"
-  },
-  "blogPage": {
-    "title": "Get SaaS 博客",
-    "subtitle": "探索SaaS开发的最新动态和技术分享",
-    "contactPost": {
-      "badge": "最新",
-      "date": "2024年12月",
-      "author": "Get SaaS Team",
-      "title": "联系我们 - 让我们一起探索SaaS开发的无限可能",
-      "description": "我们很高兴与您建立联系！无论您是想了解我们的SaaS模版服务，还是有任何技术问题，我们都随时准备为您提供帮助。",
-      "contactMethods": {
-        "title": "🤝 联系方式",
-        "twitter": {
-          "title": "推特 Twitter",
-          "description": "关注我们获取最新动态",
-          "handle": "@zyailive"
-        },
-        "email": {
-          "title": "邮箱 Email",
-          "description": "商务合作与技术支持",
-          "address": "app@itusi.cn"
-        },
-        "wechat": {
-          "title": "微信 WeChat",
-          "description": "添加微信获取专属服务",
-          "id": "zyailive01"
-        }
-      },
-      "services": {
-        "title": "🎯 我们能为您做什么？",
-        "podcast": "完整的SaaS模版源码和技术文档",
-        "voiceover": "现代化的用户认证和支付系统集成",
-        "video": "多语言支持和SEO优化解决方案",
-        "support": "7×24小时专业技术支持",
-        "custom": "根据您的需求定制专属SaaS功能"
-      },
-      "cta": {
-        "title": "准备开始您的SaaS开发之旅了吗？",
-        "startNow": "立即开始",
-        "contactUs": "联系我们"
-      }
-    },
-    "otherPosts": {
-      "title": "SaaS开发技术分享",
-      "description": "探索SaaS模版的最新技术动态和深度解析",
-      "post1": {
-        "category": "技术解析",
-        "date": "2025年7月",
-        "title": "Get SaaS可以做哪些网站？",
-        "excerpt": "深入了解Get SaaS模版的应用场景，从电商平台到企业管理系统，再到在线教育平台的完整解决方案。"
-      },
-      "post2": {
-        "category": "产品介绍",
-        "date": "2025年7月",
-        "title": "Get SaaS有什么功能？",
-        "excerpt": "深入了解Get SaaS模版提供的核心功能：用户认证、支付系统、多语言支持、SEO优化等完整解决方案。"
-      },
-      "post3": {
-        "category": "行业洞察",
-        "date": "2025年7月",
-        "title": "什么是SaaS？",
-        "excerpt": "深入了解SaaS的定义、商业模式和技术架构，以及如何快速构建现代化SaaS产品。"
-      },
-      "readMore": "阅读更多"
-    }
   }
 }

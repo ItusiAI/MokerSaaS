@@ -31,6 +31,7 @@ export function PaymentSuccess() {
   const locale = useLocale()
   const { data: session, status } = useSession()
   const t = useTranslations('dashboard')
+  const tPlan = useTranslations('profile') // 复用 Profile 中的订阅计划翻译
   const [loading, setLoading] = useState(true)
   const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null>(null)
   const [pointsData, setPointsData] = useState<PointsDetail | null>(null)
@@ -51,6 +52,20 @@ export function PaymentSuccess() {
     }
   }, [status, session, sessionId])
 
+  // 根据订阅计划获取显示名称
+  const getPlanDisplayName = (plan: string | null): string => {
+    if (!plan) return ''
+    const planKey = `plan_${plan.toLowerCase()}`
+    try {
+      const planName = tPlan(planKey)
+      // 如果翻译不存在，返回原始值（首字母大写）
+      return planName || plan.charAt(0).toUpperCase() + plan.slice(1)
+    } catch {
+      // 如果翻译键不存在，返回格式化的原始值
+      return plan.charAt(0).toUpperCase() + plan.slice(1)
+    }
+  }
+
   const handlePaymentSuccess = async () => {
     if (!sessionId) {
       // 移除自动跳转逻辑，显示提示信息
@@ -69,9 +84,11 @@ export function PaymentSuccess() {
         fetch('/api/user/points-detail')
       ])
 
+      let currentSubscriptionData: SubscriptionData | null = null
+
       if (subscriptionResponse.ok) {
-        const subscriptionData = await subscriptionResponse.json()
-        setSubscriptionData(subscriptionData)
+        currentSubscriptionData = await subscriptionResponse.json()
+        setSubscriptionData(currentSubscriptionData)
       }
 
       if (pointsResponse.ok) {
@@ -82,8 +99,14 @@ export function PaymentSuccess() {
       setVerificationComplete(true)
       setLoading(false)
 
-      // 显示成功消息
-      toast.success(t('payment_success.success_toast'))
+      // 显示成功消息（动态显示订阅计划）
+      const planName = currentSubscriptionData?.subscriptionPlan 
+        ? getPlanDisplayName(currentSubscriptionData.subscriptionPlan)
+        : ''
+      const successMessage = planName
+        ? t('payment_success.success_toast_with_plan', { plan: planName })
+        : t('payment_success.success_toast')
+      toast.success(successMessage)
 
       // 清除URL参数
       if (typeof window !== 'undefined') {
@@ -131,7 +154,14 @@ export function PaymentSuccess() {
     )
   }
 
-  const isProSubscription = subscriptionData?.subscriptionPlan === 'pro' && subscriptionData?.subscriptionStatus === 'active'
+  // 检查是否有活跃订阅（支持所有订阅类型）
+  const hasActiveSubscription = subscriptionData?.subscriptionPlan && 
+    (subscriptionData?.subscriptionStatus === 'active' || subscriptionData?.subscriptionStatus === 'processing')
+
+  // 获取订阅计划显示名称
+  const planDisplayName = subscriptionData?.subscriptionPlan 
+    ? getPlanDisplayName(subscriptionData.subscriptionPlan)
+    : ''
 
   return (
     <div className="py-12 px-4">
@@ -146,17 +176,23 @@ export function PaymentSuccess() {
               🎉 {t('payment_success.title')}
             </CardTitle>
             <CardDescription className="text-lg">
-              {t('payment_success.subtitle')}
+              {planDisplayName 
+                ? t('payment_success.subtitle_with_plan', { plan: planDisplayName })
+                : t('payment_success.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {/* 订阅信息 */}
-              {isProSubscription && (
+              {hasActiveSubscription && (
                 <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
                   <div className="flex items-center gap-3 mb-4">
                     <Crown className="h-6 w-6 text-primary" />
-                    <h3 className="text-lg font-semibold text-foreground">{t('subscription_info.title')}</h3>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {planDisplayName 
+                        ? t('subscription_info.title_with_plan', { plan: planDisplayName })
+                        : t('subscription_info.title')}
+                    </h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
@@ -167,7 +203,7 @@ export function PaymentSuccess() {
                     </div>
                     <div>
                       <span className="text-muted-foreground">{t('subscription_info.plan_label')}</span>
-                      <span className="font-medium text-foreground ml-2">{t('subscription_info.plan_pro')}</span>
+                      <span className="font-medium text-foreground ml-2">{planDisplayName}</span>
                     </div>
                     {subscriptionData?.subscriptionCurrentPeriodEnd && (
                       <div className="md:col-span-2">

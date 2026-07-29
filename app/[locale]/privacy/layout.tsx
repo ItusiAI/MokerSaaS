@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation'
 
 const locales = ['en', 'zh']
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const locale = params.locale
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   
   if (!locales.includes(locale)) {
     notFound()
@@ -18,13 +18,14 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   }
 }
 
-export default function PrivacyLayout({
+export default async function PrivacyLayout({
   children,
-  params: { locale }
+  params
 }: {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params
   if (!locales.includes(locale)) {
     notFound()
   }

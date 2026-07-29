@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
     if (!token) {
       return NextResponse.json(
-        { error: '验证令牌缺失' },
+        { errorKey: 'verify.token_missing' },
         { status: 400 }
       )
     }
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
     if (!verificationToken) {
       return NextResponse.json(
-        { error: '验证令牌无效或已过期' },
+        { errorKey: 'verify.token_invalid' },
         { status: 400 }
       )
     }
@@ -43,15 +43,15 @@ export async function GET(request: NextRequest) {
       .where(eq(emailVerificationTokens.token, token))
 
     return NextResponse.json({
-      message: '邮箱验证成功！您现在可以登录了。',
+      messageKey: 'verify.success',
       success: true
     })
 
   } catch (error) {
     console.error('邮箱验证错误:', error)
     return NextResponse.json(
-      { error: '邮箱验证失败，请稍后重试' },
+      { errorKey: 'verify.failed_retry' },
       { status: 500 }
     )
   }
-} 
+}

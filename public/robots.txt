@@ -30,9 +30,9 @@ Disallow: /auth/
 Disallow: /unauthorized/
 
 # 站点地图
-Sitemap: https://getsaaspro.com/sitemap.xml
-Sitemap: https://getsaaspro.com/sitemap-zh.xml
-Sitemap: https://getsaaspro.com/sitemap-en.xml
+Sitemap: https://mokersaas.com/sitemap.xml
+Sitemap: https://mokersaas.com/sitemap-zh.xml
+Sitemap: https://mokersaas.com/sitemap-en.xml
 
 # 爬取延迟（毫秒）
 Crawl-delay: 1

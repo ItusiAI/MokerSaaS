@@ -4,14 +4,15 @@ import { getTranslations } from 'next-intl/server'
 
 interface TermsLayoutProps {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }): Promise<Metadata> {
+  const { locale } = await params
   // 验证 locale 是否有效
   const locales = ['en', 'zh']
   if (!locales.includes(locale)) {
@@ -26,7 +27,8 @@ export async function generateMetadata({
   }
 }
 
-export default function TermsLayout({ children, params: { locale } }: TermsLayoutProps) {
+export default async function TermsLayout({ children, params }: TermsLayoutProps) {
+  const { locale } = await params
   // 验证 locale 是否有效
   const locales = ['en', 'zh']
   if (!locales.includes(locale)) {

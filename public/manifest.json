@@ -1,7 +1,7 @@
 {
-  "name": "Get SaaS - 专为出海设计的SaaS模版",
-  "short_name": "Get SaaS",
-  "description": "Get SaaS是专为出海设计的现代化SaaS模版，集成完整的用户认证、支付系统、多语言支持等功能。快速启动您的SaaS产品，专注业务逻辑开发。",
+  "name": "MokerSaaS - 专为出海设计的SaaS模版",
+  "short_name": "MokerSaaS",
+  "description": "MokerSaaS是专为出海设计的现代化SaaS模版，集成完整的用户认证、支付系统、多语言支持等功能。快速启动您的SaaS产品，专注业务逻辑开发。",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
@@ -37,7 +37,7 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Get SaaS 主界面"
+      "label": "MokerSaaS 主界面"
     }
   ],
   "shortcuts": [
@@ -58,18 +58,6 @@
       "short_name": "定价",
       "description": "查看SaaS模版定价方案",
       "url": "/zh#pricing",
-      "icons": [
-        {
-          "src": "/favicon.ico",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
-      "name": "技术博客",
-      "short_name": "博客",
-      "description": "SaaS开发技术分享",
-      "url": "/zh/blog",
       "icons": [
         {
           "src": "/favicon.ico",

@@ -10,14 +10,14 @@ export async function POST(request: NextRequest) {
 
     if (!token || !password) {
       return NextResponse.json(
-        { error: 'Token and password are required' },
+        { errorKey: 'token_invalid' },
         { status: 400 }
       )
     }
 
     if (password.length < 6) {
       return NextResponse.json(
-        { error: 'Password must be at least 6 characters long' },
+        { errorKey: 'password_min_length' },
         { status: 400 }
       )
     }
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 
     if (user.length === 0) {
       return NextResponse.json(
-        { error: 'Invalid or expired reset token' },
+        { errorKey: 'token_invalid' },
         { status: 400 }
       )
     }
@@ -50,13 +50,13 @@ export async function POST(request: NextRequest) {
       .where(eq(users.id, user[0].id))
 
     return NextResponse.json(
-      { message: 'Password reset successful' },
+      { messageKey: 'success_message' },
       { status: 200 }
     )
   } catch (error) {
     console.error('Reset password error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { errorKey: 'reset_failed' },
       { status: 500 }
     )
   }

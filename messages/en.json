@@ -1,47 +1,281 @@
 {
   "metadata": {
-    "title": "Get SaaS - Modern SaaS Template Designed for Global Markets",
-    "description": "Get SaaS is a modern SaaS template designed for global markets, featuring complete user authentication, payment systems, multi-language support, and SEO optimization. Built with Next.js to help developers launch SaaS products quickly.",
+    "title": "MokerSaaS - Build SaaS Fast · Launch in Hours · Free & Open Source",
+    "description": "Build SaaS at lightning speed, launch your product in hours. MokerSaaS delivers enterprise-ready SaaS solutions out of the box, featuring built-in authentication, Stripe payments, multi-language i18n, SEO optimization, admin dashboard, referral and affiliate systems. Built on Next.js modern tech stack to dramatically cut your time from idea to revenue.",
+    "shortTitle": "MokerSaaS - Build SaaS Fast",
+    "keywords": "MokerSaaS, build SaaS fast, open source SaaS, SaaS template, Next.js template, free SaaS, TypeScript SaaS, Stripe integration, i18n SaaS, admin dashboard, referral system, affiliate program, launch in hours",
     "terms": {
-      "title": "Terms of Service - Get SaaS",
-      "description": "View Get SaaS's Terms of Service for template usage, understanding usage rules, license agreement and user rights and responsibilities."
+      "title": "Terms of Service - MokerSaaS Open Source SaaS Template",
+      "description": "View MokerSaaS's Terms of Service for template usage, understanding usage rules, license agreement and user rights and responsibilities."
     },
     "privacy": {
-      "title": "Privacy Policy - Get SaaS",
-      "description": "Learn how Get SaaS handles user data and privacy protection to ensure your personal information security."
+      "title": "Privacy Policy - MokerSaaS Open Source SaaS Template",
+      "description": "Learn how MokerSaaS open source SaaS template handles user data and privacy protection to ensure your personal information security."
     },
     "cookies": {
-      "title": "Cookie Policy - Get SaaS",
-      "description": "Learn how Get SaaS uses cookies and related technologies to optimize user experience and website performance."
+      "title": "Cookie Policy - MokerSaaS Open Source SaaS Template",
+      "description": "Learn how MokerSaaS open source SaaS template uses cookies and related technologies to optimize user experience and website performance."
     }
-  },
-  "demoBanner": {
-    "prefix": "This is a",
-    "productName": "Get SaaS",
-    "suffix": "demo site. After exploring all features,",
-    "cta": "Purchase Full Version"
   },
   "navbar": {
     "home": "Home",
-    "features": "Features",
+    "featuresArchitecture": "Features Architecture",
+    "demo": "Live Demo",
     "pricing": "Pricing",
-    "blog": "Tech Blog",
-    "signUp": "Sign Up",
+    "signUp": "Get Started",
     "signIn": "Sign In",
     "profile": "Profile",
+    "affiliate": "Affiliate",
+    "referral": "Referral",
     "accountSettings": "Account Settings",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "language": "Switch Language",
+    "switchLanguage": "Switch Language",
+    "chinese": "Chinese",
+    "english": "English",
+    "currentLocale": "中",
+    "currentLocaleEn": "EN"
   },
   "hero": {
-    "title": "Modern SaaS Template for Global Markets\nLaunch Your SaaS Product Worldwide",
-    "description": "Get SaaS features complete user authentication, payment systems, multi-language support, and SEO optimization. Built with Next.js and modern tech stack, focus on your business logic and launch globally fast.",
-    "badge": "🚀 Modern SaaS Solution",
-    "features": {
-      "readyToUse": "Ready to Use",
-      "multiScenario": "Global Support",
-      "professionalOutput": "Enterprise Architecture"
+    "title": "Build SaaS at Lightning Speed,",
+    "highlight": "Launch in Hours.",
+    "description": "MokerSaaS delivers enterprise-ready SaaS solutions out of the box, featuring built-in authentication, Stripe payments, multi-language i18n, SEO optimization, admin dashboard, referral and affiliate systems. Built on Next.js modern tech stack to dramatically cut your time from idea to revenue.",
+    "badge": "100% Open Source & Free",
+    "primaryCta": "Get Template Free",
+    "secondaryCta": "View Architecture",
+    "techStackLabel": "Core Tech Stack:",
+    "techStack": {
+      "nextjs": "Next.js 16",
+      "nextjsTitle": "Next.js 16 App Router",
+      "neon": "Neon",
+      "neonTitle": "Neon Serverless Postgres Database",
+      "stripe": "Stripe",
+      "stripeTitle": "Stripe Subscription Payment"
+    },
+    "uptimeBadge": {
+      "label": "Launch Efficiency Boost",
+      "value": "10X Faster Ship"
+    },
+    "code": {
+      "tabTitle": "referral-rewards · route.ts",
+      "runTitle": "Run Test",
+      "runLabel": "Run",
+      "copyTitle": "Copy Code",
+      "simulateLog1": "[04:22:01] Initializing Next.js 16 App Router workflow...",
+      "simulateLog2": "[04:22:02] Querying Neon Postgres referral chain & credits ledger...",
+      "simulateLog3": "[04:22:03] NextAuth.js & referral reward distribution verified.",
+      "simulateSuccess": "✓ Simulated run succeeded: referral reward API auto-granted credits & days!"
     }
   },
+
+  "orchestration": {
+    "sectionBadge": "Full-Stack Tech · Modern SaaS Infrastructure",
+    "sectionTitle": "Full-Stack Open Source Tech",
+    "sectionHighlight": "Architecture Stack.",
+    "sectionSubtitle": "Production-grade modern dev frameworks, zero-config out of the box, so you can focus on your core business logic.",
+    "left1": {
+      "title": "Next.js 16 App Router",
+      "meta": "Stack:",
+      "metaValue": "React 19 + TS",
+      "desc": "Built on the latest Next.js App Router, with server-side rendering (SSR) and edge rendering optimizations for ultra-fast first paint."
+    },
+    "left2": {
+      "title": "Neon + Drizzle",
+      "meta": "Status:",
+      "metaValue": "Type-safe ORM",
+      "desc": "High-performance Neon Serverless Postgres with the lightweight Drizzle ORM for fully type-safe database interactions."
+    },
+    "node1": { "label": "NEXT_JS_16" },
+    "node2": { "label": "NEON_POSTGRES" },
+    "node3": { "label": "STRIPE_BILLING" },
+    "floatingBadge1": {
+      "label": "Dev Time Saved",
+      "value": "200+ Hours"
+    },
+    "floatingBadge2": {
+      "label": "License",
+      "value": "MIT Open Source"
+    },
+    "terminal": {
+      "title": "Framework Live Test Status",
+      "simulateBtn": "Simulate API Request Flow",
+      "log1": "> [04:22:11] Next.js 16 App Router route loaded... OK",
+      "log2": "> [04:22:15] Neon Postgres Serverless pool init succeeded (12ms)",
+      "log3": "> [04:22:19] Stripe SDK & Webhook received event: checkout.session.completed",
+      "simulateLog": "Simulating new user signup & Stripe auto-charge invoice..."
+    },
+    "right1": {
+      "title": "Stripe Subscription Integration",
+      "meta": "Integration:",
+      "metaValue": "Webhook + Portal",
+      "desc": "Built-in Stripe Checkout, monthly/annual subscriptions, webhook endpoints and a self-service customer billing portal."
+    },
+    "right2": {
+      "title": "100% Open & Free",
+      "meta": "Deploy:",
+      "metaValue": "Vercel / Docker",
+      "desc": "No cloud vendor lock-in. One-click deploy to Vercel, Cloud Run or any Node.js / Docker compatible server."
+    },
+    "metrics": {
+      "1": { "label": "Dev Efficiency Boost", "value": "10X+" },
+      "2": { "label": "Core Components", "value": "40+ Ready-to-use" },
+      "3": { "label": "DB Compatible", "value": "Full Neon Postgres" },
+      "4": { "label": "Open Source License", "value": "MIT License" }
+    }
+  },
+
+  "engineeringValidation": {
+    "sectionBadge": "Real Developer Reviews",
+    "sectionTitlePrefix": "Trusted by developers & ",
+    "sectionTitleHighlight": "creators.",
+    "testimonials": [
+      {
+        "name": "Zhang Ming",
+        "title": "Indie Developer · Founder @ AI Writing Assistant",
+        "badge": "Verified",
+        "quote": "MokerSaaS saved me tons of repetitive setup work on Next.js App Router and Stripe subscriptions. I shipped in 3 days and received my first overseas subscription payment!",
+        "icon": "star"
+      },
+      {
+        "name": "Alex Chen",
+        "title": "CTO @ CloudScale Engineering",
+        "badge": "Verified",
+        "quote": "The out-of-the-box PostgreSQL and Drizzle ORM schema config is super elegant. Clean codebase, second development is a breeze.",
+        "icon": "cloud"
+      },
+      {
+        "name": "Wang Xiaolei",
+        "title": "Full-Stack Engineer @ Global SaaS Geek",
+        "badge": "Verified",
+        "quote": "The cleanest Next.js open source template I've seen. No bloated third-party dependencies, focuses on auth, database and Stripe subscriptions—highly recommended!",
+        "icon": "terminal"
+      }
+    ]
+  },
+
+  "technicalFAQ": {
+    "sectionBadge": "FAQ",
+    "sectionTitlePrefix": "Technical & Deployment ",
+    "sectionTitleHighlight": "FAQ.",
+    "sectionSubtitle": "Answers to common questions indie developers and startups have about using the template, choosing the architecture, and shipping to production.",
+    "faqs": [
+      {
+        "question": "What tech stack and frameworks are included?",
+        "answer": "The template is built on full-stack Next.js 16 (App Router), NextAuth.js authentication, Resend email service, Neon Serverless Postgres (Drizzle ORM), and the Stripe subscription SDK."
+      },
+      {
+        "question": "Is this SaaS template fully open source and free?",
+        "answer": "Yes! The base version is 100% MIT licensed. You are free to use it for commercial projects, personal development, or client delivery—no royalty or licensing fees required."
+      },
+      {
+        "question": "How do I quickly deploy and ship the project?",
+        "answer": "Just fork the repo, clone it locally, configure environment variables (e.g. Neon Postgres connection string and Stripe API keys), then deploy to Vercel, Cloud Run, or your own Docker server with a single command."
+      },
+      {
+        "question": "How do I configure and test Stripe payments?",
+        "answer": "We provide pre-built API routes and webhook event handlers. Just grab your Test/Live API keys and Webhook Secret from the Stripe dashboard, drop them into .env, and the monthly/annual subscription flow lights up automatically."
+      }
+    ]
+  },
+
+  "missionControl": {
+    "sectionBadge": "All-in-One Open Source SaaS Solution",
+    "sectionTitlePrefix": "Out-of-the-box",
+    "sectionTitleHighlight": "core business modules.",
+    "sectionSubtitle": "Admin console, user workspace, Stripe multi-tier subscriptions and affiliate rewards—all ready, no reinventing the wheel.",
+    "moduleCounter": "Module {current} / {total}",
+    "nextButton": "Next Module",
+    "readyBadge": "Module Ready",
+    "metrics": {
+      "savedTime": {
+        "label": "Avg. Dev Time Saved",
+        "value": "200+ Hours",
+        "caption": "Ship your core business"
+      },
+      "commission": {
+        "label": "Referral Commission",
+        "value": "30% Rate",
+        "caption": "Auto-settled & withdrawable"
+      }
+    },
+    "tabs": {
+      "admin": {
+        "tabTitle": "Admin Console",
+        "title": "Admin Console",
+        "highlight": "Total Control of Your SaaS.",
+        "description": "A powerful admin system with user management, role-based access, analytics and points adjustment—so you can run the whole platform with confidence.",
+        "items": [
+          "User management with granular roles (Admin / Member)",
+          "Track active users, MRR revenue and subscription conversion",
+          "Manual/auto points adjustment with full audit logs"
+        ]
+      },
+      "dashboard": {
+        "tabTitle": "User Dashboard",
+        "title": "User Dashboard",
+        "highlight": "An Intuitive Workspace.",
+        "description": "A clean user dashboard showing subscription status, points balance, referral stats and account settings—everything at a glance.",
+        "items": [
+          "Live subscription status, monthly usage and remaining credits",
+          "Personal referral performance, referral code and invited users",
+          "Email verification, connected accounts and session security status"
+        ]
+      },
+      "subscriptions": {
+        "tabTitle": "Subscription Plans",
+        "title": "Subscription Plans",
+        "highlight": "Automated Billing Engine.",
+        "description": "Flexible subscription management supporting Trial, Pro and Annual plans with automated renewals, cancellations and renewal reminders.",
+        "items": [
+          "Trial, Pro monthly and Annual yearly plans out of the box",
+          "Auto renewals, expiry reminders and upgrade/downgrade logic",
+          "Stripe Customer Portal for self-service cancel & invoices"
+        ]
+      },
+      "affiliate": {
+        "tabTitle": "Affiliate Program",
+        "title": "Affiliate Program",
+        "highlight": "Viral Growth & Rewards.",
+        "description": "A complete affiliate system with custom codes, commission analytics and withdrawal management—earn 30% on every first paid order.",
+        "items": [
+          "Custom referral links and discount codes",
+          "Real-time 30% first-order commission and earnings panel",
+          "Withdrawal requests, ledger history and status tracking"
+        ]
+      }
+    },
+    "previews": {
+      "admin": {
+        "title": "Super Admin Panel (Admin Console)",
+        "subtitle": "Site-wide users, roles, points activity and financial analytics",
+        "badge": "SUPER_ADMIN",
+        "imageAlt": "Admin Console Preview",
+        "imageCaption": "Dashboard + user management + role permissions"
+      },
+      "dashboard": {
+        "title": "User Workspace",
+        "subtitle": "Purchase credits, referral rewards, billing history and subscriptions in one place",
+        "badge": "Pro Member Active",
+        "imageAlt": "User Workspace Preview",
+        "imageCaption": "Top-up · referral link · billing · connected accounts"
+      },
+      "subscriptions": {
+        "title": "Stripe Subscription & Billing",
+        "subtitle": "Supports Trial, Pro monthly and Annual discounted yearly subscriptions",
+        "badge": "Stripe Payment",
+        "imageAlt": "Stripe Plans Preview",
+        "imageCaption": "Trial / Pro / Annual three-tier plans"
+      },
+      "affiliate": {
+        "title": "Affiliate Program",
+        "subtitle": "Build your distribution network and earn up to 30% first-order cash commission",
+        "badge": "30% First-Order Rule",
+        "imageAlt": "Affiliate Program Preview",
+        "imageCaption": "Affiliate code · commission stats · withdrawals"
+      }
+    }
+  },
+
   "agents": {
     "title": "Tailored AI Agent Services for Different Scenarios",
     "contentSummaryAgent": {
@@ -62,46 +296,73 @@
     },
     "learnMore": "Learn More"
   },
-  "features": {
-    "title": "Modern SaaS Template, Complete Solution for Global Products",
-    "liveGeneration": "Quick Deployment",
-    "contentSummaryAgent": {
-      "title": "User Authentication System",
-      "description": "Integrated complete user registration, login, password reset functions, supports multiple authentication methods, ensuring user data security."
-    },
-    "podcastAgent": {
-      "title": "Payment System Integration",
-      "description": "Built-in Stripe payment system, supports subscription billing, one-time payments, invoice management, and enterprise-grade security features."
-    }
-  },
   "pricing": {
     "title": "Choose the SaaS Template Plan That's Right for You",
     "recommended": "Recommended",
-    "free": {
-      "name": "Open Source",
-      "price": "$0",
-      "description": "Perfect for individual developers and small projects",
+    "header": {
+      "badge": "100% Transparent Commercial License",
+      "titlePrefix": "Flexible plans for ",
+      "titleHighlight": "indie developers and growing teams",
+      "subtitle": "Open-source version is free forever. Upgrade to a commercial license or deep customization support to get your SaaS shipped and monetized faster.",
+      "fetchStatusError": "Failed to fetch subscription status:"
+    },
+    "trial": {
+      "name": "Trial",
+      "price": "$4.99",
+      "periodUnit": "/ 7-day trial",
+      "description": "7-day trial to experience full features",
       "features": {
-        "template": "Complete SaaS template source code",
-        "auth": "Basic user authentication system",
-        "support": "Community technical support"
+        "period": "Duration: 7 days",
+        "points": "Credits: 1,000 included",
+        "template": "Complete SaaS template + advanced features",
+        "auth": "Complete user authentication system"
       },
-      "cta": "Download Free"
+      "cta": "Start Trial",
+      "trial_only_once": "Trial available once only",
+      "not_available_for_pro": "Trial not available for Pro users",
+      "not_available_for_annual": "Trial not available for Annual users"
     },
     "pro": {
       "name": "Professional",
-      "price": "$49",
-      "originalPrice": "$99",
-      "discountPercent": "50",
-      "savings": "$50",
-      "discountBadge": "Limited Time 50% OFF",
+      "price": "$15.9",
+      "periodUnit": "/ month",
+      "originalPrice": "$19.9",
+      "discountPercent": "20",
+      "savings": "$4",
+      "discountBadge": "Limited Time 20% OFF",
       "description": "Ideal for startups and SMEs, includes advanced features",
       "features": {
+        "period": "Duration: 30 days",
+        "points": "Credits: 1,000 included",
         "template": "Complete SaaS template + advanced features",
         "payment": "Stripe payment integration",
         "support": "1-year technical support"
       },
-      "cta": "Buy Now"
+      "cta": "Buy Now",
+      "renew": "Renew Pro",
+      "cannot_downgrade": "Annual subscription cannot be downgraded"
+    },
+    "annual": {
+      "name": "Annual",
+      "price": "$159",
+      "periodUnit": "/ year",
+      "originalPrice": "$240",
+      "discountPercent": "34",
+      "savings": "$81",
+      "discountBadge": "Limited Time 34% OFF",
+      "description": "Annual subscription, best value option",
+      "features": {
+        "period": "Duration: 365 days",
+        "template": "Complete SaaS template + advanced features",
+        "points": "15,000 credits included",
+        "payment": "Stripe payment integration",
+        "support": "1-year technical support",
+        "value": "Best value - Save 34%"
+      },
+      "cta": "Buy Now",
+      "upgrade": "Upgrade to Annual",
+      "renew": "Renew Annual",
+      "cannot_downgrade": "Annual subscription cannot be downgraded"
     },
     "discount": {
       "was": "Was",
@@ -122,76 +383,8 @@
       "cta": "Contact Sales"
     }
   },
-  "faq": {
-    "title": "Frequently Asked Questions About Get SaaS Template",
-    "categories": {
-      "usage": "Usage",
-      "pricing": "Pricing"
-    },
-    "usage": {
-      "howToStart": {
-        "question": "How do I get started with Get SaaS template?",
-        "answer": "Very simple! After purchasing the template, you'll get complete source code and documentation. Follow our setup guide to configure the database, environment variables, and deploy to your preferred platform. No complex configuration required, ready to use immediately."
-      },
-      "voiceQuality": {
-        "question": "What technologies does Get SaaS template use?",
-        "answer": "Get SaaS is built with modern technology stack: Next.js 14, TypeScript, Tailwind CSS, PostgreSQL database, NextAuth.js authentication, Stripe payment system, and next-intl for internationalization. All technologies are industry-leading and production-ready."
-      },
-      "contentOwnership": {
-        "question": "Can I use Get SaaS template for commercial projects?",
-        "answer": "Absolutely! After purchasing Get SaaS template, you have full commercial usage rights. You can use it to build and sell SaaS products, modify the code, and even resell the final products without any restrictions."
-      },
-      "dataPrivacy": {
-        "question": "Does Get SaaS template include data security features?",
-        "answer": "Yes, Get SaaS includes comprehensive security features: encrypted user authentication, secure payment processing, data validation, CSRF protection, and follows security best practices. All user data is properly protected."
-      }
-    },
-    "pricing": {
-      "pointsExpiry": {
-        "question": "How long is the Get SaaS template license valid?",
-        "answer": "Get SaaS template license is permanent. Once purchased, you can use it indefinitely, including all future updates and improvements. No recurring fees or subscription required."
-      },
-      "upgradeAnytime": {
-        "question": "Can I upgrade my SaaS template plan anytime?",
-        "answer": "Absolutely! You can upgrade to a higher version of the SaaS template anytime. After upgrading, you'll immediately get new features and extended technical support, while your existing license remains valid."
-      },
-      "enterpriseFeatures": {
-        "question": "What special features does Enterprise SaaS template include?",
-        "answer": "Enterprise version provides custom development services, private deployment support, 24/7 technical support, team training and consulting, plus dedicated customer success manager services. Completely tailored solutions according to your business needs."
-      }
-    }
-  },
   "footer": {
-    "description": "Modern SaaS template designed for global markets, featuring complete user authentication, payment systems, multi-language support, helping you quickly launch global SaaS products.",
-    "services": {
-      "title": "Services",
-      "features": "Features",
-      "pricing": "Pricing",
-      "blog": "Blog"
-    },
-    "product": {
-      "title": "SaaS Template",
-      "template": "Template Download",
-      "features": "Features",
-      "pricing": "Pricing"
-    },
-    "company": {
-      "title": "Company",
-      "about": "About Us",
-      "careers": "Careers",
-      "blog": "Blog"
-    },
     "newsletter": {
-      "title": "Newsletter",
-      "description": "Get the latest SaaS development technology updates and template news",
-      "placeholder": "Enter your email address",
-      "subscribe_button": "Subscribe",
-      "success": "Successfully subscribed!",
-      "subscribe": {
-        "successMessage": "Successfully subscribed! Thank you for subscribing, we will send you SaaS development related updates regularly.",
-        "subscribeError": "Subscription failed, please try again later",
-        "networkError": "Network error, please try again later"
-      },
       "unsubscribe": {
         "title": "Unsubscribe from Newsletter",
         "description": "We're sorry to see you go, but we respect your choice",
@@ -206,17 +399,61 @@
         "unsubscribeError": "Failed to unsubscribe"
       }
     },
-    "copyright": "Get SaaS. All rights reserved."
+
+    "home": {
+      "brand": {
+        "name": "MokerSaaS Open-Source Template",
+        "description": "A full-stack, monetizable SaaS starter built on Next.js 16, Neon Postgres and Stripe—ship your product, wire up subscriptions, and start acquiring customers faster.",
+        "statusBadge": "All systems & APIs operational"
+      },
+      "products": {
+        "title": "Product",
+        "items": {
+          "orchestration": "Full-Stack Architecture",
+          "missionControl": "Feature Demos",
+          "pricing": "Pricing & License"
+        }
+      },
+      "productsColumn": {
+        "title": "Products",
+        "items": {
+          "magiviz": "Magiviz",
+          "editf": "Editf",
+          "voiceCanvas": "VoiceCanvas"
+        }
+      },
+      "newsletter": {
+        "title": "Newsletter & Template Updates",
+        "heading": "Get the latest Next.js & SaaS monetization playbooks",
+        "subtitle": "Weekly digest on full-stack architecture best practices, Stripe payment configuration tips, and MokerSaaS template updates.",
+        "emailPlaceholder": "Enter your email address...",
+        "subscribeButton": "Subscribe",
+        "loadingButton": "Subscribing…",
+        "subscribedBadge": "Subscribed",
+        "successMessage": "✓ Thanks for subscribing! We've sent the first issue to your inbox.",
+        "errorMessage": "Subscription failed. Please try again later.",
+        "serverError": "Server error. Please try again later.",
+        "networkError": "Network error. Please check your connection and retry."
+      },
+      "bottomBar": {
+        "copyright": "© {year} MokerSaaS Open-Source Template. Built with Next.js 16, Neon Postgres & Stripe.",
+        "social": {
+          "github": "GitHub Repository",
+          "twitter": "X / Twitter"
+        }
+      }
+    }
   },
   "verify": {
     "title": "Email Verification",
     "description": "Verify your email address to complete account registration",
     "meta_title": "Email Verification",
-    "meta_description": "Verify your Get SaaS account email to complete account activation",
+    "meta_description": "Verify your MokerSaaS account email to complete account activation",
     "verifying": "Verifying your email...",
     "success": "Email verification successful!",
     "failed": "Email verification failed",
     "token_missing": "Verification token is missing",
+    "token_invalid": "Verification token is invalid or expired",
     "failed_retry": "Verification failed, please try again later",
     "please_wait": "Please wait, verifying your email address...",
     "login_now": "Login Now",
@@ -225,11 +462,11 @@
     "back_to_login": "Back to Login"
   },
   "auth": {
-    "meta_title": "Authentication - Get SaaS",
+    "meta_title": "Authentication - MokerSaaS",
     "signin_title": "Sign In",
-    "signin_description": "Sign in to your Get SaaS account to start using modern SaaS templates",
+    "signin_description": "Sign in to your MokerSaaS account to start using modern SaaS templates",
     "signup_title": "Sign Up",
-    "signup_description": "Create your Get SaaS account and start your SaaS development journey",
+    "signup_description": "Create your MokerSaaS account and start your SaaS development journey",
     "error_title": "Authentication Error",
     "error_description": "An error occurred during authentication, please try again or contact technical support",
     "error_page_title": "Sign In Failed",
@@ -256,7 +493,7 @@
       "default": "Unknown error occurred during authentication, please try again"
     },
     "welcome_back": "Welcome Back",
-    "login_description": "Sign in to your Get SaaS account",
+    "login_description": "Sign in to your MokerSaaS account",
     "email": "Email Address",
     "password": "Password",
     "email_placeholder": "Enter your email address",
@@ -280,6 +517,12 @@
     "register_retry": "Registration failed, please try again later",
     "registering": "Creating account...",
     "register_success": "Registration successful",
+    "register_success_check_email": "Registration successful! Please check your email and click the verification link to complete activation.",
+    "missing_fields": "Please fill in all required fields",
+    "email_exists": "This email is already registered",
+    "invalid_referral_code": "Invalid referral code",
+    "verification_email_failed": "Registration succeeded but sending verification email failed, please try again later",
+    "rate_limit": "Too many requests, please try again later",
     "has_account": "Already have an account?",
     "login_now": "Sign in now",
     "terms_agreement": "By registering, you agree to our",
@@ -287,7 +530,12 @@
     "and": "and",
     "privacy_policy": "Privacy Policy",
     "loginRequiredMessage": "Please log in first to use the audio summary feature.",
-    "loginNow": "Sign In Now"
+    "loginNow": "Sign In Now",
+    "or_register_with_email": "Or register with email",
+    "referral_code": "Referral Code (Optional)",
+    "referral_code_placeholder": "Enter referral code",
+    "affiliate_code": "Affiliate Code (Optional)",
+    "affiliate_code_placeholder": "Enter affiliate code"
   },
   "common": {
     "cancel": "Cancel",
@@ -303,7 +551,7 @@
     "title": "Forgot Password",
     "description": "Enter your email address and we'll send you a link to reset your password",
     "meta_title": "Forgot Password",
-    "meta_description": "Recover your Get SaaS account password by resetting it via email",
+    "meta_description": "Recover your MokerSaaS account password by resetting it via email",
     "email_label": "Email Address",
     "email_placeholder": "Enter your email address",
     "send_reset_link": "Send Reset Link",
@@ -321,7 +569,7 @@
     "title": "Reset Password",
     "description": "Enter your new password",
     "meta_title": "Reset Password",
-    "meta_description": "Reset your Get SaaS account password and set a new secure password",
+    "meta_description": "Reset your MokerSaaS account password and set a new secure password",
     "password_label": "New Password",
     "password_placeholder": "Enter your new password",
     "confirm_password_label": "Confirm Password",
@@ -353,32 +601,34 @@
     "verification_email_sent": "Verification email sent, please check your inbox",
     "verification_email_failed": "Failed to send verification email, please try again later",
     "loading": "Loading...",
-    "points": "License Benefits",
-    "points_history": "Benefits History",
-    "points_history_description": "View your license benefits and usage history",
-    "no_points_history": "No benefits history yet",
-    "register_bonus": "Registration Benefits",
-    "email_verify_bonus": "Email Verification Benefits",
-    "daily_login_bonus": "Daily Login Benefits",
-    "referral_bonus": "Referral Benefits",
+    "points": "Credits",
+    "points_history": "Credits History",
+    "points_history_description": "View your credits earning and usage history",
+    "no_points_history": "No credits history yet",
+    "register_bonus": "Registration Gift Credits",
+    "email_verify_bonus": "Email Verification Gift Credits",
+    "daily_login_bonus": "Daily Login Gift Credits",
+    "referral_bonus": "Referral Gift Credits",
     "manual_operation": "Admin Operation",
-    "points_operation": "Benefits Operation",
+    "points_operation": "Credits Operation",
     "pagination": {
       "page_info": "Page {current} of {total}",
       "total_records": "{total} records in total",
       "previous": "Previous",
       "next": "Next"
     },
-    "points_actions": {
-      "register": "Registration Benefits",
-      "email_verify": "Email Verification Benefits",
-      "daily_login": "Daily Login Benefits",
-      "referral": "Referral Benefits",
+      "points_actions": {
+      "register": "Registration Gift Credits",
+      "email_verify": "Email Verification Gift Credits",
+      "daily_login": "Daily Login Gift Credits",
+      "referral": "Referral Gift Credits",
       "manual": "Admin Operation",
-      "purchase": "Purchase License",
-      "subscription_gift": "Pro License Benefits",
-      "subscription_renewal_gift": "Pro License Renewal Benefits",
-      "subscription_expired": "License Expired",
+      "purchase": "Purchase Credits",
+      "subscription_gift": "{plan} Gift Credits",
+      "subscription_renewal_gift": "{plan} Renewal Gift Credits",
+      "subscription_upgrade_gift": "Upgrade to {plan} Gift Credits",
+      "subscription_reward": "Referral Subscription Reward Credits",
+      "subscription_expired": "Credits Expired",
       "unknown": "Unknown Operation",
       "pay_amount": "Pay {amount}"
     },
@@ -437,9 +687,9 @@
     "password_min_length": "Password must be at least 6 characters",
     "password_mismatch": "Passwords do not match",
     "current_password_incorrect": "Current password is incorrect",
-    "subscription_info": "License Info",
-    "subscription_info_description": "View and manage your license plan",
-    "subscription_status": "License Status",
+    "subscription_info": "Subscription Plan",
+    "subscription_info_description": "View and manage your subscription plan",
+    "subscription_status": "Subscription Status",
     "subscription_active": "Active",
     "subscription_cancelled": "Cancelled",
     "subscription_past_due": "Past Due",
@@ -448,27 +698,31 @@
     "subscription_expiring_soon": "Expiring Soon",
     "subscription_expired": "Expired",
     "plan_free": "Free Plan",
-    "plan_pro": "Pro Plan",
+    "plan_trial": "Trial",
+    "plan_pro": "Pro",
+    "plan_annual": "Annual",
     "plan_enterprise": "Enterprise Plan",
     "plan_free_description": "Basic template for individual developers",
+    "plan_trial_description": "7-day trial to experience full features",
     "plan_pro_description": "Full features for professional development",
+    "plan_annual_description": "Annual subscription, best value option, includes 15,000 credits",
     "plan_enterprise_description": "Custom services for enterprise teams",
-    "manage_subscription": "Manage License",
+    "manage_subscription": "Manage Subscription",
     "upgrade_to_pro": "Upgrade to Pro",
-    "upgrade_benefits_title": "Upgrade for More Benefits",
+    "upgrade_benefits_title": "Upgrade for More Credits",
     "upgrade_benefits_1": "Complete SaaS template source code",
     "upgrade_benefits_2": "Priority technical support",
     "upgrade_benefits_3": "Advanced feature components",
     "upgrade_benefits_4": "Custom development services",
-    "upgrade_benefits_description": "Upgrade to Pro to unlock complete SaaS template benefits and exclusive technical support.",
+    "upgrade_benefits_description": "Upgrade to Pro to get bonus credits and unlock all features.",
     "view_pricing": "View Pricing",
-    "points_purchase": "License Purchase",
-    "points_purchase_description": "Purchase license to get complete SaaS template benefits",
+    "points_purchase": "Credits Purchase",
+    "points_purchase_description": "Need more points? Select a package and get them instantly",
     "points_package_starter": "Starter Package",
     "points_package_popular": "Popular Package",
     "points_package_premium": "Premium Package",
-    "points_usage_title": "License Benefits",
-    "points_usage_ai_service": "Complete SaaS template source code",
+    "points_usage_title": "Credits Usage",
+    "points_usage_ai_service": "SaaS template feature usage",
     "points_usage_premium_features": "Advanced feature components",
     "points_usage_priority_support": "Priority technical support",
     "purchase_now": "Buy Now",
@@ -481,20 +735,42 @@
     "card_info": "Card Information",
     "pay_amount": "Pay",
     "purchase_success": "Purchase Successful!",
-    "points_added": "Benefits added",
-    "current_points": "Current Benefits",
-    "purchased_points_label": "Purchased Benefits (Permanent)",
-    "gifted_points_label": "Bonus Benefits (With License)",
-    "subscription_gift_notice": "You have Pro license and received complete template benefits",
-    "purchased_points": "Purchased Benefits",
-    "purchased_points_description": "Benefits purchased through payment, permanent access to template features",
-    "gifted_points": "Bonus Benefits",
-    "gifted_points_description": "Benefits included with Pro license, access to premium features and support",
+    "points_added": "Credits added",
+    "current_points": "Current Credits",
+    "purchased_points_label": "Purchased Credits (Permanent)",
+    "gifted_points_label": "Bonus Credits (With Subscription)",
+    "subscription_gift_notice": "You have an active subscription and received 1,000 bonus credits",
+    "purchased_points": "Purchased Credits",
+    "purchased_points_description": "Credits purchased through payment, never expire",
+    "gifted_points": "Bonus Credits",
+    "gifted_points_description": "Credits included with subscription, cleared when subscription expires",
     "usage_priority": "Usage Priority",
     "usage_priority_description": "System will prioritize using gifted points first, then purchased points",
     "recommended": "Recommended",
     "processing": "Processing...",
     "payment_history": "Payment History",
+    "referral": {
+      "title": "Referral Program",
+      "description": "Invite friends to register and both of you will receive rewards",
+      "total_referrals": "Total Referrals",
+      "subscribed_referrals": "Subscribed Referrals",
+      "referral_code": "Referral Code",
+      "referral_link": "Referral Link",
+      "history": "Referral History",
+      "no_history": "No referral history yet",
+      "code_copied": "Referral code copied",
+      "link_copied": "Referral link copied",
+      "copy_failed": "Copy failed",
+      "action_register_bonus": "Registration Bonus",
+      "action_referrer_bonus": "Referrer Bonus",
+      "action_subscription_reward": "Referral Subscription Reward",
+      "days": "days",
+      "records": "Referral Records",
+      "no_records": "No referral records yet",
+      "subscribed": "Subscribed",
+      "not_subscribed": "Not Subscribed",
+      "anonymous_user": "Anonymous User"
+    },
     "payment_history_details": {
       "title": "Payment History",
       "stats": {
@@ -502,6 +778,7 @@
         "total_payments": "Total Payments",
         "total_amount": "Total Amount",
         "total_points_purchased": "Total Points Purchased",
+        "total_points_gifted": "Points Gained from Subscription",
         "successful_payments": "Successful Payments"
       },
       "payment_types": {
@@ -539,32 +816,250 @@
     },
     "payment_history_description": "View all your payment records and transaction details"
   },
+  "referral_page": {
+    "title": "Referral Program",
+    "subtitle": "Invite friends and earn rewards together",
+    "custom_code": {
+      "title": "Custom Referral Code",
+      "description": "Set a unique referral code that's easy for friends to remember",
+      "current_code": "Current Code",
+      "placeholder": "Enter custom code (4-20 characters)",
+      "button": "Set Code",
+      "button_updating": "Setting...",
+      "success": "Referral code set successfully",
+      "error": "Failed to set referral code",
+      "already_set": "Code already set and cannot be changed",
+      "invalid_format": "Invalid format (4-20 characters, letters and numbers only)",
+      "already_taken": "This code is already taken",
+      "note": "Note: Referral code can only be set once and cannot be changed"
+    },
+    "stats": {
+      "title": "Referral Statistics",
+      "total_invites": "Total Invites",
+      "people": "people",
+      "total_rewards": "Total Rewards",
+      "points": "points",
+      "subscribed_users": "Subscribed Users",
+      "pending_users": "Pending Users"
+    },
+    "share": {
+      "title": "Share Referral",
+      "copy_code": "Copy Code",
+      "copy_link": "Copy Link",
+      "share_text": "Share with friends"
+    },
+    "rules": {
+      "title": "Reward Rules",
+      "rule1_title": "Registration Bonus",
+      "rule1_desc": "When friends register with your code, both get 100 credits (permanent)",
+      "rule2_title": "Subscription Reward",
+      "rule2_desc": "When friends subscribe to any plan, you get equal subscription extension + plan's gifted credits",
+      "rule3_title": "Multiple Rewards",
+      "rule3_desc": "Every time friends renew or upgrade, you get rewards (unlimited times)",
+      "rule4_title": "Time Limit",
+      "rule4_desc": "Referral relationship is valid for 30 days, no rewards after expiration",
+      "note": "Note: All rewards are automatically granted after friends complete registration or subscription, no manual action required"
+    },
+    "recent_referrals": {
+      "title": "Recent Referrals",
+      "view_all": "View All",
+      "registered_at": "Registered at"
+    },
+    "records": {
+      "title": "Referral Records",
+      "description": "View users who registered through your referral code",
+      "loading": "Loading...",
+      "empty": "No referral records",
+      "unknown_user": "Unknown User",
+      "subscribed": "Subscribed",
+      "pending": "Pending",
+      "filter_all": "All",
+      "table": {
+        "user": "User",
+        "email": "Email",
+        "register_time": "Register Time",
+        "status": "Status"
+      }
+    },
+    "rewards": {
+      "title": "Reward Records",
+      "description": "View points and subscription extension records for each subscription",
+      "loading": "Loading...",
+      "empty": "No reward records",
+      "unknown_user": "Unknown User",
+      "points": "points",
+      "days": "days",
+      "filter_all": "All",
+      "action_register_bonus": "Registration Bonus",
+      "action_referrer_bonus": "Referrer Bonus",
+      "action_subscription_reward": "Subscription Reward",
+      "table": {
+        "action": "Action Type",
+        "from": "From",
+        "reward": "Reward",
+        "create_time": "Create Time"
+      }
+    }
+  },
+    "affiliate_page": {
+      "title": "Affiliate System",
+      "subtitle": "Earn commissions through referrals, 30% per order",
+      "loading": "Loading...",
+      "stats": {
+        "total_invites": "Total Invites",
+        "converted": "Converted",
+        "available_balance": "Available Balance",
+        "frozen_balance": "Frozen Balance"
+      },
+      "code_setting": {
+        "title": "Affiliate Code Settings",
+        "description": "Set your affiliate code, can only be changed once",
+        "current_code": "Current Code",
+        "placeholder": "Enter new code (8-20 letters or numbers)",
+        "placeholder_set": "Enter code (8-20 letters or numbers)",
+        "button_update": "Update Code",
+        "button_set": "Set Code",
+        "updating": "Updating...",
+        "setting": "Setting...",
+        "note": "Note: Affiliate code can only be changed once, please set carefully",
+        "already_changed": "Code has been changed and cannot be changed again",
+        "enter_code": "Please enter affiliate code",
+        "invalid_format": "Invalid format, must be 8-20 letters or numbers",
+        "update_success": "Code updated successfully",
+        "update_failed": "Failed to update code",
+        "already_taken": "This code is already taken",
+        "code_copied": "Code copied",
+        "link_copied": "Link copied",
+        "copy_failed": "Copy failed",
+        "set_first": "Please set affiliate code first"
+      },
+      "share": {
+        "title": "Share Affiliate",
+        "link_label": "Affiliate Link",
+        "copy_code": "Copy Code",
+        "copy_link": "Copy Link"
+      },
+      "relations": {
+        "title": "Invite Data",
+        "description": "View users who registered through your affiliate code",
+        "loading": "Loading...",
+        "empty": "No invite data",
+        "unknown_user": "Unknown User",
+        "register_time": "Register Time",
+        "converted": "Converted",
+        "expired": "Expired",
+        "pending": "Pending",
+        "filter_all": "All",
+        "table": {
+          "user": "User",
+          "email": "Email",
+          "register_time": "Register Time",
+          "status": "Status"
+        }
+      },
+      "earnings": {
+        "title": "Earnings Records",
+        "description": "View your commission income and status",
+        "loading": "Loading...",
+        "empty": "No earnings records",
+        "from": "From",
+        "create_time": "Create Time",
+        "release_time": "Release Time",
+        "frozen": "Frozen",
+        "released": "Released",
+        "cancelled": "Cancelled",
+        "unknown_user": "Unknown User",
+        "filter_all": "All",
+        "table": {
+          "amount": "Amount",
+          "from": "From",
+          "status": "Status",
+          "create_time": "Create Time",
+          "release_time": "Release Time"
+        }
+      },
+      "withdraw": {
+        "title": "Withdrawal Request",
+        "description": "Withdraw available balance to your account",
+        "button": "Withdraw",
+        "amount": "Withdrawal Amount",
+        "amount_placeholder": "Enter withdrawal amount",
+        "min_amount": "Minimum Amount",
+        "min_amount_error": "Minimum withdrawal amount is $10",
+        "payment_method": "Payment Method",
+        "alipay": "Alipay",
+        "paypal": "PayPal",
+        "account_name": "Account Name",
+        "account_name_placeholder": "Enter account name",
+        "alipay_account": "Alipay Account",
+        "alipay_placeholder": "Enter Alipay account or phone number",
+        "paypal_email": "PayPal Email",
+        "paypal_placeholder": "Enter PayPal email",
+        "available_balance": "Available Balance",
+        "exceeds_balance": "Withdrawal amount exceeds available balance",
+        "submit": "Submit Request",
+        "processing": "Processing...",
+        "success": "Withdrawal request submitted",
+        "failed": "Withdrawal request failed",
+        "invalid_amount": "Invalid withdrawal amount",
+        "invalid_payment_method": "Invalid payment method",
+        "invalid_account_info": "Invalid account information",
+        "insufficient_balance": "Insufficient balance",
+        "account_info_required": "Please enter account information"
+      },
+      "withdrawals": {
+        "title": "Withdrawal Records",
+        "description": "View your withdrawal request records",
+        "loading": "Loading...",
+        "empty": "No withdrawal records",
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "failure_reason": "Failure Reason",
+        "create_time": "Request Time",
+        "processed_time": "Processed Time",
+        "filter_all": "All",
+        "table": {
+          "amount": "Amount",
+          "payment_method": "Payment Method",
+          "account": "Account",
+          "status": "Status",
+          "create_time": "Request Time",
+          "processed_time": "Processed Time"
+        }
+      }
+    },
   "dashboard": {
     "payment_success": {
       "title": "Purchase Successful!",
-      "subtitle": "Welcome to Get SaaS Professional",
+      "subtitle": "Welcome to MokerSaaS",
+      "subtitle_with_plan": "Welcome to MokerSaaS {plan}",
       "processing_title": "Processing Payment Result",
       "processing_description": "Please wait while we confirm your purchase status...",
       "verifying_title": "Verifying Purchase Status",
-      "verifying_description": "Confirming your professional purchase...",
-      "success_toast": "🎉 Professional purchase successful! You have received complete SaaS template and technical support",
+      "verifying_description": "Confirming your purchase...",
+      "success_toast": "🎉 Purchase successful! You have received complete SaaS template and technical support",
+      "success_toast_with_plan": "🎉 {plan} purchase successful! You have received complete SaaS template and technical support",
       "no_session_toast": "💡 You have reached the purchase success page, please use the navigation buttons below"
     },
     "subscription_info": {
-      "title": "Professional License",
-      "status_label": "License Status:",
+      "title": "Subscription Info",
+      "title_with_plan": "{plan} Subscription",
+      "status_label": "Subscription Status:",
       "status_active": "Active",
       "status_processing": "Processing",
-      "plan_label": "License Type:",
-      "plan_pro": "Professional",
+      "plan_label": "Subscription Type:",
+      "plan_pro": "Pro",
       "expires_label": "Support Expires:"
     },
     "points_reward": {
-      "title": "Purchase Benefits",
-      "total_points": "Total Benefits",
-      "purchased_points": "Purchase Benefits",
-      "gifted_points": "Bonus Benefits",
-      "gift_notice": "🎁 You have received complete professional benefits including source code, documentation and technical support!"
+      "title": "Credits Rewards",
+      "total_points": "Total Credits",
+      "purchased_points": "Purchased Credits",
+      "gifted_points": "Bonus Credits",
+      "gift_notice": "🎁 You have received subscription bonus credits for using template features!"
     },
     "actions": {
       "view_profile": "View Profile",
@@ -577,8 +1072,114 @@
     }
   },
   "admin": {
+    "dashboard": {
+      "meta_title": "Admin Dashboard - MokerSaaS",
+      "meta_description": "Admin dashboard for unified management of users, newsletter subscriptions, system settings, and more.",
+      "title": "Admin Dashboard",
+      "sidebar": {
+        "title": "Management Functions"
+      },
+      "menu": {
+        "overview": "Overview",
+        "overview_desc": "Real-time view of core system data statistics and trend analysis",
+        "users": "User Management",
+        "users_desc": "Manage registered users and permissions",
+        "referral": "Referral Management",
+        "referral_desc": "Manage all user referral records and rewards",
+        "affiliate": "Affiliate Management",
+        "affiliate_desc": "Manage all user affiliate records and commissions",
+        "newsletter": "Newsletter",
+        "newsletter_desc": "Manage newsletter subscribers",
+        "traffic": "Traffic Analytics",
+        "traffic_desc": "View website traffic statistics and visitor insights"
+      },
+      "overview": {
+        "title": "System Overview",
+        "description": "Real-time view of core system data statistics and trend analysis",
+        "categories": {
+          "users_revenue": "Users & Revenue",
+          "referral_affiliate": "Referral & Affiliate"
+        },
+        "cards": {
+          "users": {
+            "title": "User Management",
+            "description": "Manage registered users, roles and permissions"
+          },
+          "newsletter": {
+            "title": "Newsletter",
+            "description": "Manage newsletter subscriptions and statistics"
+          }
+        },
+        "quick_actions": {
+          "title": "Quick Actions",
+          "manage_users": "Manage Users",
+          "manage_users_desc": "View and manage all registered users",
+          "manage_newsletter": "Manage Subscriptions",
+          "manage_newsletter_desc": "View and manage newsletter subscriptions"
+        },
+        "stats": {
+          "total_users": "Total Users",
+          "subscribed_users": "Subscribed Users",
+          "subscription_revenue": "Subscription Revenue",
+          "points_revenue": "Points Revenue",
+          "total_points": "Total Points",
+          "total_referrals": "Total Referrals",
+          "referral_subscribed": "Referral Subscribed",
+          "referral_reward_points": "Referral Reward Points",
+          "affiliate_count": "Affiliate Count",
+          "affiliate_earnings": "Affiliate Earnings",
+          "affiliate_withdrawals": "Total Withdrawals",
+          "newsletter_subscribers": "Newsletter Subscribers"
+        },
+        "trends": {
+          "title": "Trend Analysis",
+          "days_7": "7 Days",
+          "days_30": "30 Days",
+          "days_90": "90 Days",
+          "registration": "Registration Trends",
+          "registration_count": "Registrations",
+          "subscription": "Subscription & Revenue Trends",
+          "subscription_count": "Subscriptions",
+          "subscription_revenue": "Subscription Revenue",
+          "total_revenue": "Total Revenue Trends",
+          "revenue": "Revenue"
+        }
+      }
+    },
+    "traffic": {
+      "days_7": "7 Days",
+      "days_30": "30 Days",
+      "days_90": "90 Days",
+      "stats": {
+        "pageviews": "Page Views",
+        "visitors": "Unique Visitors",
+        "visits": "Visits",
+        "bounce_rate": "Bounce Rate",
+        "avg_time": "Avg. Time"
+      },
+      "charts": {
+        "pageviews_trend": "Page Views Trend",
+        "top_pages": "Top Pages",
+        "devices": "Devices",
+        "browsers": "Browsers",
+        "countries": "Top Countries",
+        "referrers": "Top Referrers"
+      },
+      "not_configured": {
+        "title": "Umami Analytics Not Configured",
+        "description": "To enable traffic analytics, please configure Umami in your environment variables:",
+        "frontend_tracking": "Frontend Tracking (Required)",
+        "backend_api": "Backend API (Required)",
+        "authentication": "Authentication (Choose One)",
+        "umami_cloud": "Option 1: Umami Cloud - Use API Key",
+        "self_hosted": "Option 2: Self-hosted Umami - Use Username & Password (Recommended)",
+        "learn_more": "Learn More About Umami"
+      },
+      "error_title": "Failed to Load Analytics",
+      "error_message": "Unable to fetch analytics data. Please try again later."
+    },
     "newsletter": {
-      "meta_title": "Newsletter Statistics - Get SaaS",
+      "meta_title": "Newsletter Statistics - MokerSaaS",
       "meta_description": "View and manage newsletter subscription statistics, including subscriber counts, language distribution, and more.",
       "title": "Newsletter Statistics",
       "stats": {
@@ -594,6 +1195,9 @@
       "subscription_list": {
         "title": "Subscription List",
         "description": "Detailed information of all newsletter subscribers",
+        "export": "Export",
+        "export_success": "Export successful",
+        "export_failed": "Export failed",
         "active_tab": "Active Subscriptions",
         "inactive_tab": "Cancelled Subscriptions",
         "no_data": "No data available",
@@ -603,7 +1207,7 @@
           "status": "Status",
           "subscribed_at": "Subscribed At",
           "unsubscribed_at": "Unsubscribed At",
-          "chinese": "中文",
+          "chinese": "Chinese",
           "english": "English",
           "active": "Active",
           "cancelled": "Cancelled"
@@ -611,11 +1215,305 @@
       },
       "actions": {
         "retry": "Retry",
-        "refresh": "Refresh"
+        "refresh": "Refresh",
+        "export": "Export"
       },
       "error": {
         "fetch_stats_failed": "Failed to fetch statistics",
         "fetch_subscriptions_failed": "Failed to fetch subscription list"
+      }
+    },
+    "users": {
+      "meta_title": "User Management - MokerSaaS",
+      "meta_description": "View and manage all registered users' detailed information, including user statistics, role management, points adjustment, and more.",
+      "title": "User Management",
+      "stats": {
+        "total_users": "Total Users",
+        "total_users_desc": "Total registered users",
+        "verified_users": "Verified Users",
+        "verified_users_desc": "Email verified",
+        "admin_users": "Administrators",
+        "admin_users_desc": "Admin users",
+        "subscribed_users": "Subscribed Users",
+        "subscribed_users_desc": "Active subscriptions",
+        "total_points": "Total Points",
+        "total_points_desc": "Sum of user points",
+        "total_payments": "Total Revenue",
+        "total_payments_desc": "Total successful payments"
+      },
+      "user_list": {
+        "title": "User List",
+        "description": "Manage all registered users' detailed information",
+        "search_placeholder": "Search by email or username...",
+        "filter_role": "Filter by Role",
+        "filter_email_status": "Verification Status",
+        "all_roles": "All Roles",
+        "all_statuses": "All Email Statuses",
+        "role_user": "User",
+        "role_admin": "Administrator",
+        "email_verified": "Verified",
+        "email_unverified": "Unverified",
+        "filter_subscription_status": "Subscription Status",
+        "all_subscription_statuses": "All Subscription Statuses",
+        "subscription_active": "Active",
+        "subscription_cancelled": "Cancelled",
+        "subscription_past_due": "Past Due",
+        "subscription_paused": "Paused",
+        "subscription_none": "No Subscription",
+        "no_data": "No user data available",
+        "table": {
+          "user_info": "User Info",
+          "role": "Role",
+          "email_status": "Email Status",
+          "points": "Points",
+          "subscription": "Subscription",
+          "subscription_expiry": "Subscription Expiry",
+          "created_at": "Registration Date",
+          "actions": "Actions",
+          "edit_role": "Edit Role",
+          "adjust_points": "Adjust Points",
+          "manage_subscription": "Manage Subscription",
+          "no_name": "Not Set",
+          "role_admin": "Administrator",
+          "role_user": "User",
+          "email_verified": "Verified",
+          "email_unverified": "Unverified",
+          "points_total": "Total",
+          "points_purchased": "Purchased",
+          "points_gifted": "Gifted",
+          "no_subscription": "No Subscription",
+          "plan_trial": "Trial",
+          "plan_pro": "Pro",
+          "plan_annual": "Annual",
+          "status_active": "Active",
+          "status_cancelled": "Cancelled",
+          "status_past_due": "Past Due",
+          "status_paused": "Paused",
+          "status_expired": "Expired",
+          "expired": "Expired",
+          "expiring_soon": "Expiring Soon"
+        }
+      },
+      "actions": {
+        "refresh": "Refresh",
+        "retry": "Retry",
+        "edit_role": "Edit Role",
+        "adjust_points": "Adjust Points",
+        "manage_subscription": "Manage Subscription",
+        "view_details": "View Details"
+      },
+      "dialogs": {
+        "user_info": "User: {name} ({email})",
+        "no_name": "Not Set",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "edit_role": {
+          "title": "Edit User Role",
+          "description": "Modify user's system role permissions",
+          "role_label": "User Role",
+          "role_placeholder": "Select Role",
+          "role_user": "User",
+          "role_admin": "Administrator"
+        },
+        "adjust_points": {
+          "title": "Adjust User Points",
+          "description": "Add or deduct user points",
+          "points_label": "Points Change",
+          "points_placeholder": "Enter points amount (positive to add, negative to deduct)",
+          "points_type_label": "Points Type",
+          "points_type_purchased": "Purchased Points",
+          "points_type_gifted": "Gifted Points",
+          "description_label": "Operation Description",
+          "description_placeholder": "Enter operation description (optional)",
+          "purchased_points_info": "Purchased points never expire and can be used at any time",
+          "gifted_points_expiry_label": "Linked Subscription Expiry",
+          "gifted_points_expiry_info": "Gifted points will be automatically cleared when the subscription expires. The expiry time is the same as the user's subscription expiry time",
+          "gifted_points_requires_subscription": "⚠️ Gifted Points Require Subscription Expiry",
+          "gifted_points_no_subscription": "This user has no subscription set up. Gifted points cannot be added. Please set up a subscription for the user first",
+          "subscription_expired_error": "User subscription has expired. Cannot add gifted points. Please update the subscription expiry time first"
+        },
+        "manage_subscription": {
+          "title": "Manage User Subscription",
+          "description": "Modify user's subscription status and plan",
+          "status_label": "Subscription Status",
+          "status_placeholder": "Select Subscription Status",
+          "status_active": "Active",
+          "status_cancelled": "Cancelled",
+          "status_past_due": "Past Due",
+          "status_paused": "Paused",
+          "plan_label": "Subscription Plan",
+          "plan_placeholder": "Select Subscription Plan",
+          "plan_trial": "Trial",
+          "plan_pro": "Pro",
+          "plan_annual": "Annual",
+          "end_date_label": "Subscription End Date",
+          "end_date_placeholder": "Select End Date",
+          "auto_calculated": "End date is automatically calculated based on subscription plan",
+          "cumulative_calculated": "Time is added cumulatively to existing subscription",
+          "select_plan_first": "Please select a subscription plan"
+        }
+      },
+      "pagination": {
+        "page_info": "Page {page} of {totalPages}",
+        "total_records": "Total {total} records",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "messages": {
+        "role_updated": "User role updated successfully",
+        "points_updated": "User points adjusted successfully",
+        "subscription_updated": "User subscription updated successfully",
+        "update_failed": "Update failed",
+        "fetch_stats_failed": "Failed to fetch statistics",
+        "fetch_users_failed": "Failed to fetch user list"
+      }
+    },
+    "referral": {
+      "stats": {
+        "total_referrals": "Total Referrals",
+        "subscribed_referrals": "Subscribed Referrals",
+        "total_points": "Total Points Awarded"
+      },
+      "tabs": {
+        "records": "Referral Records",
+        "rewards": "Reward Records"
+      },
+      "records": {
+        "title": "Referral Records",
+        "description": "View all user referral relationships",
+        "empty": "No referral records",
+        "subscribed": "Subscribed",
+        "pending": "Pending",
+        "table": {
+          "referrer": "Referrer",
+          "referred": "Referred",
+          "code": "Code",
+          "status": "Status",
+          "created_at": "Created At"
+        }
+      },
+      "rewards": {
+        "title": "Reward Records",
+        "description": "View all referral reward records",
+        "empty": "No reward records",
+        "days": "days",
+        "table": {
+          "user": "User",
+          "from": "From",
+          "action": "Action Type",
+          "reward": "Reward",
+          "created_at": "Created At"
+        },
+        "actions": {
+          "register_bonus": "Registration Bonus",
+          "referrer_bonus": "Referrer Bonus",
+          "subscription_reward": "Subscription Reward",
+          "unknown": "Other ({action})"
+        }
+      }
+    },
+    "affiliate": {
+      "stats": {
+        "total_profiles": "Total Affiliates",
+        "total_relations": "Total Relations",
+        "converted_relations": "Converted",
+        "total_earnings": "Total Earnings",
+        "total_withdrawals": "Total Withdrawals"
+      },
+      "tabs": {
+        "profiles": "Affiliates",
+        "relations": "Relations",
+        "earnings": "Earnings",
+        "withdrawals": "Withdrawals"
+      },
+      "profiles": {
+        "title": "Affiliate Profiles",
+        "description": "View all affiliate profiles",
+        "loading": "Loading...",
+        "empty": "No affiliate profiles",
+        "table": {
+          "user": "User",
+          "code": "Code",
+          "balance": "Balance",
+          "frozen_balance": "Frozen Balance",
+          "created_at": "Created At"
+        }
+      },
+      "relations": {
+        "title": "Affiliate Relations",
+        "description": "View all affiliate relations",
+        "loading": "Loading...",
+        "empty": "No affiliate relations",
+        "converted": "Converted",
+        "expired": "Expired",
+        "pending": "Pending",
+        "table": {
+          "referrer": "Affiliate",
+          "invitee": "Invitee",
+          "status": "Status",
+          "expires_at": "Expires At",
+          "created_at": "Created At"
+        }
+      },
+      "earnings": {
+        "title": "Earnings Records",
+        "description": "View all commission earnings",
+        "loading": "Loading...",
+        "empty": "No earnings records",
+        "frozen": "Frozen",
+        "released": "Released",
+        "cancelled": "Cancelled",
+        "table": {
+          "affiliate": "Affiliate",
+          "invitee": "Invitee",
+          "amount": "Amount",
+          "status": "Status",
+          "created_at": "Created At"
+        }
+      },
+      "withdrawals": {
+        "title": "Withdrawal Records",
+        "description": "View all withdrawal records",
+        "loading": "Loading...",
+        "empty": "No withdrawal records",
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "table": {
+          "user": "User",
+          "amount": "Amount",
+          "payment_method": "Payment Method",
+          "account": "Account",
+          "status": "Status",
+          "created_at": "Created At",
+          "actions": "Actions"
+        },
+        "process": {
+          "title": "Process Withdrawal",
+          "description": "Update withdrawal request status",
+          "button": "Process",
+          "update": "Update",
+          "user": "User",
+          "amount": "Amount",
+          "payment_method": "Payment Method",
+          "account_info": "Account Information",
+          "status": "Status",
+          "select_status": "Select Status",
+          "transaction_id": "Transaction ID",
+          "transaction_id_placeholder": "Enter third-party transaction ID",
+          "failure_reason": "Failure Reason",
+          "failure_reason_placeholder": "Enter failure reason",
+          "status_required": "Please select a status",
+          "transaction_id_required": "Transaction ID is required for completed withdrawals",
+          "failure_reason_required": "Failure reason is required for failed withdrawals",
+          "success": "Withdrawal processed successfully",
+          "failed": "Failed to process withdrawal",
+          "processing": "Processing...",
+          "submit": "Submit",
+          "cancel": "Cancel"
+        }
       }
     }
   },
@@ -631,74 +1529,5 @@
     "errorMessage": "If you believe this is an error, please contact the system administrator.",
     "backToHome": "Back to Home",
     "signInAgain": "Sign In Again"
-  },
-  "testimonials": {
-    "title": "User Reviews",
-    "description": "Join thousands of developers and entrepreneurs already using Get SaaS to rapidly build and deploy SaaS products"
-  },
-  "blogPage": {
-    "title": "Get SaaS Blog",
-    "subtitle": "Explore the latest SaaS development trends and insights",
-    "contactPost": {
-      "badge": "Latest",
-      "date": "December 2024",
-      "author": "Get SaaS Team",
-      "title": "Contact Us - Let's Explore the Infinite Possibilities of SaaS Together",
-      "description": "We're excited to connect with you! Whether you want to learn about our SaaS template services or have any technical questions, we're always ready to help.",
-      "contactMethods": {
-        "title": "🌍 Contact Methods",
-        "twitter": {
-          "title": "Twitter",
-          "description": "Follow us for latest updates",
-          "handle": "@zyailive"
-        },
-        "email": {
-          "title": "Email",
-          "description": "Business & Technical Support",
-          "address": "app@itusi.cn"
-        },
-        "wechat": {
-          "title": "WeChat",
-          "description": "Add WeChat for exclusive service",
-          "id": "zyailive01"
-        }
-      },
-      "services": {
-        "title": "🚀 What We Can Do For You?",
-        "podcast": "Complete SaaS template source code and technical documentation",
-        "voiceover": "Modern user authentication and payment system integration",
-        "video": "Multi-language support and SEO optimization solutions",
-        "support": "24/7 professional technical support",
-        "custom": "Tailored SaaS features according to your needs"
-      },
-      "cta": {
-        "title": "Ready to Start Your SaaS Development Journey?",
-        "startNow": "Start Now",
-        "contactUs": "Contact Us"
-      }
-    },
-    "otherPosts": {
-      "title": "SaaS Development Technology Insights",
-      "description": "Explore the latest SaaS template technology trends and in-depth analysis",
-      "post1": {
-        "category": "Technology Analysis",
-        "date": "July 2025",
-        "title": "What Websites Can Get SaaS Build?",
-        "excerpt": "Understand Get SaaS template application scenarios, from e-commerce platforms to enterprise management systems, to online education platforms."
-      },
-      "post2": {
-        "category": "Product Introduction",
-        "date": "July 2025",
-        "title": "What Features Does Get SaaS Have?",
-        "excerpt": "Explore the core features provided by Get SaaS template: user authentication, payment systems, multi-language support, SEO optimization and more."
-      },
-      "post3": {
-        "category": "Industry Insights",
-        "date": "July 2025",
-        "title": "What is SaaS?",
-        "excerpt": "Understand the definition, business model, and technical architecture of SaaS, and how to rapidly build modern SaaS products."
-      },
-      "readMore": "Read More"
-    }
   }
 }

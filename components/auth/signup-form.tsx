@@ -1,26 +1,33 @@
 "use client"
 
-import { useState } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Loader2, CheckCircle } from 'lucide-react'
-import { SiGithub, SiGoogle } from 'react-icons/si'
+import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Loader2, CheckCircle, Gift } from 'lucide-react'
+import { SiGithub } from 'react-icons/si'
+import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
+import { setAffiliateCookie } from '@/lib/utils'
 
 export function SignUpForm() {
   const locale = useLocale()
   const t = useTranslations("auth")
+  const searchParams = useSearchParams()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [referralCode, setReferralCode] = useState('')
+  const [affiliateCode, setAffiliateCode] = useState('')
+  const [showReferralInput, setShowReferralInput] = useState(false)
+  const [showAffiliateInput, setShowAffiliateInput] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [error, setError] = useState('')
@@ -28,6 +35,25 @@ export function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [oauthLoading, setOauthLoading] = useState<string | null>(null)
   const router = useRouter()
+
+  // 从URL参数中读取邀请码并自动填充
+  useEffect(() => {
+    const refCode = searchParams.get('ref') || searchParams.get('referralCode') || searchParams.get('code')
+    const affCode = searchParams.get('aff')
+    
+    // 如果有推荐码参数，显示推荐码输入框并填充
+    if (refCode) {
+      setShowReferralInput(true)
+      setReferralCode(refCode)
+    }
+    
+    // 如果有推广返利码参数，显示推广码输入框并填充，同时设置Cookie
+    if (affCode) {
+      setShowAffiliateInput(true)
+      setAffiliateCode(affCode)
+      setAffiliateCookie(affCode)
+    }
+  }, [searchParams])
 
   // 根据语言环境构建正确的路径
   const getLocalizedPath = (path: string) => {
@@ -68,13 +94,19 @@ export function SignUpForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, password, locale }),
+        body: JSON.stringify({ 
+          name, 
+          email, 
+          password, 
+          locale, 
+          referralCode: showReferralInput ? (referralCode.trim() || undefined) : undefined 
+        }),
       })
 
       const data = await response.json()
 
       if (response.ok) {
-        setSuccess(data.message)
+        setSuccess(data.messageKey ? t(data.messageKey) : (data.message || t('register_success')))
         // 3秒后跳转到登录页
         setTimeout(() => {
           const callbackUrl = getCallbackUrl()
@@ -84,7 +116,9 @@ export function SignUpForm() {
           router.push(signinUrl)
         }, 3000)
       } else {
-        setError(data.error || t('register_failed'))
+        setError(
+          data.errorKey ? t(data.errorKey) : (data.error || t('register_failed'))
+        )
       }
     } catch (error) {
       setError(t('register_retry'))
@@ -96,6 +130,16 @@ export function SignUpForm() {
   const handleOAuthSignIn = async (provider: string) => {
     setOauthLoading(provider)
     try {
+      // 如果有推荐码，存储到cookie中，以便在OAuth回调后处理
+      if (showReferralInput && referralCode.trim()) {
+        document.cookie = `oauth_referral_code=${referralCode.trim()}; path=/; max-age=600; SameSite=Lax`
+      }
+      
+      // 如果有推广返利码，确保已设置到Cookie
+      if (showAffiliateInput && affiliateCode.trim()) {
+        setAffiliateCookie(affiliateCode.trim())
+      }
+      
       await signIn(provider, {
         callbackUrl: getLocalizedPath('/'),
       })
@@ -113,7 +157,7 @@ export function SignUpForm() {
           <div className="mx-auto w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center shadow-lg border border-primary/30">
             <Image
               src="/logo.png"
-              alt="Get SaaS"
+              alt="MokerSaaS"
               width={48}
               height={48}
               className="object-contain"
@@ -154,7 +198,7 @@ export function SignUpForm() {
                 {oauthLoading === 'github' ? (
                   <Loader2 className="h-4 w-4 animate-spin text-primary" />
                 ) : (
-                  <SiGithub className="h-4 w-4" />
+                  <SiGithub className="h-4 w-4 text-[#181717] dark:invert" />
                 )}
                 <span>GitHub</span>
               </Button>
@@ -169,7 +213,7 @@ export function SignUpForm() {
                 {oauthLoading === 'google' ? (
                   <Loader2 className="h-4 w-4 animate-spin text-primary" />
                 ) : (
-                  <SiGoogle className="h-4 w-4 text-red-500" />
+                  <FcGoogle className="h-4 w-4" />
                 )}
                 <span>Google</span>
               </Button>
@@ -183,7 +227,7 @@ export function SignUpForm() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-secondary px-2 text-muted-foreground">
-                {locale === "en" ? "Or register with email" : "或使用邮箱注册"}
+                {t('or_register_with_email')}
               </span>
             </div>
           </div>
@@ -266,6 +310,48 @@ export function SignUpForm() {
                 </button>
               </div>
             </div>
+
+            {/* 推荐码输入框 - 仅当URL有ref参数时显示 */}
+            {showReferralInput && (
+              <div className="space-y-2">
+                <Label htmlFor="referralCode" className="text-foreground font-medium">
+                  {t('referral_code')}
+                </Label>
+                <div className="relative">
+                  <Gift className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-4 w-4" />
+                  <Input
+                    id="referralCode"
+                    type="text"
+                    placeholder={t('referral_code_placeholder')}
+                    value={referralCode}
+                    onChange={(e) => setReferralCode(e.target.value)}
+                    className="pl-10 bg-secondary/50 border-primary/30 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
+                    maxLength={20}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* 推广码输入框 - 仅当URL有aff参数时显示 */}
+            {showAffiliateInput && (
+              <div className="space-y-2">
+                <Label htmlFor="affiliateCode" className="text-foreground font-medium">
+                  {t('affiliate_code')}
+                </Label>
+                <div className="relative">
+                  <Gift className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-4 w-4" />
+                  <Input
+                    id="affiliateCode"
+                    type="text"
+                    placeholder={t('affiliate_code_placeholder')}
+                    value={affiliateCode}
+                    onChange={(e) => setAffiliateCode(e.target.value)}
+                    className="pl-10 bg-secondary/50 border-primary/30 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
+                    maxLength={20}
+                  />
+                </div>
+              </div>
+            )}
 
             <Button
               type="submit"

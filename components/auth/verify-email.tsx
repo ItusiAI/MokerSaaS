@@ -46,10 +46,14 @@ export function VerifyEmailPage() {
 
         if (response.ok) {
           setStatus('success')
-          setMessage(data.message)
+          setMessage(
+            data.messageKey ? t(data.messageKey) : (data.message || t('success'))
+          )
         } else {
           setStatus('error')
-          setMessage(data.error || t('failed'))
+          setMessage(
+            data.errorKey ? t(data.errorKey) : (data.error || t('failed'))
+          )
         }
       } catch (error) {
         setStatus('error')
@@ -75,7 +79,7 @@ export function VerifyEmailPage() {
             {!status && (
               <Image
                 src="/logo.png"
-                alt="Get SaaS"
+                alt="MokerSaaS"
                 width={48}
                 height={48}
                 className="object-contain"

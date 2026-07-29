@@ -1,45 +1,40 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { HomePageClient } from "@/components/home/home-page-client"
 
-import { Navbar } from "@/components/navbar"
-import { HeroSection } from "@/components/hero-section"
-import { FeaturesSection } from "@/components/features-section"
-import { PricingSection } from "@/components/pricing-section"
-import { Testimonials } from "@/components/testimonials"
-import { FAQSection } from "@/components/faq-section"
-import { BlogSection } from "@/components/blog-section"
-import { Footer } from "@/components/footer"
-import { PageBackground } from "@/components/page-background"
+const NAVBAR_OFFSET = 80
+
+const scrollToHash = (hash: string) => {
+  const element = document.getElementById(hash)
+  if (element) {
+    const y = element.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET
+    window.scrollTo({ top: y, behavior: "smooth" })
+  }
+}
 
 export default function ChinesePage() {
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
-    // 处理URL中的锚点
+    setMounted(true)
     const hash = window.location.hash.replace('#', '')
     if (hash) {
-      // 延迟滚动，确保页面完全加载
-      setTimeout(() => {
-        const element = document.getElementById(hash)
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
-        }
-      }, 100)
+      setTimeout(() => scrollToHash(hash), 100)
     }
   }, [])
 
-  return (
-    <PageBackground>
+  const handleOpenDeploy = () => scrollToHash('pricing')
+  const handleOpenDocs = () => scrollToHash('orchestration')
 
-      <Navbar />
-      <main>
-        <HeroSection />
-        <FeaturesSection />
-        <PricingSection />
-        <Testimonials />
-        <FAQSection />
-        <BlogSection />
-      </main>
-      <Footer />
-    </PageBackground>
+  if (!mounted) {
+    return null
+  }
+
+  return (
+    <HomePageClient
+      onOpenDeploy={handleOpenDeploy}
+      onOpenDocs={handleOpenDocs}
+    />
   )
 }

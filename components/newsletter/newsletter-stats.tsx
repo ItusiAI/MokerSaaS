@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Users, Mail, Globe, Calendar, RefreshCw } from 'lucide-react'
+import { Users, Mail, Globe, Calendar, RefreshCw, Download } from 'lucide-react'
 import { format } from 'date-fns'
 import { useTranslations, useLocale } from 'next-intl'
 
@@ -62,6 +62,65 @@ export function NewsletterStats() {
     setError(null)
     await Promise.all([fetchStats(), fetchSubscriptions()])
     setLoading(false)
+  }
+
+  const handleExport = async (type: 'active' | 'inactive' | 'all') => {
+    try {
+      let dataToExport: Subscription[]
+
+      if (type === 'active') {
+        dataToExport = activeSubscriptions
+      } else if (type === 'inactive') {
+        dataToExport = inactiveSubscriptions
+      } else {
+        dataToExport = subscriptions
+      }
+
+      if (dataToExport.length === 0) {
+        alert(t('subscription_list.no_data'))
+        return
+      }
+
+      const csvHeader = locale === 'zh'
+        ? '邮箱地址,语言,状态,订阅时间,取消订阅时间\n'
+        : 'Email Address,Language,Status,Subscribed At,Unsubscribed At\n'
+
+      const csvContent = dataToExport.map(sub => {
+        const language = sub.locale === 'zh'
+          ? (locale === 'zh' ? '中文' : 'Chinese')
+          : (locale === 'zh' ? '英文' : 'English')
+        const status = sub.isActive
+          ? (locale === 'zh' ? '活跃' : 'Active')
+          : (locale === 'zh' ? '已取消' : 'Cancelled')
+        const subscribedAt = format(
+          new Date(sub.subscribedAt),
+          locale === 'zh' ? 'yyyy年MM月dd日 HH:mm' : 'MMM dd, yyyy HH:mm'
+        )
+        const unsubscribedAt = sub.unsubscribedAt
+          ? format(
+              new Date(sub.unsubscribedAt),
+              locale === 'zh' ? 'yyyy年MM月dd日 HH:mm' : 'MMM dd, yyyy HH:mm'
+            )
+          : '-'
+
+        return `"${sub.email}","${language}","${status}","${subscribedAt}","${unsubscribedAt}"`
+      }).join('\n')
+
+      const csv = csvHeader + csvContent
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      const timestamp = format(new Date(), 'yyyyMMdd_HHmmss')
+      link.download = `newsletter_subscriptions_${type}_${timestamp}.csv`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (err) {
+      console.error('Export error:', err)
+      alert(t('subscription_list.export_failed'))
+    }
   }
 
   useEffect(() => {
@@ -155,10 +214,16 @@ export function NewsletterStats() {
             <CardTitle>{t('subscription_list.title')}</CardTitle>
             <CardDescription>{t('subscription_list.description')}</CardDescription>
           </div>
-          <Button onClick={fetchData} variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
-            {t('actions.refresh')}
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={() => handleExport('all')} variant="outline" size="sm" disabled={subscriptions.length === 0}>
+              <Download className="h-4 w-4 mr-2" />
+              {t('subscription_list.export')}
+            </Button>
+            <Button onClick={fetchData} variant="outline" size="sm">
+              <RefreshCw className="h-4 w-4 mr-2" />
+              {t('actions.refresh')}
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="active" className="w-full">
@@ -233,14 +298,20 @@ function SubscriptionTable({
               <TableCell>
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
-                  {format(new Date(subscription.subscribedAt), 'yyyy-MM-dd HH:mm')}
+                  {format(
+                    new Date(subscription.subscribedAt),
+                    locale === 'zh' ? 'yyyy年MM月dd日' : 'MMM dd, yyyy'
+                  )}
                 </div>
               </TableCell>
               <TableCell>
                 {subscription.unsubscribedAt ? (
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
-                    {format(new Date(subscription.unsubscribedAt), 'yyyy-MM-dd HH:mm')}
+                    {format(
+                      new Date(subscription.unsubscribedAt),
+                      locale === 'zh' ? 'yyyy年MM月dd日' : 'MMM dd, yyyy'
+                    )}
                   </div>
                 ) : (
                   <span className="text-muted-foreground">-</span>

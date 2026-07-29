@@ -1,4 +1,5 @@
 import { db } from '@/lib/db'
+import { SUBSCRIPTION_PRODUCTS, type SubscriptionPlanType } from '@/lib/stripe'
 import { users, pointsHistory } from '@/lib/schema'
 import { eq, desc, sql } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
@@ -26,11 +27,20 @@ export enum PointsType {
 
 // 操作描述映射
 const ACTION_DESCRIPTIONS = {
-  [PointsAction.REGISTER]: '注册奖励',
-  [PointsAction.DAILY_LOGIN]: '每日签到奖励',
-  [PointsAction.REFERRAL]: '推荐好友奖励',
-  [PointsAction.MANUAL]: '管理员操作',
+  [PointsAction.REGISTER]: 'Registration bonus',
+  [PointsAction.DAILY_LOGIN]: 'Daily login bonus',
+  [PointsAction.REFERRAL]: 'Referral bonus',
+  [PointsAction.MANUAL]: 'Manual operation',
 } as const
+
+const DEFAULT_SUBSCRIPTION_GIFTED_POINTS = 1000
+
+export function getSubscriptionGiftedPoints(plan: SubscriptionPlanType | null | undefined) {
+  if (!plan) {
+    return DEFAULT_SUBSCRIPTION_GIFTED_POINTS
+  }
+  return SUBSCRIPTION_PRODUCTS[plan]?.giftedPoints ?? DEFAULT_SUBSCRIPTION_GIFTED_POINTS
+}
 
 // 添加积分历史记录
 async function addPointsHistory(
@@ -119,9 +129,9 @@ export async function getUserPoints(userId: string) {
 export async function deductPoints(userId: string, points: number, description?: string) {
   try {
     const currentPoints = await getUserPoints(userId)
-    
+
     if (currentPoints < points) {
-      throw new Error('积分不足')
+      throw new Error('Insufficient points')
     }
 
     const newPoints = currentPoints - points
@@ -134,7 +144,7 @@ export async function deductPoints(userId: string, points: number, description?:
       .where(eq(users.id, userId))
 
     // 添加历史记录（负数表示扣除）
-    await addPointsHistory(userId, -points, PointsAction.MANUAL, PointsType.PURCHASED, description || '积分扣除')
+    await addPointsHistory(userId, -points, PointsAction.MANUAL, PointsType.PURCHASED, description || 'Points deduction')
 
     console.log(`用户 ${userId} 扣除 ${points} 积分，当前总积分: ${newPoints}`)
     return newPoints
@@ -186,10 +196,9 @@ export async function getUserPointsHistoryCount(userId: string) {
 // 给新注册用户赠送积分（归类为购买积分，永不过期）
 export async function giveRegisterBonus(userId: string) {
   return addPoints(
-    userId, 
-    POINTS_CONFIG.REGISTER_BONUS, 
+    userId,
+    POINTS_CONFIG.REGISTER_BONUS,
     PointsAction.REGISTER,
-    PointsType.PURCHASED, // 注册积分归类为购买积分，永不过期
-    '新用户注册奖励'
+    PointsType.PURCHASED // 注册积分归类为购买积分，永不过期
   )
-} 
+}

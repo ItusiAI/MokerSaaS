@@ -3,61 +3,86 @@
 @tailwind utilities;
 
 @layer base {
+  /* 亮色模式 (Light Mode) */
   :root {
-    /* 赛博朋克风格 - 亮色模式 */
-    --background: 0 0% 98%; /* #FAFAFA 浅色背景 */
-    --foreground: 0 0% 15%; /* #262626 深色文字 */
-    --card: 0 0% 100%; /* #FFFFFF 白色卡片背景 */
-    --card-foreground: 0 0% 15%; /* #262626 卡片文字 */
-    --popover: 0 0% 100%; /* #FFFFFF 白色弹窗背景 */
-    --popover-foreground: 0 0% 15%; /* #262626 弹窗文字 */
-    --primary: 187 100% 42%; /* #00D4E7 稍深的电光蓝主色 */
-    --primary-foreground: 0 0% 98%; /* #FAFAFA 浅色文字 */
-    --secondary: 210 40% 96%; /* #F1F5F9 浅灰背景 */
-    --secondary-foreground: 0 0% 15%; /* #262626 深色文字 */
-    --muted: 210 40% 96%; /* #F1F5F9 静音背景 */
-    --muted-foreground: 215 16% 47%; /* #64748B 中性文字 */
-    --accent: 187 100% 42%; /* #00D4E7 电光蓝强调色 */
-    --accent-foreground: 0 0% 98%; /* #FAFAFA 浅色文字 */
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 35 92% 47%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214 32% 91%; /* #E2E8F0 浅色边框 */
-    --input: 214 32% 91%; /* #E2E8F0 输入框边框 */
-    --ring: 187 100% 42%; /* #00D4E7 电光蓝焦点环 */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 35 92% 47%;
     --radius: 0.5rem;
+
+    --color-primary: #D97706;
+    --color-primary-hover: #EA580C;
+    --color-accent: #059669;
+    --color-bg: #F9FAFB;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6B7280;
+    --color-border: #E5E7EB;
+    --grid-dot: #e5e7eb;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(217, 119, 6, 0.2);
+    --nav-bg: rgba(249, 250, 251, 0.85);
   }
 
   .dark {
-    /* 赛博朋克风格 - 暗色模式 */
-    --background: 0 0% 10%; /* #1A1A1A 炭黑色背景 */
-    --foreground: 0 0% 92%; /* #EAEAEA 标题文字 */
-    --card: 210 22% 22%; /* #2D3748 UI元素/容器背景 */
-    --card-foreground: 0 0% 92%; /* #EAEAEA 卡片文字 */
-    --popover: 210 22% 22%; /* #2D3748 */
-    --popover-foreground: 0 0% 92%; /* #EAEAEA */
-    --primary: 187 100% 50%; /* #00F0FF 电光蓝主色 */
-    --primary-foreground: 0 0% 10%; /* #1A1A1A 深色文字 */
-    --secondary: 210 22% 22%; /* #2D3748 UI元素背景 */
-    --secondary-foreground: 0 0% 92%; /* #EAEAEA 文字 */
-    --muted: 210 22% 22%; /* #2D3748 静音背景 */
-    --muted-foreground: 210 22% 63%; /* #A0AEC0 正文/描述文字 */
-    --accent: 187 100% 50%; /* #00F0FF 电光蓝强调色 */
-    --accent-foreground: 0 0% 10%; /* #1A1A1A 深色文字 */
+    --background: 0 0% 6%;
+    --foreground: 210 17% 91%;
+    --card: 220 14% 14%;
+    --card-foreground: 210 17% 91%;
+    --popover: 220 14% 14%;
+    --popover-foreground: 210 17% 91%;
+    --primary: 28 100% 71%;
+    --primary-foreground: 220 14% 8%;
+    --secondary: 220 14% 14%;
+    --secondary-foreground: 210 17% 91%;
+    --muted: 220 14% 14%;
+    --muted-foreground: 25 20% 75%;
+    --accent: 153 60% 60%;
+    --accent-foreground: 220 14% 8%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 210 22% 22%; /* #2D3748 边框 */
-    --input: 210 22% 22%; /* #2D3748 输入框 */
-    --ring: 187 100% 50%; /* #00F0FF 电光蓝焦点环 */
-  }
-}
+    --border: 24 24% 29%;
+    --input: 24 24% 29%;
+    --ring: 28 100% 71%;
 
-@layer base {
+    --color-primary: #ffb77d;
+    --color-primary-hover: #ffc494;
+    --color-accent: #68dba9;
+    --color-bg: #0f131c;
+    --color-surface: #181c24;
+    --color-text-primary: #dfe2ef;
+    --color-text-secondary: #dbc2b0;
+    --color-border: #554336;
+    --grid-dot: #262a33;
+    --glass-bg: rgba(24, 28, 36, 0.6);
+    --glass-border: rgba(85, 67, 54, 0.25);
+    --nav-bg: rgba(15, 19, 28, 0.85);
+  }
+
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 }
 
@@ -65,57 +90,75 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 确保暗色模式过渡效果 */
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* 赛博朋克风格品牌样式 */
+/* 琥珀色品牌样式 */
 .brand-bg {
-  background-color: #00F0FF; /* 电光蓝背景 */
+  background-color: #D97706;
 }
 
 .brand-text {
-  color: #00F0FF; /* 电光蓝文字 */
+  color: #D97706;
 }
 
 .brand-bg-dark {
-  background-color: #1A1A1A; /* 炭黑色背景 */
+  background-color: #0f131c;
 }
 
 .brand-bg-subtle {
-  background-color: #2D3748; /* UI元素/容器背景 */
+  background-color: #F9FAFB;
 }
 
 .brand-text-light {
-  color: #EAEAEA; /* 标题文字 */
+  color: #111827;
 }
 
 .brand-text-muted {
-  color: #A0AEC0; /* 正文/描述文字 */
+  color: #6B7280;
 }
 
-/* 赛博朋克风格阴影效果 */
+.dark .brand-bg-subtle {
+  background-color: #181c24;
+}
+
+.dark .brand-text-light {
+  color: #dfe2ef;
+}
+
+.dark .brand-text-muted {
+  color: #dbc2b0;
+}
+
+/* 琥珀色阴影效果 */
 .brand-shadow {
-  box-shadow: 0 4px 16px -2px rgba(0, 240, 255, 0.1), 0 2px 8px -2px rgba(0, 240, 255, 0.06);
+  box-shadow: 0 4px 16px -2px rgba(217, 119, 6, 0.15), 0 2px 8px -2px rgba(217, 119, 6, 0.1);
 }
 
 .brand-shadow-lg {
-  box-shadow: 0 12px 32px -6px rgba(0, 240, 255, 0.15), 0 6px 16px -4px rgba(0, 240, 255, 0.1);
+  box-shadow: 0 12px 32px -6px rgba(217, 119, 6, 0.2), 0 6px 16px -4px rgba(217, 119, 6, 0.15);
 }
 
-/* 电光蓝强调阴影 */
 .accent-shadow {
-  box-shadow: 0 8px 24px -4px rgba(0, 240, 255, 0.3), 0 4px 12px -2px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 8px 24px -4px rgba(5, 150, 105, 0.3), 0 4px 12px -2px rgba(5, 150, 105, 0.2);
 }
 
-/* 赛博朋克发光效果 */
-.cyber-glow {
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+/* 琥珀色发光效果 */
+.amber-glow {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.4), 0 0 40px rgba(217, 119, 6, 0.2), 0 0 60px rgba(217, 119, 6, 0.1);
 }
 
-.cyber-glow-subtle {
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), 0 0 20px rgba(0, 240, 255, 0.1);
+.amber-glow-subtle {
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.25), 0 0 20px rgba(217, 119, 6, 0.1);
+}
+
+.dark .amber-glow {
+  box-shadow: 0 0 20px rgba(255, 183, 125, 0.4), 0 0 40px rgba(255, 183, 125, 0.2), 0 0 60px rgba(255, 183, 125, 0.1);
+}
+
+.dark .amber-glow-subtle {
+  box-shadow: 0 0 10px rgba(255, 183, 125, 0.25), 0 0 20px rgba(255, 183, 125, 0.1);
 }
 
 /* 文本截断工具类 */
@@ -131,4 +174,106 @@ html {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(74, 69, 64, 0.1); /* 暖褐灰，10%透明度 */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 69, 64, 0.18); /* 鼠标悬停时稍微深一点 */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(168, 162, 158, 0.12); /* 深色模式下的暖灰 */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 162, 158, 0.2);
+}
+
+/* Unified Global Grid Pattern */
+.global-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--grid-dot) 1px, transparent 0);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+/* Glass Card & Shadows */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.terminal-shadow {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.55; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.scanline {
+  display: none;
+}
+
+@keyframes dash {
+  to { stroke-dashoffset: -100; }
+}
+
+.map-line {
+  stroke-dasharray: 4;
+  animation: dash 20s linear infinite;
+}
+
+/* Code Syntax Highlighting */
+.syntax-string { color: var(--color-accent); }
+.syntax-keyword { color: var(--color-primary); font-weight: 600; }
+.syntax-comment { color: var(--color-text-secondary); opacity: 0.85; }
+.syntax-function { color: #2563EB; }
+.dark .syntax-function { color: #60A5FA; }
+.syntax-number { color: #EA580C; }
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
 }

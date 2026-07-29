@@ -71,6 +71,12 @@ export async function POST(request: NextRequest) {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
+      // 启用自动发票创建 - Stripe会自动发送发票给客户
+      invoice_creation: {
+        enabled: true,
+      },
+      // 启用发票邮件 - Stripe会自动发送发票邮件给客户
+      billing_address_collection: 'required',
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/profile?payment=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/profile?payment=cancelled`,
       metadata: {

@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { stripe, getActualPriceIds } from '@/lib/stripe'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
+import { db } from '@/lib/db'
+import { users } from '@/lib/schema'
+import { eq } from 'drizzle-orm'
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,13 +36,76 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Enterprise plan requires contact sales' }, { status: 400 })
     }
 
+    // 获取用户当前订阅状态
+    const user = await db
+      .select({ 
+        hasTrialSubscription: users.hasTrialSubscription,
+        subscriptionStatus: users.subscriptionStatus,
+        subscriptionPlan: users.subscriptionPlan,
+        subscriptionCurrentPeriodEnd: users.subscriptionCurrentPeriodEnd,
+        subscriptionId: users.subscriptionId,
+      })
+      .from(users)
+      .where(eq(users.email, session.user.email))
+      .limit(1)
+
+    const currentUser = user.length > 0 ? user[0] : null
+    const now = new Date()
+    const hasActiveSubscription = currentUser?.subscriptionStatus === 'active' &&
+      currentUser?.subscriptionCurrentPeriodEnd &&
+      new Date(currentUser.subscriptionCurrentPeriodEnd) > now
+
+    // 如果是试用订阅，检查用户是否已经订阅过或已有pro/annual订阅
+    if (planType === 'trial') {
+      if (currentUser) {
+        // 检查是否已经订阅过试用版
+        if (currentUser.hasTrialSubscription) {
+          return NextResponse.json(
+            { error: 'You have already subscribed to the trial plan. Each user can only subscribe once.' },
+            { status: 400 }
+          )
+        }
+        
+        // 检查是否已经有active的pro或annual订阅
+        const hasActiveProOrAnnual = hasActiveSubscription &&
+          (currentUser.subscriptionPlan === 'pro' || currentUser.subscriptionPlan === 'annual')
+        
+        if (hasActiveProOrAnnual) {
+          return NextResponse.json(
+            { error: 'You already have an active subscription. Trial subscription is not available for Pro/Annual users.' },
+            { status: 400 }
+          )
+        }
+      }
+    }
+
+    // 如果是pro订阅，检查用户是否有active的annual订阅（不能降级）
+    if (planType === 'pro') {
+      if (currentUser && hasActiveSubscription && currentUser.subscriptionPlan === 'annual') {
+        return NextResponse.json(
+          { error: 'You cannot downgrade from Annual to Pro. Annual subscription cannot be downgraded.' },
+          { status: 400 }
+        )
+      }
+    }
+
+    // 如果是annual订阅，检查用户是否有active的annual订阅（可以续费）
+    if (planType === 'annual') {
+      // annual没到期可以续费，所以这里不做限制
+      // trial和pro可以升级到annual，所以也不做限制
+    }
+
     // 确定要使用的价格ID
     let finalPriceId = priceId
     
     // 如果前端传递的价格ID为空或无效，使用服务端的配置
     if (!priceId || priceId.trim() === '') {
-      if (planType === 'pro') {
+      if (planType === 'trial') {
+        finalPriceId = actualPriceIds.trial
+      } else if (planType === 'pro') {
         finalPriceId = actualPriceIds.pro
+      } else if (planType === 'annual') {
+        finalPriceId = actualPriceIds.annual
       } else {
         return NextResponse.json({ error: 'Missing price ID for plan type' }, { status: 400 })
       }
@@ -76,8 +142,9 @@ export async function POST(request: NextRequest) {
     const validLocales = ['en', 'zh']
     const validLocale = validLocales.includes(locale) ? locale : 'en'
     
-    // 创建结账会话
-    const checkoutSession = await stripe.checkout.sessions.create({
+    // 创建结账会话配置
+    // 试用订阅使用一次性支付模式（payment），其他使用订阅模式（subscription）
+    const checkoutSessionConfig: any = {
       customer: customer.id,
       payment_method_types: ['card'],
       line_items: [
@@ -86,7 +153,15 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      mode: 'subscription',
+      mode: planType === 'trial' ? 'payment' : 'subscription',
+      // 启用自动发票创建 - Stripe会自动发送发票给客户
+      invoice_creation: {
+        enabled: true,
+      },
+      // 启用发票邮件 - Stripe会自动发送发票邮件给客户
+      billing_address_collection: 'required',
+      // 自动税务计算（可选，如果需要）
+      // automatic_tax: { enabled: true },
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/${validLocale}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/${validLocale}/#pricing`,
       metadata: {
@@ -94,7 +169,18 @@ export async function POST(request: NextRequest) {
         planType,
         locale: validLocale,
       },
-    })
+    }
+
+    // 如果是annual订阅且用户已有active订阅，处理升级/续费
+    if (planType === 'annual' && currentUser && hasActiveSubscription && currentUser.subscriptionId) {
+      // 如果是续费（已有annual订阅），或者升级（从trial/pro升级到annual）
+      // Stripe会自动处理订阅的升级/续费
+      // 这里可以添加额外的逻辑，比如取消旧订阅等
+      // 但通常Stripe会在新订阅创建时自动处理
+    }
+    
+    // 创建结账会话
+    const checkoutSession = await stripe.checkout.sessions.create(checkoutSessionConfig)
 
     return NextResponse.json({ sessionId: checkoutSession.id })
   } catch (error) {

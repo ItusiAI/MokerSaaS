@@ -10,14 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 定义页面路径
   const pages = [
     '',  // 首页
-    '/blog',
-    '/blog/what-is-saas',
-    '/blog/saas-website-examples',
-    '/blog/saas-features',
     '/terms',
     '/privacy',
     '/cookies',
-  ]
+  ] 
 
   // 生成所有语言版本的页面
   const sitemapEntries: MetadataRoute.Sitemap = []

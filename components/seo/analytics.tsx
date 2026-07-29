@@ -50,12 +50,30 @@ export function BaiduAnalytics() {
   )
 }
 
+export function UmamiAnalytics() {
+  const websiteId = seoConfig.analytics.umamiWebsiteId
+  const scriptUrl = seoConfig.analytics.umamiScriptUrl
+
+  if (!websiteId || !scriptUrl) {
+    return null
+  }
+
+  return (
+    <Script
+      src={scriptUrl}
+      data-website-id={websiteId}
+      strategy="afterInteractive"
+    />
+  )
+}
+
 // 通用分析组件
 export function Analytics() {
   return (
     <>
       <GoogleAnalytics />
       <BaiduAnalytics />
+      <UmamiAnalytics />
     </>
   )
 }

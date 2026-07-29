@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { SiteChrome } from '@/components/home/site-chrome'
 
 const locales = ['en', 'zh']
 
@@ -27,15 +28,14 @@ export async function generateMetadata({
   return {
     title: {
       default: t('title'),
-      template: `%s | ${t('title')}`
+      template: `%s | ${t('shortTitle')}`
     },
     description: t('description'),
-    keywords: locale === 'zh'
-      ? 'SaaS模版,出海SaaS,Next.js模版,用户认证,支付系统,多语言支持,SEO优化,现代化SaaS,全球化部署,企业级SaaS'
-      : 'SaaS Template,Global SaaS,Next.js Template,User Authentication,Payment System,Multi-language Support,SEO Optimization,Modern SaaS,Global Deployment,Enterprise SaaS',
-    authors: [{ name: 'Get SaaS Team' }],
-    creator: 'Get SaaS',
-    publisher: 'Get SaaS',
+    keywords: t('keywords'),
+    applicationName: 'MokerSaaS',
+    authors: [{ name: 'MokerSaaS Team', url: 'https://github.com/zyailive/MokerSaaS' }],
+    creator: 'MokerSaaS',
+    publisher: 'MokerSaaS',
     formatDetection: {
       email: false,
       address: false,
@@ -61,7 +61,7 @@ export async function generateMetadata({
       url: currentUrl,
       title: t('title'),
       description: t('description'),
-      siteName: 'Get SaaS',
+      siteName: 'MokerSaaS - Open Source SaaS Template',
       images: baseUrl ? [
         {
           url: `${baseUrl}/images/homehaibao.png`,
@@ -95,12 +95,12 @@ export async function generateMetadata({
       yahoo: process.env.YAHOO_VERIFICATION,
     },
     category: 'technology',
-    classification: 'SaaS Template, Web Development, Enterprise Software',
+    classification: 'Open Source SaaS Template, Web Development, Enterprise Software',
     other: {
       'theme-color': '#00F0FF',
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
-      'apple-mobile-web-app-title': 'Get SaaS',
+      'apple-mobile-web-app-title': 'MokerSaaS',
     },
   }
 }
@@ -112,7 +112,7 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: Promise<{ locale: string }>
 }) {
-  // 在Next.js 15中，params需要被await
+  // 在Next.js 16中，params需要被await
   const { locale } = await params
   
   // 验证locale是否有效
@@ -126,7 +126,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       <div data-locale={locale}>
-        {children}
+        <SiteChrome>{children}</SiteChrome>
       </div>
     </NextIntlClientProvider>
   )

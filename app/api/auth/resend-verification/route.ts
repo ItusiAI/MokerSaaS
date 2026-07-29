@@ -7,6 +7,19 @@ import { eq } from 'drizzle-orm'
 import { v4 as uuidv4 } from 'uuid'
 import { sendVerificationEmail } from '@/lib/email'
 
+// 获取客户端IP地址
+function getClientIP(request: NextRequest): string | undefined {
+  const forwarded = request.headers.get('x-forwarded-for')
+  const realIP = request.headers.get('x-real-ip')
+  const cfConnectingIP = request.headers.get('cf-connecting-ip') // Cloudflare
+  
+  if (cfConnectingIP) return cfConnectingIP
+  if (realIP) return realIP
+  if (forwarded) return forwarded.split(',')[0].trim()
+  
+  return undefined
+}
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
@@ -61,11 +74,21 @@ export async function POST(request: NextRequest) {
     // 获取用户语言偏好
     const { locale = 'en' } = await request.json().catch(() => ({ locale: 'en' }))
 
+    // 获取客户端IP地址
+    const clientIP = getClientIP(request)
+
     // 发送验证邮件
-    const emailResult = await sendVerificationEmail(user.email, token, locale as 'zh' | 'en')
+    const emailResult = await sendVerificationEmail(user.email, token, locale as 'zh' | 'en', clientIP)
 
     if (!emailResult.success) {
       console.error('发送验证邮件失败:', emailResult.error)
+      // 如果是频率限制错误，返回429状态码
+      if (emailResult.error?.includes('频繁') || emailResult.error?.includes('Too many')) {
+        return NextResponse.json(
+          { error: emailResult.error },
+          { status: 429 }
+        )
+      }
       return NextResponse.json(
         { error: '发送验证邮件失败，请稍后重试' },
         { status: 500 }

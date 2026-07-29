@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -10,15 +10,18 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Loader2 } from 'lucide-react'
-import { SiGithub, SiGoogle } from 'react-icons/si'
+import { SiGithub } from 'react-icons/si'
+import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
+import { setAffiliateCookie } from '@/lib/utils'
+import { useSearchParams } from 'next/navigation'
 
 export function SignInForm() {
-  const pathname = usePathname()
   const locale = useLocale()
   const t = useTranslations("auth")
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -27,16 +30,45 @@ export function SignInForm() {
   const [oauthLoading, setOauthLoading] = useState<string | null>(null)
   const router = useRouter()
 
+  // 从URL参数中读取推广返利码并设置Cookie
+  useEffect(() => {
+    const affiliateCode = searchParams?.get('aff')
+    if (affiliateCode) {
+      setAffiliateCookie(affiliateCode)
+    }
+  }, [searchParams])
+
   // 根据语言环境构建正确的路径
   const getLocalizedPath = (path: string) => {
     return locale === "en" ? `/en${path}` : `/zh${path}`
   }
 
-  // 获取回调URL
-  const getCallbackUrl = () => {
+  const resolveCallbackUrl = (options: { consume?: boolean } = {}) => {
     if (typeof window !== 'undefined') {
+      const savedPath = sessionStorage.getItem('loginReturnPath')
+      if (savedPath) {
+        if (options.consume) {
+          sessionStorage.removeItem('loginReturnPath')
+        }
+        return savedPath
+      }
+
+      // 2. 从 URL 参数获取
       const searchParams = new URLSearchParams(window.location.search)
-      return searchParams.get('callbackUrl') || getLocalizedPath('/')
+      const callbackUrl = searchParams.get('callbackUrl')
+      if (callbackUrl) {
+        // 如果URL中有推荐码，保留它
+        const referralCode = searchParams.get('referralCode')
+        if (referralCode) {
+          const url = new URL(callbackUrl, window.location.origin)
+          url.searchParams.set('referralCode', referralCode)
+          return url.pathname + url.search
+        }
+        return callbackUrl
+      }
+
+      // 3. 默认返回首页
+      return getLocalizedPath('/')
     }
     return getLocalizedPath('/')
   }
@@ -56,7 +88,7 @@ export function SignInForm() {
       if (result?.error) {
         setError(t('login_error'))
       } else {
-        const callbackUrl = getCallbackUrl()
+        const callbackUrl = resolveCallbackUrl({ consume: true })
         router.push(callbackUrl)
         router.refresh()
       }
@@ -67,11 +99,41 @@ export function SignInForm() {
     }
   }
 
+  // 保存当前页面路径到 sessionStorage
+  const saveCurrentPath = () => {
+    if (typeof window === 'undefined') return
+    const currentPath = window.location.pathname
+    const currentSearch = window.location.search
+
+    // 排除登录和注册页面
+    if (!currentPath.includes('/auth/signin') && !currentPath.includes('/auth/signup')) {
+      sessionStorage.setItem('loginReturnPath', `${currentPath}${currentSearch}`)
+    }
+  }
+
   const handleOAuthSignIn = async (provider: string) => {
     setOauthLoading(provider)
     try {
+      // 保存当前路径（如果还没有保存）
+      saveCurrentPath()
+      
+      // 如果URL中有推荐码，存储到cookie中
+      if (typeof window !== 'undefined') {
+        const searchParams = new URLSearchParams(window.location.search)
+        const referralCode = searchParams.get('referralCode')
+        if (referralCode) {
+          document.cookie = `oauth_referral_code=${referralCode}; path=/; max-age=600; SameSite=Lax`
+        }
+        
+        // 如果URL中有推广返利码，确保已设置到Cookie
+        const affiliateCode = searchParams.get('aff')
+        if (affiliateCode) {
+          setAffiliateCookie(affiliateCode)
+        }
+      }
+      
       await signIn(provider, {
-        callbackUrl: getCallbackUrl(),
+        callbackUrl: resolveCallbackUrl({ consume: true }),
       })
     } catch (error) {
       setError(t('login_failed'))
@@ -87,7 +149,7 @@ export function SignInForm() {
           <div className="mx-auto w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center shadow-lg border border-primary/30">
             <Image
               src="/logo.png"
-              alt="Get SaaS"
+              alt="MokerSaaS"
               width={48}
               height={48}
               className="object-contain"
@@ -121,7 +183,7 @@ export function SignInForm() {
                 {oauthLoading === 'github' ? (
                   <Loader2 className="h-4 w-4 animate-spin text-primary" />
                 ) : (
-                  <SiGithub className="h-4 w-4" />
+                  <SiGithub className="h-4 w-4 text-[#181717] dark:invert" />
                 )}
                 <span>GitHub</span>
               </Button>
@@ -136,7 +198,7 @@ export function SignInForm() {
                 {oauthLoading === 'google' ? (
                   <Loader2 className="h-4 w-4 animate-spin text-primary" />
                 ) : (
-                  <SiGoogle className="h-4 w-4 text-red-500" />
+                  <FcGoogle className="h-4 w-4" />
                 )}
                 <span>Google</span>
               </Button>
@@ -227,7 +289,7 @@ export function SignInForm() {
             {t('no_account')}{' '}
             <Link
               href={(() => {
-                const callbackUrl = getCallbackUrl()
+                const callbackUrl = resolveCallbackUrl()
                 return callbackUrl
                   ? `${getLocalizedPath('/auth/signup')}?callbackUrl=${encodeURIComponent(callbackUrl)}`
                   : getLocalizedPath('/auth/signup')

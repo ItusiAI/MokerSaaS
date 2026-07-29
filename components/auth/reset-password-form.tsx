@@ -89,10 +89,12 @@ export function ResetPasswordForm() {
 
       if (response.ok) {
         setStatus('success')
-        setMessage(t('success_message'))
+        setMessage(data.messageKey ? t(data.messageKey) : t('success_message'))
       } else {
         setStatus('error')
-        setMessage(data.error || t('reset_failed'))
+        setMessage(
+          data.errorKey ? t(data.errorKey) : (data.error || t('reset_failed'))
+        )
       }
     } catch (error) {
       setStatus('error')
@@ -109,7 +111,7 @@ export function ResetPasswordForm() {
           <div className="mx-auto w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center shadow-lg border border-primary/30">
             <Image
               src="/logo.png"
-              alt="Get SaaS"
+              alt="MokerSaaS"
               width={48}
               height={48}
               className="object-contain"

@@ -1,6 +1,6 @@
 {
-  "name": "get-saas",
-  "version": "2.0.0",
+  "name": "MokerSaaS",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
     "@aws-sdk/client-s3": "^3.850.0",
+    "@fal-ai/client": "^1.2.13",
     "@hookform/resolvers": "^3.9.1",
     "@neondatabase/serverless": "^1.0.1",
     "@radix-ui/react-accordion": "1.2.2",
@@ -55,7 +56,7 @@
     "cmdk": "1.0.4",
     "cos-nodejs-sdk-v5": "^2.16.0-beta.3",
     "date-fns": "^3.6.0",
-    "drizzle-kit": "^0.31.4",
+    "drizzle-kit": "^0.31.8",
     "drizzle-orm": "^0.44.2",
     "embla-carousel-react": "8.5.1",
     "input-otp": "1.4.1",
@@ -81,16 +82,18 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tencentcloud-sdk-nodejs": "^4.1.79",
+    "uuid": "^10.0.0",
     "vaul": "^0.9.6",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^22",
-    "@types/react": "^19.2.3",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@types/uuid": "^10.0.0",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
 }

@@ -24,18 +24,21 @@ function getPriceId(envVar: string | undefined, fallback: string = ''): string {
 
 // 订阅价格配置
 export const SUBSCRIPTION_PRICE_IDS = {
+  trial: getPriceId(process.env.STRIPE_TRIAL_PRICE_ID, ''),
   pro: getPriceId(process.env.STRIPE_PRO_PRICE_ID, ''),
+  annual: getPriceId(process.env.STRIPE_ANNUAL_PRICE_ID, ''),
 } as const
 
 // 积分购买价格配置
 export const POINTS_PRICE_IDS = {
-  starter: getPriceId(process.env.STRIPE_POINTS_STARTER_PRICE_ID, ''), // 5,000积分 - $5
-  popular: getPriceId(process.env.STRIPE_POINTS_POPULAR_PRICE_ID, ''), // 10,000积分 - $10
-  premium: getPriceId(process.env.STRIPE_POINTS_PREMIUM_PRICE_ID, ''), // 100,000积分 - $100
+  starter: getPriceId(process.env.STRIPE_POINTS_STARTER_PRICE_ID, ''), // 500积分 - $8
+  popular: getPriceId(process.env.STRIPE_POINTS_POPULAR_PRICE_ID, ''), // 1,000积分 - $15
+  premium: getPriceId(process.env.STRIPE_POINTS_PREMIUM_PRICE_ID, ''), // 15,000积分 - $150
 } as const
 
 // 向后兼容的价格配置
 export const PRICE_IDS = {
+  trial: SUBSCRIPTION_PRICE_IDS.trial,
   pro: SUBSCRIPTION_PRICE_IDS.pro,
   ...POINTS_PRICE_IDS,
 } as const
@@ -43,7 +46,9 @@ export const PRICE_IDS = {
 // 获取实际的价格ID（服务端使用）
 export function getActualPriceIds() {
   return {
+    trial: process.env.STRIPE_TRIAL_PRICE_ID || '',
     pro: process.env.STRIPE_PRO_PRICE_ID || '',
+    annual: process.env.STRIPE_ANNUAL_PRICE_ID || '',
     starter: process.env.STRIPE_POINTS_STARTER_PRICE_ID || '',
     popular: process.env.STRIPE_POINTS_POPULAR_PRICE_ID || '',
     premium: process.env.STRIPE_POINTS_PREMIUM_PRICE_ID || '',
@@ -52,18 +57,51 @@ export function getActualPriceIds() {
 
 // 订阅产品配置
 export const SUBSCRIPTION_PRODUCTS = {
+  trial: {
+    name: 'Trial Plan',
+    priceId: SUBSCRIPTION_PRICE_IDS.trial,
+    price: 4.99,
+    originalPrice: 4.99,
+    interval: 'week',
+    intervalCount: 1, // 1周 = 7天
+    giftedPoints: 1000, // 订阅赠送的积分
+    features: [
+      'Full access to all agents',
+      '1,000 credits included',
+      '7-day trial period',
+      'Perfect for trying out',
+    ],
+  },
   pro: {
     name: 'Professional Plan',
     priceId: SUBSCRIPTION_PRICE_IDS.pro,
-    price: 9.99,
+    price: 15.9,
+    originalPrice: 19.9,
     interval: 'month',
-    giftedPoints: 10000, // 订阅赠送的积分
+    giftedPoints: 1000, // 订阅赠送的积分
     features: [
       'Full access to all agents',
-      '10,000 credits included',
+      '1,000 credits included',
       'Agent personalization customization',
       'API interface access',
       'Dedicated customer support',
+    ],
+  },
+  annual: {
+    name: 'Annual Plan',
+    priceId: SUBSCRIPTION_PRICE_IDS.annual,
+    price: 159,
+    originalPrice: 240, // 20 * 12 = 240
+    interval: 'year',
+    intervalCount: 1,
+    giftedPoints: 15000, // 订阅赠送的积分
+    features: [
+      'Full access to all agents',
+      '15,000 credits included',
+      'Agent personalization customization',
+      'API interface access',
+      'Dedicated customer support',
+      'Best value - Save 34%',
     ],
   },
   enterprise: {
@@ -87,7 +125,7 @@ export const POINTS_PRODUCTS = {
   starter: {
     id: 'starter',
     name: '入门套餐',
-    points: 5000,
+    points: 500,
     price: 8,
     priceId: POINTS_PRICE_IDS.starter,
     description: '适合新用户试用',
@@ -95,7 +133,7 @@ export const POINTS_PRODUCTS = {
   popular: {
     id: 'popular',
     name: '热门套餐',
-    points: 10000,
+    points: 1000,
     price: 15,
     priceId: POINTS_PRICE_IDS.popular,
     description: '最受欢迎的选择',
@@ -104,7 +142,7 @@ export const POINTS_PRODUCTS = {
   premium: {
     id: 'premium',
     name: '高级套餐',
-    points: 100000,
+    points: 15000,
     price: 150,
     priceId: POINTS_PRICE_IDS.premium,
     description: '适合重度用户',

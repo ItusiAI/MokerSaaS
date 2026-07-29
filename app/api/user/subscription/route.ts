@@ -29,6 +29,7 @@ export async function GET(request: NextRequest) {
         points: true,
         giftedPoints: true,
         purchasedPoints: true,
+        hasTrialSubscription: true,
       }
     })
 
@@ -84,6 +85,7 @@ export async function GET(request: NextRequest) {
         subscriptionPlan: null,
         subscriptionCurrentPeriodEnd: user.subscriptionCurrentPeriodEnd?.toISOString() || null,
         stripeCustomerId: user.stripeCustomerId,
+        hasTrialSubscription: user.hasTrialSubscription || false,
       })
     }
 
@@ -105,6 +107,7 @@ export async function GET(request: NextRequest) {
         subscriptionPlan: null,
         subscriptionCurrentPeriodEnd: user.subscriptionCurrentPeriodEnd?.toISOString() || null,
         stripeCustomerId: user.stripeCustomerId,
+        hasTrialSubscription: user.hasTrialSubscription || false,
       })
     }
 
@@ -114,6 +117,7 @@ export async function GET(request: NextRequest) {
       subscriptionPlan: user.subscriptionPlan,
       subscriptionCurrentPeriodEnd: user.subscriptionCurrentPeriodEnd?.toISOString() || null,
       stripeCustomerId: user.stripeCustomerId,
+      hasTrialSubscription: user.hasTrialSubscription || false,
     })
   } catch (error) {
     console.error('获取订阅信息失败:', error)

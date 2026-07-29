@@ -130,7 +130,11 @@ export function SubscriptionInfo() {
 
   const getPlanIcon = (plan: string | null) => {
     switch (plan) {
+      case 'trial':
+        return <Crown className="h-5 w-5 text-primary/80" />
       case 'pro':
+        return <Crown className="h-5 w-5 text-primary" />
+      case 'annual':
         return <Crown className="h-5 w-5 text-primary" />
       case 'enterprise':
         return <Building className="h-5 w-5 text-primary/80" />
@@ -141,8 +145,12 @@ export function SubscriptionInfo() {
 
   const getPlanName = (plan: string | null) => {
     switch (plan) {
+      case 'trial':
+        return t('plan_trial')
       case 'pro':
         return t('plan_pro')
+      case 'annual':
+        return t('plan_annual')
       case 'enterprise':
         return t('plan_enterprise')
       default:
@@ -152,8 +160,12 @@ export function SubscriptionInfo() {
 
   const getPlanDescription = (plan: string | null) => {
     switch (plan) {
+      case 'trial':
+        return t('plan_trial_description')
       case 'pro':
         return t('plan_pro_description')
+      case 'annual':
+        return t('plan_annual_description')
       case 'enterprise':
         return t('plan_enterprise_description')
       default:
@@ -255,7 +267,7 @@ export function SubscriptionInfo() {
         </div>
 
         {/* 订阅详情 */}
-        {subscriptionData?.subscriptionPlan && subscriptionData?.subscriptionPlan !== 'free' && (
+        {subscriptionData?.subscriptionPlan && (
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4">
               {/* 到期时间 */}

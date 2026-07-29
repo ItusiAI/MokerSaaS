@@ -1,8 +1,6 @@
 "use client"
 
 import { useParams } from 'next/navigation'
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 
 export function TermsContent() {
   const params = useParams()
@@ -11,7 +9,6 @@ export function TermsContent() {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-foreground mb-8">
@@ -19,7 +16,7 @@ export function TermsContent() {
           </h1>
           <div className="prose prose-lg max-w-none">
             <p className="text-muted-foreground mb-8">
-              {isZh ? '最后更新：2025年7月1日' : 'Last updated: July 1, 2025'}
+              {isZh ? '最后更新：2026年1月6日' : 'Last updated: January 6, 2026'}
             </p>
             
             <section className="mb-8">
@@ -27,13 +24,13 @@ export function TermsContent() {
                 {isZh ? '1. 服务说明' : '1. Service Description'}
               </h2>
               <p className="mb-4">
-                {isZh 
-                  ? '欢迎使用ITSAI Agent（"我们"、"我们的"或"本服务"）。ITSAI Agent是一个专业的AI智能体服务平台，为用户提供包括但不限于播客制作、配音生成、视频创作等AI智能体服务。'
-                  : 'Welcome to ITSAI Agent ("we", "our", or "the service"). ITSAI Agent is a professional AI agent service platform that provides users with AI agent services including but not limited to podcast production, voice generation, video creation, and more.'
+                {isZh
+                  ? '欢迎使用MokerSaaS（"我们"、"我们的"或"本服务"）。MokerSaaS是一个专业的AI服务平台，为用户提供包括但不限于AI对话、AI图像生成、AI视频生成、AI语音合成、AI音乐生成等多种AI功能服务。'
+                  : 'Welcome to MokerSaaS ("we", "our", or "the service"). MokerSaaS is a professional AI service platform that provides users with various AI features including but not limited to AI chat, AI image generation, AI video generation, AI text-to-speech, AI music generation, and more.'
                 }
               </p>
               <p className="mb-4">
-                {isZh 
+                {isZh
                   ? '通过访问和使用我们的服务，您同意受本服务条款的约束。如果您不同意本条款的任何部分，请不要使用我们的服务。'
                   : 'By accessing and using our service, you agree to be bound by these Terms of Service. If you do not agree to any part of these terms, please do not use our service.'
                 }
@@ -60,31 +57,39 @@ export function TermsContent() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">
-                {isZh ? '3. AI智能体服务使用规则' : '3. AI Agent Service Usage Rules'}
+                {isZh ? '3. AI服务使用规则' : '3. AI Service Usage Rules'}
               </h2>
               <p className="mb-4">
-                {isZh ? '我们的AI智能体服务包括但不限于：' : 'Our AI agent services include but are not limited to:'}
+                {isZh ? '我们的AI服务包括但不限于：' : 'Our AI services include but are not limited to:'}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>
-                  <strong>{isZh ? 'AI播客智能体' : 'AI Podcast Agent'}</strong>：
-                  {isZh ? '自动生成播客脚本、主持对话和语音合成' : 'Automatically generate podcast scripts, host conversations, and voice synthesis'}
+                  <strong>{isZh ? 'AI对话' : 'AI Chat'}</strong>：
+                  {isZh ? '智能对话助手，支持多种AI模型' : 'Intelligent conversation assistant supporting multiple AI models'}
                 </li>
                 <li>
-                  <strong>{isZh ? 'AI配音智能体' : 'AI Voice Agent'}</strong>：
-                  {isZh ? '文本转语音服务，生成专业配音' : 'Text-to-speech service, generating professional voice-overs'}
+                  <strong>{isZh ? 'AI图像生成' : 'AI Image Generation'}</strong>：
+                  {isZh ? '文本生成图像、图像编辑等视觉创作服务' : 'Text-to-image, image editing, and other visual creation services'}
                 </li>
                 <li>
-                  <strong>{isZh ? 'AI视频智能体' : 'AI Video Agent'}</strong>：
-                  {isZh ? '从脚本到成片的自动化视频制作' : 'Automated video production from script to finished video'}
+                  <strong>{isZh ? 'AI视频生成' : 'AI Video Generation'}</strong>：
+                  {isZh ? '文本或图像生成视频的自动化视频制作' : 'Automated video production from text or images'}
+                </li>
+                <li>
+                  <strong>{isZh ? 'AI语音合成' : 'AI Text-to-Speech'}</strong>：
+                  {isZh ? '文本转语音服务，生成自然流畅的语音' : 'Text-to-speech service generating natural and fluent voice'}
+                </li>
+                <li>
+                  <strong>{isZh ? 'AI音乐生成' : 'AI Music Generation'}</strong>：
+                  {isZh ? '根据提示词和歌词生成完整音乐作品' : 'Generate complete music compositions from prompts and lyrics'}
                 </li>
               </ul>
-              
+
               <h3 className="text-xl font-semibold mb-3">
                 {isZh ? '使用限制' : 'Usage Restrictions'}
               </h3>
               <p className="mb-4">
-                {isZh ? '在使用我们的AI智能体服务时，您不得：' : 'When using our AI agent services, you may not:'}
+                {isZh ? '在使用我们的AI服务时，您不得：' : 'When using our AI services, you may not:'}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{isZh ? '生成非法、有害、威胁、辱骂、诽谤或侵犯他人权利的内容' : 'Generate illegal, harmful, threatening, abusive, defamatory, or rights-infringing content'}</li>
@@ -92,6 +97,7 @@ export function TermsContent() {
                 <li>{isZh ? '侵犯任何第三方的知识产权' : 'Infringe on any third party\'s intellectual property'}</li>
                 <li>{isZh ? '尝试逆向工程或破解我们的AI系统' : 'Attempt to reverse engineer or hack our AI systems'}</li>
                 <li>{isZh ? '超过您订阅计划的使用限制' : 'Exceed the usage limits of your subscription plan'}</li>
+                <li>{isZh ? '使用AI服务进行自动化批量操作以规避使用限制' : 'Use AI services for automated bulk operations to circumvent usage limits'}</li>
               </ul>
             </section>
 
@@ -101,15 +107,15 @@ export function TermsContent() {
               </h2>
               <p className="mb-4">
                 <strong>{isZh ? '您的内容' : 'Your Content'}</strong>：
-                {isZh ? '您保留对输入到我们AI智能体系统中的原始内容的所有权利。' : 'You retain all rights to the original content you input into our AI agent systems.'}
+                {isZh ? '您保留对输入到我们AI系统中的原始内容的所有权利。' : 'You retain all rights to the original content you input into our AI systems.'}
               </p>
               <p className="mb-4">
                 <strong>{isZh ? 'AI生成内容' : 'AI Generated Content'}</strong>：
-                {isZh ? '通过我们的AI智能体生成的内容版权归您所有。您可以自由使用、修改、分发和商业化这些内容。' : 'The copyright of content generated through our AI agents belongs to you. You may freely use, modify, distribute, and commercialize this content.'}
+                {isZh ? '通过我们的AI服务生成的内容版权归您所有。您可以自由使用、修改、分发和商业化这些内容。但请注意，您需要遵守相关法律法规和第三方AI模型提供商的使用条款。' : 'The copyright of content generated through our AI services belongs to you. You may freely use, modify, distribute, and commercialize this content. However, please note that you must comply with relevant laws and regulations and the terms of use of third-party AI model providers.'}
               </p>
               <p className="mb-4">
                 <strong>{isZh ? '我们的知识产权' : 'Our Intellectual Property'}</strong>：
-                {isZh ? 'ITSAI Agent平台、AI模型、算法和相关技术受知识产权法保护，归我们所有。' : 'The ITSAI Agent platform, AI models, algorithms, and related technologies are protected by intellectual property laws and belong to us.'}
+                {isZh ? 'MokerSaaS平台、网站设计、代码、算法和相关技术受知识产权法保护，归我们所有。' : 'The MokerSaaS platform, website design, code, algorithms, and related technologies are protected by intellectual property laws and belong to us.'}
               </p>
             </section>
 
@@ -118,14 +124,15 @@ export function TermsContent() {
                 {isZh ? '5. 付费服务和退款' : '5. Paid Services and Refunds'}
               </h2>
               <p className="mb-4">
-                {isZh ? '我们提供免费和付费的AI智能体服务。付费服务的具体条款包括：' : 'We offer both free and paid AI agent services. Specific terms for paid services include:'}
+                {isZh ? '我们提供免费和付费的AI服务。付费服务的具体条款包括：' : 'We offer both free and paid AI services. Specific terms for paid services include:'}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{isZh ? '所有价格以美元计算，可能因增值税而有所调整' : 'All prices are calculated in US dollars and may be adjusted for VAT'}</li>
                 <li>{isZh ? '订阅费用按月收取，自动续费' : 'Subscription fees are charged monthly with automatic renewal'}</li>
+                <li>{isZh ? '积分购买后立即生效，可用于各种AI服务' : 'Points are effective immediately after purchase and can be used for various AI services'}</li>
                 <li>{isZh ? '您可以随时取消订阅，取消将在当前计费周期结束时生效' : 'You can cancel your subscription at any time, with cancellation taking effect at the end of the current billing cycle'}</li>
-                <li>{isZh ? '我们提供7天无理由退款保证' : 'We offer a 7-day no-questions-asked refund guarantee'}</li>
-                <li>{isZh ? '未使用的服务调用次数不会结转到下个计费周期' : 'Unused service calls do not roll over to the next billing cycle'}</li>
+                <li>{isZh ? '我们提供7天无理由退款保证（仅限首次订阅）' : 'We offer a 7-day no-questions-asked refund guarantee (first-time subscriptions only)'}</li>
+                <li>{isZh ? '已使用的积分和服务不可退款' : 'Used points and services are non-refundable'}</li>
               </ul>
             </section>
 
@@ -146,15 +153,16 @@ export function TermsContent() {
                 {isZh ? '7. 免责声明' : '7. Disclaimer'}
               </h2>
               <p className="mb-4">
-                {isZh 
-                  ? '我们的AI智能体服务按"现状"提供。我们不保证AI生成内容的准确性、完整性或适用性。用户应对AI生成内容进行审查，并承担使用风险。'
-                  : 'Our AI agent services are provided "as is". We do not guarantee the accuracy, completeness, or suitability of AI-generated content. Users should review AI-generated content and assume the risks of use.'
+                {isZh
+                  ? '我们的AI服务按"现状"提供。我们不保证AI生成内容的准确性、完整性或适用性。用户应对AI生成内容进行审查，并承担使用风险。'
+                  : 'Our AI services are provided "as is". We do not guarantee the accuracy, completeness, or suitability of AI-generated content. Users should review AI-generated content and assume the risks of use.'
                 }
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{isZh ? '我们不对AI生成内容的质量做任何保证' : 'We make no guarantees about the quality of AI-generated content'}</li>
                 <li>{isZh ? '我们不对因使用AI生成内容而产生的任何损失负责' : 'We are not responsible for any losses arising from the use of AI-generated content'}</li>
                 <li>{isZh ? '我们不保证服务不会出现错误或中断' : 'We do not guarantee that the service will be error-free or uninterrupted'}</li>
+                <li>{isZh ? '第三方AI模型的可用性和性能可能会影响服务质量' : 'The availability and performance of third-party AI models may affect service quality'}</li>
               </ul>
             </section>
 
@@ -187,9 +195,9 @@ export function TermsContent() {
                 {isZh ? '10. 法律适用' : '10. Governing Law'}
               </h2>
               <p className="mb-4">
-                {isZh 
-                  ? '本服务条款受中华人民共和国和美国法律管辖。因本条款产生的争议应通过友好协商解决，协商不成的，提交至有管辖权的人民法院或美国相关法院解决。'
-                  : 'These Terms of Service are governed by the laws of the People\'s Republic of China and the United States. Disputes arising from these terms should be resolved through friendly negotiation. If negotiation fails, they shall be submitted to the competent People\'s Court or relevant US court for resolution.'
+                {isZh
+                  ? '本服务条款受您所在司法管辖区的适用法律管辖。因本条款产生的争议应通过友好协商解决，协商不成的，提交至有管辖权的法院解决。'
+                  : 'These Terms of Service are governed by the applicable laws of your jurisdiction. Disputes arising from these terms should be resolved through friendly negotiation. If negotiation fails, they shall be submitted to the competent court for resolution.'
                 }
               </p>
             </section>
@@ -206,13 +214,12 @@ export function TermsContent() {
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{isZh ? '邮箱：app@itusi.cn' : 'Email: app@itusi.cn'}</li>
-                <li>{isZh ? '网站：https://itsaiagent.com' : 'Website: https://itsaiagent.com'}</li>
+                <li>{isZh ? '网站：https://getsaas.co' : 'Website: https://getsaas.co'}</li>
               </ul>
             </section>
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 } 

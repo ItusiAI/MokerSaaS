@@ -8,9 +8,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { 
-  User, 
-  Mail, 
+import {
+  User,
+  Mail,
   Calendar,
   Clock,
   Shield,
@@ -31,16 +31,23 @@ import {
   CreditCard,
   History,
   Link,
-  Activity
+  Activity,
+  Music,
+  Image,
+  Bot,
+  Video,
+  FileText,
+  Box
 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
-import { formatDistanceToNow } from 'date-fns'
+import { format } from 'date-fns'
 import { zhCN, enUS } from 'date-fns/locale'
 import { ConnectedAccounts } from './connected-accounts'
 import { SubscriptionInfo } from './subscription-info'
 import { PointsPurchase } from './points-purchase'
 import { PaymentHistory } from './payment-history'
 import { toast } from 'sonner'
+// table UI not added — keep original list layout for points history
 
 interface PointsHistoryItem {
   id: string
@@ -74,6 +81,7 @@ export function ProfileInfo() {
   const searchParams = useSearchParams()
   const locale = useLocale()
   const t = useTranslations("profile")
+  const tPlan = useTranslations("profile") // 复用 Profile 命名空间中的订阅计划翻译
   const { data: session, status } = useSession()
   
   // 积分相关状态
@@ -247,6 +255,26 @@ export function ProfileInfo() {
         return <Gift className="h-4 w-4" />
       case 'subscription_expired':
         return <X className="h-4 w-4" />
+      case 'ai_tts':
+        return <Activity className="h-4 w-4" />
+      case 'ai_stt':
+        return <Activity className="h-4 w-4" />
+      case 'ai_music':
+        return <Music className="h-4 w-4" />
+      case 'ai_image':
+        return <Image className="h-4 w-4" />
+      case 'ai_chat':
+        return <Bot className="h-4 w-4" />
+      case 'ai_video':
+        return <Video className="h-4 w-4" />
+      case 'ai_ocr':
+        return <FileText className="h-4 w-4" />
+      case 'ai_lipsync':
+        return <Video className="h-4 w-4" />
+      case 'ai_3d':
+        return <Box className="h-4 w-4" />
+      case 'ai_image_3d':
+        return <Box className="h-4 w-4" />
       default:
         return <Coins className="h-4 w-4" />
     }
@@ -276,13 +304,36 @@ export function ProfileInfo() {
   }
 
   const getActionDescription = (action: string, description?: string) => {
-    // 从原描述中提取金额信息
-    const extractAmount = (desc: string) => {
-      const match = desc.match(/(\d+(?:,\d{3})*|\d+)/);
-      return match ? match[0] : '';
-    };
+    // 从描述中提取订阅计划名称
+    const extractPlanName = (desc: string): string | null => {
+      // 匹配模式：订阅{计划}赠送积分 或 续订{计划}赠送积分 或 升级{计划}赠送积分
+      const patterns = [
+        /(?:订阅|续订|升级)([A-Za-z]+)\s*赠送积分/,
+        /(?:订阅|续订|升级)([A-Za-z]+)赠送积分/,
+      ]
+      
+      for (const pattern of patterns) {
+        const match = desc.match(pattern)
+        if (match && match[1]) {
+          return match[1]
+        }
+      }
+      return null
+    }
 
-
+    // 获取订阅计划显示名称（从翻译文件获取，如果不存在则格式化原始值）
+    const getPlanDisplayName = (plan: string): string => {
+      if (!plan) return ''
+      const planKey = `plan_${plan.toLowerCase()}`
+      try {
+        const planName = tPlan(planKey)
+        // 如果翻译不存在，返回原始值（首字母大写）
+        return planName || plan.charAt(0).toUpperCase() + plan.slice(1)
+      } catch {
+        // 如果翻译键不存在，返回格式化的原始值
+        return plan.charAt(0).toUpperCase() + plan.slice(1)
+      }
+    }
 
     switch (action) {
       case 'register':
@@ -298,24 +349,75 @@ export function ProfileInfo() {
       case 'purchase':
         return t('points_actions.purchase')
       case 'subscription_gift':
-        return t('points_actions.subscription_gift')
+        // 从描述中提取订阅计划名称
+        if (description) {
+          const planName = extractPlanName(description)
+          if (planName) {
+            const planKey = planName.toLowerCase()
+            const planDisplayName = getPlanDisplayName(planKey)
+            return t('points_actions.subscription_gift', { plan: planDisplayName })
+          }
+        }
+        // 如果无法从描述中提取，使用默认翻译
+        return t('points_actions.subscription_gift', { plan: '' })
       case 'subscription_renewal_gift':
-        return t('points_actions.subscription_renewal_gift')
+        // 从描述中提取订阅计划名称
+        if (description) {
+          const planName = extractPlanName(description)
+          if (planName) {
+            const planKey = planName.toLowerCase()
+            const planDisplayName = getPlanDisplayName(planKey)
+            return t('points_actions.subscription_renewal_gift', { plan: planDisplayName })
+          }
+        }
+        // 如果无法从描述中提取，使用默认翻译
+        return t('points_actions.subscription_renewal_gift', { plan: '订阅' })
+      case 'subscription_upgrade_gift':
+        // 从描述中提取订阅计划名称
+        if (description) {
+          const planName = extractPlanName(description)
+          if (planName) {
+            const planKey = planName.toLowerCase()
+            const planDisplayName = getPlanDisplayName(planKey)
+            return t('points_actions.subscription_upgrade_gift', { plan: planDisplayName })
+          }
+        }
+        // 如果无法从描述中提取，使用默认翻译
+        return t('points_actions.subscription_upgrade_gift', { plan: '' })
+      case 'subscription_reward':
+        return t('points_actions.subscription_reward')
       case 'subscription_expired':
         return t('points_actions.subscription_expired')
+      case 'ai_image':
+        // AI 图片生成根据当前 locale 使用翻译，而不是直接使用数据库中的 description
+        // 因为 description 可能存储的是操作时的语言，而不是当前界面语言
+        return t('points_actions.ai_image')
+      case 'ai_tts':
+        return t('points_actions.ai_tts')
+      case 'ai_chat':
+        // AI 对话根据当前 locale 使用翻译，而不是直接使用数据库中的 description
+        return t('points_actions.ai_chat')
+      case 'ai_video':
+        // AI 视频生成同样根据当前 locale 使用翻译
+        return t('points_actions.ai_video')
+      case 'ai_stt':
+        return t('points_actions.ai_stt')
+      case 'ai_music':
+        // AI 音乐生成根据当前 locale 使用翻译
+        return t('points_actions.ai_music')
+      case 'ai_ocr':
+        return t('points_actions.ai_ocr')
       default:
         return description || t('points_actions.unknown')
     }
   }
 
-  const formatTime = (dateString: string) => {
+  const formatDetailedTime = (dateString: string) => {
     const date = new Date(dateString)
-    const dateLocale = locale === 'zh' ? zhCN : enUS
-    
-    return formatDistanceToNow(date, { 
-      addSuffix: true, 
-      locale: dateLocale 
-    })
+    if (locale === 'zh') {
+      return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
+    }
+    return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })
   }
 
   const formatDate = (date: Date | string) => {
@@ -377,7 +479,9 @@ export function ProfileInfo() {
                           <p className="font-medium text-foreground">
                             {getActionDescription(item.action, item.description)}
                           </p>
-                          <p className="text-sm text-muted-foreground">{formatTime(item.createdAt)}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {formatDetailedTime(item.createdAt)}
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
