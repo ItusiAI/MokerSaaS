@@ -67,15 +67,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDeploy, onOpenDocs }) => {
     }, 1200);
   };
 
-  // 处理"免费获取模板"按钮：优先调用回调，否则新窗口跳转到 GitHub 仓库
   const handlePrimaryCta = () => {
-    if (onOpenDeploy) {
-      onOpenDeploy();
-      return;
-    }
-    // 携带当前 locale 参数，便于 GitHub 上根据用户语言提供对应 README
-    const url = `${GITHUB_REPO_URL}${locale ? `?ref=hero&lang=${locale}` : '?ref=hero'}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(GITHUB_REPO_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
