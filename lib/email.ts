@@ -111,12 +111,15 @@ function checkEmailRateLimit(
 }
 
 const BRAND_COLORS = {
-  primary: '#00D4E7',
-  primaryDark: '#00F0FF',
-  background: '#FAFAFA',
-  backgroundDark: '#1A1A1A',
-  text: '#262626',
-  muted: '#64748B'
+  primary: '#D97706',
+  primaryDark: '#EA580C',
+  primaryLight: '#FEF3C7',
+  background: '#F9FAFB',
+  backgroundDark: '#181c24',
+  text: '#111827',
+  muted: '#6B7280',
+  accent: '#059669',
+  accentLight: '#D1FAE5'
 }
 
 function extractBrandNameFromEmail() {
@@ -338,7 +341,7 @@ function generateEmailTemplate(
                       font-weight: 600;
                       font-size: 16px;
                       display: inline-block;
-                      box-shadow: 0 8px 24px rgba(0, 212, 231, 0.3);
+                      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
                       transition: all 0.3s ease;
                       border: none;">
               ${template.buttonText}
@@ -346,7 +349,7 @@ function generateEmailTemplate(
           </div>
           
           <!-- Fallback Link -->
-          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid ${colors.primary};">
+          <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid ${colors.primary};">
             <p style="color: ${colors.muted}; font-size: 14px; margin: 0 0 8px 0; font-weight: 500;">
               ${template.linkText}
             </p>
@@ -531,7 +534,7 @@ export async function sendPointsPurchaseEmail(
   const pointsText = locale === 'zh' ? `${points.toLocaleString()} 积分` : `${points.toLocaleString()} Points`
   
   const content = `
-    <div style="background: linear-gradient(135deg, ${colors.primary}15 0%, ${colors.primaryDark}15 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border-left: 4px solid ${colors.primary};">
+    <div style="background: linear-gradient(135deg, ${colors.primaryLight} 0%, white 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border-left: 4px solid ${colors.primary};">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
         <span style="color: ${colors.muted}; font-size: 14px; font-weight: 500;">${template.pointsLabel}</span>
         <span style="color: ${colors.text}; font-size: 20px; font-weight: 700;">${pointsText}</span>
@@ -798,7 +801,7 @@ export async function sendSubscriptionSuccessEmail(
   const displayPlanName = getPlanDisplayName(planType, locale)
   
   const content = `
-    <div style="background: linear-gradient(135deg, ${colors.primary}15 0%, ${colors.primaryDark}15 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border-left: 4px solid ${colors.primary};">
+    <div style="background: linear-gradient(135deg, ${colors.primaryLight} 0%, white 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border-left: 4px solid ${colors.primary};">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
         <span style="color: ${colors.muted}; font-size: 14px; font-weight: 500;">${template.planLabel}</span>
         <span style="color: ${colors.text}; font-size: 18px; font-weight: 700;">${displayPlanName}</span>

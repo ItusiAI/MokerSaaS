@@ -110,7 +110,7 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 
 ### 1. 克隆项目
 ```bash
-git clone <repository-url>
+git clone <https://github.com/ItusiAI/MokerSaaS>
 cd moker-saas
 ```
 
