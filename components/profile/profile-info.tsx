@@ -124,9 +124,7 @@ function ProfileInfoContent() {
     { id: 'points-purchase', label: t('points_purchase'), icon: Coins },
     { id: 'subscription', label: t('subscription_info'), icon: CreditCard },
     { id: 'points-history', label: t('points_history'), icon: History },
-    { id: 'payment-history', label: t('payment_history'), icon: History },
-    { id: 'connected-accounts', label: t('connected_accounts'), icon: Link },
-    { id: 'account-status', label: t('account_status'), icon: Activity }
+    { id: 'payment-history', label: t('payment_history'), icon: History }
   ]
 
   useEffect(() => {
@@ -572,43 +570,6 @@ function ProfileInfoContent() {
                   )}
                 </div>
               )}
-            </CardContent>
-          </Card>
-        )
-      
-      case 'connected-accounts':
-        return <ConnectedAccounts />
-      
-      case 'account-status':
-        return (
-          <Card className="shadow-lg border-0 bg-secondary/80 backdrop-blur-sm cyber-glow-subtle">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-foreground">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>{t('account_status')}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-primary/20 border border-primary/50 rounded-lg cyber-glow-subtle">
-                  <CheckCircle className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <p className="text-sm text-primary font-medium">
-                    {t('email_verified')}
-                  </p>
-                </div>
-                <div className="text-center p-4 bg-secondary/70 border border-primary/40 rounded-lg">
-                  <Shield className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <p className="text-sm text-primary/80 font-medium">
-                    {t('account_secure')}
-                  </p>
-                </div>
-                <div className="text-center p-4 bg-secondary/70 border border-primary/40 rounded-lg">
-                  <User className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <p className="text-sm text-primary/80 font-medium">
-                    {t('profile_complete')}
-                  </p>
-                </div>
-              </div>
             </CardContent>
           </Card>
         )
