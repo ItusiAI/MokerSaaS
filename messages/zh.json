@@ -24,7 +24,7 @@
     "pricing": "定价方案",
     "signUp": "立即注册",
     "signIn": "登录",
-    "profile": "个人中心",
+    "profile": "仪表盘",
     "affiliate": "推广计划",
     "referral": "推荐计划",
     "accountSettings": "账户设置",
@@ -567,7 +567,7 @@
     "back_to_forgot": "返回找回密码"
   },
   "profile": {
-    "title": "个人中心",
+    "title": "仪表盘",
     "description": "查看和管理您的账户信息",
     "menu": "功能菜单",
     "please_login": "请先登录后查看个人中心",

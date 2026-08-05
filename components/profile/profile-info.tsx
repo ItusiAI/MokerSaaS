@@ -1,8 +1,8 @@
 "use client"
 
 import { useSession } from 'next-auth/react'
-import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
+import { useEffect, useState, Suspense } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
@@ -76,9 +76,14 @@ interface UserDetails {
   role: string
 }
 
-export function ProfileInfo() {
+// 定义有效的区域 ID 列表
+const VALID_SECTIONS = ['points-purchase', 'subscription', 'points-history', 'payment-history', 'connected-accounts', 'account-status'] as const
+type SectionId = typeof VALID_SECTIONS[number]
+
+function ProfileInfoContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const router = useRouter()
   const locale = useLocale()
   const t = useTranslations("profile")
   const tPlan = useTranslations("profile") // 复用 Profile 命名空间中的订阅计划翻译
@@ -99,20 +104,19 @@ export function ProfileInfo() {
   // 重发验证邮件状态
   const [resendingEmail, setResendingEmail] = useState(false)
   
-  // 当前选中的分类 - 使用 localStorage 保持状态，默认显示积分购买
-  const [activeSection, setActiveSection] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('profileActiveSection') || 'points-purchase'
-    }
-    return 'points-purchase'
-  })
+  // 从 URL 参数获取当前选中的分类，默认为 subscription
+  const activeSectionFromUrl = searchParams.get('tab') as SectionId | null
+  const [activeSection, setActiveSection] = useState<SectionId>(activeSectionFromUrl && VALID_SECTIONS.includes(activeSectionFromUrl) ? activeSectionFromUrl : 'subscription')
 
-  // 更新 setActiveSection 来同时保存到 localStorage
+  // 更新 URL 参数
   const handleSectionChange = (sectionId: string) => {
-    setActiveSection(sectionId)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('profileActiveSection', sectionId)
-    }
+    setActiveSection(sectionId as SectionId)
+    // 更新 URL 参数，不刷新页面
+    const url = new URL(window.location.href)
+    url.searchParams.set('tab', sectionId)
+    window.history.pushState({}, '', url.toString())
+    // 滚动到页面顶部
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   // 分类配置 - 积分购买放在订阅信息上面
@@ -766,5 +770,20 @@ export function ProfileInfo() {
         </div>
       </div>
     </div>
+  )
+}
+
+// 包装组件以支持 Suspense（useSearchParams 需要）
+export function ProfileInfo() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </div>
+    }>
+      <ProfileInfoContent />
+    </Suspense>
   )
 }

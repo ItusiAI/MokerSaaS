@@ -212,25 +212,25 @@ export const Navbar: React.FC<NavbarProps> = ({
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-[160px]">
                 <DropdownMenuItem asChild className="hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] cursor-pointer">
-                  <Link href={getLocalizedPath("/profile")}>
+                  <Link href={getLocalizedPath("/profile")} className="justify-center">
                     <User className="mr-2 h-4 w-4" />
                     {t("profile")}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] cursor-pointer">
-                  <Link href={getLocalizedPath("/affiliate")}>
+                  <Link href={getLocalizedPath("/affiliate")} className="justify-center">
                     <TrendingUp className="mr-2 h-4 w-4" />
                     {t("affiliate")}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] cursor-pointer">
-                  <Link href={getLocalizedPath("/referral")}>
+                  <Link href={getLocalizedPath("/referral")} className="justify-center">
                     <Gift className="mr-2 h-4 w-4" />
                     {t("referral")}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut} className="hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] cursor-pointer">
+                <DropdownMenuItem onClick={handleSignOut} className="hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] cursor-pointer justify-center">
                   <LogOut className="mr-2 h-4 w-4" />
                   {t("signOut")}
                 </DropdownMenuItem>

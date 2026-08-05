@@ -24,7 +24,7 @@
     "pricing": "Pricing",
     "signUp": "Get Started",
     "signIn": "Sign In",
-    "profile": "Profile",
+    "profile": "Dashboard",
     "affiliate": "Affiliate",
     "referral": "Referral",
     "accountSettings": "Account Settings",
@@ -587,7 +587,7 @@
     "back_to_forgot": "Back to Forgot Password"
   },
   "profile": {
-    "title": "Profile",
+    "title": "Dashboard",
     "description": "View and manage your account information",
     "menu": "Menu",
     "please_login": "Please login to view your profile",
