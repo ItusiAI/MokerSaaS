@@ -1,36 +1,25 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import { useTheme } from 'next-themes';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 
 export const SiteChrome: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme');
-      if (saved) return saved === 'dark';
-    }
-    return true;
-  });
-
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
+  // 在客户端水合前先避免基于主题渲染不一致的 DOM
+  // SSR 与首次客户端渲染用同一个占位值（resolvedTheme 为空字符串），水合后再更新
+  const isDark = resolvedTheme === 'dark' || (resolvedTheme == null && theme === 'dark');
 
-  const toggleTheme = () => setIsDark((prev) => !prev);
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
 
   const getLocalizedPath = (path: string) => `/${locale}${path}`;
 

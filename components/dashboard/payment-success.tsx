@@ -124,7 +124,7 @@ export function PaymentSuccess() {
 
   if (status === 'loading' || loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 pt-24 pb-12">
         <Card className="w-full max-w-md">
           <CardContent className="pt-6">
             <div className="text-center">
@@ -140,7 +140,7 @@ export function PaymentSuccess() {
 
   if (!verificationComplete) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 pt-24 pb-12">
         <Card className="w-full max-w-md">
           <CardContent className="pt-6">
             <div className="text-center">

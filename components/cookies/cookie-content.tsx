@@ -273,7 +273,7 @@ export function CookieContent() {
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{isZh ? '邮箱：app@itusi.cn' : 'Email: app@itusi.cn'}</li>
-                <li>{isZh ? '网站：https://getsaas.co' : 'Website: https://getsaas.co'}</li>
+                <li>{isZh ? '网站：https://mokersaas.com' : 'Website: https://mokersaas.com'}</li>
               </ul>
             </section>
           </div>
