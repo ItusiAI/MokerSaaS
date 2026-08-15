@@ -185,7 +185,7 @@ export function ReferralInfo() {
       <CardContent className="space-y-6">
         {/* 推荐统计 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 bg-secondary/50 border border-cyber-500/30 rounded-lg">
+          <div className="p-4 bg-secondary/50 border border-primary/30 rounded-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Users className="h-4 w-4 text-primary" />
@@ -196,7 +196,7 @@ export function ReferralInfo() {
               </span>
             </div>
           </div>
-          <div className="p-4 bg-secondary/50 border border-cyber-500/30 rounded-lg">
+          <div className="p-4 bg-secondary/50 border border-primary/30 rounded-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Crown className="h-4 w-4 text-primary" />
@@ -210,12 +210,12 @@ export function ReferralInfo() {
         </div>
 
         {/* 推荐码 */}
-        <div className="p-4 bg-secondary/50 border border-cyber-500/30 rounded-lg">
+        <div className="p-4 bg-secondary/50 border border-primary/30 rounded-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-foreground">{t('referral.referral_code')}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <code className="flex-1 px-3 py-2 bg-background border border-cyber-500/30 rounded text-primary font-mono text-sm">
+            <code className="flex-1 px-3 py-2 bg-background border border-primary/30 rounded text-primary font-mono text-sm">
               {referralData?.referralCode || '-'}
             </code>
             <Button
@@ -234,12 +234,12 @@ export function ReferralInfo() {
         </div>
 
         {/* 推荐链接 */}
-        <div className="p-4 bg-secondary/50 border border-cyber-500/30 rounded-lg">
+        <div className="p-4 bg-secondary/50 border border-primary/30 rounded-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-foreground">{t('referral.referral_link')}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <code className="flex-1 px-3 py-2 bg-background border border-cyber-500/30 rounded text-primary font-mono text-xs break-all">
+            <code className="flex-1 px-3 py-2 bg-background border border-primary/30 rounded text-primary font-mono text-xs break-all">
               {referralData?.referralLink || '-'}
             </code>
             <Button
@@ -277,7 +277,7 @@ export function ReferralInfo() {
 
             if (records.length === 0) {
               return (
-                <div className="text-center py-6 text-muted-foreground border border-cyber-500/20 rounded-lg bg-secondary/30">
+                <div className="text-center py-6 text-muted-foreground border border-primary/20 rounded-lg bg-secondary/30">
                   <Users className="h-6 w-6 mx-auto mb-2 opacity-50" />
                   <p className="text-sm">{t('referral.no_records')}</p>
                 </div>
@@ -295,7 +295,7 @@ export function ReferralInfo() {
                   return (
                     <div
                       key={`record-${record.id}`}
-                      className="p-4 bg-secondary/30 border border-cyber-500/20 rounded-lg space-y-3"
+                      className="p-4 bg-secondary/30 border border-primary/20 rounded-lg space-y-3"
                     >
                       {/* 被邀请用户信息 */}
                       <div className="flex items-start justify-between">

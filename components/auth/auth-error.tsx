@@ -74,7 +74,7 @@ export function AuthError() {
 
           {/* 开发环境下显示详细错误信息 */}
           {process.env.NODE_ENV === 'development' && error && (
-            <Alert className="border-cyber-500/30 bg-primary/20">
+            <Alert className="border-primary/30 bg-primary/20">
               <Info className="h-4 w-4 text-primary" />
               <AlertDescription className="text-primary/80">
                 <div className="space-y-2">
@@ -97,7 +97,7 @@ export function AuthError() {
               </Link>
             </Button>
 
-            <Button variant="outline" asChild className="w-full border-cyber-500/30 bg-secondary/50 text-foreground hover:bg-primary/20 hover:text-primary">
+            <Button variant="outline" asChild className="w-full border-primary/30 bg-secondary/50 text-foreground hover:bg-primary/20 hover:text-primary">
               <Link href={`/${locale}`}>
                 <Home className="mr-2 h-4 w-4" />
                 {t('error_back_to_home')}

@@ -269,7 +269,7 @@ export function SignInForm() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary hover:bg-cyber-400 text-dark-900 font-medium py-2.5 transition-all duration-300 cyber-glow"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 transition-all duration-300 cyber-glow"
             >
               {isLoading ? (
                 <>

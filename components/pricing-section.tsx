@@ -141,8 +141,8 @@ export function PricingSection() {
               className={`relative ${
                 plan.popular
                   ? plan.hasDiscount
-                    ? "border-cyber-500 shadow-xl scale-105 dark:bg-gradient-to-br dark:from-dark-600 dark:to-dark-600 bg-primary text-primary-foreground dark:text-card-foreground cyber-glow"
-                    : "border-cyber-500 shadow-lg scale-105 dark:bg-dark-600 bg-primary/5 text-primary-foreground dark:text-card-foreground cyber-glow-subtle"
+                    ? "border-primary shadow-xl scale-105 dark:bg-gradient-to-br dark:from-dark-600 dark:to-dark-600 bg-primary text-primary-foreground dark:text-card-foreground cyber-glow"
+                    : "border-primary shadow-lg scale-105 dark:bg-dark-600 bg-primary/5 text-primary-foreground dark:text-card-foreground cyber-glow-subtle"
                   : "border-border bg-secondary/50"
               }`}
             >

@@ -95,7 +95,7 @@ export function ConnectedAccounts() {
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyber-500 mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
             <p className="mt-2 text-muted-foreground">{t('loading')}</p>
           </div>
         </CardContent>
@@ -116,7 +116,7 @@ export function ConnectedAccounts() {
           {accounts.map((account) => (
             <div
               key={account.provider}
-              className="flex items-center justify-between p-4 bg-secondary/50 border border-cyber-500/30 rounded-lg"
+              className="flex items-center justify-between p-4 bg-secondary/50 border border-primary/30 rounded-lg"
             >
               <div className="flex items-center space-x-3">
                 {getProviderIcon(account.provider)}

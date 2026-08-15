@@ -622,7 +622,7 @@ function ProfileInfoContent() {
           <Card className="shadow-xl border-0 bg-secondary/80 backdrop-blur-sm mb-6 cyber-glow-subtle">
             <CardContent className="p-6">
               <div className="flex flex-col items-center text-center">
-                <Avatar className="h-16 w-16 ring-3 ring-cyber-500/50 mb-3">
+                <Avatar className="h-16 w-16 ring-3 ring-primary/50 mb-3">
                   <AvatarImage src={session.user.image || ''} alt={session.user.name || ''} />
                   <AvatarFallback className="text-lg bg-primary text-primary-foreground">
                     {session.user.name?.charAt(0) || session.user.email?.charAt(0) || 'U'}

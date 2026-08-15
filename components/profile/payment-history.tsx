@@ -385,7 +385,7 @@ export function PaymentHistory() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+        <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-foreground">
               <CreditCard className="w-5 h-5 text-primary" />
@@ -404,7 +404,7 @@ export function PaymentHistory() {
           </CardContent>
         </Card>
 
-        <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+        <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
           <CardHeader>
             <CardTitle className="text-foreground">{t('title')}</CardTitle>
           </CardHeader>
@@ -424,7 +424,7 @@ export function PaymentHistory() {
     <div className="space-y-6">
       {/* 统计卡片 */}
       {stats && (
-        <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+        <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-foreground">
               <TrendingUp className="w-5 h-5 text-primary" />
@@ -476,7 +476,7 @@ export function PaymentHistory() {
       )}
 
       {/* 支付记录 */}
-      <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+      <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <CardTitle className="flex items-center gap-2 text-foreground">

@@ -71,7 +71,7 @@ export function VerifyEmailPage() {
           <div className={`mx-auto w-16 h-16 rounded-2xl flex items-center justify-center ${
             status === 'loading' || status === 'success' || status === 'error'
               ? 'bg-primary cyber-glow'
-              : 'bg-secondary shadow-lg border border-cyber-500/30'
+              : 'bg-secondary shadow-lg border border-primary/30'
           }`}>
             {status === 'loading' && <Loader2 className="w-8 h-8 text-primary-foreground animate-spin" />}
             {status === 'success' && <CheckCircle className="w-8 h-8 text-primary-foreground" />}
@@ -105,7 +105,7 @@ export function VerifyEmailPage() {
           )}
 
           {status === 'success' && (
-            <Alert className="border-cyber-500/30 bg-primary/20">
+            <Alert className="border-primary/30 bg-primary/20">
               <CheckCircle className="h-4 w-4 text-primary" />
               <AlertDescription className="text-primary/80">{message}</AlertDescription>
             </Alert>
@@ -129,7 +129,7 @@ export function VerifyEmailPage() {
 
             {status === 'error' && (
               <div className="space-y-3">
-                <Button asChild variant="outline" className="w-full border-cyber-500/30 bg-secondary/50 text-foreground hover:bg-primary/20 hover:text-primary">
+                <Button asChild variant="outline" className="w-full border-primary/30 bg-secondary/50 text-foreground hover:bg-primary/20 hover:text-primary">
                   <Link href={getLocalizedPath("/auth/signup")}>
                     {t('register_again')}
                   </Link>

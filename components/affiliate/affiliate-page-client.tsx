@@ -653,7 +653,7 @@ export default function AffiliatePageClient() {
       </div>
 
       {/* 邀请数据 */}
-      <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+      <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <CardTitle className="flex items-center gap-2 text-foreground">
@@ -745,7 +745,7 @@ export default function AffiliatePageClient() {
       </Card>
 
       {/* 佣金记录 */}
-      <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+      <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <CardTitle className="flex items-center gap-2 text-foreground">
@@ -849,7 +849,7 @@ export default function AffiliatePageClient() {
       </Card>
 
       {/* 提现记录 */}
-      <Card className="bg-secondary/80 border-cyber-500/30 cyber-glow-subtle">
+      <Card className="bg-secondary/80 border-primary/30 cyber-glow-subtle">
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <CardTitle className="flex items-center gap-2 text-foreground">
