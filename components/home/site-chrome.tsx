@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useTheme } from 'next-themes';
@@ -11,11 +11,16 @@ export const SiteChrome: React.FC<{ children: React.ReactNode }> = ({ children }
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // 在客户端水合前先避免基于主题渲染不一致的 DOM
-  // SSR 与首次客户端渲染用同一个占位值（resolvedTheme 为空字符串），水合后再更新
-  const isDark = resolvedTheme === 'dark' || (resolvedTheme == null && theme === 'dark');
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Hydration 安全：SSR 与客户端首次渲染都走同一分支（isDark=true），
+  // 水合完成后再根据真实主题切换图标/title，避免任何 hydration mismatch。
+  const isDark = mounted ? resolvedTheme === 'dark' : true;
 
   const toggleTheme = () => {
     setTheme(isDark ? 'light' : 'dark');
