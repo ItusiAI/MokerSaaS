@@ -204,8 +204,8 @@ importers:
         specifier: ^1.7.1
         version: 1.7.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       stripe:
-        specifier: ^18.3.0
-        version: 18.5.0(@types/node@22.20.1)
+        specifier: ^22.5.0
+        version: 22.5.0(@types/node@22.20.1)
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.1
@@ -3393,11 +3393,11 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  stripe@18.5.0:
-    resolution: {integrity: sha512-Hp+wFiEQtCB0LlNgcFh5uVyKznpDjzyUZ+CNVEf+I3fhlYvh7rZruIg+jOwzJRCpy0ZTPMjlzm7J2/M2N6d+DA==}
-    engines: {node: '>=12.*'}
+  stripe@22.5.0:
+    resolution: {integrity: sha512-QVwMwriC0bbySx6R4dpsvJ0W//GojC1kwWVS6rPSoVqDUIZX4Hy3TaUrd2AZeXEAaKbfWIjQjvo3vKAReHZ0vQ==}
+    engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': '>=12.x.x'
+      '@types/node': '>=18'
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -6493,9 +6493,7 @@ snapshots:
       safer-buffer: 2.1.2
       tweetnacl: 0.14.5
 
-  stripe@18.5.0(@types/node@22.20.1):
-    dependencies:
-      qs: 6.15.3
+  stripe@22.5.0(@types/node@22.20.1):
     optionalDependencies:
       '@types/node': 22.20.1
 
