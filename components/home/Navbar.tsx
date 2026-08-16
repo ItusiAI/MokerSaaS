@@ -210,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
               >
                 <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "tw" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                  🇹🇼 {t("traditionalChinese")}
+                  🇨🇳 {t("traditionalChinese")}
                 </span>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -349,7 +349,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
               >
                 <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "tw" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                  🇹🇼 {t("traditionalChinese")}
+                  🇨🇳 {t("traditionalChinese")}
                 </span>
               </DropdownMenuItem>
             </DropdownMenuContent>
