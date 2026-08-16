@@ -79,7 +79,7 @@ export const newsletterSubscriptions = pgTable('newsletterSubscriptions', {
   id: text('id').primaryKey(),
   email: text('email').notNull().unique(),
   isActive: boolean('isActive').default(true),
-  locale: text('locale').notNull().default('zh'), // 用户订阅时的语言偏好
+  locale: text('locale').notNull().default('en'), // 用户订阅时的语言偏好：en | zh | ja | ko | tw
   subscribedAt: timestamp('subscribedAt', { mode: 'date' }).defaultNow(),
   unsubscribedAt: timestamp('unsubscribedAt', { mode: 'date' }),
   unsubscribeToken: text('unsubscribeToken').unique(), // 用于取消订阅的令牌

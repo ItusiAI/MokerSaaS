@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -24,10 +24,10 @@ export async function GET(request: NextRequest) {
 
     // 获取或创建推广资料
     const profileId = await getOrCreateAffiliateProfile(userId)
-    
+
     // 自动检测并解冻到期的资金
     await releaseFrozenFunds(profileId)
-    
+
     // 获取推广资料
     const profile = await db
       .select()
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
 
     if (profile.length === 0) {
       return NextResponse.json(
-        { error: 'Profile not found' },
+        { error: 'affiliate_profile_not_found' },
         { status: 404 }
       )
     }
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
 
     if (!stats) {
       return NextResponse.json(
-        { error: 'Stats not found' },
+        { error: 'affiliate_stats_not_found' },
         { status: 404 }
       )
     }
@@ -70,7 +70,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Failed to get affiliate stats:', error)
     return NextResponse.json(
-      { error: 'Failed to get affiliate stats' },
+      { error: 'failed_to_get_affiliate_stats' },
       { status: 500 }
     )
   }

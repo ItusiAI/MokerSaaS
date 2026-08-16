@@ -12,7 +12,7 @@ export async function PUT(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: '未授权访问' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -22,14 +22,14 @@ export async function PUT(request: NextRequest) {
 
     if (!currentPassword || !newPassword) {
       return NextResponse.json(
-        { error: '请提供当前密码和新密码' },
+        { error: 'current_and_new_password_required' },
         { status: 400 }
       )
     }
 
     if (newPassword.length < 6) {
       return NextResponse.json(
-        { error: '新密码至少需要6个字符' },
+        { error: 'new_password_min_length' },
         { status: 400 }
       )
     }
@@ -41,7 +41,7 @@ export async function PUT(request: NextRequest) {
 
     if (!user || !user.password) {
       return NextResponse.json(
-        { error: '用户不存在或未设置密码' },
+        { error: 'user_not_found_or_no_password' },
         { status: 404 }
       )
     }
@@ -50,7 +50,7 @@ export async function PUT(request: NextRequest) {
     const isValidPassword = await bcrypt.compare(currentPassword, user.password)
     if (!isValidPassword) {
       return NextResponse.json(
-        { error: '当前密码不正确' },
+        { error: 'current_password_incorrect' },
         { status: 400 }
       )
     }
@@ -69,12 +69,12 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: '密码修改成功',
+      message: 'password_changed',
     })
   } catch (error) {
     console.error('修改密码失败:', error)
     return NextResponse.json(
-      { error: '服务器错误' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

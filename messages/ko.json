@@ -1,0 +1,1666 @@
+{
+  "metadata": {
+    "title": "MokerSaaS - SaaS를 빠르게 구축 · 몇 시간 만에 출시 · 무료 오픈소스",
+    "description": "번개 같은 속도로 SaaS를 구축하고, 몇 시간 만에 제품을 출시하세요. MokerSaaS는 인증, Stripe 결제, 다국어 i18n, SEO 최적화, 관리자 대시보드, 추천 및 제휴 시스템을 기본 제공하는 즉시 사용 가능한 엔터프라이즈급 SaaS 솔루션을 제공합니다. Next.js 최신 기술 스택을 기반으로 아이디어에서 수익까지의 시간을 획기적으로 단축합니다.",
+    "shortTitle": "MokerSaaS - SaaS 빠른 구축",
+    "keywords": "MokerSaaS, SaaS 빠른 구축, 오픈소스 SaaS, SaaS 템플릿, Next.js 템플릿, 무료 SaaS, TypeScript SaaS, Stripe 통합, i18n SaaS, 관리자 대시보드, 추천 시스템, 제휴 프로그램, 몇 시간 출시",
+    "terms": {
+      "title": "이용약관 - MokerSaaS 오픈소스 SaaS 템플릿",
+      "description": "MokerSaaS 오픈소스 SaaS 템플릿의 이용약관을 확인하고, 템플릿 사용 규칙, 라이선스 계약, 사용자 권리와 책임을 이해하세요."
+    },
+    "privacy": {
+      "title": "개인정보 보호정책 - MokerSaaS 오픈소스 SaaS 템플릿",
+      "description": "MokerSaaS 오픈소스 SaaS 템플릿이 사용자 데이터와 개인 정보를 어떻게 처리하고, 개인정보 보안을 보장하는지 알아보세요."
+    },
+    "cookies": {
+      "title": "쿠키 정책 - MokerSaaS 오픈소스 SaaS 템플릿",
+      "description": "MokerSaaS 오픈소스 SaaS 템플릿이 쿠키 및 관련 기술을 사용하여 사용자 경험과 웹사이트 성능을 어떻게 최적화하는지 알아보세요."
+    }
+  },
+  "navbar": {
+    "home": "홈",
+    "featuresArchitecture": "기능 아키텍처",
+    "demo": "라이브 데모",
+    "pricing": "요금제",
+    "signUp": "시작하기",
+    "signIn": "로그인",
+    "profile": "대시보드",
+    "affiliate": "제휴",
+    "referral": "추천",
+    "accountSettings": "계정 설정",
+    "signOut": "로그아웃",
+    "language": "언어 전환",
+    "switchLanguage": "언어 전환",
+    "chinese": "중국어",
+    "english": "영어",
+    "japanese": "일본어",
+    "korean": "한국어",
+    "traditionalChinese": "번체 중국어",
+    "currentLocale": "중",
+    "currentLocaleTw": "번",
+    "currentLocaleEn": "EN",
+    "currentLocaleJa": "JP",
+    "currentLocaleKo": "KR",
+    "switchToLight": "라이트 모드로 전환",
+    "switchToDark": "다크 모드로 전환"
+  },
+  "hero": {
+    "title": "번개 같은 속도로 SaaS를 구축하고,",
+    "highlight": "몇 시간 만에 출시하세요.",
+    "description": "인증, Stripe 결제, 다국어 i18n, SEO 최적화, 관리자 대시보드, 추천 및 제휴 시스템을 기본 제공하는 즉시 사용 가능한 엔터프라이즈급 SaaS 솔루션을 제공합니다. Next.js 최신 기술 스택을 기반으로 아이디어에서 수익까지의 시간을 획기적으로 단축합니다.",
+    "badge": "100% 오픈소스 & 무료",
+    "primaryCta": "템플릿 무료로 받기",
+    "secondaryCta": "아키텍처 보기",
+    "techStackLabel": "핵심 기술 스택:",
+    "techStack": {
+      "nextjs": "Next.js 16",
+      "nextjsTitle": "Next.js 16 App Router",
+      "neon": "Neon",
+      "neonTitle": "Neon Serverless Postgres 데이터베이스",
+      "stripe": "Stripe",
+      "stripeTitle": "Stripe 구독 결제"
+    },
+    "uptimeBadge": {
+      "label": "출시 효율 향상",
+      "value": "10배 빠른 출시"
+    },
+    "code": {
+      "tabTitle": "referral-rewards · route.ts",
+      "runTitle": "테스트 실행",
+      "runLabel": "실행",
+      "copyTitle": "코드 복사",
+      "simulateLog1": "[04:22:01] Next.js 16 App Router 워크플로 초기화 중...",
+      "simulateLog2": "[04:22:02] Neon Postgres 추천 체인 & 크레딧 원장 조회 중...",
+      "simulateLog3": "[04:22:03] NextAuth.js & 추천 리워드 배포 검증 완료.",
+      "simulateSuccess": "✓ 시뮬레이션 실행 성공: 추천 리워드 API가 크레딧과 일수를 자동 부여했습니다!"
+    }
+  },
+  "orchestration": {
+    "sectionBadge": "풀스택 기술 · 모던 SaaS 인프라",
+    "sectionTitle": "풀스택 오픈소스 기술",
+    "sectionHighlight": "아키텍처 스택.",
+    "sectionSubtitle": "프로덕션 등급의 최신 개발 프레임워크, 별도 설정 없이 즉시 사용 가능, 핵심 비즈니스 로직에 집중하세요.",
+    "left1": {
+      "title": "Next.js 16 App Router",
+      "meta": "스택:",
+      "metaValue": "React 19 + TS",
+      "desc": "최신 Next.js App Router를 기반으로 서버 사이드 렌더링(SSR)과 엣지 렌더링 최적화로超고속 첫 페인트를 제공합니다."
+    },
+    "left2": {
+      "title": "Neon + Drizzle",
+      "meta": "상태:",
+      "metaValue": "타입 안전 ORM",
+      "desc": "고성능 Neon Serverless Postgres와 경량 Drizzle ORM으로 완전한 타입 안전 데이터베이스 상호작용."
+    },
+    "node1": {
+      "label": "NEXT_JS_16"
+    },
+    "node2": {
+      "label": "NEON_POSTGRES"
+    },
+    "node3": {
+      "label": "STRIPE_BILLING"
+    },
+    "floatingBadge1": {
+      "label": "절약한 개발 시간",
+      "value": "200시간 이상"
+    },
+    "floatingBadge2": {
+      "label": "라이선스",
+      "value": "MIT 오픈소스"
+    },
+    "terminal": {
+      "title": "프레임워크 라이브 테스트 상태",
+      "simulateBtn": "API 요청 흐름 시뮬레이션",
+      "log1": "> [04:22:11] Next.js 16 App Router 라우드 로드 완료... OK",
+      "log2": "> [04:22:15] Neon Postgres Serverless 풀 초기화 성공 (12ms)",
+      "log3": "> [04:22:19] Stripe SDK & Webhook 이벤트 수신: checkout.session.completed",
+      "simulateLog": "신규 사용자 가입 & Stripe 자동 과금 시뮬레이션 중..."
+    },
+    "right1": {
+      "title": "Stripe 구독 통합",
+      "meta": "통합:",
+      "metaValue": "Webhook + Portal",
+      "desc": "Stripe Checkout, 월간/연간 구독, Webhook 엔드포인트와 셀프 서비스 고객 결제 포털을 내장."
+    },
+    "right2": {
+      "title": "100% 오픈 & 무료",
+      "meta": "배포:",
+      "metaValue": "Vercel / Docker",
+      "desc": "클라우드 벤더 종속성 없음. Vercel, Cloud Run 또는 모든 Node.js / Docker 호환 서버에 원클릭 배포."
+    },
+    "metrics": {
+      "1": {
+        "label": "개발 효율 향상",
+        "value": "10배+"
+      },
+      "2": {
+        "label": "핵심 컴포넌트",
+        "value": "40+ 즉시 사용"
+      },
+      "3": {
+        "label": "DB 호환",
+        "value": "Neon Postgres 완전 지원"
+      },
+      "4": {
+        "label": "오픈소스 라이선스",
+        "value": "MIT 라이선스"
+      }
+    }
+  },
+  "engineeringValidation": {
+    "sectionBadge": "실제 개발자 리뷰",
+    "sectionTitlePrefix": "개발자와",
+    "sectionTitleHighlight": "크리에이터의 신뢰를 받습니다.",
+    "testimonials": [
+      {
+        "name": "Zhang Ming",
+        "title": "인디 개발자 · 설립자 @ AI Writing Assistant",
+        "badge": "인증됨",
+        "quote": "MokerSaaS 덕분에 Next.js App Router와 Stripe 구독의 반복적인 설정 작업을 대폭 줄였습니다. 3일 만에 출시하여 첫 해외 구독 결제를 받았습니다!",
+        "icon": "star"
+      },
+      {
+        "name": "Alex Chen",
+        "title": "CTO @ CloudScale Engineering",
+        "badge": "인증됨",
+        "quote": "바로 사용 가능한 PostgreSQL과 Drizzle ORM 스키마 구성이 매우 우아합니다. 코드베이스가 깔끔해二次 개발이 매우 쉽습니다.",
+        "icon": "cloud"
+      },
+      {
+        "name": "Wang Xiaolei",
+        "title": "풀스택 엔지니어 @ Global SaaS Geek",
+        "badge": "인증됨",
+        "quote": "지금까지 본 가장 깔끔한 Next.js 오픈소스 템플릿입니다. 불필요한 서드파티 의존성이 없고, 인증, 데이터베이스, Stripe 구독에 집중 — 강력 추천합니다!",
+        "icon": "terminal"
+      }
+    ]
+  },
+  "technicalFAQ": {
+    "sectionBadge": "FAQ",
+    "sectionTitlePrefix": "기술 및 배포",
+    "sectionTitleHighlight": "FAQ.",
+    "sectionSubtitle": "인디 개발자와 스타트업이 템플릿 사용, 아키텍처 선택, 프로덕션 출시에 대해 자주 묻는 질문에 대한 답변.",
+    "faqs": [
+      {
+        "question": "어떤 기술 스택과 프레임워크가 포함되어 있나요?",
+        "answer": "이 템플릿은 풀스택 Next.js 16(App Router), NextAuth.js 인증, Resend 이메일 서비스, Neon Serverless Postgres(Drizzle ORM), Stripe 구독 SDK로 구축되었습니다."
+      },
+      {
+        "question": "이 SaaS 템플릿은 완전 오픈소스이고 무료인가요?",
+        "answer": "네! 기본 버전은 100% MIT 라이선스입니다. 상용 프로젝트, 개인 개발, 클라이언트 납품에 로열티나 라이선스 비용 없이 자유롭게 사용할 수 있습니다."
+      },
+      {
+        "question": "프로젝트를 어떻게 빠르게 배포하고 출시하나요?",
+        "answer": "리포지토리를 fork하고 로컬에 clone한 다음, 환경 변수(예: Neon Postgres 연결 문자열, Stripe API 키)를 설정하고, Vercel, Cloud Run 또는 자신의 Docker 서버에 단일 명령어로 배포하면 됩니다."
+      },
+      {
+        "question": "Stripe 결제는 어떻게 설정하고 테스트하나요?",
+        "answer": "사전 구축된 API 라우트와 Webhook 이벤트 핸들러를 제공합니다. Stripe 대시보드에서 테스트/라이브 API 키와 Webhook Secret을 가져와 .env에 넣기만 하면 월간/연간 구독 흐름이 자동으로 활성화됩니다."
+      }
+    ]
+  },
+  "missionControl": {
+    "sectionBadge": "올인원 오픈소스 SaaS 솔루션",
+    "sectionTitlePrefix": "즉시 사용 가능한",
+    "sectionTitleHighlight": "핵심 비즈니스 모듈.",
+    "sectionSubtitle": "관리자 콘솔, 사용자 워크스페이스, Stripe 다층 구독 및 제휴 리워드 — 모두 준비됨, 바퀴의 재발명 불필요.",
+    "moduleCounter": "모듈 {current} / {total}",
+    "nextButton": "다음 모듈",
+    "readyBadge": "모듈 준비 완료",
+    "metrics": {
+      "savedTime": {
+        "label": "평균 절약 개발 시간",
+        "value": "200시간 이상",
+        "caption": "핵심 비즈니스 출시"
+      },
+      "commission": {
+        "label": "추천 커미션",
+        "value": "30% 비율",
+        "caption": "자동 정산 & 출금 가능"
+      }
+    },
+    "tabs": {
+      "admin": {
+        "tabTitle": "관리자 콘솔",
+        "title": "관리자 콘솔",
+        "highlight": "SaaS의 완전한 제어.",
+        "description": "사용자 관리, 역할 기반 접근, 분석 및 포인트 조정을 갖춘 강력한 관리 시스템으로 플랫폼 전체를 자신 있게 운영할 수 있습니다.",
+        "items": [
+          "세분화된 역할의 사용자 관리 (관리자 / 멤버)",
+          "활성 사용자, MRR 수익 및 구독 전환 추적",
+          "수동/자동 포인트 조정과 전체 감사 로그"
+        ]
+      },
+      "dashboard": {
+        "tabTitle": "사용자 대시보드",
+        "title": "사용자 대시보드",
+        "highlight": "직관적인 워크스페이스.",
+        "description": "구독 상태, 포인트 잔액, 추천 통계 및 계정 설정을 보여주는 깔끔한 사용자 대시보드 — 한눈에 모든 정보.",
+        "items": [
+          "실시간 구독 상태, 월간 사용량, 남은 크레딧",
+          "개인 추천 실적, 추천 코드, 초대받은 사용자",
+          "이메일 인증, 연결된 계정, 세션 보안 상태"
+        ]
+      },
+      "subscriptions": {
+        "tabTitle": "구독 플랜",
+        "title": "구독 플랜",
+        "highlight": "자동화된 결제 엔진.",
+        "description": "Trial, Pro, Annual 플랜을 지원하는 유연한 구독 관리, 자동 갱신, 취소 및 갱신 알림.",
+        "items": [
+          "Trial, Pro 월간, Annual 연간 플랜 즉시 사용",
+          "자동 갱신, 만료 알림, 업그레이드/다운그레이드 로직",
+          "Stripe Customer Portal을 통한 셀프 취소 및 인보이스"
+        ]
+      },
+      "affiliate": {
+        "tabTitle": "제휴 프로그램",
+        "title": "제휴 프로그램",
+        "highlight": "바이럴 성장 & 리워드.",
+        "description": "커스텀 코드, 커미션 분석, 출금 관리 기능을 갖춘 완전한 제휴 시스템 — 모든 첫 유료 주문에서 30% 획득.",
+        "items": [
+          "커스텀 추천 링크 및 할인 코드",
+          "실시간 30% 첫 주문 커미션 및 수익 패널",
+          "출금 요청, 원장 기록, 상태 추적"
+        ]
+      }
+    },
+    "previews": {
+      "admin": {
+        "title": "슈퍼 관리자 패널 (관리자 콘솔)",
+        "subtitle": "사이트 전체의 사용자, 역할, 포인트 활동 및 재무 분석",
+        "badge": "SUPER_ADMIN",
+        "imageAlt": "관리자 콘솔 미리보기",
+        "imageCaption": "대시보드 + 사용자 관리 + 역할 권한"
+      },
+      "dashboard": {
+        "title": "사용자 워크스페이스",
+        "subtitle": "크레딧 구매, 추천 리워드, 결제 내역 및 구독을 한 곳에서",
+        "badge": "Pro 멤버 활성",
+        "imageAlt": "사용자 워크스페이스 미리보기",
+        "imageCaption": "충전 · 추천 링크 · 결제 · 연결된 계정"
+      },
+      "subscriptions": {
+        "title": "Stripe 구독 & 결제",
+        "subtitle": "Trial, Pro 월간, Annual 할인 연간 구독 지원",
+        "badge": "Stripe 결제",
+        "imageAlt": "Stripe 플랜 미리보기",
+        "imageCaption": "Trial / Pro / Annual 3단계 플랜"
+      },
+      "affiliate": {
+        "title": "제휴 프로그램",
+        "subtitle": "배포 네트워크를 구축하고 최대 30% 첫 주문 현금 커미션 획득",
+        "badge": "30% 첫 주문 규칙",
+        "imageAlt": "제휴 프로그램 미리보기",
+        "imageCaption": "제휴 코드 · 커미션 통계 · 출금"
+      }
+    }
+  },
+  "pricing": {
+    "title": "당신에게 맞는 SaaS 템플릿 플랜을 선택하세요",
+    "recommended": "추천",
+    "header": {
+      "badge": "100% 투명한 상용 라이선스",
+      "titlePrefix": "유연한 플랜,",
+      "titleHighlight": "인디 개발자와 성장하는 팀을 위해",
+      "subtitle": "오픈소스 버전은 영원히 무료. 상용 라이선스 또는 깊은 커스터마이즈 지원으로 업그레이드하여 SaaS를 더 빠르게 출시하고 수익화하세요.",
+      "fetchStatusError": "구독 상태 가져오기 실패:"
+    },
+    "trial": {
+      "name": "Trial",
+      "price": "$4.99",
+      "periodUnit": "/ 7일 체험",
+      "description": "7일 체험으로 모든 기능을 경험",
+      "features": {
+        "period": "기간: 7일",
+        "points": "크레딧: 1,000 포함",
+        "template": "완전한 SaaS 템플릿 + 고급 기능",
+        "auth": "완전한 사용자 인증 시스템"
+      },
+      "cta": "체험 시작",
+      "trial_only_once": "체험은 1회만 이용 가능",
+      "not_available_for_pro": "Pro 사용자는 체험 이용 불가",
+      "not_available_for_annual": "Annual 사용자는 체험 이용 불가"
+    },
+    "pro": {
+      "name": "Professional",
+      "price": "$15.9",
+      "periodUnit": "/ 월",
+      "originalPrice": "$19.9",
+      "discountPercent": "20",
+      "savings": "$4",
+      "discountBadge": "한정 20% 할인",
+      "description": "스타트업과 SME에 이상적, 고급 기능 포함",
+      "features": {
+        "period": "기간: 30일",
+        "points": "크레딧: 1,000 포함",
+        "template": "완전한 SaaS 템플릿 + 고급 기능",
+        "payment": "Stripe 결제 통합",
+        "support": "1년 기술 지원"
+      },
+      "cta": "지금 구매",
+      "renew": "Pro 갱신",
+      "cannot_downgrade": "Annual 구독은 다운그레이드할 수 없습니다"
+    },
+    "annual": {
+      "name": "Annual",
+      "price": "$159",
+      "periodUnit": "/ 년",
+      "originalPrice": "$240",
+      "discountPercent": "34",
+      "savings": "$81",
+      "discountBadge": "한정 34% 할인",
+      "description": "연간 구독, 가장 가성비 좋은 옵션",
+      "features": {
+        "period": "기간: 365일",
+        "template": "완전한 SaaS 템플릿 + 고급 기능",
+        "points": "15,000 크레딧 포함",
+        "payment": "Stripe 결제 통합",
+        "support": "1년 기술 지원",
+        "value": "최고의 가치 - 34% 절약"
+      },
+      "cta": "지금 구매",
+      "upgrade": "Annual로 업그레이드",
+      "renew": "Annual 갱신",
+      "cannot_downgrade": "Annual 구독은 다운그레이드할 수 없습니다"
+    },
+    "discount": {
+      "was": "정가",
+      "now": "할인가",
+      "save": "절약",
+      "off": "OFF"
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "문의하기",
+      "description": "대규모 기업을 위한, 맞춤형 서비스 제공",
+      "features": {
+        "custom": "맞춤형 개발 서비스",
+        "deployment": "프라이빗 배포 지원",
+        "support": "7×24 기술 지원",
+        "training": "팀 교육 및 컨설팅"
+      },
+      "cta": "영업팀에 문의"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "unsubscribe": {
+        "title": "뉴스레터 구독 해지",
+        "description": "떠나시는 것은 안타깝지만, 선택을 존중합니다",
+        "emailLabel": "이메일 주소",
+        "emailPlaceholder": "이메일 주소를 입력하세요",
+        "button": "구독 해지",
+        "processing": "처리 중...",
+        "loadingText": "처리 중...",
+        "successMessage": "마음이 바뀌시면 언제든지 뉴스레터를 다시 구독하실 수 있습니다.",
+        "backToHome": "홈으로 돌아가기",
+        "networkError": "네트워크 오류, 잠시 후 다시 시도해 주세요",
+        "unsubscribeError": "구독 해지 실패"
+      }
+    },
+    "home": {
+      "brand": {
+        "name": "MokerSaaS 오픈소스 템플릿",
+        "description": "Next.js 16, Neon Postgres, Stripe를 기반으로 구축된 풀스택, 수익화 가능한 SaaS 스타터 — 제품을 출시하고, 구독을 연결하고, 더 빠르게 고객 확보를 시작하세요.",
+        "statusBadge": "모든 시스템 & API 작동 중"
+      },
+      "products": {
+        "title": "제품",
+        "items": {
+          "orchestration": "풀스택 아키텍처",
+          "missionControl": "기능 데모",
+          "pricing": "요금제 & 라이선스"
+        }
+      },
+      "productsColumn": {
+        "title": "제품",
+        "items": {
+          "magiviz": "Magiviz",
+          "editf": "Editf",
+          "voiceCanvas": "VoiceCanvas"
+        }
+      },
+      "newsletter": {
+        "title": "뉴스레터 & 템플릿 업데이트",
+        "heading": "최신 Next.js & SaaS 수익화 플레이북 받기",
+        "subtitle": "풀스택 아키텍처 모범 사례, Stripe 결제 설정 팁, MokerSaaS 템플릿 업데이트에 대한 주간 다이제스트.",
+        "emailPlaceholder": "이메일 주소를 입력하세요...",
+        "subscribeButton": "구독",
+        "loadingButton": "구독 중…",
+        "subscribedBadge": "구독됨",
+        "successMessage": "✓ 구독해 주셔서 감사합니다! 첫 호를 받은 편지함으로 보냈습니다.",
+        "errorMessage": "구독에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+        "serverError": "서버 오류. 잠시 후 다시 시도해 주세요.",
+        "networkError": "네트워크 오류. 연결을 확인하고 재시도해 주세요."
+      },
+      "bottomBar": {
+        "copyright": "© {year} MokerSaaS 오픈소스 템플릿. Next.js 16, Neon Postgres & Stripe로 구축.",
+        "social": {
+          "github": "GitHub 리포지토리",
+          "twitter": "X / Twitter"
+        }
+      }
+    }
+  },
+  "verify": {
+    "title": "이메일 인증",
+    "description": "이메일 주소를 인증하여 계정 등록을 완료하세요",
+    "meta_title": "이메일 인증",
+    "meta_description": "MokerSaaS 계정 이메일을 인증하여 계정 활성화를 완료하세요",
+    "verifying": "이메일을 인증하는 중...",
+    "success": "이메일 인증 성공!",
+    "failed": "이메일 인증 실패",
+    "token_missing": "인증 토큰이 없습니다",
+    "token_invalid": "인증 토큰이 잘못되었거나 만료되었습니다",
+    "failed_retry": "인증에 실패했습니다. 잠시 후 다시 시도해 주세요",
+    "please_wait": "잠시 기다려 주세요, 이메일 주소를 인증하고 있습니다...",
+    "login_now": "지금 로그인",
+    "register_again": "다시 가입",
+    "or": "또는",
+    "back_to_login": "로그인으로 돌아가기"
+  },
+  "auth": {
+    "meta_title": "인증 - MokerSaaS",
+    "signin_title": "로그인",
+    "signin_description": "MokerSaaS 계정에 로그인하여 모던 SaaS 템플릿 사용을 시작하세요",
+    "signup_title": "회원가입",
+    "signup_description": "MokerSaaS 계정을 만들고 SaaS 개발 여정을 시작하세요",
+    "error_title": "인증 오류",
+    "error_description": "인증 중 오류가 발생했습니다. 다시 시도하거나 기술 지원에 문의해 주세요",
+    "error_page_title": "로그인 실패",
+    "error_page_description": "인증 중 오류가 발생했습니다",
+    "error_back_to_signin": "로그인으로 돌아가기",
+    "error_back_to_home": "홈으로 돌아가기",
+    "error_contact_support": "문제가 지속되면 다음으로 문의해 주세요:",
+    "error_technical_support": "기술 지원",
+    "errors": {
+      "Configuration": "서버 구성 오류, 관리자에게 문의하세요",
+      "AccessDenied": "접근 거부, 이 애플리케이션에 접근할 권한이 없을 수 있습니다",
+      "Verification": "인증 실패, 다시 시도해 주세요",
+      "OAuthSignin": "제3자 로그인 실패, 다시 시도해 주세요",
+      "OAuthCallback": "제3자 로그인 콜백 실패",
+      "OAuthCreateAccount": "계정을 생성할 수 없습니다, 이 이메일은 이미 사용 중일 수 있습니다",
+      "EmailCreateAccount": "계정을 생성할 수 없습니다, 이메일 주소를 확인해 주세요",
+      "Callback": "콜백 오류, 다시 시도해 주세요",
+      "OAuthAccountNotLinked": "이 제3자 계정은 기존 계정에 연결되어 있지 않습니다, 다른 로그인 방법을 사용해 주세요",
+      "EmailSignin": "이메일 로그인 실패, 이메일 주소를 확인해 주세요",
+      "CredentialsSignin": "잘못된 인증 정보, 이메일과 비밀번호를 확인해 주세요",
+      "SessionRequired": "이 페이지에 접근하려면 로그인이 필요합니다",
+      "OAuthTokenError": "인증 토큰 가져오기 실패, 다시 로그인해 주세요",
+      "OAuthUserInfoError": "사용자 정보 가져오기 실패, 인증 권한을 확인해 주세요",
+      "default": "인증 중 알 수 없는 오류 발생, 다시 시도해 주세요",
+      "contact_admin": "관리자에게 문의해 주세요",
+      "error_type_label": "오류 유형:"
+    },
+    "welcome_back": "다시 오신 것을 환영합니다",
+    "login_description": "MokerSaaS 계정에 로그인",
+    "email": "이메일 주소",
+    "password": "비밀번호",
+    "email_placeholder": "이메일 주소를 입력하세요",
+    "or_continue_with_email": "또는 이메일로 계속",
+    "password_placeholder": "비밀번호를 입력하세요",
+    "login": "로그인",
+    "logging_in": "로그인 중...",
+    "login_error": "이메일 또는 비밀번호가 잘못되었습니다",
+    "login_failed": "로그인 실패, 잠시 후 다시 시도해 주세요",
+    "no_account": "계정이 없으신가요?",
+    "signup_now": "지금 가입",
+    "forgot_password": "비밀번호를 잊으셨나요?",
+    "create_account": "계정 만들기",
+    "name": "사용자 이름",
+    "name_placeholder": "사용자 이름을 입력하세요",
+    "password_signup_placeholder": "비밀번호 입력 (최소 6자)",
+    "confirm_password": "비밀번호 확인",
+    "confirm_password_placeholder": "비밀번호를 다시 입력하세요",
+    "password_mismatch": "비밀번호가 일치하지 않습니다",
+    "password_too_short": "비밀번호는 최소 6자 이상이어야 합니다",
+    "register_failed": "가입 실패",
+    "register_retry": "가입 실패, 잠시 후 다시 시도해 주세요",
+    "registering": "계정 생성 중...",
+    "register_success": "가입 성공",
+    "register_success_check_email": "가입 성공! 이메일을 확인하고 인증 링크를 클릭하여 활성화를 완료해 주세요.",
+    "missing_fields": "필수 항목을 모두 입력해 주세요",
+    "email_exists": "이 이메일은 이미 등록되어 있습니다",
+    "invalid_referral_code": "잘못된 추천 코드",
+    "verification_email_failed": "가입은 성공했지만 인증 이메일 발송에 실패했습니다. 잠시 후 다시 시도해 주세요",
+    "rate_limit": "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요",
+    "has_account": "이미 계정이 있으신가요?",
+    "login_now": "지금 로그인",
+    "terms_agreement": "가입함으로써 다음에 동의합니다:",
+    "terms_of_service": "이용약관",
+    "and": "및",
+    "privacy_policy": "개인정보 보호정책",
+    "loginRequiredMessage": "오디오 요약 기능을 사용하려면 먼저 로그인해 주세요.",
+    "loginNow": "지금 로그인",
+    "or_register_with_email": "또는 이메일로 가입",
+    "referral_code": "추천 코드 (선택)",
+    "referral_code_placeholder": "추천 코드 입력",
+    "affiliate_code": "제휴 코드 (선택)",
+    "affiliate_code_placeholder": "제휴 코드 입력"
+  },
+  "common": {
+    "cancel": "취소",
+    "confirm": "확인",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "close": "닫기",
+    "back": "뒤로",
+    "login": "지금 로그인"
+  },
+  "forgot_password": {
+    "title": "비밀번호 찾기",
+    "description": "이메일 주소를 입력하시면 비밀번호 재설정 링크를 보내드립니다",
+    "meta_title": "비밀번호 찾기",
+    "meta_description": "이메일을 통해 MokerSaaS 계정 비밀번호를 재설정하여 복구하세요",
+    "email_label": "이메일 주소",
+    "email_placeholder": "이메일 주소를 입력하세요",
+    "send_reset_link": "재설정 링크 보내기",
+    "sending": "전송 중...",
+    "success_message": "비밀번호 재설정 링크가 이메일로 전송되었습니다",
+    "check_email": "이메일을 확인하고 링크를 클릭하여 비밀번호를 재설정하세요",
+    "back_to_login": "로그인으로 돌아가기",
+    "email_required": "이메일 주소를 입력해 주세요",
+    "email_invalid": "유효한 이메일 주소를 입력해 주세요",
+    "send_failed": "전송 실패, 잠시 후 다시 시도해 주세요",
+    "user_not_found": "이 이메일 주소는 등록되지 않았습니다",
+    "rate_limit": "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요"
+  },
+  "reset_password": {
+    "title": "비밀번호 재설정",
+    "description": "새 비밀번호를 입력하세요",
+    "meta_title": "비밀번호 재설정",
+    "meta_description": "MokerSaaS 계정 비밀번호를 재설정하고 새 안전한 비밀번호를 설정하세요",
+    "password_label": "새 비밀번호",
+    "password_placeholder": "새 비밀번호를 입력하세요",
+    "confirm_password_label": "비밀번호 확인",
+    "confirm_password_placeholder": "새 비밀번호를 다시 입력하세요",
+    "reset_password": "비밀번호 재설정",
+    "resetting": "재설정 중...",
+    "success_message": "비밀번호 재설정 성공!",
+    "login_now": "지금 로그인",
+    "password_required": "비밀번호를 입력해 주세요",
+    "password_min_length": "비밀번호는 최소 6자 이상이어야 합니다",
+    "password_mismatch": "비밀번호가 일치하지 않습니다",
+    "token_invalid": "재설정 링크가 잘못되었거나 만료되었습니다",
+    "token_expired": "재설정 링크가 만료되었습니다, 새 링크를 요청해 주세요",
+    "reset_failed": "재설정 실패, 잠시 후 다시 시도해 주세요",
+    "back_to_forgot": "비밀번호 찾기로 돌아가기"
+  },
+  "profile": {
+    "title": "대시보드",
+    "description": "계정 정보 보기 및 관리",
+    "menu": "메뉴",
+    "please_login": "프로필을 보려면 로그인해 주세요",
+    "login_required": "먼저 로그인해 주세요",
+    "no_name_set": "사용자 이름 미설정",
+    "not_set": "미설정",
+    "verified": "인증됨",
+    "unverified": "미인증",
+    "resend_verification": "인증 메일 재발송",
+    "sending": "전송 중...",
+    "verification_email_sent": "인증 메일이 발송되었습니다, 받은 편지함을 확인해 주세요",
+    "verification_email_failed": "인증 메일 발송 실패, 잠시 후 다시 시도해 주세요",
+    "loading": "로딩 중...",
+    "points": "크레딧",
+    "points_history": "크레딧 내역",
+    "points_history_description": "크레딧 획득 및 사용 내역 보기",
+    "no_points_history": "아직 크레딧 내역이 없습니다",
+    "register_bonus": "가입 보너스 크레딧",
+    "email_verify_bonus": "이메일 인증 보너스 크레딧",
+    "daily_login_bonus": "매일 로그인 보너스 크레딧",
+    "referral_bonus": "추천 보너스 크레딧",
+    "manual_operation": "관리자 작업",
+    "points_operation": "크레딧 작업",
+    "pagination": {
+      "page_info": "전체 {total}페이지 중 {current}페이지",
+      "total_records": "총 {total}개",
+      "previous": "이전",
+      "next": "다음"
+    },
+    "points_actions": {
+      "register": "가입 보너스 크레딧",
+      "email_verify": "이메일 인증 보너스 크레딧",
+      "daily_login": "매일 로그인 보너스 크레딧",
+      "referral": "추천 보너스 크레딧",
+      "manual": "관리자 작업",
+      "purchase": "크레딧 구매",
+      "subscription_gift": "{plan} 보너스 크레딧",
+      "subscription_renewal_gift": "{plan} 갱신 보너스 크레딧",
+      "subscription_upgrade_gift": "{plan}으로 업그레이드 보너스 크레딧",
+      "subscription_reward": "추천 구독 리워드 크레딧",
+      "subscription_expired": "크레딧 만료",
+      "unknown": "알 수 없는 작업",
+      "pay_amount": "{amount} 결제"
+    },
+    "account_info": "계정 정보",
+    "registration_date": "가입일",
+    "last_login": "마지막 로그인",
+    "account_status": "계정 상태",
+    "email_verified": "이메일 인증됨",
+    "account_secure": "계정 안전",
+    "profile_complete": "프로필 완성",
+    "personal_info": "개인 정보",
+    "account_settings": "계정 설정",
+    "connected_accounts": "연결된 계정",
+    "security": "보안 설정",
+    "name": "사용자 이름",
+    "name_placeholder": "사용자 이름을 입력하세요",
+    "email": "이메일 주소",
+    "email_unverified": "미인증",
+    "verify_email": "이메일 인증",
+    "avatar": "아바타",
+    "change_avatar": "아바타 변경",
+    "current_password": "현재 비밀번호",
+    "current_password_placeholder": "현재 비밀번호를 입력하세요",
+    "new_password": "새 비밀번호",
+    "new_password_placeholder": "새 비밀번호를 입력하세요",
+    "confirm_new_password": "새 비밀번호 확인",
+    "confirm_new_password_placeholder": "새 비밀번호를 다시 입력하세요",
+    "change_password": "비밀번호 변경",
+    "save_changes": "변경 사항 저장",
+    "saving": "저장 중...",
+    "saved": "저장됨",
+    "cancel": "취소",
+    "connect": "연결",
+    "connecting": "연결 중...",
+    "disconnect": "연결 해제",
+    "connected": "연결됨",
+    "not_connected": "연결되지 않음",
+    "github_account": "GitHub 계정",
+    "google_account": "Google 계정",
+    "delete_account": "계정 삭제",
+    "delete_account_warning": "계정을 삭제하면 모든 데이터가 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다!",
+    "delete_account_confirm": "계정을 삭제할 것임을 확인합니다",
+    "delete_account_button": "계정 영구 삭제",
+    "member_since": "가입일",
+    "success_message": "업데이트 성공!",
+    "error_message": "업데이트 실패, 잠시 후 다시 시도해 주세요",
+    "password_changed": "비밀번호 변경 성공!",
+    "password_change_failed": "비밀번호 변경 실패",
+    "account_connected": "계정 연결 성공!",
+    "account_disconnected": "계정 연결 해제 성공!",
+    "account_connection_failed": "계정 연결 실패",
+    "email_verification_sent": "인증 메일 발송됨",
+    "name_required": "사용자 이름을 입력해 주세요",
+    "current_password_required": "현재 비밀번호를 입력해 주세요",
+    "new_password_required": "새 비밀번호를 입력해 주세요",
+    "password_min_length": "비밀번호는 최소 6자 이상이어야 합니다",
+    "password_mismatch": "비밀번호가 일치하지 않습니다",
+    "current_password_incorrect": "현재 비밀번호가 올바르지 않습니다",
+    "subscription_info": "구독 플랜",
+    "subscription_info_description": "구독 플랜 보기 및 관리",
+    "subscription_status": "구독 상태",
+    "subscription_active": "활성",
+    "subscription_cancelled": "취소됨",
+    "subscription_past_due": "결제 지연",
+    "subscription_free": "무료 사용자",
+    "subscription_expires": "만료일",
+    "points_purchase_success_toast": "포인트 구매가 완료되었습니다! 포인트가 계정에 추가되었습니다",
+    "payment_cancelled_toast": "결제가 취소되었습니다",
+    "stripe_load_failed": "Stripe 로드 실패",
+    "subscription_expiring_soon": "곧 만료",
+    "subscription_expired": "만료됨",
+    "plan_free": "무료 플랜",
+    "plan_trial": "Trial",
+    "plan_pro": "Pro",
+    "plan_annual": "Annual",
+    "plan_enterprise": "Enterprise 플랜",
+    "plan_free_description": "개인 개발자를 위한 기본 템플릿",
+    "plan_trial_description": "7일 체험으로 모든 기능을 경험",
+    "plan_pro_description": "전문 개발을 위한 전체 기능",
+    "plan_annual_description": "연간 구독, 가장 가성비 좋은 옵션, 15,000 크레딧 포함",
+    "plan_enterprise_description": "기업 팀을 위한 맞춤형 서비스",
+    "manage_subscription": "구독 관리",
+    "upgrade_to_pro": "Pro로 업그레이드",
+    "upgrade_benefits_title": "업그레이드하여 더 많은 크레딧 받기",
+    "upgrade_benefits_1": "완전한 SaaS 템플릿 소스 코드",
+    "upgrade_benefits_2": "우선 기술 지원",
+    "upgrade_benefits_3": "고급 기능 컴포넌트",
+    "upgrade_benefits_4": "맞춤형 개발 서비스",
+    "upgrade_benefits_description": "Pro로 업그레이드하여 보너스 크레딧을 받고 모든 기능을 잠금 해제하세요.",
+    "view_pricing": "요금제 보기",
+    "points_purchase": "크레딧 구매",
+    "points_purchase_description": "더 많은 포인트가 필요하신가요? 패키지를 선택하고 즉시 받으세요",
+    "points_package_starter": "스타터 패키지",
+    "points_package_popular": "인기 패키지",
+    "points_package_premium": "프리미엄 패키지",
+    "points_usage_title": "크레딧 사용",
+    "points_usage_ai_service": "SaaS 템플릿 기능 사용",
+    "points_usage_premium_features": "고급 기능 컴포넌트",
+    "points_usage_priority_support": "우선 기술 지원",
+    "purchase_now": "지금 구매",
+    "processing_payment": "처리 중...",
+    "payment_success": "결제 성공",
+    "payment_failed": "결제 실패",
+    "order_details": "주문 상세",
+    "complete_payment": "결제 완료",
+    "cancel_payment": "취소",
+    "card_info": "카드 정보",
+    "pay_amount": "결제",
+    "purchase_success": "구매 성공!",
+    "points_added": "크레딧 추가됨",
+    "current_points": "현재 크레딧",
+    "purchased_points_label": "구매 크레딧 (영구)",
+    "gifted_points_label": "보너스 크레딧 (구독 포함)",
+    "subscription_gift_notice": "활성 구독이 있어 1,000 보너스 크레딧을 받았습니다",
+    "purchased_points": "구매 크레딧",
+    "purchased_points_description": "결제로 구매한 크레딧, 영원히 만료되지 않음",
+    "gifted_points": "보너스 크레딧",
+    "gifted_points_description": "구독에 포함된 크레딧, 구독 만료 시 정리됨",
+    "usage_priority": "사용 우선순위",
+    "usage_priority_description": "시스템은 보너스 포인트를 먼저 사용하고, 그 다음 구매 포인트를 사용합니다",
+    "recommended": "추천",
+    "processing": "처리 중...",
+    "payment_history": "결제 내역",
+    "referral": {
+      "title": "추천 프로그램",
+      "description": "친구를 초대하여 가입하면 양쪽 모두 보상을 받습니다",
+      "total_referrals": "총 추천 수",
+      "subscribed_referrals": "구독한 추천",
+      "referral_code": "추천 코드",
+      "referral_link": "추천 링크",
+      "history": "추천 내역",
+      "no_history": "아직 추천 내역이 없습니다",
+      "code_copied": "추천 코드 복사됨",
+      "link_copied": "추천 링크 복사됨",
+      "copy_failed": "복사 실패",
+      "action_register_bonus": "가입 보너스",
+      "action_referrer_bonus": "추천자 보너스",
+      "action_subscription_reward": "추천 구독 리워드",
+      "days": "일",
+      "records": "추천 기록",
+      "no_records": "아직 추천 기록이 없습니다",
+      "subscribed": "구독됨",
+      "not_subscribed": "미구독",
+      "anonymous_user": "익명 사용자"
+    },
+    "payment_history_details": {
+      "title": "결제 내역",
+      "stats": {
+        "title": "결제 통계",
+        "total_payments": "총 결제 횟수",
+        "total_amount": "총 금액",
+        "total_points_purchased": "구매한 크레딧 총합",
+        "total_points_gifted": "구독에서 획득한 크레딧",
+        "successful_payments": "성공한 결제"
+      },
+      "payment_types": {
+        "subscription": "구독",
+        "points_purchase": "크레딧 구매",
+        "other": "기타"
+      },
+      "payment_statuses": {
+        "succeeded": "성공",
+        "failed": "실패",
+        "pending": "대기 중",
+        "refunded": "환불됨",
+        "cancelled": "취소됨"
+      },
+      "table": {
+        "type": "유형",
+        "product": "제품",
+        "amount": "금액",
+        "points": "크레딧",
+        "status": "상태",
+        "time": "시간"
+      },
+      "filters": {
+        "type_placeholder": "유형으로 필터",
+        "status_placeholder": "상태로 필터",
+        "all_types": "모든 유형",
+        "all_statuses": "모든 상태"
+      },
+      "empty_state": {
+        "title": "결제 기록 없음"
+      },
+      "errors": {
+        "fetch_failed": "결제 기록 가져오기 실패"
+      }
+    },
+    "payment_history_description": "모든 결제 기록 및 거래 세부 정보 보기"
+  },
+  "referral_page": {
+    "title": "추천 프로그램",
+    "subtitle": "친구를 초대하고 함께 보상을 받으세요",
+    "keywords": "추천 프로그램,초대 보상,파트너십,SaaS 추천,MokerSaaS",
+    "custom_code": {
+      "title": "커스텀 추천 코드",
+      "description": "친구가 기억하기 쉬운 고유한 추천 코드를 설정하세요",
+      "current_code": "현재 코드",
+      "placeholder": "커스텀 코드 입력 (4-20자)",
+      "button": "코드 설정",
+      "button_updating": "설정 중...",
+      "success": "추천 코드 설정 성공",
+      "error": "추천 코드 설정 실패",
+      "already_set": "코드가 이미 설정되어 변경할 수 없습니다",
+      "invalid_format": "잘못된 형식 (4-20자, 영문자와 숫자만)",
+      "already_taken": "이 코드는 이미 사용 중입니다",
+      "note": "참고: 추천 코드는 한 번만 설정할 수 있으며 변경할 수 없습니다"
+    },
+    "stats": {
+      "title": "추천 통계",
+      "total_invites": "총 초대",
+      "people": "명",
+      "total_rewards": "총 보상",
+      "points": "포인트",
+      "subscribed_users": "구독한 사용자",
+      "pending_users": "대기 중인 사용자"
+    },
+    "share": {
+      "title": "추천 공유",
+      "copy_code": "코드 복사",
+      "copy_link": "링크 복사",
+      "share_text": "친구와 공유"
+    },
+    "rules": {
+      "title": "보상 규칙",
+      "rule1_title": "가입 보너스",
+      "rule1_desc": "친구가 코드로 가입하면 양쪽 모두 100 크레딧을 받습니다 (영구)",
+      "rule2_title": "구독 리워드",
+      "rule2_desc": "친구가 플랜을 구독하면 동등한 구독 연장 + 플랜의 보너스 크레딧을 받습니다",
+      "rule3_title": "다중 보상",
+      "rule3_desc": "친구가 갱신하거나 업그레이드할 때마다 보상을 받습니다 (무제한)",
+      "rule4_title": "기간 제한",
+      "rule4_desc": "추천 관계는 30일간 유효하며, 만료 후 보상이 없습니다",
+      "note": "참고: 모든 보상은 친구의 가입 또는 구독 완료 후 자동으로 부여됩니다"
+    },
+    "recent_referrals": {
+      "title": "최근 추천",
+      "view_all": "모두 보기",
+      "registered_at": "가입 시간"
+    },
+    "records": {
+      "title": "추천 기록",
+      "description": "추천 코드로 가입한 사용자 보기",
+      "loading": "로딩 중...",
+      "empty": "추천 기록 없음",
+      "unknown_user": "알 수 없는 사용자",
+      "subscribed": "구독됨",
+      "pending": "대기 중",
+      "filter_all": "전체",
+      "table": {
+        "user": "사용자",
+        "email": "이메일",
+        "register_time": "가입 시간",
+        "status": "상태"
+      }
+    },
+    "rewards": {
+      "title": "보상 기록",
+      "description": "각 구독의 포인트 및 구독 연장 기록 보기",
+      "loading": "로딩 중...",
+      "empty": "보상 기록 없음",
+      "unknown_user": "알 수 없는 사용자",
+      "points": "포인트",
+      "days": "일",
+      "filter_all": "전체",
+      "action_register_bonus": "가입 보너스",
+      "action_referrer_bonus": "추천자 보너스",
+      "action_subscription_reward": "구독 리워드",
+      "table": {
+        "action": "작업 유형",
+        "from": "출처",
+        "reward": "보상",
+        "create_time": "생성 시간"
+      }
+    }
+  },
+  "affiliate_page": {
+    "title": "제휴 시스템",
+    "subtitle": "추천을 통해 커미션을 받으세요, 주문당 30%",
+    "keywords": "제휴 프로그램,추천 보상,커미션 보상,파트너십,SaaS 제휴,MokerSaaS",
+    "loading": "로딩 중...",
+    "stats": {
+      "total_invites": "총 초대",
+      "converted": "전환됨",
+      "available_balance": "사용 가능 잔액",
+      "frozen_balance": "동결 잔액"
+    },
+    "code_setting": {
+      "title": "제휴 코드 설정",
+      "description": "제휴 코드를 설정하세요, 한 번만 변경 가능",
+      "current_code": "현재 코드",
+      "placeholder": "새 코드 입력 (8-20자 영문자 또는 숫자)",
+      "placeholder_set": "코드 입력 (8-20자 영문자 또는 숫자)",
+      "button_update": "코드 업데이트",
+      "button_set": "코드 설정",
+      "updating": "업데이트 중...",
+      "setting": "설정 중...",
+      "note": "참고: 제휴 코드는 한 번만 변경할 수 있으므로 신중히 설정하세요",
+      "already_changed": "코드가 이미 변경되어 다시 변경할 수 없습니다",
+      "enter_code": "제휴 코드를 입력해 주세요",
+      "invalid_format": "잘못된 형식, 8-20자 영문자 또는 숫자여야 합니다",
+      "update_success": "코드 업데이트 성공",
+      "update_failed": "코드 업데이트 실패",
+      "already_taken": "이 코드는 이미 사용 중입니다",
+      "code_copied": "코드 복사됨",
+      "link_copied": "링크 복사됨",
+      "copy_failed": "복사 실패",
+      "set_first": "먼저 제휴 코드를 설정해 주세요"
+    },
+    "share": {
+      "title": "제휴 공유",
+      "link_label": "제휴 링크",
+      "copy_code": "코드 복사",
+      "copy_link": "링크 복사"
+    },
+    "relations": {
+      "title": "초대 데이터",
+      "description": "제휴 코드로 가입한 사용자 보기",
+      "loading": "로딩 중...",
+      "empty": "초대 데이터 없음",
+      "unknown_user": "알 수 없는 사용자",
+      "register_time": "가입 시간",
+      "converted": "전환됨",
+      "expired": "만료됨",
+      "pending": "대기 중",
+      "filter_all": "전체",
+      "table": {
+        "user": "사용자",
+        "email": "이메일",
+        "register_time": "가입 시간",
+        "status": "상태"
+      }
+    },
+    "earnings": {
+      "title": "수익 기록",
+      "description": "커미션 수입 및 상태 보기",
+      "loading": "로딩 중...",
+      "empty": "수익 기록 없음",
+      "from": "출처",
+      "create_time": "생성 시간",
+      "release_time": "해제 시간",
+      "frozen": "동결",
+      "released": "해제됨",
+      "cancelled": "취소됨",
+      "unknown_user": "알 수 없는 사용자",
+      "filter_all": "전체",
+      "table": {
+        "amount": "금액",
+        "from": "출처",
+        "status": "상태",
+        "create_time": "생성 시간",
+        "release_time": "해제 시간"
+      }
+    },
+    "withdraw": {
+      "title": "출금 요청",
+      "description": "사용 가능 잔액을 본인 계정으로 출금",
+      "button": "출금",
+      "amount": "출금 금액",
+      "amount_placeholder": "출금 금액 입력",
+      "min_amount": "최소 금액",
+      "min_amount_error": "최소 출금 금액은 $10입니다",
+      "payment_method": "결제 방법",
+      "alipay": "Alipay",
+      "paypal": "PayPal",
+      "account_name": "계정 이름",
+      "account_name_placeholder": "계정 이름 입력",
+      "alipay_account": "Alipay 계정",
+      "alipay_placeholder": "Alipay 계정 또는 전화번호 입력",
+      "paypal_email": "PayPal 이메일",
+      "paypal_placeholder": "PayPal 이메일 입력",
+      "available_balance": "사용 가능 잔액",
+      "exceeds_balance": "출금 금액이 잔액을 초과합니다",
+      "submit": "요청 제출",
+      "processing": "처리 중...",
+      "success": "출금 요청 제출됨",
+      "failed": "출금 요청 실패",
+      "invalid_amount": "잘못된 출금 금액",
+      "invalid_payment_method": "잘못된 결제 방법",
+      "invalid_account_info": "잘못된 계정 정보",
+      "insufficient_balance": "잔액 부족",
+      "account_info_required": "계정 정보를 입력해 주세요"
+    },
+    "withdrawals": {
+      "title": "출금 기록",
+      "description": "출금 요청 기록 보기",
+      "loading": "로딩 중...",
+      "empty": "출금 기록 없음",
+      "pending": "대기 중",
+      "processing": "처리 중",
+      "completed": "완료",
+      "failed": "실패",
+      "cancelled": "취소됨",
+      "failure_reason": "실패 사유",
+      "create_time": "요청 시간",
+      "processed_time": "처리 시간",
+      "filter_all": "전체",
+      "table": {
+        "amount": "금액",
+        "payment_method": "결제 방법",
+        "account": "계정",
+        "status": "상태",
+        "create_time": "요청 시간",
+        "processed_time": "처리 시간"
+      }
+    }
+  },
+  "dashboard": {
+    "payment_success": {
+      "title": "구매 성공!",
+      "subtitle": "MokerSaaS에 오신 것을 환영합니다",
+      "subtitle_with_plan": "MokerSaaS {plan}에 오신 것을 환영합니다",
+      "processing_title": "결제 결과 처리 중",
+      "processing_description": "구매 상태를 확인 중입니다. 잠시만 기다려 주세요...",
+      "verifying_title": "구매 상태 확인 중",
+      "verifying_description": "구매 확인 중...",
+      "success_toast": "🎉 구매 성공! 완전한 SaaS 템플릿과 기술 지원 받기",
+      "success_toast_with_plan": "🎉 {plan} 구매 성공! 완전한 SaaS 템플릿과 기술 지원 받기",
+      "no_session_toast": "💡 구매 성공 페이지에 도달했습니다, 아래의 탐색 버튼을 사용해 주세요"
+    },
+    "subscription_info": {
+      "title": "구독 정보",
+      "title_with_plan": "{plan} 구독",
+      "status_label": "구독 상태:",
+      "status_active": "활성",
+      "status_processing": "처리 중",
+      "plan_label": "구독 유형:",
+      "plan_pro": "Pro",
+      "expires_label": "지원 만료일:"
+    },
+    "points_reward": {
+      "title": "크레딧 리워드",
+      "total_points": "총 크레딧",
+      "purchased_points": "구매 크레딧",
+      "gifted_points": "보너스 크레딧",
+      "gift_notice": "🎁 템플릿 기능 사용을 위한 구독 보너스 크레딧 받기!"
+    },
+    "actions": {
+      "view_profile": "프로필 보기",
+      "back_home": "홈으로 돌아가기"
+    },
+    "loading": "로딩 중...",
+    "error": {
+      "fetch_failed": "구독 정보 가져오기 실패, 새로 고침 후 다시 시도해 주세요",
+      "manage_subscription_failed": "구독 관리 페이지를 열 수 없습니다, 잠시 후 다시 시도해 주세요"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "meta_title": "관리자 대시보드 - MokerSaaS",
+      "meta_description": "사용자, 뉴스레터 구독, 시스템 설정 등을 통합 관리하는 관리자 대시보드.",
+      "title": "관리자 대시보드",
+      "sidebar": {
+        "title": "관리 기능"
+      },
+      "menu": {
+        "overview": "개요",
+        "overview_desc": "핵심 시스템 데이터 통계 및 트렌드 분석 실시간 보기",
+        "users": "사용자 관리",
+        "users_desc": "등록된 사용자 및 권한 관리",
+        "referral": "추천 관리",
+        "referral_desc": "모든 사용자 추천 기록 및 리워드 관리",
+        "affiliate": "제휴 관리",
+        "affiliate_desc": "모든 사용자 제휴 기록 및 커미션 관리",
+        "newsletter": "뉴스레터",
+        "newsletter_desc": "뉴스레터 구독자 관리",
+        "traffic": "트래픽 분석",
+        "traffic_desc": "웹사이트 트래픽 통계 및 방문자 인사이트 보기"
+      },
+      "overview": {
+        "title": "시스템 개요",
+        "description": "핵심 시스템 데이터 통계 및 트렌드 분석 실시간 보기",
+        "categories": {
+          "users_revenue": "사용자 & 수익",
+          "referral_affiliate": "추천 & 제휴"
+        },
+        "cards": {
+          "users": {
+            "title": "사용자 관리",
+            "description": "등록된 사용자, 역할 및 권한 관리"
+          },
+          "newsletter": {
+            "title": "뉴스레터",
+            "description": "뉴스레터 구독 및 통계 관리"
+          }
+        },
+        "quick_actions": {
+          "title": "빠른 작업",
+          "manage_users": "사용자 관리",
+          "manage_users_desc": "등록된 모든 사용자 보기 및 관리",
+          "manage_newsletter": "구독 관리",
+          "manage_newsletter_desc": "뉴스레터 구독 보기 및 관리"
+        },
+        "stats": {
+          "total_users": "총 사용자",
+          "subscribed_users": "구독한 사용자",
+          "subscription_revenue": "구독 수익",
+          "points_revenue": "포인트 수익",
+          "total_points": "총 포인트",
+          "total_referrals": "총 추천",
+          "referral_subscribed": "추천 구독",
+          "referral_reward_points": "추천 리워드 포인트",
+          "affiliate_count": "제휴 수",
+          "affiliate_earnings": "제휴 수익",
+          "affiliate_withdrawals": "총 출금",
+          "newsletter_subscribers": "뉴스레터 구독자"
+        },
+        "trends": {
+          "title": "트렌드 분석",
+          "days_7": "7일",
+          "days_30": "30일",
+          "days_90": "90일",
+          "registration": "가입 트렌드",
+          "registration_count": "가입 수",
+          "subscription": "구독 & 수익 트렌드",
+          "subscription_count": "구독",
+          "subscription_revenue": "구독 수익",
+          "total_revenue": "총 수익 트렌드",
+          "revenue": "수익"
+        }
+      }
+    },
+    "traffic": {
+      "days_7": "7일",
+      "days_30": "30일",
+      "days_90": "90일",
+      "stats": {
+        "pageviews": "페이지뷰",
+        "visitors": "순 방문자",
+        "visits": "방문",
+        "bounce_rate": "이탈률",
+        "avg_time": "평균 시간"
+      },
+      "charts": {
+        "pageviews_trend": "페이지뷰 트렌드",
+        "top_pages": "인기 페이지",
+        "devices": "기기",
+        "browsers": "브라우저",
+        "countries": "인기 국가",
+        "referrers": "인기 리퍼러"
+      },
+      "not_configured": {
+        "title": "Umami 분석 미설정",
+        "description": "트래픽 분석을 활성화하려면 환경 변수에서 Umami를 설정해 주세요:",
+        "frontend_tracking": "프론트엔드 트래킹 (필수)",
+        "backend_api": "백엔드 API (필수)",
+        "authentication": "인증 (하나 선택)",
+        "umami_cloud": "옵션 1: Umami Cloud - API 키 사용",
+        "self_hosted": "옵션 2: 자체 호스팅 Umami - 사용자 이름과 비밀번호 사용 (권장)",
+        "learn_more": "Umami 자세히 알아보기"
+      },
+      "error_title": "분석 로드 실패",
+      "error_message": "분석 데이터를 가져올 수 없습니다. 잠시 후 다시 시도해 주세요."
+    },
+    "newsletter": {
+      "meta_title": "뉴스레터 통계 - MokerSaaS",
+      "meta_description": "구독자 수, 언어 분포 등을 포함한 뉴스레터 구독 통계 보기 및 관리.",
+      "title": "뉴스레터 통계",
+      "stats": {
+        "total_subscriptions": "총 구독",
+        "active_subscribers": "활성 구독자",
+        "chinese_subscriptions": "중국어 구독",
+        "chinese_users": "중국어 사용자",
+        "english_subscriptions": "영어 구독",
+        "english_users": "영어 사용자",
+        "total_registrations": "총 등록",
+        "including_unsubscribed": "구독 해지 포함",
+        "japanese_subscriptions": "일본어 구독",
+        "japanese_users": "일본어 사용자",
+        "korean_subscriptions": "한국어 구독",
+        "korean_users": "한국어 사용자",
+        "traditional_chinese_subscriptions": "번체 중국어 구독",
+        "traditional_chinese_users": "번체 중국어 사용자"
+      },
+      "subscription_list": {
+        "title": "구독 목록",
+        "description": "모든 뉴스레터 구독자의 상세 정보",
+        "export": "내보내기",
+        "export_success": "내보내기 성공",
+        "export_failed": "내보내기 실패",
+        "active_tab": "활성 구독",
+        "inactive_tab": "취소된 구독",
+        "no_data": "데이터 없음",
+        "table": {
+          "email": "이메일 주소",
+          "language": "언어",
+          "status": "상태",
+          "subscribed_at": "구독 시간",
+          "unsubscribed_at": "구독 해지 시간",
+          "chinese": "중국어",
+          "english": "영어",
+          "active": "활성",
+          "cancelled": "취소됨"
+        },
+        "japanese": "일본어",
+        "korean": "한국어",
+        "traditionalChinese": "번체 중국어"
+      },
+      "actions": {
+        "retry": "재시도",
+        "refresh": "새로 고침",
+        "export": "내보내기"
+      },
+      "error": {
+        "fetch_stats_failed": "통계 가져오기 실패",
+        "fetch_subscriptions_failed": "구독 목록 가져오기 실패"
+      },
+      "japanese_subscriptions": "일본어 구독",
+      "japanese_users": "일본어 사용자",
+      "korean_subscriptions": "한국어 구독",
+      "korean_users": "한국어 사용자",
+      "traditional_chinese_subscriptions": "번체 중국어 구독",
+      "traditional_chinese_users": "번체 중국어 사용자"
+    },
+    "users": {
+      "meta_title": "사용자 관리 - MokerSaaS",
+      "meta_description": "사용자 통계, 역할 관리, 포인트 조정 등을 포함한 등록된 모든 사용자의 상세 정보를 보고 관리합니다.",
+      "title": "사용자 관리",
+      "stats": {
+        "total_users": "총 사용자",
+        "total_users_desc": "총 등록 사용자",
+        "verified_users": "인증된 사용자",
+        "verified_users_desc": "이메일 인증됨",
+        "admin_users": "관리자",
+        "admin_users_desc": "관리자 사용자",
+        "subscribed_users": "구독한 사용자",
+        "subscribed_users_desc": "활성 구독",
+        "total_points": "총 포인트",
+        "total_points_desc": "사용자 포인트 합계",
+        "total_payments": "총 수익",
+        "total_payments_desc": "총 성공한 결제"
+      },
+      "user_list": {
+        "title": "사용자 목록",
+        "description": "등록된 모든 사용자의 상세 정보 관리",
+        "search_placeholder": "이메일 또는 사용자 이름으로 검색...",
+        "filter_role": "역할로 필터",
+        "filter_email_status": "인증 상태",
+        "all_roles": "모든 역할",
+        "all_statuses": "모든 이메일 상태",
+        "role_user": "사용자",
+        "role_admin": "관리자",
+        "email_verified": "인증됨",
+        "email_unverified": "미인증",
+        "filter_subscription_status": "구독 상태",
+        "all_subscription_statuses": "모든 구독 상태",
+        "subscription_active": "활성",
+        "subscription_cancelled": "취소됨",
+        "subscription_past_due": "결제 지연",
+        "subscription_paused": "일시 정지",
+        "subscription_none": "구독 없음",
+        "no_data": "사용자 데이터 없음",
+        "table": {
+          "user_info": "사용자 정보",
+          "role": "역할",
+          "email_status": "이메일 상태",
+          "points": "포인트",
+          "subscription": "구독",
+          "subscription_expiry": "구독 만료",
+          "created_at": "가입일",
+          "actions": "작업",
+          "edit_role": "역할 편집",
+          "adjust_points": "포인트 조정",
+          "manage_subscription": "구독 관리",
+          "no_name": "미설정",
+          "role_admin": "관리자",
+          "role_user": "사용자",
+          "email_verified": "인증됨",
+          "email_unverified": "미인증",
+          "points_total": "총합",
+          "points_purchased": "구매",
+          "points_gifted": "보너스",
+          "no_subscription": "구독 없음",
+          "plan_trial": "Trial",
+          "plan_pro": "Pro",
+          "plan_annual": "Annual",
+          "status_active": "활성",
+          "status_cancelled": "취소됨",
+          "status_past_due": "결제 지연",
+          "status_paused": "일시 정지",
+          "status_expired": "만료됨",
+          "expired": "만료됨",
+          "expiring_soon": "곧 만료"
+        }
+      },
+      "actions": {
+        "refresh": "새로 고침",
+        "retry": "재시도",
+        "edit_role": "역할 편집",
+        "adjust_points": "포인트 조정",
+        "manage_subscription": "구독 관리",
+        "view_details": "상세 보기"
+      },
+      "dialogs": {
+        "user_info": "사용자: {name} ({email})",
+        "no_name": "미설정",
+        "cancel": "취소",
+        "confirm": "확인",
+        "edit_role": {
+          "title": "사용자 역할 편집",
+          "description": "사용자의 시스템 역할 권한 수정",
+          "role_label": "사용자 역할",
+          "role_placeholder": "역할 선택",
+          "role_user": "사용자",
+          "role_admin": "관리자"
+        },
+        "adjust_points": {
+          "title": "사용자 포인트 조정",
+          "description": "사용자 포인트 추가 또는 차감",
+          "points_label": "포인트 변경",
+          "points_placeholder": "포인트 금액 입력 (양수는 추가, 음수는 차감)",
+          "points_type_label": "포인트 유형",
+          "points_type_purchased": "구매 포인트",
+          "points_type_gifted": "보너스 포인트",
+          "description_label": "작업 설명",
+          "description_placeholder": "작업 설명 입력 (선택)",
+          "purchased_points_info": "구매 포인트는 만료되지 않으며 언제든지 사용 가능",
+          "gifted_points_expiry_label": "연결된 구독 만료",
+          "gifted_points_expiry_info": "보너스 포인트는 구독 만료 시 자동으로 정리됩니다. 만료 시간은 사용자의 구독 만료 시간과 동일합니다",
+          "gifted_points_requires_subscription": "⚠️ 보너스 포인트는 구독 만료가 필요합니다",
+          "gifted_points_no_subscription": "이 사용자는 설정된 구독이 없습니다. 보너스 포인트를 추가할 수 없습니다. 먼저 사용자의 구독을 설정해 주세요",
+          "subscription_expired_error": "사용자 구독이 만료되었습니다. 보너스 포인트를 추가할 수 없습니다. 먼저 구독 만료 시간을 업데이트해 주세요"
+        },
+        "manage_subscription": {
+          "title": "사용자 구독 관리",
+          "description": "사용자의 구독 상태 및 플랜 수정",
+          "status_label": "구독 상태",
+          "status_placeholder": "구독 상태 선택",
+          "status_active": "활성",
+          "status_cancelled": "취소됨",
+          "status_past_due": "결제 지연",
+          "status_paused": "일시 정지",
+          "plan_label": "구독 플랜",
+          "plan_placeholder": "구독 플랜 선택",
+          "plan_trial": "Trial",
+          "plan_pro": "Pro",
+          "plan_annual": "Annual",
+          "end_date_label": "구독 종료일",
+          "end_date_placeholder": "종료일 선택",
+          "auto_calculated": "종료일은 구독 플랜에 따라 자동 계산됨",
+          "cumulative_calculated": "시간이 기존 구독에 누적 추가됨",
+          "select_plan_first": "먼저 구독 플랜을 선택해 주세요"
+        }
+      },
+      "pagination": {
+        "page_info": "전체 {totalPages}페이지 중 {page}페이지",
+        "total_records": "총 {total}개",
+        "previous": "이전",
+        "next": "다음"
+      },
+      "messages": {
+        "role_updated": "사용자 역할 업데이트 성공",
+        "points_updated": "사용자 포인트 조정 성공",
+        "subscription_updated": "사용자 구독 업데이트 성공",
+        "update_failed": "업데이트 실패",
+        "fetch_stats_failed": "통계 가져오기 실패",
+        "fetch_users_failed": "사용자 목록 가져오기 실패"
+      }
+    },
+    "referral": {
+      "stats": {
+        "total_referrals": "총 추천",
+        "subscribed_referrals": "구독한 추천",
+        "total_points": "부여된 총 포인트"
+      },
+      "tabs": {
+        "records": "추천 기록",
+        "rewards": "리워드 기록"
+      },
+      "records": {
+        "title": "추천 기록",
+        "description": "모든 사용자 추천 관계 보기",
+        "empty": "추천 기록 없음",
+        "subscribed": "구독됨",
+        "pending": "대기 중",
+        "table": {
+          "referrer": "추천자",
+          "referred": "피추천자",
+          "code": "코드",
+          "status": "상태",
+          "created_at": "생성 시간"
+        }
+      },
+      "rewards": {
+        "title": "리워드 기록",
+        "description": "모든 추천 리워드 기록 보기",
+        "empty": "리워드 기록 없음",
+        "days": "일",
+        "table": {
+          "user": "사용자",
+          "from": "출처",
+          "action": "작업 유형",
+          "reward": "리워드",
+          "created_at": "생성 시간"
+        },
+        "actions": {
+          "register_bonus": "가입 보너스",
+          "referrer_bonus": "추천자 보너스",
+          "subscription_reward": "구독 리워드",
+          "unknown": "기타 ({action})"
+        }
+      }
+    },
+    "affiliate": {
+      "stats": {
+        "total_profiles": "총 제휴",
+        "total_relations": "총 관계",
+        "converted_relations": "전환됨",
+        "total_earnings": "총 수익",
+        "total_withdrawals": "총 출금"
+      },
+      "tabs": {
+        "profiles": "제휴",
+        "relations": "관계",
+        "earnings": "수익",
+        "withdrawals": "출금"
+      },
+      "profiles": {
+        "title": "제휴 프로필",
+        "description": "모든 제휴 프로필 보기",
+        "loading": "로딩 중...",
+        "empty": "제휴 프로필 없음",
+        "table": {
+          "user": "사용자",
+          "code": "코드",
+          "balance": "잔액",
+          "frozen_balance": "동결 잔액",
+          "created_at": "생성 시간"
+        }
+      },
+      "relations": {
+        "title": "제휴 관계",
+        "description": "모든 제휴 관계 보기",
+        "loading": "로딩 중...",
+        "empty": "제휴 관계 없음",
+        "converted": "전환됨",
+        "expired": "만료됨",
+        "pending": "대기 중",
+        "table": {
+          "referrer": "제휴",
+          "invitee": "피초대자",
+          "status": "상태",
+          "expires_at": "만료 시간",
+          "created_at": "생성 시간"
+        }
+      },
+      "earnings": {
+        "title": "수익 기록",
+        "description": "모든 커미션 수익 보기",
+        "loading": "로딩 중...",
+        "empty": "수익 기록 없음",
+        "frozen": "동결",
+        "released": "해제됨",
+        "cancelled": "취소됨",
+        "table": {
+          "affiliate": "제휴",
+          "invitee": "피초대자",
+          "amount": "금액",
+          "status": "상태",
+          "created_at": "생성 시간"
+        }
+      },
+      "withdrawals": {
+        "title": "출금 기록",
+        "description": "모든 출금 기록 보기",
+        "loading": "로딩 중...",
+        "empty": "출금 기록 없음",
+        "pending": "대기 중",
+        "processing": "처리 중",
+        "completed": "완료",
+        "failed": "실패",
+        "cancelled": "취소됨",
+        "table": {
+          "user": "사용자",
+          "amount": "금액",
+          "payment_method": "결제 방법",
+          "account": "계정",
+          "status": "상태",
+          "created_at": "생성 시간",
+          "actions": "작업"
+        },
+        "process": {
+          "title": "출금 처리",
+          "description": "출금 요청 상태 업데이트",
+          "button": "처리",
+          "update": "업데이트",
+          "user": "사용자",
+          "amount": "금액",
+          "payment_method": "결제 방법",
+          "account_info": "계정 정보",
+          "status": "상태",
+          "select_status": "상태 선택",
+          "transaction_id": "거래 ID",
+          "transaction_id_placeholder": "제3자 거래 ID 입력",
+          "failure_reason": "실패 사유",
+          "failure_reason_placeholder": "실패 사유 입력",
+          "status_required": "상태를 선택해 주세요",
+          "transaction_id_required": "완료된 출금에는 거래 ID가 필요합니다",
+          "failure_reason_required": "실패한 출금에는 실패 사유가 필요합니다",
+          "success": "출금 처리 성공",
+          "failed": "출금 처리 실패",
+          "processing": "처리 중...",
+          "submit": "제출",
+          "cancel": "취소"
+        }
+      }
+    }
+  },
+  "legal": {
+    "title": "법적 고지",
+    "terms": "이용약관",
+    "privacy": "개인정보 보호정책",
+    "cookies": "쿠키 정책"
+  },
+  "unauthorized": {
+    "title": "접근 거부",
+    "description": "이 페이지에 접근할 권한이 없습니다. 이 페이지는 관리자만 접근할 수 있습니다.",
+    "errorMessage": "오류라고 생각되면 시스템 관리자에게 문의해 주세요.",
+    "backToHome": "홈으로 돌아가기",
+    "signInAgain": "다시 로그인"
+  },
+  "apiErrors": {
+    "unauthorized": "권한 없음",
+    "unauthorized_short": "미인증",
+    "not_logged_in": "로그인되지 않음",
+    "not_logged_in_alt": "사용자가 로그인하지 않았습니다",
+    "user_not_found": "사용자를 찾을 수 없음",
+    "user_not_found_or_no_password": "사용자를 찾을 수 없거나 비밀번호가 설정되지 않았습니다",
+    "email_already_verified": "이메일이 이미 인증되었습니다",
+    "resend_verification_failed": "인증 메일 재발송 실패. 잠시 후 다시 시도해 주세요",
+    "name_required": "이름을 입력해 주세요",
+    "current_and_new_password_required": "현재 비밀번호와 새 비밀번호를 제공해 주세요",
+    "new_password_min_length": "새 비밀번호는 최소 6자 이상이어야 합니다",
+    "current_password_incorrect": "현재 비밀번호가 올바르지 않습니다",
+    "points_invalid_amount": "포인트 수량이 잘못되었습니다",
+    "points_missing_params": "필수 매개변수가 누락되었습니다",
+    "points_insufficient": "포인트 부족",
+    "points_deduct_insufficient": "차감되는 증정 포인트는 현재 증정 포인트 수를 초과할 수 없습니다",
+    "points_grant_needs_subscription": "증정 포인트는 구독 만료 시간을 연결해야 합니다. 먼저 사용자의 구독을 설정해 주세요",
+    "points_grant_subscription_expired": "사용자 구독이 만료되어 증정 포인트를 추가할 수 없습니다. 먼저 구독 만료 시간을 업데이트해 주세요",
+    "fetch_points_failed": "포인트 가져오기 실패",
+    "fetch_points_history_failed": "포인트 이력 가져오기 실패",
+    "fetch_points_detail_failed": "포인트 상세 가져오기 실패",
+    "admin_required": "관리자 권한 필요",
+    "user_id_required": "사용자 ID가 필요합니다",
+    "invalid_role": "잘못된 사용자 역할입니다",
+    "invalid_subscription_status": "잘못된 구독 상태입니다",
+    "invalid_subscription_plan": "잘못된 구독 플랜입니다",
+    "invalid_operation_type": "잘못된 작업 유형입니다",
+    "invalid_type_param": "잘못된 유형 매개변수입니다",
+    "fetch_statistics_failed": "통계 데이터 가져오기 실패",
+    "set_admin_email_required_query": "URL에 이메일 매개변수를 제공해 주세요. 예: ?email=your@email.com",
+    "set_admin_email_required_body": "이메일 주소가 필요합니다",
+    "set_admin_failed": "관리자 설정 실패",
+    "server_error": "서버 오류",
+    "server_internal_error": "서버 내부 오류",
+    "webhook_failed": "Webhook 처리 실패",
+    "resend_verification_email_sent": "인증 메일을 보냈습니다. 이메일을 확인해 주세요",
+    "profile_updated": "개인 정보 업데이트 완료",
+    "user_promoted_to_admin": "사용자 {email}을(를) 관리자로 설정했습니다",
+    "role_updated": "사용자 역할 업데이트 완료",
+    "points_adjusted": "포인트 조정 완료",
+    "subscription_updated": "구독 정보 업데이트 완료",
+    "points_operation_success": "포인트 작업 완료",
+    "points_operation_failed": "포인트 작업 실패",
+    "points_deducted_successfully": "포인트 차감 완료",
+    "password_changed": "비밀번호 변경 완료",
+    "referral_code_required": "추천 코드가 잘못되었습니다",
+    "referral_code_length": "추천 코드는 4~20자여야 합니다",
+    "referral_code_invalid_chars": "추천 코드에는 영문자와 숫자만 사용할 수 있습니다",
+    "referral_code_already_changed": "추천 코드는 한 번만 변경할 수 있습니다",
+    "referral_code_already_taken": "해당 추천 코드는 이미 사용되었습니다",
+    "CODE_EMPTY": "추천 코드를 입력해 주세요",
+    "INVALID_FORMAT": "추천 코드 형식이 잘못되었습니다",
+    "CODE_ALREADY_TAKEN": "해당 추천 코드는 이미 사용되었습니다",
+    "CODE_ALREADY_CHANGED": "추천 코드는 한 번만 변경할 수 있습니다",
+    "UPDATE_FAILED": "업데이트 실패",
+    "WITHDRAWAL_FAILED": "출금 실패",
+    "INVALID_AMOUNT": "출금 금액이 잘못되었습니다",
+    "INVALID_PAYMENT_METHOD": "결제 수단이 잘못되었습니다",
+    "INVALID_ACCOUNT_NAME": "수취인 이름을 입력해 주세요",
+    "INVALID_ACCOUNT_INFO": "수취 계좌 정보를 입력해 주세요",
+    "MIN_AMOUNT_NOT_MET": "출금 금액이 최소 출금 한도 미만입니다",
+    "INSUFFICIENT_BALANCE": "출금 가능 잔액이 부족합니다",
+    "affiliate_code_required": "추천 코드를 입력해 주세요",
+    "affiliate_code_invalid": "추천 코드가 잘못되었습니다",
+    "affiliate_code_self": "자신의 추천 코드는 사용할 수 없습니다",
+    "affiliate_new_user_only": "추천 코드는 신규 가입자에게만 적용됩니다",
+    "affiliate_relation_exists": "추천 관계가 이미 존재합니다",
+    "affiliate_relation_created": "추천 관계가 생성되었습니다",
+    "referral_new_user_only": "추천 코드는 신규 가입자에게만 적용됩니다",
+    "referral_already_referred": "해당 사용자는 이미 추천되었습니다",
+    "referral_code_invalid": "추천 코드가 잘못되었습니다",
+    "referral_code_self": "자신의 추천 코드는 사용할 수 없습니다",
+    "referral_relation_created": "추천 관계가 성공적으로 생성되었습니다",
+    "unknown_error": "알 수 없는 오류",
+    "stripe_not_configured": "Stripe가 설정되지 않았습니다",
+    "enterprise_contact_sales": "엔터프라이즈 요금제는 영업팀에 문의가 필요합니다",
+    "missing_price_id_for_plan": "요금제의 가격 ID가 없습니다",
+    "price_id_not_configured": "이 요금제의 가격 ID가 설정되지 않았습니다",
+    "no_stripe_customer_found": "Stripe 고객을 찾을 수 없습니다",
+    "failed_to_create_checkout_session": "결제 세션 생성 실패",
+    "failed_to_create_customer_portal_session": "고객 포털 세션 생성 실패",
+    "failed_to_fetch_payment_history": "결제 내역 조회 실패",
+    "failed_to_get_affiliate_earnings": "제휴 수익 조회 실패",
+    "failed_to_get_affiliate_relations": "제휴 관계 조회 실패",
+    "failed_to_get_affiliate_stats": "제휴 통계 조회 실패",
+    "failed_to_get_withdrawals": "출금 내역 조회 실패",
+    "failed_to_get_referral_records": "추천 기록 조회 실패",
+    "failed_to_get_referral_rewards": "추천 보상 조회 실패",
+    "failed_to_get_referral_stats": "추천 통계 조회 실패",
+    "affiliate_profile_not_found": "제휴 프로필을 찾을 수 없습니다",
+    "affiliate_stats_not_found": "제휴 통계를 찾을 수 없습니다",
+    "missing_required_fields": "필수 항목이 누락되었습니다"
+  },
+  "newsletter": {
+    "invalid_email": "유효한 이메일 주소를 입력해 주세요",
+    "already_subscribed": "이미 뉴스레터를 구독 중이십니다",
+    "resubscribed": "다시 오신 것을 환영합니다! 재구독되었습니다",
+    "subscribed": "구독 성공! 관심 가져주셔서 감사합니다",
+    "missing_input": "이메일 주소 또는 구독 해지 토큰을 제공해 주세요",
+    "not_found": "구독 기록을 찾을 수 없습니다",
+    "already_unsubscribed": "이미 구독을 해지하셨습니다",
+    "unsubscribed": "구독 해지 완료",
+    "invalid_link": "유효하지 않은 구독 해지 링크입니다"
+  },
+  "stripe_checkout": {
+    "trial_already_used": "이미 체험 플랜에 가입하셨습니다. 사용자당 한 번만 가입할 수 있습니다.",
+    "trial_blocked_for_paid": "이미 활성 구독이 있습니다. Pro/연간 사용자는 체험 구독을 이용할 수 없습니다.",
+    "annual_no_downgrade": "연간에서 Pro로 다운그레이드할 수 없습니다. 연간 구독은 다운그레이드가 불가능합니다."
+  }
+}

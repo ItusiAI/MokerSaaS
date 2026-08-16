@@ -14,7 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   // 验证 locale 是否有效
-  const locales = ['en', 'zh']
+  const locales = ['en', 'zh', 'ja', 'ko', 'tw']
   if (!locales.includes(locale)) {
     notFound()
   }
@@ -30,7 +30,7 @@ export async function generateMetadata({
 export default async function TermsLayout({ children, params }: TermsLayoutProps) {
   const { locale } = await params
   // 验证 locale 是否有效
-  const locales = ['en', 'zh']
+  const locales = ['en', 'zh', 'ja', 'ko', 'tw']
   if (!locales.includes(locale)) {
     notFound()
   }

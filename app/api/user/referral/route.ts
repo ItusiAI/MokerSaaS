@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: '未授权访问' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('获取推荐信息失败:', error)
     return NextResponse.json(
-      { error: '服务器错误' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

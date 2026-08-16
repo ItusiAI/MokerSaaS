@@ -11,7 +11,7 @@ export async function GET() {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: '未授权访问' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -34,7 +34,7 @@ export async function GET() {
 
     if (!user[0]) {
       return NextResponse.json(
-        { error: '用户不存在' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -59,7 +59,7 @@ export async function GET() {
   } catch (error) {
     console.error('获取用户信息失败:', error)
     return NextResponse.json(
-      { error: '服务器错误' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }
@@ -71,7 +71,7 @@ export async function PUT(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: '未授权访问' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -81,7 +81,7 @@ export async function PUT(request: NextRequest) {
 
     if (!name || name.trim().length === 0) {
       return NextResponse.json(
-        { error: '姓名不能为空' },
+        { error: 'name_required' },
         { status: 400 }
       )
     }
@@ -97,12 +97,12 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: '个人信息更新成功',
+      message: 'profile_updated',
     })
   } catch (error) {
     console.error('更新个人信息失败:', error)
     return NextResponse.json(
-      { error: '服务器错误' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

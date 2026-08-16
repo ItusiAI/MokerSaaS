@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: '未登录' },
+        { error: 'not_logged_in' },
         { status: 401 }
       )
     }
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('获取积分历史失败:', error)
     return NextResponse.json(
-      { error: '获取积分历史失败' },
+      { error: 'fetch_points_history_failed' },
       { status: 500 }
     )
   }

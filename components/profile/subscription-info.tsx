@@ -20,7 +20,26 @@ import {
 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { formatDistanceToNow } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
+
+const APP_INTL_LOCALE_TAG: Record<string, string> = {
+  zh: 'zh-CN',
+  ja: 'ja-JP',
+  ko: 'ko-KR',
+}
+function getIntlLocaleTag(locale: string | undefined | null): string {
+  return APP_INTL_LOCALE_TAG[locale || ''] || 'en-US'
+}
 
 interface SubscriptionData {
   subscriptionStatus: string | null
@@ -176,7 +195,7 @@ export function SubscriptionInfo() {
   const formatDate = (dateString: string | null) => {
     if (!dateString) return null
     const date = new Date(dateString)
-    return date.toLocaleDateString(locale === 'zh' ? 'zh-CN' : 'en-US', {
+    return date.toLocaleDateString(getIntlLocaleTag(locale), {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -188,7 +207,7 @@ export function SubscriptionInfo() {
     const date = new Date(dateString)
     return formatDistanceToNow(date, {
       addSuffix: true,
-      locale: locale === 'zh' ? zhCN : enUS
+      locale: getDateFnsLocale(locale)
     })
   }
 

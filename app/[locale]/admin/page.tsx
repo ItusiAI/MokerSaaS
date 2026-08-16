@@ -14,9 +14,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function AdminPage({ params }: { params: Promise<{ locale: string }> }) {
   // 验证管理员权限
-  await requireAdmin()
-
   const { locale } = await params
+  await requireAdmin(locale)
+
   const t = await getTranslations({ locale, namespace: 'admin.dashboard' })
 
   return (

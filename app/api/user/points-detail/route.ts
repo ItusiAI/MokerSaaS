@@ -8,7 +8,7 @@ export async function GET() {
     const session = await getServerSession(authOptions)
     
     if (!session?.user?.id) {
-      return NextResponse.json({ error: '未授权' }, { status: 401 })
+      return NextResponse.json({ error: 'unauthorized_short' }, { status: 401 })
     }
 
     const pointsDetail = await getUserPointsDetail(session.user.id)
@@ -17,7 +17,7 @@ export async function GET() {
   } catch (error) {
     console.error('获取用户积分详情失败:', error)
     return NextResponse.json(
-      { error: '获取积分详情失败' },
+      { error: 'fetch_points_detail_failed' },
       { status: 500 }
     )
   }

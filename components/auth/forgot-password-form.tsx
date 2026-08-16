@@ -10,12 +10,14 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Mail, ArrowLeft, CheckCircle, XCircle } from 'lucide-react'
 import Link from 'next/link'
+import { useApiError } from '@/hooks/use-api-error'
 import Image from 'next/image'
 
 export function ForgotPasswordForm() {
   const router = useRouter()
   const locale = useLocale()
   const t = useTranslations("forgot_password")
+  const tApi = useApiError()
   
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -63,11 +65,11 @@ export function ForgotPasswordForm() {
 
       if (response.ok) {
         setStatus('success')
-        setMessage(data.messageKey ? t(data.messageKey) : t('success_message'))
+        setMessage(data.messageKey ? tApi(data.messageKey) : t('success_message'))
       } else {
         setStatus('error')
         setMessage(
-          data.errorKey ? t(data.errorKey) : (data.error || t('send_failed'))
+          data.errorKey ? tApi(data.errorKey) : (tApi(data.error) || t('send_failed'))
         )
       }
     } catch (error) {

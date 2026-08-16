@@ -33,8 +33,16 @@
     "switchLanguage": "切换语言",
     "chinese": "中文",
     "english": "English",
+    "japanese": "日本語",
+    "korean": "한국어",
+    "traditionalChinese": "繁體中文",
     "currentLocale": "中",
-    "currentLocaleEn": "EN"
+    "currentLocaleTw": "繁",
+    "currentLocaleEn": "EN",
+    "currentLocaleJa": "JP",
+    "currentLocaleKo": "KR",
+    "switchToLight": "切换至亮色模式",
+    "switchToDark": "切换至暗色模式"
   },
   "hero": {
     "title": "极速构建 SaaS，",
@@ -67,7 +75,6 @@
       "simulateSuccess": "✓ 模拟运行成功：推荐返利 API 已完成积分与天数奖励自动发放！"
     }
   },
-
   "orchestration": {
     "sectionBadge": "全栈技术栈 · 现代化 SaaS 基础架构",
     "sectionTitle": "全栈开源技术",
@@ -85,9 +92,15 @@
       "metaValue": "类型安全 ORM",
       "desc": "高性能 Neon Serverless Postgres 数据库，配合轻量级 Drizzle ORM，提供完全类型安全的数据库交互。"
     },
-    "node1": { "label": "NEXT_JS_16" },
-    "node2": { "label": "NEON_POSTGRES" },
-    "node3": { "label": "STRIPE_BILLING" },
+    "node1": {
+      "label": "NEXT_JS_16"
+    },
+    "node2": {
+      "label": "NEON_POSTGRES"
+    },
+    "node3": {
+      "label": "STRIPE_BILLING"
+    },
     "floatingBadge1": {
       "label": "开发周期节省",
       "value": "超过 200 小时"
@@ -117,13 +130,24 @@
       "desc": "没有云厂商绑定，可一键部署至 Vercel、Cloud Run 或任何支持 Node.js / Docker 的服务器。"
     },
     "metrics": {
-      "1": { "label": "开发效率提升", "value": "10 倍以上" },
-      "2": { "label": "包含核心组件", "value": "40+ 开箱即用" },
-      "3": { "label": "数据库兼容", "value": "Neon Postgres 全兼容" },
-      "4": { "label": "开源许可", "value": "MIT License" }
+      "1": {
+        "label": "开发效率提升",
+        "value": "10 倍以上"
+      },
+      "2": {
+        "label": "包含核心组件",
+        "value": "40+ 开箱即用"
+      },
+      "3": {
+        "label": "数据库兼容",
+        "value": "Neon Postgres 全兼容"
+      },
+      "4": {
+        "label": "开源许可",
+        "value": "MIT License"
+      }
     }
   },
-
   "engineeringValidation": {
     "sectionBadge": "真实开发者评价",
     "sectionTitlePrefix": "深受开发者与创作者 ",
@@ -152,7 +176,6 @@
       }
     ]
   },
-
   "technicalFAQ": {
     "sectionBadge": "常见问题解答",
     "sectionTitlePrefix": "技术与部署 ",
@@ -177,7 +200,6 @@
       }
     ]
   },
-
   "missionControl": {
     "sectionBadge": "全功能 SaaS 开源解决方案",
     "sectionTitlePrefix": "开箱即用的",
@@ -275,7 +297,6 @@
       }
     }
   },
-
   "pricing": {
     "title": "选择适合您的SaaS模版方案",
     "recommended": "推荐",
@@ -379,7 +400,6 @@
         "unsubscribeError": "取消订阅失败"
       }
     },
-
     "home": {
       "brand": {
         "name": "MokerSaaS 开源模板",
@@ -470,13 +490,16 @@
       "SessionRequired": "需要登录才能访问此页面",
       "OAuthTokenError": "获取授权令牌失败，请重新尝试登录",
       "OAuthUserInfoError": "获取用户信息失败，请检查授权权限",
-      "default": "认证过程中发生未知错误，请重试"
+      "default": "认证过程中发生未知错误，请重试",
+      "contact_admin": "请联系管理员",
+      "error_type_label": "错误类型："
     },
     "welcome_back": "欢迎回来",
     "login_description": "登录您的 MokerSaaS 账户",
     "email": "邮箱地址",
     "password": "密码",
     "email_placeholder": "请输入您的邮箱",
+    "or_continue_with_email": "或使用邮箱登录",
     "password_placeholder": "请输入您的密码",
     "login": "登录",
     "logging_in": "登录中...",
@@ -675,6 +698,9 @@
     "subscription_past_due": "逾期未付",
     "subscription_free": "免费用户",
     "subscription_expires": "到期时间",
+    "points_purchase_success_toast": "积分购买成功！积分已添加到您的账户",
+    "payment_cancelled_toast": "支付已取消",
+    "stripe_load_failed": "Stripe 加载失败",
     "subscription_expiring_soon": "即将到期",
     "subscription_expired": "已过期",
     "plan_free": "免费计划",
@@ -688,12 +714,13 @@
     "plan_annual_description": "年度订阅，最佳价值选择，包含15,000积分",
     "plan_enterprise_description": "定制服务，适合企业团队",
     "manage_subscription": "管理订阅",
-      "upgrade_to_pro": "升级到Pro",
+    "upgrade_to_pro": "升级到Pro",
     "upgrade_benefits_title": "升级获得更多积分",
     "upgrade_benefits_1": "完整SaaS模版源码",
     "upgrade_benefits_2": "优先技术支持",
     "upgrade_benefits_3": "高级功能组件",
     "upgrade_benefits_4": "定制化开发服务",
+    "upgrade_benefits_description": "升级到 Pro 可获得额外积分并解锁所有功能。",
     "points_purchase": "积分购买",
     "points_purchase_description": "需要更多积分？选择一个套餐，立即获取",
     "points_package_starter": "入门套餐",
@@ -798,6 +825,7 @@
   "referral_page": {
     "title": "推荐计划",
     "subtitle": "邀请好友注册，共享奖励",
+    "keywords": "推荐计划,邀请奖励,合作推广,SaaS 推荐,MokerSaaS",
     "custom_code": {
       "title": "自定义推荐码",
       "description": "设置一个专属的推荐码，让好友更容易记住",
@@ -883,6 +911,7 @@
   "affiliate_page": {
     "title": "推广返利系统",
     "subtitle": "通过推广获得返利，每单30%佣金",
+    "keywords": "推广计划,推广返利,佣金奖励,合作推广,SaaS 推广,MokerSaaS",
     "loading": "加载中...",
     "stats": {
       "total_invites": "总邀请人数",
@@ -904,13 +933,13 @@
       "already_changed": "推广码已修改过，无法再次修改",
       "enter_code": "请输入推广码",
       "invalid_format": "推广码格式无效，必须为8-20个字母或数字",
-        "update_success": "推广码更新成功",
-        "update_failed": "更新推广码失败",
-        "already_taken": "该推广码已被使用",
-        "code_copied": "推广码已复制",
-        "link_copied": "推广链接已复制",
-        "copy_failed": "复制失败",
-        "set_first": "请先设置推广码"
+      "update_success": "推广码更新成功",
+      "update_failed": "更新推广码失败",
+      "already_taken": "该推广码已被使用",
+      "code_copied": "推广码已复制",
+      "link_copied": "推广链接已复制",
+      "copy_failed": "复制失败",
+      "set_first": "请先设置推广码"
     },
     "share": {
       "title": "分享推广",
@@ -1169,7 +1198,13 @@
         "english_subscriptions": "英文订阅",
         "english_users": "英文用户",
         "total_registrations": "总注册数",
-        "including_unsubscribed": "包括已取消订阅"
+        "including_unsubscribed": "包括已取消订阅",
+        "japanese_subscriptions": "日文订阅",
+        "japanese_users": "日文用户",
+        "korean_subscriptions": "韩文订阅",
+        "korean_users": "韩文用户",
+        "traditional_chinese_subscriptions": "繁体中文订阅",
+        "traditional_chinese_users": "繁体中文用户"
       },
       "subscription_list": {
         "title": "订阅列表",
@@ -1190,7 +1225,10 @@
           "english": "英文",
           "active": "活跃",
           "cancelled": "已取消"
-        }
+        },
+        "japanese": "日语",
+        "korean": "韩语",
+        "traditionalChinese": "繁体中文"
       },
       "actions": {
         "retry": "重试",
@@ -1200,7 +1238,13 @@
       "error": {
         "fetch_stats_failed": "获取统计数据失败",
         "fetch_subscriptions_failed": "获取订阅列表失败"
-      }
+      },
+      "japanese_subscriptions": "日语订阅",
+      "japanese_users": "日语用户",
+      "korean_subscriptions": "韩语订阅",
+      "korean_users": "韩语用户",
+      "traditional_chinese_subscriptions": "繁体中文订阅",
+      "traditional_chinese_users": "繁体中文用户"
     },
     "users": {
       "meta_title": "用户管理 - MokerSaaS",
@@ -1508,5 +1552,115 @@
     "errorMessage": "如果您认为这是一个错误，请联系系统管理员。",
     "backToHome": "返回首页",
     "signInAgain": "重新登录"
+  },
+  "apiErrors": {
+    "unauthorized": "未授权访问",
+    "unauthorized_short": "未授权",
+    "not_logged_in": "未登录",
+    "not_logged_in_alt": "用户未登录",
+    "user_not_found": "用户不存在",
+    "user_not_found_or_no_password": "用户不存在或未设置密码",
+    "email_already_verified": "邮箱已验证，无需重复验证",
+    "resend_verification_failed": "发送验证邮件失败，请稍后重试",
+    "name_required": "姓名不能为空",
+    "current_and_new_password_required": "请提供当前密码和新密码",
+    "new_password_min_length": "新密码至少需要6个字符",
+    "current_password_incorrect": "当前密码不正确",
+    "points_invalid_amount": "积分数量无效",
+    "points_missing_params": "缺少必要参数",
+    "points_insufficient": "积分不足",
+    "points_deduct_insufficient": "扣除的赠送积分不能超过当前赠送积分数量",
+    "points_grant_needs_subscription": "赠送积分必须关联订阅到期时间，请先为用户设置订阅",
+    "points_grant_subscription_expired": "用户订阅已过期，无法添加赠送积分。请先更新订阅到期时间",
+    "fetch_points_failed": "获取积分失败",
+    "fetch_points_history_failed": "获取积分历史失败",
+    "fetch_points_detail_failed": "获取积分详情失败",
+    "admin_required": "需要管理员权限",
+    "user_id_required": "用户ID是必需的",
+    "invalid_role": "无效的用户角色",
+    "invalid_subscription_status": "无效的订阅状态",
+    "invalid_subscription_plan": "无效的订阅计划",
+    "invalid_operation_type": "无效的操作类型",
+    "invalid_type_param": "无效的类型参数",
+    "fetch_statistics_failed": "获取统计数据失败",
+    "set_admin_email_required_query": "请在URL中提供邮箱参数，例如：?email=your@email.com",
+    "set_admin_email_required_body": "邮箱地址是必需的",
+    "set_admin_failed": "设置管理员失败",
+    "server_error": "服务器错误",
+    "server_internal_error": "服务器内部错误",
+    "webhook_failed": "Webhook处理失败",
+    "resend_verification_email_sent": "验证邮件已发送，请检查您的邮箱",
+    "profile_updated": "个人信息更新成功",
+    "user_promoted_to_admin": "用户 {email} 已设置为管理员",
+    "role_updated": "用户角色更新成功",
+    "points_adjusted": "积分调整成功",
+    "subscription_updated": "订阅信息更新成功",
+    "points_operation_success": "积分操作成功",
+    "points_operation_failed": "积分操作失败",
+    "points_deducted_successfully": "积分扣除成功",
+    "password_changed": "密码修改成功",
+    "referral_code_required": "推荐码无效",
+    "referral_code_length": "推荐码长度需为 4-20 个字符",
+    "referral_code_invalid_chars": "推荐码只能包含字母和数字",
+    "referral_code_already_changed": "推荐码只能修改一次",
+    "referral_code_already_taken": "该推荐码已被使用",
+    "CODE_EMPTY": "请输入推广码",
+    "INVALID_FORMAT": "推广码格式无效",
+    "CODE_ALREADY_TAKEN": "该推广码已被使用",
+    "CODE_ALREADY_CHANGED": "推广码只能修改一次",
+    "UPDATE_FAILED": "更新失败",
+    "WITHDRAWAL_FAILED": "提现失败",
+    "INVALID_AMOUNT": "提现金额无效",
+    "INVALID_PAYMENT_METHOD": "支付方式无效",
+    "INVALID_ACCOUNT_NAME": "请输入收款人姓名",
+    "INVALID_ACCOUNT_INFO": "请输入收款账户信息",
+    "MIN_AMOUNT_NOT_MET": "提现金额低于最低提现额度",
+    "INSUFFICIENT_BALANCE": "可提现余额不足",
+    "affiliate_code_required": "请输入推广码",
+    "affiliate_code_invalid": "推广码无效",
+    "affiliate_code_self": "不能使用自己的推广码",
+    "affiliate_new_user_only": "推广码仅适用于新注册用户",
+    "affiliate_relation_exists": "推广关系已存在",
+    "affiliate_relation_created": "推广关系已创建",
+    "referral_new_user_only": "推荐码仅适用于新注册用户",
+    "referral_already_referred": "该用户已被邀请",
+    "referral_code_invalid": "推荐码无效",
+    "referral_code_self": "不能使用自己的推荐码",
+    "referral_relation_created": "已成功建立推荐关系",
+    "unknown_error": "未知错误",
+    "stripe_not_configured": "Stripe 未配置",
+    "enterprise_contact_sales": "企业版需要联系销售",
+    "missing_price_id_for_plan": "缺少该计划的价格 ID",
+    "price_id_not_configured": "未配置该计划的价格 ID",
+    "no_stripe_customer_found": "未找到 Stripe 客户",
+    "failed_to_create_checkout_session": "创建结账会话失败",
+    "failed_to_create_customer_portal_session": "创建客户门户会话失败",
+    "failed_to_fetch_payment_history": "获取支付历史失败",
+    "failed_to_get_affiliate_earnings": "获取推广收益失败",
+    "failed_to_get_affiliate_relations": "获取推广关系失败",
+    "failed_to_get_affiliate_stats": "获取推广统计失败",
+    "failed_to_get_withdrawals": "获取提现记录失败",
+    "failed_to_get_referral_records": "获取推荐记录失败",
+    "failed_to_get_referral_rewards": "获取推荐奖励失败",
+    "failed_to_get_referral_stats": "获取推荐统计失败",
+    "affiliate_profile_not_found": "推广资料不存在",
+    "affiliate_stats_not_found": "推广统计不存在",
+    "missing_required_fields": "缺少必填字段"
+  },
+  "newsletter": {
+    "invalid_email": "请输入有效的邮箱地址",
+    "already_subscribed": "您已经订阅了我们的邮件列表",
+    "resubscribed": "欢迎回来！您已重新订阅成功",
+    "subscribed": "订阅成功！感谢您的关注",
+    "missing_input": "请提供邮箱地址或取消订阅令牌",
+    "not_found": "未找到订阅记录",
+    "already_unsubscribed": "您已经取消了订阅",
+    "unsubscribed": "取消订阅成功",
+    "invalid_link": "无效的取消订阅链接"
+  },
+  "stripe_checkout": {
+    "trial_already_used": "您已订阅过试用计划，每个用户只能订阅一次",
+    "trial_blocked_for_paid": "您已有有效订阅，Pro/年度用户不可使用试用订阅",
+    "annual_no_downgrade": "无法从年度订阅降级到 Pro 订阅"
   }
 }

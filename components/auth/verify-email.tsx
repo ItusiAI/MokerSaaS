@@ -9,12 +9,14 @@ import { Button } from '@/components/ui/button'
 import { CheckCircle, XCircle, Loader2, Mail } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useApiError } from '@/hooks/use-api-error'
 
 export function VerifyEmailPage() {
   const router = useRouter()
   const pathname = usePathname()
   const locale = useLocale()
   const t = useTranslations("verify")
+  const tApi = useApiError()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
   const [message, setMessage] = useState('')
   const [hasVerified, setHasVerified] = useState(false)
@@ -47,12 +49,12 @@ export function VerifyEmailPage() {
         if (response.ok) {
           setStatus('success')
           setMessage(
-            data.messageKey ? t(data.messageKey) : (data.message || t('success'))
+            data.messageKey ? tApi(data.messageKey) : (data.message || t('success'))
           )
         } else {
           setStatus('error')
           setMessage(
-            data.errorKey ? t(data.errorKey) : (data.error || t('failed'))
+            data.errorKey ? tApi(data.errorKey) : (tApi(data.error) || t('failed'))
           )
         }
       } catch (error) {

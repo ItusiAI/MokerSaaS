@@ -40,6 +40,7 @@ import { format } from 'date-fns'
 import { useTranslations, useLocale } from 'next-intl'
 import { zhCN, enUS } from 'date-fns/locale'
 import { toast } from 'sonner'
+import { useApiError } from '@/hooks/use-api-error'
 
 interface AffiliateStats {
   totalProfiles: number
@@ -51,6 +52,7 @@ interface AffiliateStats {
 
 export function AffiliateManagement() {
   const t = useTranslations('admin.affiliate')
+  const tApi = useApiError()
   const locale = useLocale()
   const [stats, setStats] = useState<AffiliateStats | null>(null)
   const [profiles, setProfiles] = useState<any[]>([])
@@ -233,6 +235,7 @@ export function AffiliateManagement() {
           status: processStatus,
           transactionId: transactionId.trim() || undefined,
           failureReason: failureReason.trim() || undefined,
+          locale,
         }),
       })
 
@@ -249,7 +252,7 @@ export function AffiliateManagement() {
         fetchWithdrawals(withdrawalsPage)
         fetchStats()
       } else {
-        toast.error(data.error || t('withdrawals.process.failed'))
+        toast.error(tApi(data.error) || t('withdrawals.process.failed'))
       }
     } catch (error) {
       console.error('Error processing withdrawal:', error)

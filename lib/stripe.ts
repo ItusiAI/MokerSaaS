@@ -5,9 +5,10 @@ import Stripe from 'stripe'
 export const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 // 服务端Stripe实例 - 只在有密钥时初始化
+// 注意：Stripe SDK v12+ 会自动对齐到 SDK 发布时的 API 版本。
+// 不再显式传 apiVersion，使用 22.5.0 SDK 默认固定的最新版本。
 export const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2025-07-30.basil',
       typescript: true,
     })
   : null

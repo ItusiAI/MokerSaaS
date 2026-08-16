@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     
     if (!session?.user?.email) {
       return NextResponse.json(
-        { error: '未授权访问' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: '用户不存在' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     // 检查邮箱是否已验证
     if (user.emailVerified) {
       return NextResponse.json(
-        { error: '邮箱已验证，无需重复验证' },
+        { error: 'email_already_verified' },
         { status: 400 }
       )
     }
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     const clientIP = getClientIP(request)
 
     // 发送验证邮件
-    const emailResult = await sendVerificationEmail(user.email, token, locale as 'zh' | 'en', clientIP)
+    const emailResult = await sendVerificationEmail(user.email, token, locale as 'en' | 'zh' | 'ja' | 'ko' | 'tw', clientIP)
 
     if (!emailResult.success) {
       console.error('发送验证邮件失败:', emailResult.error)
@@ -90,20 +90,20 @@ export async function POST(request: NextRequest) {
         )
       }
       return NextResponse.json(
-        { error: '发送验证邮件失败，请稍后重试' },
+        { error: 'resend_verification_failed' },
         { status: 500 }
       )
     }
 
     return NextResponse.json({
       success: true,
-      message: '验证邮件已发送，请检查您的邮箱'
+      message: 'resend_verification_email_sent'
     })
 
   } catch (error) {
     console.error('重发验证邮件失败:', error)
     return NextResponse.json(
-      { error: '服务器内部错误' },
+      { error: 'server_internal_error' },
       { status: 500 }
     )
   }

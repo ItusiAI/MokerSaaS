@@ -15,7 +15,7 @@ export async function GET(
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
@@ -31,7 +31,7 @@ export async function GET(
 
     if (user.length === 0) {
       return NextResponse.json(
-        { error: '用户不存在' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -51,7 +51,7 @@ export async function GET(
   } catch (error) {
     console.error('Get user details error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }
@@ -66,7 +66,7 @@ export async function PUT(
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
@@ -79,7 +79,7 @@ export async function PUT(
       
       if (!['user', 'admin'].includes(role)) {
         return NextResponse.json(
-          { error: '无效的用户角色' },
+          { error: 'invalid_role' },
           { status: 400 }
         )
       }
@@ -95,13 +95,13 @@ export async function PUT(
 
       if (result.length === 0) {
         return NextResponse.json(
-          { error: '用户不存在' },
+          { error: 'user_not_found' },
           { status: 404 }
         )
       }
 
       return NextResponse.json({
-        message: '用户角色更新成功',
+        message: 'role_updated',
         user: result[0]
       })
     }
@@ -111,7 +111,7 @@ export async function PUT(
       
       if (!points || isNaN(points)) {
         return NextResponse.json(
-          { error: '积分数量无效' },
+          { error: 'points_invalid_amount' },
           { status: 400 }
         )
       }
@@ -125,7 +125,7 @@ export async function PUT(
 
       if (currentUser.length === 0) {
         return NextResponse.json(
-          { error: '用户不存在' },
+          { error: 'user_not_found' },
           { status: 404 }
         )
       }
@@ -137,7 +137,7 @@ export async function PUT(
       if (pointsType === 'gifted' && pointsChange > 0) {
         if (!user.subscriptionCurrentPeriodEnd) {
           return NextResponse.json(
-            { error: '赠送积分必须关联订阅到期时间，请先为用户设置订阅' },
+            { error: 'points_grant_needs_subscription' },
             { status: 400 }
           )
         }
@@ -145,7 +145,7 @@ export async function PUT(
         const now = new Date()
         if (user.subscriptionCurrentPeriodEnd < now) {
           return NextResponse.json(
-            { error: '用户订阅已过期，无法添加赠送积分。请先更新订阅到期时间' },
+            { error: 'points_grant_subscription_expired' },
             { status: 400 }
           )
         }
@@ -163,7 +163,7 @@ export async function PUT(
         // 如果是扣除赠送积分，确保不超过当前赠送积分数量
         if (pointsChange < 0 && Math.abs(pointsChange) > (user.giftedPoints || 0)) {
           return NextResponse.json(
-            { error: '扣除的赠送积分不能超过当前赠送积分数量' },
+            { error: 'points_deduct_insufficient' },
             { status: 400 }
           )
         }
@@ -172,7 +172,7 @@ export async function PUT(
       // 确保积分不为负数
       if (newTotalPoints < 0) {
         return NextResponse.json(
-          { error: '积分不足，无法扣除' },
+          { error: 'points_insufficient' },
           { status: 400 }
         )
       }
@@ -201,7 +201,7 @@ export async function PUT(
       })
 
       return NextResponse.json({
-        message: '积分调整成功',
+        message: 'points_adjusted',
         user: updatedUser[0]
       })
     }
@@ -212,7 +212,7 @@ export async function PUT(
       // 验证订阅状态
       if (subscriptionStatus && !['active', 'cancelled', 'past_due', 'paused'].includes(subscriptionStatus)) {
         return NextResponse.json(
-          { error: '无效的订阅状态' },
+          { error: 'invalid_subscription_status' },
           { status: 400 }
         )
       }
@@ -220,7 +220,7 @@ export async function PUT(
       // 验证订阅计划
       if (subscriptionPlan && !['trial', 'pro', 'annual'].includes(subscriptionPlan)) {
         return NextResponse.json(
-          { error: '无效的订阅计划' },
+          { error: 'invalid_subscription_plan' },
           { status: 400 }
         )
       }
@@ -276,19 +276,19 @@ export async function PUT(
       }
 
       return NextResponse.json({
-        message: '订阅信息更新成功',
+        message: 'subscription_updated',
         user: updatedUser[0]
       })
     }
 
     return NextResponse.json(
-      { error: '无效的操作类型' },
+      { error: 'invalid_operation_type' },
       { status: 400 }
     )
   } catch (error) {
     console.error('Update user error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

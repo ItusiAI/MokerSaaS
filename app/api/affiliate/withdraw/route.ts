@@ -4,6 +4,13 @@ import { authOptions } from '@/lib/auth'
 import { getOrCreateAffiliateProfile, createWithdrawal } from '@/lib/affiliate'
 import { sendWithdrawRequestAdminEmail } from '@/lib/email'
 
+function normalizeAppLocale(input: unknown, fallback: 'en' | 'zh' | 'ja' | 'ko' | 'tw' = 'en'): 'en' | 'zh' | 'ja' | 'ko' | 'tw' {
+  if (typeof input === 'string' && (['en', 'zh', 'ja', 'ko', 'tw'] as const).includes(input as any)) {
+    return input as 'en' | 'zh' | 'ja' | 'ko' | 'tw'
+  }
+  return fallback
+}
+
 /**
  * 创建提现申请
  */
@@ -13,12 +20,12 @@ export async function POST(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
 
-    const { amount, paymentMethod, accountName, accountInfo } = await request.json()
+    const { amount, paymentMethod, accountName, accountInfo, locale } = await request.json()
 
     // 验证输入
     if (!amount || typeof amount !== 'number' || amount <= 0) {
@@ -111,7 +118,7 @@ export async function POST(request: NextRequest) {
           accountName: accountName.trim(),
           accountInfo: accountInfo.trim(),
           requestedAt: new Date(),
-          locale: 'zh',
+          locale: normalizeAppLocale(locale, 'en'),
         })
       }
     } catch (notifyError) {

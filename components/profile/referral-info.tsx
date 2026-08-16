@@ -19,7 +19,17 @@ import {
 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { format } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
 import { toast } from 'sonner'
 
 interface ReferralHistoryItem {
@@ -126,7 +136,7 @@ export function ReferralInfo() {
     if (locale === 'zh') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
     }
-    return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })
+    return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })
   }
 
   const getActionLabel = (action: string) => {

@@ -158,7 +158,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDocs, onOpenDeploy, onOpen
               </li>
               <li>
                 <Link
-                  href="https://voicecanvas.com"
+                  href="https://voicecanvas.org"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[var(--color-primary)] transition-colors"

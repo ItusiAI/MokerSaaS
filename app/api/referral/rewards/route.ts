@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching referral rewards:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'failed_to_get_referral_rewards' },
       { status: 500 }
     )
   }

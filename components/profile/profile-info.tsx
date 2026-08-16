@@ -40,8 +40,28 @@ import {
   Box
 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
+import { useApiError } from '@/hooks/use-api-error'
 import { format } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
+
+const APP_INTL_LOCALE_TAG: Record<string, string> = {
+  zh: 'zh-CN',
+  ja: 'ja-JP',
+  ko: 'ko-KR',
+}
+function getIntlLocaleTag(locale: string | undefined | null): string {
+  return APP_INTL_LOCALE_TAG[locale || ''] || 'en-US'
+}
 import { ConnectedAccounts } from './connected-accounts'
 import { SubscriptionInfo } from './subscription-info'
 import { PointsPurchase } from './points-purchase'
@@ -86,6 +106,7 @@ function ProfileInfoContent() {
   const router = useRouter()
   const locale = useLocale()
   const t = useTranslations("profile")
+  const tApi = useApiError()
   const tPlan = useTranslations("profile") // 复用 Profile 命名空间中的订阅计划翻译
   const { data: session, status } = useSession()
   
@@ -141,7 +162,7 @@ function ProfileInfoContent() {
     const sessionId = searchParams.get('session_id')
     
     if (payment === 'success') {
-      toast.success('积分购买成功！积分已添加到您的账户')
+      toast.success(t('points_purchase_success_toast'))
       // 刷新积分和历史记录
       fetchPoints()
       fetchHistory(currentPage)
@@ -153,7 +174,7 @@ function ProfileInfoContent() {
         window.history.replaceState({}, '', url.toString())
       }
     } else if (payment === 'cancelled') {
-      toast.error('支付已取消')
+      toast.error(t('payment_cancelled_toast'))
       // 清除URL参数
       if (typeof window !== 'undefined') {
         const url = new URL(window.location.href)
@@ -227,9 +248,9 @@ function ProfileInfoContent() {
       const data = await response.json()
 
       if (response.ok) {
-        toast.success(data.message || t('verification_email_sent'))
+        toast.success(tApi(data.message) || t('verification_email_sent'))
       } else {
-        toast.error(data.error || t('verification_email_failed'))
+        toast.error(tApi(data.error) || t('verification_email_failed'))
       }
     } catch (error) {
       console.error('重发验证邮件失败:', error)
@@ -419,12 +440,12 @@ function ProfileInfoContent() {
     if (locale === 'zh') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
     }
-    return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })
+    return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })
   }
 
   const formatDate = (date: Date | string) => {
     const d = new Date(date)
-    return d.toLocaleDateString(locale === 'zh' ? 'zh-CN' : 'en-US', {
+    return d.toLocaleDateString(getIntlLocaleTag(locale), {
       year: 'numeric',
       month: 'long',
       day: 'numeric'

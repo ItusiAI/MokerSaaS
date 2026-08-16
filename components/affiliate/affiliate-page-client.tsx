@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { useApiError } from '@/hooks/use-api-error'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -40,7 +41,17 @@ import {
   TableRow 
 } from '@/components/ui/table'
 import { format } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
 import { useLocale } from 'next-intl'
 
 interface AffiliateStats {
@@ -60,6 +71,7 @@ export default function AffiliatePageClient() {
   const { data: session, status } = useSession()
   const router = useRouter()
   const t = useTranslations('affiliate_page')
+  const tApi = useApiError()
   const locale = useLocale()
   
   const [customCode, setCustomCode] = useState('')
@@ -157,16 +169,7 @@ export default function AffiliatePageClient() {
         setCanEdit(false)
         fetchAffiliateStats()
       } else {
-        // 根据错误码显示对应的翻译
-        const errorKey = data.error || 'UPDATE_FAILED'
-        const errorMessages: Record<string, string> = {
-          'CODE_EMPTY': t('code_setting.enter_code'),
-          'INVALID_FORMAT': t('code_setting.invalid_format'),
-          'CODE_ALREADY_TAKEN': t('code_setting.already_taken'),
-          'CODE_ALREADY_CHANGED': t('code_setting.already_changed'),
-          'UPDATE_FAILED': t('code_setting.update_failed'),
-        }
-        toast.error(errorMessages[errorKey] || t('code_setting.update_failed'))
+        toast.error(tApi(data.error) || t('code_setting.update_failed'))
       }
     } catch (error) {
       console.error('Error updating affiliate code:', error)
@@ -202,9 +205,8 @@ export default function AffiliatePageClient() {
     const date = new Date(dateString)
     if (locale === 'zh') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
-    } else {
-      return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })
     }
+    return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })
   }
 
   // 金额格式化函数
@@ -314,6 +316,7 @@ export default function AffiliatePageClient() {
           paymentMethod,
           accountName: accountName.trim(),
           accountInfo: accountInfo.trim(),
+          locale,
         }),
       })
 
@@ -328,16 +331,7 @@ export default function AffiliatePageClient() {
         fetchAffiliateStats()
         fetchWithdrawals()
       } else {
-        const errorMessages: Record<string, string> = {
-          'INVALID_AMOUNT': t('withdraw.invalid_amount'),
-          'INVALID_PAYMENT_METHOD': t('withdraw.invalid_payment_method'),
-          'INVALID_ACCOUNT_NAME': t('withdraw.account_name_required'),
-          'INVALID_ACCOUNT_INFO': t('withdraw.account_info_required'),
-          'MIN_AMOUNT_NOT_MET': t('withdraw.min_amount_error'),
-          'INSUFFICIENT_BALANCE': t('withdraw.insufficient_balance'),
-          'WITHDRAWAL_FAILED': t('withdraw.failed'),
-        }
-        toast.error(errorMessages[data.error] || t('withdraw.failed'))
+        toast.error(tApi(data.error) || t('withdraw.failed'))
       }
     } catch (error) {
       console.error('Error creating withdrawal:', error)

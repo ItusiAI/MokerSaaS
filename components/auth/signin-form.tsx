@@ -40,7 +40,7 @@ export function SignInForm() {
 
   // 根据语言环境构建正确的路径
   const getLocalizedPath = (path: string) => {
-    return locale === "en" ? `/en${path}` : `/zh${path}`
+    return `/${locale}${path}`
   }
 
   const resolveCallbackUrl = (options: { consume?: boolean } = {}) => {
@@ -212,7 +212,7 @@ export function SignInForm() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-secondary px-2 text-muted-foreground">
-                {locale === "en" ? "Or continue with email" : "或使用邮箱登录"}
+                {t("or_continue_with_email")}
               </span>
             </div>
           </div>

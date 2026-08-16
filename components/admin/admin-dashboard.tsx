@@ -274,17 +274,15 @@ function AdminOverview() {
     return num.toLocaleString('en-US')
   }
 
-  // 格式化日期显示（根据语言显示中文或英文日期）
+  // 格式化日期显示（中文/日文/韩文使用本地格式，英文使用 en-US）
   const formatDate = (dateStr: string) => {
     try {
       const date = new Date(dateStr)
-      if (locale === 'zh') {
-        // 中文格式：1月1日
-        return date.toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' })
-      } else {
-        // 英文格式：Jan 1
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+      if ((locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko')) {
+        const tag = locale === 'zh' || locale === 'tw' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : 'ko-KR'
+        return date.toLocaleDateString(tag, { month: 'long', day: 'numeric' })
       }
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     } catch {
       return dateStr
     }

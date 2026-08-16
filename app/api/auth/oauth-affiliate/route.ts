@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     if (!affiliateCode) {
       return NextResponse.json(
-        { error: 'Affiliate code is required' },
+        { error: 'affiliate_code_required' },
         { status: 400 }
       )
     }
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'User not found' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     const affiliateInfo = await findAffiliateByCode(affiliateCode.trim())
     if (!affiliateInfo) {
       return NextResponse.json(
-        { error: 'Invalid affiliate code' },
+        { error: 'affiliate_code_invalid' },
         { status: 400 }
       )
     }
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     // 不能自己推广自己
     if (affiliateInfo.userId === userId) {
       return NextResponse.json(
-        { error: 'Cannot use your own affiliate code' },
+        { error: 'affiliate_code_self' },
         { status: 400 }
       )
     }
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     if (existingRelation.length > 0) {
       return NextResponse.json({
         success: true,
-        message: 'Affiliate relationship already exists'
+        message: 'affiliate_relation_exists'
       })
     }
 
@@ -91,11 +91,11 @@ export async function POST(request: NextRequest) {
       if (existingRelation.length > 0) {
         return NextResponse.json({
           success: true,
-          message: 'Affiliate relationship already exists'
+          message: 'affiliate_relation_exists'
         })
       }
       return NextResponse.json(
-        { error: 'Affiliate code can only be applied for new registrations' },
+        { error: 'affiliate_new_user_only' },
         { status: 400 }
       )
     }
@@ -109,13 +109,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Affiliate relationship created successfully'
+      message: 'affiliate_relation_created'
     })
 
   } catch (error) {
     console.error('OAuth affiliate processing error:', error)
     return NextResponse.json(
-      { error: 'Failed to process affiliate' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

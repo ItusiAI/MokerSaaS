@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     const session = await getServerSession(authOptions)
     if (!session?.user?.email) {
       return NextResponse.json(
-        { success: false, error: '用户未登录' },
+        { success: false, error: 'not_logged_in_alt' },
         { status: 401 }
       )
     }
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     const user = userList[0]
     if (!user) {
       return NextResponse.json(
-        { success: false, error: '用户不存在' },
+        { success: false, error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -98,7 +98,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('获取用户积分失败:', error)
     return NextResponse.json(
-      { success: false, error: '服务器内部错误' },
+      { success: false, error: 'server_internal_error' },
       { status: 500 }
     )
   }

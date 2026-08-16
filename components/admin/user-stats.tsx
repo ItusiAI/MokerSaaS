@@ -27,6 +27,17 @@ import {
   MoreHorizontal
 } from 'lucide-react'
 import { format } from 'date-fns'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
 import { useTranslations, useLocale } from 'next-intl'
 import { toast } from 'sonner'
 
@@ -76,6 +87,12 @@ export function UserStats() {
     total: 0,
     totalPages: 0
   })
+  const formatShort = (date: Date) =>
+    format(
+      date,
+      (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+      { locale: getDateFnsLocale(locale) }
+    )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [search, setSearch] = useState('')
@@ -404,7 +421,8 @@ export function UserStats() {
                             <span>
                               {format(
                                 new Date(user.subscriptionCurrentPeriodEnd),
-                                locale === 'zh' ? 'yyyy年MM月dd日' : 'MMM dd, yyyy'
+                                (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                                { locale: getDateFnsLocale(locale) }
                               )}
                             </span>
                           </div>
@@ -424,7 +442,8 @@ export function UserStats() {
                         <span className="text-sm">
                           {format(
                             new Date(user.createdAt),
-                            locale === 'zh' ? 'yyyy年MM月dd日' : 'MMM dd, yyyy'
+                            (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                            { locale: getDateFnsLocale(locale) }
                           )}
                         </span>
                       </div>
@@ -535,6 +554,12 @@ function UserActionDialog({
   const [points, setPoints] = useState('')
   const [pointsType, setPointsType] = useState('purchased')
   const [description, setDescription] = useState('')
+  const formatShort = (date: Date) =>
+    format(
+      date,
+      (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+      { locale: getDateFnsLocale(locale) }
+    )
   const [subscriptionStatus, setSubscriptionStatus] = useState('')
   const [subscriptionPlan, setSubscriptionPlan] = useState('')
   const [subscriptionEndDate, setSubscriptionEndDate] = useState('')
@@ -695,7 +720,8 @@ function UserActionDialog({
                         <span className="ml-2 text-blue-700 dark:text-blue-300">
                           {format(
                             new Date(user.subscriptionCurrentPeriodEnd),
-                            locale === 'zh' ? 'yyyy年MM月dd日' : 'MMM dd, yyyy'
+                            (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                            { locale: getDateFnsLocale(locale) }
                           )}
                         </span>
                       </div>
@@ -773,7 +799,7 @@ function UserActionDialog({
                   <Label>{t('dialogs.manage_subscription.end_date_label')}</Label>
                   <div className="p-2 bg-muted rounded-md text-sm">
                     {subscriptionEndDate ? 
-                      format(new Date(subscriptionEndDate), locale === 'zh' ? 'yyyy年MM月dd日' : 'MMM dd, yyyy') : 
+                      format(new Date(subscriptionEndDate), (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy', { locale: getDateFnsLocale(locale) }) : 
                       t('dialogs.manage_subscription.select_plan_first')
                     }
                   </div>

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     const session = await getServerSession(authOptions)
     if (!session?.user?.email) {
       return NextResponse.json(
-        { success: false, error: '用户未登录' },
+        { success: false, error: 'not_logged_in_alt' },
         { status: 401 }
       )
     }
@@ -22,14 +22,14 @@ export async function POST(request: NextRequest) {
     // 验证参数
     if (!points || points <= 0) {
       return NextResponse.json(
-        { success: false, error: '积分数量无效' },
+        { success: false, error: 'points_invalid_amount' },
         { status: 400 }
       )
     }
 
     if (!description || !type) {
       return NextResponse.json(
-        { success: false, error: '缺少必要参数' },
+        { success: false, error: 'points_missing_params' },
         { status: 400 }
       )
     }
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     const user = userList[0]
     if (!user) {
       return NextResponse.json(
-        { success: false, error: '用户不存在' },
+        { success: false, error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     // 检查积分是否足够
     if ((user.points || 0) < points) {
       return NextResponse.json(
-        { success: false, error: '积分不足' },
+        { success: false, error: 'points_insufficient' },
         { status: 400 }
       )
     }
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: '积分扣除成功',
+      message: 'points_deducted_successfully',
       data: {
         deductedPoints: points,
         remainingPoints: result.points,
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('积分扣除失败:', error)
     return NextResponse.json(
-      { success: false, error: '服务器内部错误' },
+      { success: false, error: 'server_internal_error' },
       { status: 500 }
     )
   }

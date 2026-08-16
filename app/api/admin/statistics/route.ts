@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     // 验证管理员权限
     const adminAccess = await isAdmin()
     if (!adminAccess) {
-      return NextResponse.json({ error: '需要管理员权限' }, { status: 403 })
+      return NextResponse.json({ error: 'admin_required' }, { status: 403 })
     }
 
     const { searchParams } = new URL(request.url)
@@ -245,11 +245,11 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    return NextResponse.json({ error: '无效的类型参数' }, { status: 400 })
+    return NextResponse.json({ error: 'invalid_type_param' }, { status: 400 })
   } catch (error) {
     console.error('获取统计数据失败:', error)
     return NextResponse.json(
-      { error: '获取统计数据失败' },
+      { error: 'fetch_statistics_failed' },
       { status: 500 }
     )
   }

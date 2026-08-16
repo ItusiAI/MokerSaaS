@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
   // 定义支持的语言
-  const locales = ['zh', 'en']
+  const locales = ['zh', 'en', 'ja', 'ko', 'tw']
   
   // 定义页面路径
   const pages = [
@@ -28,8 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: page === '' ? 1.0 : 0.8,
         alternates: {
           languages: {
-            'zh': `${baseUrl}/zh${page}`,
-            'en': `${baseUrl}/en${page}`,
+'zh': `${baseUrl}/zh${page}`,
+          'zh-CN': `${baseUrl}/zh${page}`,
+          'en': `${baseUrl}/en${page}`,
+          'ja': `${baseUrl}/ja${page}`,
+          'ko': `${baseUrl}/ko${page}`,
+          'tw': `${baseUrl}/tw${page}`,
           }
         }
       })

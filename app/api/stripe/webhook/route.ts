@@ -22,6 +22,9 @@ const logWebhookError = (...args: any[]) => {
   }
 }
 
+// 默认邮件语言（注册流程未在 users 表中持久化语言偏好，故此处统一使用英文）
+const DEFAULT_EMAIL_LOCALE: 'en' | 'zh' | 'ja' | 'ko' | 'tw' = 'en'
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.text()
@@ -103,7 +106,7 @@ export async function POST(request: NextRequest) {
             const user = await db.select({ email: users.email }).from(users).where(eq(users.id, userId)).limit(1)
             if (user.length > 0 && user[0].email) {
               // 根据邮箱判断语言偏好（简单判断，可以根据实际需求优化）
-              const locale = user[0].email.includes('@') ? 'en' : 'en' // 默认英文，可以根据实际需求调整
+              const locale = DEFAULT_EMAIL_LOCALE // 默认英文，可以根据实际需求调整
               await sendPointsPurchaseEmail(
                 user[0].email,
                 points,
@@ -430,7 +433,7 @@ export async function POST(request: NextRequest) {
             try {
               if (customerEmail) {
                 // 根据邮箱判断语言偏好（简单判断，可以根据实际需求优化）
-                const locale = customerEmail.includes('@') ? 'en' : 'en' // 默认英文，可以根据实际需求调整
+                const locale = DEFAULT_EMAIL_LOCALE // 默认英文，可以根据实际需求调整
                 await sendSubscriptionSuccessEmail(
                   customerEmail,
                   `${planDisplayName}订阅`,
@@ -617,7 +620,7 @@ export async function POST(request: NextRequest) {
           try {
             if (customerEmail) {
               // 根据邮箱判断语言偏好（简单判断，可以根据实际需求优化）
-              const locale = customerEmail.includes('@') ? 'en' : 'en' // 默认英文，可以根据实际需求调整
+              const locale = DEFAULT_EMAIL_LOCALE // 默认英文，可以根据实际需求调整
               await sendSubscriptionSuccessEmail(
                 customerEmail,
                 'Trial订阅',
@@ -731,7 +734,7 @@ export async function POST(request: NextRequest) {
               const user = await db.select({ email: users.email }).from(users).where(eq(users.id, userId)).limit(1)
               if (user.length > 0 && user[0].email) {
                 // 根据邮箱判断语言偏好（简单判断，可以根据实际需求优化）
-                const locale = user[0].email.includes('@') ? 'en' : 'en' // 默认英文，可以根据实际需求调整
+                const locale = DEFAULT_EMAIL_LOCALE // 默认英文，可以根据实际需求调整
                 await sendPointsPurchaseEmail(
                   user[0].email,
                   points,
@@ -926,6 +929,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ received: true })
   } catch (error) {
     logWebhookError('Webhook processing failed:', error)
-    return NextResponse.json({ error: 'Webhook处理失败' }, { status: 500 })
+    return NextResponse.json({ error: 'webhook_failed' }, { status: 500 })
   }
 }

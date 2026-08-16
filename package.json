@@ -78,7 +78,7 @@
     "recharts": "2.15.0",
     "resend": "^4.6.0",
     "sonner": "^1.7.1",
-    "stripe": "^18.3.0",
+    "stripe": "^22.5.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tencentcloud-sdk-nodejs": "^4.1.79",

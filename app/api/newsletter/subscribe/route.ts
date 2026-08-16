@@ -5,18 +5,29 @@ import { eq } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
 import crypto from 'crypto'
 import { isAdmin } from '@/lib/auth-utils'
+import { getTranslations } from 'next-intl/server'
+
+const SUPPORTED_LOCALES = ['en', 'zh', 'ja', 'ko', 'tw'] as const
+type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
+
+function pickLocale(input: unknown): SupportedLocale {
+  if (typeof input === 'string' && (SUPPORTED_LOCALES as readonly string[]).includes(input)) {
+    return input as SupportedLocale
+  }
+  return 'en'
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, locale = 'zh' } = await request.json()
+    const body = await request.json()
+    const email = body?.email
+    const locale = pickLocale(body?.locale)
+    const t = await getTranslations({ locale, namespace: 'newsletter' })
 
     // 验证邮箱格式
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!email || !emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: locale === 'zh' ? '请输入有效的邮箱地址' : 'Please enter a valid email address' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: t('invalid_email') }, { status: 400 })
     }
 
     // 检查是否已经订阅
@@ -28,29 +39,24 @@ export async function POST(request: NextRequest) {
 
     if (existingSubscription.length > 0) {
       const subscription = existingSubscription[0]
-      
+
       // 如果已经是活跃订阅
       if (subscription.isActive) {
-        return NextResponse.json(
-          { message: locale === 'zh' ? '您已经订阅了我们的邮件列表' : 'You are already subscribed to our newsletter' },
-          { status: 200 }
-        )
-      } else {
-        // 重新激活订阅
-        await db
-          .update(newsletterSubscriptions)
-          .set({
-            isActive: true,
-            subscribedAt: new Date(),
-            unsubscribedAt: null,
-            locale: locale,
-          })
-          .where(eq(newsletterSubscriptions.email, email))
-
-        return NextResponse.json({
-          message: locale === 'zh' ? '欢迎回来！您已重新订阅成功' : 'Welcome back! You have successfully resubscribed'
-        })
+        return NextResponse.json({ message: t('already_subscribed') }, { status: 200 })
       }
+
+      // 重新激活订阅
+      await db
+        .update(newsletterSubscriptions)
+        .set({
+          isActive: true,
+          subscribedAt: new Date(),
+          unsubscribedAt: null,
+          locale: locale,
+        })
+        .where(eq(newsletterSubscriptions.email, email))
+
+      return NextResponse.json({ message: t('resubscribed') })
     }
 
     // 创建新订阅
@@ -67,16 +73,10 @@ export async function POST(request: NextRequest) {
     // TODO: 这里可以发送欢迎邮件
     // await sendWelcomeEmail(email, locale, unsubscribeToken)
 
-    return NextResponse.json({
-      message: locale === 'zh' ? '订阅成功！感谢您的关注' : 'Successfully subscribed! Thank you for your interest'
-    })
-
+    return NextResponse.json({ message: t('subscribed') })
   } catch (error) {
     console.error('Newsletter subscription error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
@@ -86,10 +86,7 @@ export async function GET(request: NextRequest) {
     // 验证管理员权限
     const adminAccess = await isAdmin()
     if (!adminAccess) {
-      return NextResponse.json(
-        { error: '需要管理员权限' },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: 'admin_required' }, { status: 403 })
     }
 
     const { searchParams } = new URL(request.url)
@@ -101,10 +98,18 @@ export async function GET(request: NextRequest) {
         .from(newsletterSubscriptions)
         .where(eq(newsletterSubscriptions.isActive, true))
 
+      const counts = totalSubscriptions.reduce<Record<string, number>>((acc, sub) => {
+        const loc = (sub.locale as string) || 'en'
+        acc[loc] = (acc[loc] || 0) + 1
+        return acc
+      }, {})
+
       return NextResponse.json({
         total: totalSubscriptions.length,
-        zh: totalSubscriptions.filter(sub => sub.locale === 'zh').length,
-        en: totalSubscriptions.filter(sub => sub.locale === 'en').length,
+        zh: counts.zh || 0,
+        en: counts.en || 0,
+        ja: counts.ja || 0,
+        ko: counts.ko || 0,
       })
     }
 
@@ -129,9 +134,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 })
   } catch (error) {
     console.error('Newsletter stats error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
-} 
+}

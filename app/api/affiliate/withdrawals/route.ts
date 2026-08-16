@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Failed to get withdrawals:', error)
     return NextResponse.json(
-      { error: 'Failed to get withdrawals' },
+      { error: 'failed_to_get_withdrawals' },
       { status: 500 }
     )
   }

@@ -13,7 +13,7 @@ import {
   AlertCircle,
   ExternalLink
 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
@@ -44,6 +44,8 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'
 
 export function TrafficAnalytics() {
   const t = useTranslations('admin.traffic')
+  const locale = useLocale()
+  const localeTag = locale === 'zh' || locale === 'tw' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : locale === 'ko' ? 'ko-KR' : 'en-US'
   const [stats, setStats] = useState<UmamiStats | null>(null)
   const [metrics, setMetrics] = useState<UmamiMetrics | null>(null)
   const [pageviews, setPageviews] = useState<UmamiPageviews | null>(null)
@@ -257,7 +259,7 @@ export function TrafficAnalytics() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={pageviews.pageviews.map((item, index) => ({
-                date: new Date(item.t).toLocaleDateString(),
+                date: new Date(item.t).toLocaleDateString(localeTag),
                 pageviews: item.y,
                 sessions: pageviews.sessions[index]?.y || 0
               }))}>

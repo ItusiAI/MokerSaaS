@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
+import { useApiError } from '@/hooks/use-api-error'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -44,8 +45,18 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { format } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
 import { useLocale } from 'next-intl'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
 
 interface ReferralStats {
   totalReferrals: number
@@ -80,6 +91,7 @@ export default function ReferralPageClient() {
   const { data: session, status } = useSession()
   const t = useTranslations('referral_page')
   const tCommon = useTranslations('profile')
+  const tApi = useApiError()
   const locale = useLocale()
   const router = useRouter()
   
@@ -154,13 +166,8 @@ export default function ReferralPageClient() {
         setCustomCode('')
         fetchReferralStats()
       } else {
-        if (data.error.includes('only be changed once') || data.error.includes('already set')) {
-          toast.error(t('custom_code.already_set'))
-        } else if (data.error.includes('already taken')) {
-          toast.error(t('custom_code.already_taken'))
-        } else {
-          toast.error(t('custom_code.error'))
-        }
+        // 根据错误 key 显示对应的翻译
+        toast.error(tApi(data.error) || t('custom_code.error'))
       }
     } catch (error) {
       console.error('Error updating referral code:', error)
@@ -211,9 +218,8 @@ export default function ReferralPageClient() {
     const date = typeof dateString === 'string' ? new Date(dateString) : dateString
     if (locale === 'zh') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
-    } else {
-      return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })
     }
+    return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })
   }
 
   const fetchRewards = async (page = 1) => {

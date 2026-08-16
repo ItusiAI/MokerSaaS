@@ -7,7 +7,7 @@ import { eq } from 'drizzle-orm'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-06-30.basil',
+  // 跟随 stripe-node SDK v12+ 默认对齐的 API 版本
 })
 
 export async function POST(request: NextRequest) {
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     if (!userData?.stripeCustomerId) {
       return NextResponse.json(
-        { error: 'No Stripe customer found' },
+        { error: 'no_stripe_customer_found' },
         { status: 404 }
       )
     }
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Customer portal creation error:', error)
     return NextResponse.json(
-      { error: 'Failed to create customer portal session' },
+      { error: 'failed_to_create_customer_portal_session' },
       { status: 500 }
     )
   }

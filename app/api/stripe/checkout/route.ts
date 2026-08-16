@@ -5,21 +5,25 @@ import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { users } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
+import { getTranslations } from 'next-intl/server'
 
 export async function POST(request: NextRequest) {
   try {
     // 检查Stripe是否已配置
     if (!stripe) {
-      return NextResponse.json({ error: 'Stripe not configured' }, { status: 500 })
+      return NextResponse.json({ error: 'stripe_not_configured' }, { status: 500 })
     }
 
     const session = await getServerSession(authOptions)
-    
+
     if (!session?.user?.email) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
     }
 
     const { priceId, planType, locale = 'en' } = await request.json()
+    const validLocales = ['en', 'zh', 'ja', 'ko', 'tw']
+    const validLocale = validLocales.includes(locale) ? locale : 'en'
+    const t = await getTranslations({ locale: validLocale, namespace: 'stripe_checkout' })
 
     // 获取实际的价格ID
     const actualPriceIds = getActualPriceIds()
@@ -33,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     // 企业版不支持在线支付
     if (planType === 'enterprise') {
-      return NextResponse.json({ error: 'Enterprise plan requires contact sales' }, { status: 400 })
+      return NextResponse.json({ error: 'enterprise_contact_sales' }, { status: 400 })
     }
 
     // 获取用户当前订阅状态
@@ -61,7 +65,7 @@ export async function POST(request: NextRequest) {
         // 检查是否已经订阅过试用版
         if (currentUser.hasTrialSubscription) {
           return NextResponse.json(
-            { error: 'You have already subscribed to the trial plan. Each user can only subscribe once.' },
+            { error: t('trial_already_used') },
             { status: 400 }
           )
         }
@@ -72,7 +76,7 @@ export async function POST(request: NextRequest) {
         
         if (hasActiveProOrAnnual) {
           return NextResponse.json(
-            { error: 'You already have an active subscription. Trial subscription is not available for Pro/Annual users.' },
+            { error: t('trial_blocked_for_paid') },
             { status: 400 }
           )
         }
@@ -83,7 +87,7 @@ export async function POST(request: NextRequest) {
     if (planType === 'pro') {
       if (currentUser && hasActiveSubscription && currentUser.subscriptionPlan === 'annual') {
         return NextResponse.json(
-          { error: 'You cannot downgrade from Annual to Pro. Annual subscription cannot be downgraded.' },
+          { error: t('annual_no_downgrade') },
           { status: 400 }
         )
       }
@@ -107,7 +111,7 @@ export async function POST(request: NextRequest) {
       } else if (planType === 'annual') {
         finalPriceId = actualPriceIds.annual
       } else {
-        return NextResponse.json({ error: 'Missing price ID for plan type' }, { status: 400 })
+        return NextResponse.json({ error: 'missing_price_id_for_plan' }, { status: 400 })
       }
     }
 
@@ -117,7 +121,7 @@ export async function POST(request: NextRequest) {
       console.error('计划类型:', planType)
       console.error('最终价格ID:', finalPriceId)
       console.error('可用的价格ID:', actualPriceIds)
-      return NextResponse.json({ error: 'Price ID not configured for this plan' }, { status: 400 })
+      return NextResponse.json({ error: 'price_id_not_configured' }, { status: 400 })
     }
 
     console.log('使用的最终价格ID:', finalPriceId)
@@ -139,8 +143,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 验证locale并构建成功URL
-    const validLocales = ['en', 'zh']
-    const validLocale = validLocales.includes(locale) ? locale : 'en'
+    // (validLocale already computed above for translations)
     
     // 创建结账会话配置
     // 试用订阅使用一次性支付模式（payment），其他使用订阅模式（subscription）
@@ -186,7 +189,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Stripe checkout error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'server_internal_error' },
       { status: 500 }
     )
   }

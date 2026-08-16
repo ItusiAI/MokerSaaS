@@ -11,12 +11,14 @@ import { Label } from '@/components/ui/label'
 import { Lock, ArrowLeft, CheckCircle, XCircle, Eye, EyeOff, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useApiError } from '@/hooks/use-api-error'
 
 export function ResetPasswordForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const locale = useLocale()
   const t = useTranslations("reset_password")
+  const tApi = useApiError()
   
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -89,11 +91,11 @@ export function ResetPasswordForm() {
 
       if (response.ok) {
         setStatus('success')
-        setMessage(data.messageKey ? t(data.messageKey) : t('success_message'))
+        setMessage(data.messageKey ? tApi(data.messageKey) : t('success_message'))
       } else {
         setStatus('error')
         setMessage(
-          data.errorKey ? t(data.errorKey) : (data.error || t('reset_failed'))
+          data.errorKey ? tApi(data.errorKey) : (tApi(data.error) || t('reset_failed'))
         )
       }
     } catch (error) {

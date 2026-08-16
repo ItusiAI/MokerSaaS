@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const session = await getServerSession(authOptions)
     
     if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
     }
 
     const { searchParams } = new URL(request.url)
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('获取支付记录失败:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch payment history' },
+      { error: 'failed_to_fetch_payment_history' },
       { status: 500 }
     )
   }

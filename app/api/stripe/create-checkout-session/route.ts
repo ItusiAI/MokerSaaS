@@ -7,19 +7,19 @@ export async function POST(request: NextRequest) {
   try {
     // 检查Stripe是否已配置
     if (!stripe) {
-      return NextResponse.json({ error: 'Stripe not configured' }, { status: 500 })
+      return NextResponse.json({ error: 'stripe_not_configured' }, { status: 500 })
     }
 
     const session = await getServerSession(authOptions)
-    
+
     if (!session?.user?.email) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
     }
 
     const { points, amount, priceId } = await request.json()
 
     if (!points || !amount) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+      return NextResponse.json({ error: 'missing_required_fields' }, { status: 400 })
     }
 
     // 创建或获取客户
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Stripe checkout session creation error:', error)
     return NextResponse.json(
-      { error: 'Failed to create checkout session' },
+      { error: 'failed_to_create_checkout_session' },
       { status: 500 }
     )
   }

@@ -33,7 +33,7 @@ export function SignInDialog({ open, onOpenChange }: SignInDialogProps) {
 
   // 根据语言环境构建正确的路径
   const getLocalizedPath = (path: string) => {
-    return locale === "en" ? `/en${path}` : `/zh${path}`
+    return `/${locale}${path}`
   }
 
   // 保存当前页面路径到 sessionStorage
@@ -207,7 +207,7 @@ export function SignInDialog({ open, onOpenChange }: SignInDialogProps) {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                {locale === "en" ? "Or continue with email" : "或使用邮箱登录"}
+                {t("or_continue_with_email")}
               </span>
             </div>
           </div>

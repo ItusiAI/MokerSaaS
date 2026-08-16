@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: '未登录' },
+        { error: 'not_logged_in' },
         { status: 401 }
       )
     }
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('获取积分失败:', error)
     return NextResponse.json(
-      { error: '获取积分失败' },
+      { error: 'fetch_points_failed' },
       { status: 500 }
     )
   }
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     
     if (!userId || !points || !operation) {
       return NextResponse.json(
-        { error: '缺少必要参数' },
+        { error: 'points_missing_params' },
         { status: 400 }
       )
     }
@@ -60,13 +60,13 @@ export async function POST(request: NextRequest) {
       result = await deductPoints(userId, points)
     } else {
       return NextResponse.json(
-        { error: '无效的操作类型' },
+        { error: 'invalid_operation_type' },
         { status: 400 }
       )
     }
 
     return NextResponse.json({
-      message: `积分操作成功`,
+      message: 'points_operation_success',
       newPoints: result,
       success: true
     })
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     console.error('积分操作失败:', error)
     return NextResponse.json(
       { 
-        error: error instanceof Error ? error.message : '积分操作失败'
+        error: error instanceof Error ? error.message : 'points_operation_failed'
       },
       { status: 500 }
     )

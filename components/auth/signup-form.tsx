@@ -14,11 +14,13 @@ import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
+import { useApiError } from '@/hooks/use-api-error'
 import { setAffiliateCookie } from '@/lib/utils'
 
 export function SignUpForm() {
   const locale = useLocale()
   const t = useTranslations("auth")
+  const tApi = useApiError()
   const searchParams = useSearchParams()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -106,7 +108,7 @@ export function SignUpForm() {
       const data = await response.json()
 
       if (response.ok) {
-        setSuccess(data.messageKey ? t(data.messageKey) : (data.message || t('register_success')))
+        setSuccess(data.messageKey ? tApi(data.messageKey) : (data.message || t('register_success')))
         // 3秒后跳转到登录页
         setTimeout(() => {
           const callbackUrl = getCallbackUrl()
@@ -117,7 +119,7 @@ export function SignUpForm() {
         }, 3000)
       } else {
         setError(
-          data.errorKey ? t(data.errorKey) : (data.error || t('register_failed'))
+          data.errorKey ? tApi(data.errorKey) : (tApi(data.error) || t('register_failed'))
         )
       }
     } catch (error) {

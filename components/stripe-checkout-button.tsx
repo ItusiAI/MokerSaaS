@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { loadStripe } from '@stripe/stripe-js'
+import { useApiError } from '@/hooks/use-api-error'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -30,6 +31,7 @@ export function StripeCheckoutButton({
   const router = useRouter()
   const locale = useLocale()
   const t = useTranslations('profile')
+  const tApi = useApiError()
 
   const getLocalizedPath = (path: string) => {
     return `/${locale}${path}`
@@ -59,12 +61,12 @@ export function StripeCheckoutButton({
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || t('payment_failed'))
+        throw new Error(tApi(data.error) || t('payment_failed'))
       }
 
       const stripe = await stripePromise
       if (!stripe) {
-        throw new Error('Stripe 加载失败')
+        throw new Error(t('stripe_load_failed'))
       }
 
       const { error } = await stripe.redirectToCheckout({

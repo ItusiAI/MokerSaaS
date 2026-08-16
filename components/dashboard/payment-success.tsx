@@ -10,6 +10,15 @@ import { CheckCircle, Loader2, Crown, Gift, ArrowRight } from 'lucide-react'
 import { toast } from 'sonner'
 import Link from 'next/link'
 
+const APP_INTL_LOCALE_TAG: Record<string, string> = {
+  zh: 'zh-CN',
+  ja: 'ja-JP',
+  ko: 'ko-KR',
+}
+function getIntlLocaleTag(locale: string | undefined | null): string {
+  return APP_INTL_LOCALE_TAG[locale || ''] || 'en-US'
+}
+
 interface SubscriptionData {
   subscriptionStatus: string | null
   subscriptionPlan: string | null
@@ -209,7 +218,7 @@ export function PaymentSuccess() {
                       <div className="md:col-span-2">
                         <span className="text-muted-foreground">{t('subscription_info.expires_label')}</span>
                         <span className="font-medium text-foreground ml-2">
-                          {new Date(subscriptionData.subscriptionCurrentPeriodEnd).toLocaleDateString(locale === 'zh' ? 'zh-CN' : 'en-US', {
+                          {new Date(subscriptionData.subscriptionCurrentPeriodEnd).toLocaleDateString(getIntlLocaleTag(locale), {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric'

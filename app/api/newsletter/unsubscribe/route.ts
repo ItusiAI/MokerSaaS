@@ -2,16 +2,28 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { newsletterSubscriptions } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
+import { getTranslations } from 'next-intl/server'
+
+const SUPPORTED_LOCALES = ['en', 'zh', 'ja', 'ko', 'tw'] as const
+type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
+
+function pickLocale(input: unknown): SupportedLocale {
+  if (typeof input === 'string' && (SUPPORTED_LOCALES as readonly string[]).includes(input)) {
+    return input as SupportedLocale
+  }
+  return 'en'
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, token, locale = 'zh' } = await request.json()
+    const body = await request.json()
+    const email = body?.email
+    const token = body?.token
+    const locale = pickLocale(body?.locale)
+    const t = await getTranslations({ locale, namespace: 'newsletter' })
 
     if (!email && !token) {
-      return NextResponse.json(
-        { error: locale === 'zh' ? '请提供邮箱地址或取消订阅令牌' : 'Please provide email address or unsubscribe token' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: t('missing_input') }, { status: 400 })
     }
 
     let whereCondition
@@ -29,19 +41,13 @@ export async function POST(request: NextRequest) {
       .limit(1)
 
     if (existingSubscription.length === 0) {
-      return NextResponse.json(
-        { error: locale === 'zh' ? '未找到订阅记录' : 'Subscription not found' },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: t('not_found') }, { status: 404 })
     }
 
     const subscription = existingSubscription[0]
 
     if (!subscription.isActive) {
-      return NextResponse.json(
-        { message: locale === 'zh' ? '您已经取消了订阅' : 'You have already unsubscribed' },
-        { status: 200 }
-      )
+      return NextResponse.json({ message: t('already_unsubscribed') }, { status: 200 })
     }
 
     // 取消订阅
@@ -53,16 +59,10 @@ export async function POST(request: NextRequest) {
       })
       .where(whereCondition)
 
-    return NextResponse.json({
-      message: locale === 'zh' ? '取消订阅成功' : 'Successfully unsubscribed'
-    })
-
+    return NextResponse.json({ message: t('unsubscribed') })
   } catch (error) {
     console.error('Newsletter unsubscribe error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
@@ -71,13 +71,11 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const token = searchParams.get('token')
-    const locale = searchParams.get('locale') || 'zh'
+    const locale = pickLocale(searchParams.get('locale'))
+    const t = await getTranslations({ locale, namespace: 'newsletter' })
 
     if (!token) {
-      return NextResponse.json(
-        { error: locale === 'zh' ? '无效的取消订阅链接' : 'Invalid unsubscribe link' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: t('invalid_link') }, { status: 400 })
     }
 
     // 查找订阅记录
@@ -88,19 +86,13 @@ export async function GET(request: NextRequest) {
       .limit(1)
 
     if (existingSubscription.length === 0) {
-      return NextResponse.json(
-        { error: locale === 'zh' ? '未找到订阅记录' : 'Subscription not found' },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: t('not_found') }, { status: 404 })
     }
 
     const subscription = existingSubscription[0]
 
     if (!subscription.isActive) {
-      return NextResponse.json(
-        { message: locale === 'zh' ? '您已经取消了订阅' : 'You have already unsubscribed' },
-        { status: 200 }
-      )
+      return NextResponse.json({ message: t('already_unsubscribed') }, { status: 200 })
     }
 
     // 取消订阅
@@ -112,15 +104,9 @@ export async function GET(request: NextRequest) {
       })
       .where(eq(newsletterSubscriptions.unsubscribeToken, token))
 
-    return NextResponse.json({
-      message: locale === 'zh' ? '取消订阅成功' : 'Successfully unsubscribed'
-    })
-
+    return NextResponse.json({ message: t('unsubscribed') })
   } catch (error) {
     console.error('Newsletter unsubscribe error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
-} 
+}

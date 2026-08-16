@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     if (!referralCode) {
       return NextResponse.json(
-        { error: 'Referral code is required' },
+        { error: 'referral_code_required' },
         { status: 400 }
       )
     }
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'User not found' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
 
     if (!isNewUser) {
       return NextResponse.json(
-        { error: 'Referral code can only be applied for new registrations' },
+        { error: 'referral_new_user_only' },
         { status: 400 }
       )
     }
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     const alreadyReferred = await checkIfAlreadyReferred(userId)
     if (alreadyReferred) {
       return NextResponse.json(
-        { error: 'User has already been referred' },
+        { error: 'referral_already_referred' },
         { status: 400 }
       )
     }
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     const referrerId = await findReferrerByCode(referralCode.trim())
     if (!referrerId) {
       return NextResponse.json(
-        { error: 'Invalid referral code' },
+        { error: 'referral_code_invalid' },
         { status: 400 }
       )
     }
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     // 不能自己推荐自己
     if (referrerId === userId) {
       return NextResponse.json(
-        { error: 'Cannot use your own referral code' },
+        { error: 'referral_code_self' },
         { status: 400 }
       )
     }
@@ -94,13 +94,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Referral relationship created successfully'
+      message: 'referral_relation_created'
     })
 
   } catch (error) {
     console.error('OAuth referral processing error:', error)
     return NextResponse.json(
-      { error: 'Failed to process referral' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

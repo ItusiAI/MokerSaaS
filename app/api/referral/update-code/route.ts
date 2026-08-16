@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'unauthorized' },
         { status: 401 }
       )
     }
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     // 验证推荐码格式（4-20个字符，仅支持字母和数字）
     if (!customCode || typeof customCode !== 'string') {
       return NextResponse.json(
-        { error: 'Invalid referral code' },
+        { error: 'referral_code_required' },
         { status: 400 }
       )
     }
@@ -31,14 +31,14 @@ export async function POST(req: NextRequest) {
     // 验证长度和格式
     if (code.length < 4 || code.length > 20) {
       return NextResponse.json(
-        { error: 'Referral code must be 4-20 characters long' },
+        { error: 'referral_code_length' },
         { status: 400 }
       )
     }
 
     if (!/^[A-Za-z0-9]+$/.test(code)) {
       return NextResponse.json(
-        { error: 'Referral code can only contain letters and numbers' },
+        { error: 'referral_code_invalid_chars' },
         { status: 400 }
       )
     }
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
     if (!currentUser) {
       return NextResponse.json(
-        { error: 'User not found' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     // 仅允许修改一次
     if (currentUser.referralCodeChanged) {
       return NextResponse.json(
-        { error: 'Referral code can only be changed once' },
+        { error: 'referral_code_already_changed' },
         { status: 400 }
       )
     }
@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: 'This referral code is already taken' },
+        { error: 'referral_code_already_taken' },
         { status: 400 }
       )
     }
@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error updating referral code:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

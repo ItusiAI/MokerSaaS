@@ -34,7 +34,17 @@ import {
   Clock
 } from 'lucide-react'
 import { format } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
+import type { Locale as DateFnsLocale } from 'date-fns/locale'
+
+const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
+  zh: zhCN,
+  ja: jaLocale,
+  ko: koLocale,
+}
+function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
+  return APP_DATE_FNS_LOCALE[locale || ''] || enUS
+}
 
 interface PaymentRecord {
   id: string
@@ -268,10 +278,12 @@ export function PaymentHistory() {
         return `${points} ${profileT('points')}`
       }
 
-      // 匹配积分数量（英文格式）
-      const englishPointsMatch = productName.match(/(\d+(?:,\d+)*)\s*Points?/)
-      if (englishPointsMatch) {
-        const points = englishPointsMatch[1]
+      // 匹配积分数量（英文 / 日文 / 韩文格式）
+      const altPointsMatch = productName.match(
+        /(\d+(?:,\d+)*)\s*(?:Points?|クレジット|크레딧)/
+      )
+      if (altPointsMatch) {
+        const points = altPointsMatch[1]
         return `${points} ${profileT('points')}`
       }
 
@@ -377,9 +389,8 @@ export function PaymentHistory() {
     const date = new Date(dateString)
     if (locale === 'zh') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
-    } else {
-      return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })
     }
+    return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })
   }
 
   if (loading) {

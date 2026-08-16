@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
@@ -255,7 +255,7 @@ export async function PUT(request: NextRequest) {
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
@@ -264,7 +264,7 @@ export async function PUT(request: NextRequest) {
 
     if (!userId) {
       return NextResponse.json(
-        { error: '用户ID是必需的' },
+        { error: 'user_id_required' },
         { status: 400 }
       )
     }
@@ -281,19 +281,19 @@ export async function PUT(request: NextRequest) {
 
     if (result.length === 0) {
       return NextResponse.json(
-        { error: '用户不存在' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
 
     return NextResponse.json({
-      message: '用户信息更新成功',
+      message: 'user_updated',
       user: result[0]
     })
   } catch (error) {
     console.error('Update user error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'server_error' },
       { status: 500 }
     )
   }

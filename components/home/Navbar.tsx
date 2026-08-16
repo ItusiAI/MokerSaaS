@@ -159,7 +159,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label={t("switchLanguage")}
               >
                 <Globe className="w-4 h-4 text-[var(--color-primary)]" />
-                <span className="text-xs font-medium">{locale === "zh" ? t("currentLocale") : t("currentLocaleEn")}</span>
+                <span className="text-xs font-medium">
+                  {locale === "zh"
+                      ? t("currentLocale")
+                      : locale === "tw"
+                      ? t("currentLocaleTw")
+                      : locale === "ja"
+                      ? t("currentLocaleJa")
+                      : locale === "ko"
+                      ? t("currentLocaleKo")
+                      : t("currentLocaleEn")}
+                </span>
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[110px] p-1 bg-[var(--color-surface)] border-[var(--color-border)]/50">
@@ -179,6 +189,30 @@ export const Navbar: React.FC<NavbarProps> = ({
                   🇺🇸 {t("english")}
                 </span>
               </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => switchLocale("ja")}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ja" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇯🇵 {t("japanese")}
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => switchLocale("ko")}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ko" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇰🇷 {t("korean")}
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => switchLocale("tw")}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "tw" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇹🇼 {t("traditionalChinese")}
+                </span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -186,8 +220,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onToggleTheme}
             className="p-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-all duration-300 cursor-pointer flex items-center justify-center group shadow-sm"
-            title={isDark ? "切换至亮色模式" : "切换至暗色模式"}
-            aria-label="Toggle Theme"
+            title={isDark ? t("switchToLight") : t("switchToDark")}
+            aria-label={isDark ? t("switchToLight") : t("switchToDark")}
           >
             {isDark ? (
               <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 group-hover:scale-110 transition-transform duration-300" />
@@ -264,7 +298,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label={t("switchLanguage")}
               >
                 <Globe className="w-4 h-4 text-[var(--color-primary)]" />
-                <span className="text-xs font-medium">{locale === "zh" ? t("currentLocale") : t("currentLocaleEn")}</span>
+                <span className="text-xs font-medium">
+                  {locale === "zh"
+                      ? t("currentLocale")
+                      : locale === "tw"
+                      ? t("currentLocaleTw")
+                      : locale === "ja"
+                      ? t("currentLocaleJa")
+                      : locale === "ko"
+                      ? t("currentLocaleKo")
+                      : t("currentLocaleEn")}
+                </span>
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[100px] p-1 bg-[var(--color-surface)] border-[var(--color-border)]/50">
@@ -284,12 +328,36 @@ export const Navbar: React.FC<NavbarProps> = ({
                   🇺🇸 {t("english")}
                 </span>
               </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => switchLocale("ja")}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ja" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇯🇵 {t("japanese")}
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => switchLocale("ko")}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ko" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇰🇷 {t("korean")}
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => switchLocale("tw")}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "tw" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇹🇼 {t("traditionalChinese")}
+                </span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <button
             onClick={onToggleTheme}
             className="p-2.5 rounded-lg border border-[var(--color-border)] text-[var(--color-text-primary)] active:scale-95 transition-transform"
-            aria-label="Toggle Theme"
+            aria-label={isDark ? t("switchToLight") : t("switchToDark")}
           >
             {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
           </button>

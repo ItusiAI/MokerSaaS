@@ -33,8 +33,16 @@
     "switchLanguage": "Switch Language",
     "chinese": "Chinese",
     "english": "English",
-    "currentLocale": "中",
-    "currentLocaleEn": "EN"
+    "japanese": "Japanese",
+    "korean": "Korean",
+    "traditionalChinese": "Traditional Chinese",
+    "currentLocale": "ZH",
+    "currentLocaleTw": "TW",
+    "currentLocaleEn": "EN",
+    "currentLocaleJa": "JP",
+    "currentLocaleKo": "KR",
+    "switchToLight": "Switch to Light Mode",
+    "switchToDark": "Switch to Dark Mode"
   },
   "hero": {
     "title": "Build SaaS at Lightning Speed,",
@@ -67,7 +75,6 @@
       "simulateSuccess": "✓ Simulated run succeeded: referral reward API auto-granted credits & days!"
     }
   },
-
   "orchestration": {
     "sectionBadge": "Full-Stack Tech · Modern SaaS Infrastructure",
     "sectionTitle": "Full-Stack Open Source Tech",
@@ -85,9 +92,15 @@
       "metaValue": "Type-safe ORM",
       "desc": "High-performance Neon Serverless Postgres with the lightweight Drizzle ORM for fully type-safe database interactions."
     },
-    "node1": { "label": "NEXT_JS_16" },
-    "node2": { "label": "NEON_POSTGRES" },
-    "node3": { "label": "STRIPE_BILLING" },
+    "node1": {
+      "label": "NEXT_JS_16"
+    },
+    "node2": {
+      "label": "NEON_POSTGRES"
+    },
+    "node3": {
+      "label": "STRIPE_BILLING"
+    },
     "floatingBadge1": {
       "label": "Dev Time Saved",
       "value": "200+ Hours"
@@ -117,13 +130,24 @@
       "desc": "No cloud vendor lock-in. One-click deploy to Vercel, Cloud Run or any Node.js / Docker compatible server."
     },
     "metrics": {
-      "1": { "label": "Dev Efficiency Boost", "value": "10X+" },
-      "2": { "label": "Core Components", "value": "40+ Ready-to-use" },
-      "3": { "label": "DB Compatible", "value": "Full Neon Postgres" },
-      "4": { "label": "Open Source License", "value": "MIT License" }
+      "1": {
+        "label": "Dev Efficiency Boost",
+        "value": "10X+"
+      },
+      "2": {
+        "label": "Core Components",
+        "value": "40+ Ready-to-use"
+      },
+      "3": {
+        "label": "DB Compatible",
+        "value": "Full Neon Postgres"
+      },
+      "4": {
+        "label": "Open Source License",
+        "value": "MIT License"
+      }
     }
   },
-
   "engineeringValidation": {
     "sectionBadge": "Real Developer Reviews",
     "sectionTitlePrefix": "Trusted by developers & ",
@@ -152,7 +176,6 @@
       }
     ]
   },
-
   "technicalFAQ": {
     "sectionBadge": "FAQ",
     "sectionTitlePrefix": "Technical & Deployment ",
@@ -177,7 +200,6 @@
       }
     ]
   },
-
   "missionControl": {
     "sectionBadge": "All-in-One Open Source SaaS Solution",
     "sectionTitlePrefix": "Out-of-the-box",
@@ -274,27 +296,6 @@
         "imageCaption": "Affiliate code · commission stats · withdrawals"
       }
     }
-  },
-
-  "agents": {
-    "title": "Tailored AI Agent Services for Different Scenarios",
-    "contentSummaryAgent": {
-      "title": "Audio Content Summary Agent",
-      "description": "Automatically recognizes timestamped audio content and generates structured summaries using advanced reasoning models, quickly extracting key points and essential information."
-    },
-    "podcastAgent": {
-      "title": "AI Podcast Agent",
-      "description": "Professional podcast production agent that automatically generates scripts, hosts conversations, and features human-like voice synthesis to help you create high-quality podcast shows effortlessly."
-    },
-    "voiceAgent": {
-      "title": "AI Voice Agent",
-      "description": "Intelligent voice-over service that generates professional voice-overs comparable to humans from text input. Multiple voice options, rich emotions, perfectly suited for all types of content."
-    },
-    "videoAgent": {
-      "title": "AI Video Agent",
-      "description": "One-stop video production agent, fully automated from script to finished video. Combines AI-generated content, voice-overs, and footage to quickly produce professional short videos."
-    },
-    "learnMore": "Learn More"
   },
   "pricing": {
     "title": "Choose the SaaS Template Plan That's Right for You",
@@ -399,7 +400,6 @@
         "unsubscribeError": "Failed to unsubscribe"
       }
     },
-
     "home": {
       "brand": {
         "name": "MokerSaaS Open-Source Template",
@@ -490,13 +490,16 @@
       "SessionRequired": "Login required to access this page",
       "OAuthTokenError": "Failed to get authorization token, please try logging in again",
       "OAuthUserInfoError": "Failed to get user information, please check authorization permissions",
-      "default": "Unknown error occurred during authentication, please try again"
+      "default": "Unknown error occurred during authentication, please try again",
+      "contact_admin": "Please contact administrator",
+      "error_type_label": "Error type:"
     },
     "welcome_back": "Welcome Back",
     "login_description": "Sign in to your MokerSaaS account",
     "email": "Email Address",
     "password": "Password",
     "email_placeholder": "Enter your email address",
+    "or_continue_with_email": "Or continue with email",
     "password_placeholder": "Enter your password",
     "login": "Sign In",
     "logging_in": "Signing in...",
@@ -617,7 +620,7 @@
       "previous": "Previous",
       "next": "Next"
     },
-      "points_actions": {
+    "points_actions": {
       "register": "Registration Gift Credits",
       "email_verify": "Email Verification Gift Credits",
       "daily_login": "Daily Login Gift Credits",
@@ -695,6 +698,9 @@
     "subscription_past_due": "Past Due",
     "subscription_free": "Free User",
     "subscription_expires": "Expires",
+    "points_purchase_success_toast": "Points purchase successful! Points have been added to your account",
+    "payment_cancelled_toast": "Payment cancelled",
+    "stripe_load_failed": "Failed to load Stripe",
     "subscription_expiring_soon": "Expiring Soon",
     "subscription_expired": "Expired",
     "plan_free": "Free Plan",
@@ -819,6 +825,7 @@
   "referral_page": {
     "title": "Referral Program",
     "subtitle": "Invite friends and earn rewards together",
+    "keywords": "Referral Program,Invite Rewards,Partner Promotion,SaaS Referral,MokerSaaS",
     "custom_code": {
       "title": "Custom Referral Code",
       "description": "Set a unique referral code that's easy for friends to remember",
@@ -901,136 +908,137 @@
       }
     }
   },
-    "affiliate_page": {
-      "title": "Affiliate System",
-      "subtitle": "Earn commissions through referrals, 30% per order",
+  "affiliate_page": {
+    "title": "Affiliate System",
+    "subtitle": "Earn commissions through referrals, 30% per order",
+    "keywords": "Affiliate Program,Affiliate Rewards,Commission Rewards,Partner Promotion,SaaS Affiliate,MokerSaaS",
+    "loading": "Loading...",
+    "stats": {
+      "total_invites": "Total Invites",
+      "converted": "Converted",
+      "available_balance": "Available Balance",
+      "frozen_balance": "Frozen Balance"
+    },
+    "code_setting": {
+      "title": "Affiliate Code Settings",
+      "description": "Set your affiliate code, can only be changed once",
+      "current_code": "Current Code",
+      "placeholder": "Enter new code (8-20 letters or numbers)",
+      "placeholder_set": "Enter code (8-20 letters or numbers)",
+      "button_update": "Update Code",
+      "button_set": "Set Code",
+      "updating": "Updating...",
+      "setting": "Setting...",
+      "note": "Note: Affiliate code can only be changed once, please set carefully",
+      "already_changed": "Code has been changed and cannot be changed again",
+      "enter_code": "Please enter affiliate code",
+      "invalid_format": "Invalid format, must be 8-20 letters or numbers",
+      "update_success": "Code updated successfully",
+      "update_failed": "Failed to update code",
+      "already_taken": "This code is already taken",
+      "code_copied": "Code copied",
+      "link_copied": "Link copied",
+      "copy_failed": "Copy failed",
+      "set_first": "Please set affiliate code first"
+    },
+    "share": {
+      "title": "Share Affiliate",
+      "link_label": "Affiliate Link",
+      "copy_code": "Copy Code",
+      "copy_link": "Copy Link"
+    },
+    "relations": {
+      "title": "Invite Data",
+      "description": "View users who registered through your affiliate code",
       "loading": "Loading...",
-      "stats": {
-        "total_invites": "Total Invites",
-        "converted": "Converted",
-        "available_balance": "Available Balance",
-        "frozen_balance": "Frozen Balance"
-      },
-      "code_setting": {
-        "title": "Affiliate Code Settings",
-        "description": "Set your affiliate code, can only be changed once",
-        "current_code": "Current Code",
-        "placeholder": "Enter new code (8-20 letters or numbers)",
-        "placeholder_set": "Enter code (8-20 letters or numbers)",
-        "button_update": "Update Code",
-        "button_set": "Set Code",
-        "updating": "Updating...",
-        "setting": "Setting...",
-        "note": "Note: Affiliate code can only be changed once, please set carefully",
-        "already_changed": "Code has been changed and cannot be changed again",
-        "enter_code": "Please enter affiliate code",
-        "invalid_format": "Invalid format, must be 8-20 letters or numbers",
-        "update_success": "Code updated successfully",
-        "update_failed": "Failed to update code",
-        "already_taken": "This code is already taken",
-        "code_copied": "Code copied",
-        "link_copied": "Link copied",
-        "copy_failed": "Copy failed",
-        "set_first": "Please set affiliate code first"
-      },
-      "share": {
-        "title": "Share Affiliate",
-        "link_label": "Affiliate Link",
-        "copy_code": "Copy Code",
-        "copy_link": "Copy Link"
-      },
-      "relations": {
-        "title": "Invite Data",
-        "description": "View users who registered through your affiliate code",
-        "loading": "Loading...",
-        "empty": "No invite data",
-        "unknown_user": "Unknown User",
+      "empty": "No invite data",
+      "unknown_user": "Unknown User",
+      "register_time": "Register Time",
+      "converted": "Converted",
+      "expired": "Expired",
+      "pending": "Pending",
+      "filter_all": "All",
+      "table": {
+        "user": "User",
+        "email": "Email",
         "register_time": "Register Time",
-        "converted": "Converted",
-        "expired": "Expired",
-        "pending": "Pending",
-        "filter_all": "All",
-        "table": {
-          "user": "User",
-          "email": "Email",
-          "register_time": "Register Time",
-          "status": "Status"
-        }
-      },
-      "earnings": {
-        "title": "Earnings Records",
-        "description": "View your commission income and status",
-        "loading": "Loading...",
-        "empty": "No earnings records",
-        "from": "From",
-        "create_time": "Create Time",
-        "release_time": "Release Time",
-        "frozen": "Frozen",
-        "released": "Released",
-        "cancelled": "Cancelled",
-        "unknown_user": "Unknown User",
-        "filter_all": "All",
-        "table": {
-          "amount": "Amount",
-          "from": "From",
-          "status": "Status",
-          "create_time": "Create Time",
-          "release_time": "Release Time"
-        }
-      },
-      "withdraw": {
-        "title": "Withdrawal Request",
-        "description": "Withdraw available balance to your account",
-        "button": "Withdraw",
-        "amount": "Withdrawal Amount",
-        "amount_placeholder": "Enter withdrawal amount",
-        "min_amount": "Minimum Amount",
-        "min_amount_error": "Minimum withdrawal amount is $10",
-        "payment_method": "Payment Method",
-        "alipay": "Alipay",
-        "paypal": "PayPal",
-        "account_name": "Account Name",
-        "account_name_placeholder": "Enter account name",
-        "alipay_account": "Alipay Account",
-        "alipay_placeholder": "Enter Alipay account or phone number",
-        "paypal_email": "PayPal Email",
-        "paypal_placeholder": "Enter PayPal email",
-        "available_balance": "Available Balance",
-        "exceeds_balance": "Withdrawal amount exceeds available balance",
-        "submit": "Submit Request",
-        "processing": "Processing...",
-        "success": "Withdrawal request submitted",
-        "failed": "Withdrawal request failed",
-        "invalid_amount": "Invalid withdrawal amount",
-        "invalid_payment_method": "Invalid payment method",
-        "invalid_account_info": "Invalid account information",
-        "insufficient_balance": "Insufficient balance",
-        "account_info_required": "Please enter account information"
-      },
-      "withdrawals": {
-        "title": "Withdrawal Records",
-        "description": "View your withdrawal request records",
-        "loading": "Loading...",
-        "empty": "No withdrawal records",
-        "pending": "Pending",
-        "processing": "Processing",
-        "completed": "Completed",
-        "failed": "Failed",
-        "cancelled": "Cancelled",
-        "failure_reason": "Failure Reason",
-        "create_time": "Request Time",
-        "processed_time": "Processed Time",
-        "filter_all": "All",
-        "table": {
-          "amount": "Amount",
-          "payment_method": "Payment Method",
-          "account": "Account",
-          "status": "Status",
-          "create_time": "Request Time",
-          "processed_time": "Processed Time"
-        }
+        "status": "Status"
       }
     },
+    "earnings": {
+      "title": "Earnings Records",
+      "description": "View your commission income and status",
+      "loading": "Loading...",
+      "empty": "No earnings records",
+      "from": "From",
+      "create_time": "Create Time",
+      "release_time": "Release Time",
+      "frozen": "Frozen",
+      "released": "Released",
+      "cancelled": "Cancelled",
+      "unknown_user": "Unknown User",
+      "filter_all": "All",
+      "table": {
+        "amount": "Amount",
+        "from": "From",
+        "status": "Status",
+        "create_time": "Create Time",
+        "release_time": "Release Time"
+      }
+    },
+    "withdraw": {
+      "title": "Withdrawal Request",
+      "description": "Withdraw available balance to your account",
+      "button": "Withdraw",
+      "amount": "Withdrawal Amount",
+      "amount_placeholder": "Enter withdrawal amount",
+      "min_amount": "Minimum Amount",
+      "min_amount_error": "Minimum withdrawal amount is $10",
+      "payment_method": "Payment Method",
+      "alipay": "Alipay",
+      "paypal": "PayPal",
+      "account_name": "Account Name",
+      "account_name_placeholder": "Enter account name",
+      "alipay_account": "Alipay Account",
+      "alipay_placeholder": "Enter Alipay account or phone number",
+      "paypal_email": "PayPal Email",
+      "paypal_placeholder": "Enter PayPal email",
+      "available_balance": "Available Balance",
+      "exceeds_balance": "Withdrawal amount exceeds available balance",
+      "submit": "Submit Request",
+      "processing": "Processing...",
+      "success": "Withdrawal request submitted",
+      "failed": "Withdrawal request failed",
+      "invalid_amount": "Invalid withdrawal amount",
+      "invalid_payment_method": "Invalid payment method",
+      "invalid_account_info": "Invalid account information",
+      "insufficient_balance": "Insufficient balance",
+      "account_info_required": "Please enter account information"
+    },
+    "withdrawals": {
+      "title": "Withdrawal Records",
+      "description": "View your withdrawal request records",
+      "loading": "Loading...",
+      "empty": "No withdrawal records",
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "failure_reason": "Failure Reason",
+      "create_time": "Request Time",
+      "processed_time": "Processed Time",
+      "filter_all": "All",
+      "table": {
+        "amount": "Amount",
+        "payment_method": "Payment Method",
+        "account": "Account",
+        "status": "Status",
+        "create_time": "Request Time",
+        "processed_time": "Processed Time"
+      }
+    }
+  },
   "dashboard": {
     "payment_success": {
       "title": "Purchase Successful!",
@@ -1190,7 +1198,13 @@
         "english_subscriptions": "English Subscriptions",
         "english_users": "English Users",
         "total_registrations": "Total Registrations",
-        "including_unsubscribed": "Including unsubscribed"
+        "including_unsubscribed": "Including unsubscribed",
+        "japanese_subscriptions": "Japanese Subscriptions",
+        "japanese_users": "Japanese Users",
+        "korean_subscriptions": "Korean Subscriptions",
+        "korean_users": "Korean Users",
+        "traditional_chinese_subscriptions": "Traditional Chinese Subscriptions",
+        "traditional_chinese_users": "Traditional Chinese Users"
       },
       "subscription_list": {
         "title": "Subscription List",
@@ -1211,7 +1225,10 @@
           "english": "English",
           "active": "Active",
           "cancelled": "Cancelled"
-        }
+        },
+        "japanese": "Japanese",
+        "korean": "Korean",
+        "traditionalChinese": "Traditional Chinese"
       },
       "actions": {
         "retry": "Retry",
@@ -1221,7 +1238,13 @@
       "error": {
         "fetch_stats_failed": "Failed to fetch statistics",
         "fetch_subscriptions_failed": "Failed to fetch subscription list"
-      }
+      },
+      "japanese_subscriptions": "Japanese Subscriptions",
+      "japanese_users": "Japanese Users",
+      "korean_subscriptions": "Korean Subscriptions",
+      "korean_users": "Korean Users",
+      "traditional_chinese_subscriptions": "Traditional Chinese Subscriptions",
+      "traditional_chinese_users": "Traditional Chinese Users"
     },
     "users": {
       "meta_title": "User Management - MokerSaaS",
@@ -1529,5 +1552,115 @@
     "errorMessage": "If you believe this is an error, please contact the system administrator.",
     "backToHome": "Back to Home",
     "signInAgain": "Sign In Again"
+  },
+  "apiErrors": {
+    "unauthorized": "Unauthorized",
+    "unauthorized_short": "Unauthorized",
+    "not_logged_in": "Not signed in",
+    "not_logged_in_alt": "User not signed in",
+    "user_not_found": "User not found",
+    "user_not_found_or_no_password": "User not found or no password set",
+    "email_already_verified": "Email already verified",
+    "resend_verification_failed": "Failed to resend verification email, please try again later",
+    "name_required": "Name is required",
+    "current_and_new_password_required": "Please provide current and new password",
+    "new_password_min_length": "New password must be at least 6 characters",
+    "current_password_incorrect": "Current password is incorrect",
+    "points_invalid_amount": "Invalid points amount",
+    "points_missing_params": "Missing required parameters",
+    "points_insufficient": "Insufficient points",
+    "points_deduct_insufficient": "Points to deduct cannot exceed current gifted points",
+    "points_grant_needs_subscription": "Gifted points must be tied to subscription expiration. Please set the user's subscription first",
+    "points_grant_subscription_expired": "User subscription has expired. Cannot add gifted points. Please update subscription expiration first",
+    "fetch_points_failed": "Failed to fetch points",
+    "fetch_points_history_failed": "Failed to fetch points history",
+    "fetch_points_detail_failed": "Failed to fetch points detail",
+    "admin_required": "Admin access required",
+    "user_id_required": "User ID is required",
+    "invalid_role": "Invalid user role",
+    "invalid_subscription_status": "Invalid subscription status",
+    "invalid_subscription_plan": "Invalid subscription plan",
+    "invalid_operation_type": "Invalid operation type",
+    "invalid_type_param": "Invalid type parameter",
+    "fetch_statistics_failed": "Failed to fetch statistics",
+    "set_admin_email_required_query": "Please provide email parameter in the URL, e.g. ?email=your@email.com",
+    "set_admin_email_required_body": "Email address is required",
+    "set_admin_failed": "Failed to set admin",
+    "server_error": "Server error",
+    "server_internal_error": "Internal server error",
+    "webhook_failed": "Webhook processing failed",
+    "resend_verification_email_sent": "Verification email sent, please check your inbox",
+    "profile_updated": "Profile updated successfully",
+    "user_promoted_to_admin": "User {email} has been promoted to admin",
+    "role_updated": "User role updated successfully",
+    "points_adjusted": "Points adjusted successfully",
+    "subscription_updated": "Subscription information updated successfully",
+    "points_operation_success": "Points operation successful",
+    "points_operation_failed": "Points operation failed",
+    "points_deducted_successfully": "Points deducted successfully",
+    "password_changed": "Password changed successfully",
+    "referral_code_required": "Invalid referral code",
+    "referral_code_length": "Referral code must be 4-20 characters long",
+    "referral_code_invalid_chars": "Referral code can only contain letters and numbers",
+    "referral_code_already_changed": "Referral code can only be changed once",
+    "referral_code_already_taken": "This referral code is already taken",
+    "CODE_EMPTY": "Please enter an affiliate code",
+    "INVALID_FORMAT": "Invalid affiliate code format",
+    "CODE_ALREADY_TAKEN": "This affiliate code is already taken",
+    "CODE_ALREADY_CHANGED": "Affiliate code can only be changed once",
+    "UPDATE_FAILED": "Update failed",
+    "WITHDRAWAL_FAILED": "Withdrawal failed",
+    "INVALID_AMOUNT": "Invalid withdrawal amount",
+    "INVALID_PAYMENT_METHOD": "Invalid payment method",
+    "INVALID_ACCOUNT_NAME": "Please enter recipient name",
+    "INVALID_ACCOUNT_INFO": "Please enter account information",
+    "MIN_AMOUNT_NOT_MET": "Withdrawal amount is below the minimum",
+    "INSUFFICIENT_BALANCE": "Insufficient balance for withdrawal",
+    "affiliate_code_required": "Please enter an affiliate code",
+    "affiliate_code_invalid": "Invalid affiliate code",
+    "affiliate_code_self": "Cannot use your own affiliate code",
+    "affiliate_new_user_only": "Affiliate code can only be applied for new registrations",
+    "affiliate_relation_exists": "Affiliate relationship already exists",
+    "affiliate_relation_created": "Affiliate relationship created",
+    "referral_new_user_only": "Referral code can only be applied for new registrations",
+    "referral_already_referred": "User has already been referred",
+    "referral_code_invalid": "Invalid referral code",
+    "referral_code_self": "Cannot use your own referral code",
+    "referral_relation_created": "Referral relationship created successfully",
+    "unknown_error": "Unknown error",
+    "stripe_not_configured": "Stripe is not configured",
+    "enterprise_contact_sales": "Enterprise plan requires contacting sales",
+    "missing_price_id_for_plan": "Missing price ID for plan type",
+    "price_id_not_configured": "Price ID not configured for this plan",
+    "no_stripe_customer_found": "No Stripe customer found",
+    "failed_to_create_checkout_session": "Failed to create checkout session",
+    "failed_to_create_customer_portal_session": "Failed to create customer portal session",
+    "failed_to_fetch_payment_history": "Failed to fetch payment history",
+    "failed_to_get_affiliate_earnings": "Failed to get affiliate earnings",
+    "failed_to_get_affiliate_relations": "Failed to get affiliate relations",
+    "failed_to_get_affiliate_stats": "Failed to get affiliate stats",
+    "failed_to_get_withdrawals": "Failed to get withdrawals",
+    "failed_to_get_referral_records": "Failed to get referral records",
+    "failed_to_get_referral_rewards": "Failed to get referral rewards",
+    "failed_to_get_referral_stats": "Failed to get referral stats",
+    "affiliate_profile_not_found": "Profile not found",
+    "affiliate_stats_not_found": "Stats not found",
+    "missing_required_fields": "Missing required fields"
+  },
+  "newsletter": {
+    "invalid_email": "Please enter a valid email address",
+    "already_subscribed": "You are already subscribed to our newsletter",
+    "resubscribed": "Welcome back! You have successfully resubscribed",
+    "subscribed": "Successfully subscribed! Thank you for your interest",
+    "missing_input": "Please provide email address or unsubscribe token",
+    "not_found": "Subscription not found",
+    "already_unsubscribed": "You have already unsubscribed",
+    "unsubscribed": "Successfully unsubscribed",
+    "invalid_link": "Invalid unsubscribe link"
+  },
+  "stripe_checkout": {
+    "trial_already_used": "You have already subscribed to the trial plan. Each user can only subscribe once.",
+    "trial_blocked_for_paid": "You already have an active subscription. Trial subscription is not available for Pro/Annual users.",
+    "annual_no_downgrade": "You cannot downgrade from Annual to Pro. Annual subscription cannot be downgraded."
   }
 }

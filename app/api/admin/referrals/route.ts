@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }

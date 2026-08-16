@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     
     if (!email) {
       return NextResponse.json(
-        { error: '请在URL中提供邮箱参数，例如：?email=your@email.com' },
+        { error: 'set_admin_email_required_query' },
         { status: 400 }
       )
     }
@@ -24,21 +24,22 @@ export async function GET(request: NextRequest) {
 
     if (result.length === 0) {
       return NextResponse.json(
-        { error: '用户不存在' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
 
-    return NextResponse.json({ 
-      message: `用户 ${email} 已设置为管理员`,
-      success: true 
+    return NextResponse.json({
+      messageKey: 'user_promoted_to_admin',
+      params: { email },
+      success: true
     })
   } catch (error) {
     console.error('Set admin error:', error)
     return NextResponse.json(
       { 
-        error: '设置管理员失败',
-        details: error instanceof Error ? error.message : '未知错误'
+        error: 'set_admin_failed',
+        details: error instanceof Error ? error.message : 'unknown_error'
       },
       { status: 500 }
     )
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
     
     if (!email) {
       return NextResponse.json(
-        { error: '邮箱地址是必需的' },
+        { error: 'set_admin_email_required_body' },
         { status: 400 }
       )
     }
@@ -65,21 +66,22 @@ export async function POST(request: NextRequest) {
 
     if (result.length === 0) {
       return NextResponse.json(
-        { error: '用户不存在' },
+        { error: 'user_not_found' },
         { status: 404 }
       )
     }
 
-    return NextResponse.json({ 
-      message: `用户 ${email} 已设置为管理员`,
-      success: true 
+    return NextResponse.json({
+      messageKey: 'user_promoted_to_admin',
+      params: { email },
+      success: true
     })
   } catch (error) {
     console.error('Set admin error:', error)
     return NextResponse.json(
       { 
-        error: '设置管理员失败',
-        details: error instanceof Error ? error.message : '未知错误'
+        error: 'set_admin_failed',
+        details: error instanceof Error ? error.message : 'unknown_error'
       },
       { status: 500 }
     )

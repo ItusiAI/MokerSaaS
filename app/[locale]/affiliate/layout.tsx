@@ -14,10 +14,18 @@ export async function generateMetadata({
   const currentUrl = baseUrl ? `${baseUrl}/${locale}/affiliate` : ''
   const title = t('title')
   const description = t('subtitle')
-  const keywords =
+  const keywords = t('keywords')
+
+  const ogLocale =
     locale === 'zh'
-      ? '推广计划,推广返利,佣金奖励,合作推广,SaaS 推广,MokerSaaS'
-      : 'Affiliate Program,Affiliate Rewards,Commission Rewards,Partner Promotion,SaaS Affiliate,MokerSaaS'
+      ? 'zh_CN'
+      : locale === 'tw'
+      ? 'zh_TW'
+      : locale === 'ja'
+      ? 'ja_JP'
+      : locale === 'ko'
+      ? 'ko_KR'
+      : 'en_US'
 
   return {
     title,
@@ -29,13 +37,18 @@ export async function generateMetadata({
           canonical: currentUrl,
           languages: {
             zh: `${baseUrl}/zh/affiliate`,
+            'zh-CN': `${baseUrl}/zh/affiliate`,
+            tw: `${baseUrl}/tw/affiliate`,
+            'zh-TW': `${baseUrl}/tw/affiliate`,
             en: `${baseUrl}/en/affiliate`,
+            ja: `${baseUrl}/ja/affiliate`,
+            ko: `${baseUrl}/ko/affiliate`,
           },
         }
       : undefined,
     openGraph: {
       type: 'website',
-      locale: locale === 'zh' ? 'zh_CN' : 'en_US',
+      locale: ogLocale,
       url: currentUrl,
       title,
       description,

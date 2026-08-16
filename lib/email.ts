@@ -141,6 +141,9 @@ const BRAND_NAME =
 const getFromAddress = () =>
   process.env.RESEND_FROM_EMAIL || `${BRAND_NAME} <onboarding@resend.dev>`
 
+// 支持的邮件语言
+export type EmailLocale = 'en' | 'zh' | 'ja' | 'ko' | 'tw'
+
 // 邮件模板配置
 const emailTemplates = {
   verification: {
@@ -153,6 +156,36 @@ const emailTemplates = {
       linkText: '如果按钮无法点击，请复制以下链接到浏览器：',
       footer1: '这是一次性验证邮件，请勿直接回复。',
       footer2: `如需帮助，可以通过官网或应用内的支持渠道联系 ${BRAND_NAME} 团队。`
+    },
+    ja: {
+      subject: `ようこそ ${BRAND_NAME} – メールアドレスをご確認ください`,
+      title: 'メールアドレスの確認',
+      subtitle: `${BRAND_NAME} はグローバル製品づくりのお手伝いをします`,
+      greeting: `ようこそ！下のボタンをクリックしてメール認証を完了すると、${BRAND_NAME} のすべての機能をご利用いただけます。`,
+      buttonText: 'メールアドレスを認証する',
+      linkText: 'ボタンがクリックできない場合は、以下のリンクをブラウザにコピー＆ペーストしてください：',
+      footer1: 'これは一度きりの認証メールです。直接返信しないでください。',
+      footer2: `ご不明な点がございましたら、公式サイトまたはアプリ内サポートより ${BRAND_NAME} チームまでお問い合わせください。`
+    },
+    ko: {
+      subject: `${BRAND_NAME}에 오신 것을 환영합니다 – 이메일 주소를 확인해 주세요`,
+      title: '이메일 주소 확인',
+      subtitle: `${BRAND_NAME}가 글로벌 제품 구축을 도와드립니다`,
+      greeting: `안녕하세요! 아래 버튼을 클릭하여 이메일 인증을 완료하시면 ${BRAND_NAME}의 모든 기능을 이용하실 수 있습니다.`,
+      buttonText: '이메일 인증하기',
+      linkText: '버튼이 작동하지 않으면 아래 링크를 브라우저에 복사하여 붙여넣으세요:',
+      footer1: '일회용 인증 메일이므로 직접 회신하지 마세요.',
+      footer2: `도움이 필요하시면 공식 사이트 또는 앱 내 지원 채널을 통해 ${BRAND_NAME} 팀에 문의해 주세요.`
+    },
+    tw: {
+      subject: `歡迎加入 ${BRAND_NAME} - 請驗證郵箱`,
+      title: '確認您的郵箱',
+      subtitle: `${BRAND_NAME} 想和你一起打造全球化產品`,
+      greeting: `你好！只需點擊下方按鈕即可完成郵箱驗證，我們已經迫不及待想讓你體驗 ${BRAND_NAME} 的全部功能了。`,
+      buttonText: '立即驗證郵箱',
+      linkText: '如果按鈕無法點擊，請複製以下鏈接到瀏覽器：',
+      footer1: '這是一次性驗證郵件，請勿直接回復。',
+      footer2: `如需幫助，可以通過官網或應用內的支持渠道聯繫 ${BRAND_NAME} 團隊。`
     },
     en: {
       subject: `Welcome to ${BRAND_NAME} – Please Verify Your Email`,
@@ -176,6 +209,36 @@ const emailTemplates = {
       footer1: `来自 ${BRAND_NAME} 的温馨提醒：确保密码安全，别与他人共享。`,
       footer2: '如果需要进一步帮助，可以通过官网或应用内的支持渠道联系我们。'
     },
+    ja: {
+      subject: `${BRAND_NAME} のパスワードを再設定`,
+      title: 'アクセス権限の回復をお手伝いします',
+      subtitle: 'ご心配なく。数ステップでパスワードを再設定できます',
+      greeting: `パスワード再設定のリクエストを受け付けました。下のボタンをクリックして新しいパスワードを設定してください。お心当たりがない場合は、本メールを無視していただいて結構です。`,
+      buttonText: 'パスワードを再設定',
+      linkText: 'ボタンがクリックできない場合は、以下のリンクをブラウザにコピー＆ペーストしてください：',
+      footer1: `${BRAND_NAME} からのご案内：パスワードは安全に保管し、他人と共有しないでください。`,
+      footer2: 'さらなるサポートが必要な場合は、公式サイトまたはアプリ内サポートよりお問い合わせください。'
+    },
+    ko: {
+      subject: `${BRAND_NAME} 비밀번호 재설정`,
+      title: '접근 권한 복구를 도와드립니다',
+      subtitle: '걱정하지 마세요. 몇 단계면 비밀번호를 재설정할 수 있습니다',
+      greeting: `비밀번호 재설정 요청을 접수했습니다. 아래 버튼을 클릭하여 새 비밀번호를 설정하세요. 본인이 요청하지 않은 경우 이 메일을 무시하셔도 됩니다.`,
+      buttonText: '비밀번호 재설정',
+      linkText: '버튼이 작동하지 않으면 아래 링크를 브라우저에 복사하여 붙여넣으세요:',
+      footer1: `${BRAND_NAME}의 안내: 비밀번호는 안전하게 보관하고 다른 사람과 공유하지 마세요.`,
+      footer2: '추가 지원이 필요하시면 공식 사이트 또는 앱 내 지원 채널로 문의해 주세요.'
+    },
+    tw: {
+      subject: `重設 ${BRAND_NAME} 密碼`,
+      title: '我們在這裡幫你找回訪問權限',
+      subtitle: '別擔心，幾步內即可完成密碼重設',
+      greeting: `您提出了密碼重置請求，點擊下方按鈕就能設置一個全新的密碼。若不是您本人操作，可放心忽略此郵件。`,
+      buttonText: '重置密碼',
+      linkText: '如果按鈕無法點擊，請複製以下鏈接到瀏覽器：',
+      footer1: `來自 ${BRAND_NAME} 的溫馨提醒：確保密碼安全，別與他人共享。`,
+      footer2: '如果需要進一步幫助，可以通過官網或應用內的支持渠道聯繫我們。'
+    },
     en: {
       subject: `Reset Your ${BRAND_NAME} Password`,
       title: 'We’re ready to get you back in',
@@ -198,6 +261,39 @@ const emailTemplates = {
       pointsLabel: '充值积分',
       amountLabel: '支付金额',
       successMessage: '积分已经到账，祝你玩得开心，创意不断。'
+    },
+    ja: {
+      subject: `ポイントが入金されました – ${BRAND_NAME} をご利用いただきありがとうございます`,
+      title: 'ポイント購入が完了しました',
+      subtitle: `${BRAND_NAME} のポイントでさらなる創造力を発揮しましょう`,
+      greeting: 'ポイントが無事アカウントに追加されました。新しい機能を探求する際にご自由にお使いください。',
+      footer1: 'ご利用くださいましてありがとうございます。サポートが必要な場合はいつでもご連絡ください。',
+      footer2: `– ${BRAND_NAME} チーム`,
+      pointsLabel: 'チャージしたポイント',
+      amountLabel: '支払金額',
+      successMessage: 'ポイントが入金されました。創作活動と楽しさをお届けします。'
+    },
+    ko: {
+      subject: `포인트가 충전되었습니다 – ${BRAND_NAME}을 이용해주셔서 감사합니다`,
+      title: '포인트 구매 완료',
+      subtitle: `${BRAND_NAME} 포인트로 더 많은 창의력을 발휘하세요`,
+      greeting: '포인트가 안전하게 계정에 추가되었습니다. 새로운 기능을 탐색할 때 언제든지 사용하실 수 있습니다.',
+      footer1: '즐겁게 사용하시고, 도움이 필요하시면 언제든지 알려주세요.',
+      footer2: `– ${BRAND_NAME} 팀`,
+      pointsLabel: '충전한 포인트',
+      amountLabel: '결제 금액',
+      successMessage: '포인트가 충전되었습니다. 즐겁게 창작하세요.'
+    },
+    tw: {
+      subject: `積分已到賬 - 感謝支持 ${BRAND_NAME}`,
+      title: '積分充值成功',
+      subtitle: `讓 ${BRAND_NAME} 的積分助你發揮更多創意`,
+      greeting: '積分已經安全添加到你的賬戶，隨時都可以用來探索新的功能。',
+      footer1: '祝你使用愉快，如需幫助我們一直都在。',
+      footer2: `– ${BRAND_NAME} 團隊`,
+      pointsLabel: '充值積分',
+      amountLabel: '支付金額',
+      successMessage: '積分已經到賬，祝你玩得開心，創意不斷。'
     },
     en: {
       subject: `Your credits are ready – Thanks for trusting ${BRAND_NAME}`,
@@ -223,6 +319,42 @@ const emailTemplates = {
       expiresLabel: '到期时间',
       amountLabel: '支付金额',
       successMessage: '订阅已激活，所有高级功能已经为你开放。'
+    },
+    ja: {
+      subject: `ご購読ありがとうございます – ${BRAND_NAME} と共に成長を続けましょう`,
+      title: 'サブスクリプションが有効化されました',
+      subtitle: '引き続き、共に新たな可能性を探求していきましょう',
+      greeting: 'サブスクリプションが有効になりました！以下がご購読の詳細です。より良い体験を引き続き提供してまいります。',
+      footer1: 'ご信頼いただきありがとうございます。引き続き努力してまいります。',
+      footer2: `– ${BRAND_NAME} チーム`,
+      planLabel: '購読プラン',
+      expiresLabel: '有効期限',
+      amountLabel: '支払金額',
+      successMessage: 'サブスクリプションが有効化されました。すべてのプレミアム機能をご利用いただけます。'
+    },
+    ko: {
+      subject: `구독이 완료되었습니다 – ${BRAND_NAME}과 함께 성장해 나가요`,
+      title: '구독이 활성화되었습니다',
+      subtitle: '앞으로도 함께 새로운 가능성을 탐색해 나가요',
+      greeting: '구독이 시작되었습니다! 아래는 구독 상세 내용이며, 더 나은 경험을 지속적으로 제공하겠습니다.',
+      footer1: '신뢰해 주셔서 감사합니다. 계속 노력하겠습니다.',
+      footer2: `– ${BRAND_NAME} 팀`,
+      planLabel: '구독 플랜',
+      expiresLabel: '만료일',
+      amountLabel: '결제 금액',
+      successMessage: '구독이 활성화되었습니다. 모든 프리미엄 기능을 이용하실 수 있습니다.'
+    },
+    tw: {
+      subject: `訂閱成功 - ${BRAND_NAME} 陪你長期成長`,
+      title: '訂閱已經激活',
+      subtitle: '歡迎繼續和我們一起探索更多可能',
+      greeting: '訂閱生效啦！下面是你的訂閱詳情，我們會持續為你提供更好的體驗。',
+      footer1: '感謝信任，我們會繼續加油。',
+      footer2: `– ${BRAND_NAME} 團隊`,
+      planLabel: '訂閱版本',
+      expiresLabel: '到期時間',
+      amountLabel: '支付金額',
+      successMessage: '訂閱已激活，所有高級功能已經為你開放。'
     },
     en: {
       subject: `Subscription Confirmed – Growing together with ${BRAND_NAME}`,
@@ -252,6 +384,48 @@ const emailTemplates = {
       accountLabel: '收款账户',
       timeLabel: '申请时间'
     },
+    ja: {
+      subject: `新しい出金申請の承認待ち – ${BRAND_NAME}`,
+      title: '新しい出金申請',
+      subtitle: 'アフィリエイトユーザーから新しい出金申請が行われました。バックグラウンドで速やかに処理してください',
+      greeting: 'システムで以下の出金申請を受領しました。バックグラウンド「アフィリエイト管理 - 出金管理」にログインして詳細を確認し、承認／振込を行ってください。',
+      footer1: 'このメールは管理者への通知専用です。他ユーザーに転送しないでください。',
+      footer2: `– ${BRAND_NAME} システム通知`,
+      userLabel: '申請ユーザー',
+      emailLabel: 'ユーザーメール',
+      amountLabel: '出金額',
+      methodLabel: '受取方法',
+      accountLabel: '受取口座',
+      timeLabel: '申請時間'
+    },
+    ko: {
+      subject: `새로운 출금 신청 승인 대기 – ${BRAND_NAME}`,
+      title: '새로운 출금 신청',
+      subtitle: '제휴 사용자가 새로운 출금 신청을 제출했습니다. 백오피스에서 신속히 처리해 주세요',
+      greeting: '시스템에서 아래 출금 신청을 접수했습니다. 백오피스 「제휴 관리 - 출금 관리」에 로그인하여 자세한 내용을 확인하고 승인/송금을 완료해 주세요.',
+      footer1: '본 메일은 관리자 알림 전용이므로 다른 사용자에게 전달하지 마세요.',
+      footer2: `– ${BRAND_NAME} 시스템 알림`,
+      userLabel: '신청 사용자',
+      emailLabel: '사용자 이메일',
+      amountLabel: '출금액',
+      methodLabel: '수령 방법',
+      accountLabel: '수령 계좌',
+      timeLabel: '신청 시간'
+    },
+    tw: {
+      subject: `有新的提現申請待審核 - ${BRAND_NAME}`,
+      title: '新的提現申請',
+      subtitle: '有推廣用戶發起了新的提現申請，請儘快在後臺處理',
+      greeting: '我們在系統中收到了以下提現申請，請登錄後臺「推廣管理 - 提現管理」查看詳情並完成審核/打款。',
+      footer1: '本郵件僅用於通知管理員，請勿轉發給其他用戶。',
+      footer2: `– ${BRAND_NAME} 系統通知`,
+      userLabel: '申請用戶',
+      emailLabel: '用戶郵箱',
+      amountLabel: '提現金額',
+      methodLabel: '收款方式',
+      accountLabel: '收款賬戶',
+      timeLabel: '申請時間'
+    },
     en: {
       subject: `New withdrawal request pending review – ${BRAND_NAME}`,
       title: 'New Withdrawal Request',
@@ -280,6 +454,45 @@ const emailTemplates = {
       methodLabel: '收款方式',
       accountLabel: '收款账户',
       noteLabel: '备注说明'
+    },
+    ja: {
+      subject: `出金申請のステータス更新 – ${BRAND_NAME}`,
+      title: '出金審査の進捗更新',
+      subtitle: '出金申請に最新の進展がありました',
+      greeting: 'このたび出金申請の処理結果を更新しました。以下が今回の出金の最新ステータスと重要な情報です。',
+      footer1: 'お待ちいただきましてありがとうございます。当社は出金体験の改善を継続してまいります。',
+      footer2: `– ${BRAND_NAME} チーム`,
+      amountLabel: '出金額',
+      statusLabel: '現在のステータス',
+      methodLabel: '受取方法',
+      accountLabel: '受取口座',
+      noteLabel: '備考'
+    },
+    ko: {
+      subject: `출금 신청 상태 업데이트 – ${BRAND_NAME}`,
+      title: '출금 심사 진행 업데이트',
+      subtitle: '출금 신청에 새로운進展이 있습니다',
+      greeting: '이번 출금 신청의 처리 결과를 업데이트했습니다. 아래는 이번 출금의 최신 상태와 주요 정보입니다.',
+      footer1: '기다려 주셔서 감사합니다. 당사는 출금 경험을 지속적으로 개선해 나가겠습니다.',
+      footer2: `– ${BRAND_NAME} 팀`,
+      amountLabel: '출금액',
+      statusLabel: '현재 상태',
+      methodLabel: '수령 방법',
+      accountLabel: '수령 계좌',
+      noteLabel: '비고'
+    },
+    tw: {
+      subject: `提現申請狀態更新 - ${BRAND_NAME}`,
+      title: '提現審核進度更新',
+      subtitle: '你的提現申請有了最新進展',
+      greeting: '我們已經更新了本次提現申請的處理結果，下面是本次提現的最新狀態和關鍵信息。',
+      footer1: '感謝你的耐心等待，我們會持續優化提現體驗。',
+      footer2: `– ${BRAND_NAME} 團隊`,
+      amountLabel: '提現金額',
+      statusLabel: '當前狀態',
+      methodLabel: '收款方式',
+      accountLabel: '收款賬戶',
+      noteLabel: '備註說明'
     },
     en: {
       subject: `Your withdrawal status has been updated – ${BRAND_NAME}`,
@@ -380,7 +593,7 @@ function generateEmailTemplate(
 export async function sendVerificationEmail(
   email: string,
   token: string,
-  locale: 'zh' | 'en' = 'en',
+  locale: EmailLocale = 'en',
   ipAddress?: string
 ) {
   // 检查频率限制
@@ -419,7 +632,7 @@ export async function sendVerificationEmail(
 export async function sendPasswordResetEmail(
   email: string,
   token: string,
-  locale: 'zh' | 'en' = 'en',
+  locale: EmailLocale = 'en',
   ipAddress?: string
 ) {
   // 检查频率限制
@@ -521,7 +734,7 @@ export async function sendPointsPurchaseEmail(
   points: number,
   amount: number,
   currency: string = 'usd',
-  locale: 'zh' | 'en' = 'en'
+  locale: EmailLocale = 'en'
 ) {
   const template = emailTemplates.pointsPurchase[locale]
   const colors = BRAND_COLORS
@@ -580,9 +793,9 @@ export async function sendWithdrawRequestAdminEmail(params: {
   accountName: string
   accountInfo: string
   requestedAt: Date
-  locale?: 'zh' | 'en'
+  locale?: EmailLocale
 }) {
-  const locale: 'zh' | 'en' = params.locale || 'zh'
+  const locale: EmailLocale = params.locale || 'zh'
   const template = emailTemplates.withdrawRequestAdmin[locale]
   const colors = BRAND_COLORS
 
@@ -670,9 +883,9 @@ export async function sendWithdrawStatusEmail(params: {
   accountInfo: string
   status: 'PROCESSING' | 'COMPLETED' | 'FAILED' | 'CANCELLED'
   note?: string | null
-  locale?: 'zh' | 'en'
+  locale?: EmailLocale
 }) {
-  const locale: 'zh' | 'en' = params.locale || 'zh'
+  const locale: EmailLocale = params.locale || 'zh'
   const template = emailTemplates.withdrawStatusUser[locale]
   const colors = BRAND_COLORS
 
@@ -761,12 +974,12 @@ export async function sendWithdrawStatusEmail(params: {
 }
 
 // 获取计划显示名称
-function getPlanDisplayName(plan: string, lang: 'zh' | 'en'): string {
-  const planMap: Record<string, { zh: string; en: string }> = {
-    trial: { zh: '试用版', en: 'Trial' },
-    pro: { zh: '专业版', en: 'Professional' },
-    annual: { zh: '年度版', en: 'Annual' },
-    enterprise: { zh: '企业版', en: 'Enterprise' },
+function getPlanDisplayName(plan: string, lang: EmailLocale): string {
+  const planMap: Record<string, Record<EmailLocale, string>> = {
+    trial:     { zh: '试用版',  tw: '試用版',  en: 'Trial',         ja: 'トライアル',     ko: 'Trial' },
+    pro:       { zh: '专业版',  tw: '專業版',  en: 'Professional',  ja: 'プロフェッショナル', ko: 'Professional' },
+    annual:    { zh: '年度版',  tw: '年度版',  en: 'Annual',        ja: '年間',             ko: 'Annual' },
+    enterprise:{ zh: '企业版',  tw: '企業版',  en: 'Enterprise',    ja: 'エンタープライズ', ko: 'Enterprise' },
   }
   return planMap[plan]?.[lang] || plan
 }
@@ -779,7 +992,7 @@ export async function sendSubscriptionSuccessEmail(
   periodEnd: Date,
   amount: number,
   currency: string = 'usd',
-  locale: 'zh' | 'en' = 'en'
+  locale: EmailLocale = 'en'
 ) {
   const template = emailTemplates.subscriptionSuccess[locale]
   const colors = BRAND_COLORS

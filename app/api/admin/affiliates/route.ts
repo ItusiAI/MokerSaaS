@@ -5,13 +5,20 @@ import { eq, desc, count, sum, sql } from 'drizzle-orm'
 import { isAdmin } from '@/lib/auth-utils'
 import { sendWithdrawStatusEmail } from '@/lib/email'
 
+function normalizeAppLocale(input: unknown, fallback: 'en' | 'zh' | 'ja' | 'ko' | 'tw' = 'en'): 'en' | 'zh' | 'ja' | 'ko' | 'tw' {
+  if (typeof input === 'string' && (['en', 'zh', 'ja', 'ko', 'tw'] as const).includes(input as any)) {
+    return input as 'en' | 'zh' | 'ja' | 'ko' | 'tw'
+  }
+  return fallback
+}
+
 export async function GET(request: NextRequest) {
   try {
     // 验证管理员权限
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
@@ -327,13 +334,13 @@ export async function PATCH(request: NextRequest) {
     const adminAccess = await isAdmin()
     if (!adminAccess) {
       return NextResponse.json(
-        { error: '需要管理员权限' },
+        { error: 'admin_required' },
         { status: 403 }
       )
     }
 
     const body = await request.json()
-    const { withdrawalId, status, transactionId, failureReason } = body
+    const { withdrawalId, status, transactionId, failureReason, locale } = body
 
     // 验证必填字段
     if (!withdrawalId || !status) {
@@ -439,7 +446,7 @@ export async function PATCH(request: NextRequest) {
             accountInfo: currentWithdrawal.accountInfo,
             status: status,
             note: failureReason || null,
-            locale: 'zh',
+            locale: normalizeAppLocale(locale, 'en'),
           })
         }
       }

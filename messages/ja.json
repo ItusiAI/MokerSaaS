@@ -1,0 +1,1666 @@
+{
+  "metadata": {
+    "title": "MokerSaaS - SaaSを高速構築 · 数時間でリリース · フリー＆オープンソース",
+    "description": "SaaSを光速で構築し、数時間でプロダクトをリリース。MokerSaaSはすぐに使えるエンタープライズ向けSaaSソリューションを提供し、認証、Stripe決済、多言語i18n、SEO最適化、管理ダッシュボード、招待・アフィリエイト機能を標準搭載。Next.js最新技術スタックで、アイディアから収益までの時間を劇的に短縮します。",
+    "shortTitle": "MokerSaaS - SaaSを高速構築",
+    "keywords": "MokerSaaS, SaaSを高速構築, オープンソースSaaS, SaaSテンプレート, Next.jsテンプレート, 無料SaaS, TypeScript SaaS, Stripe連携, i18n SaaS, 管理ダッシュボード, 招待制度, アフィリエイトプログラム, 数時間でリリース",
+    "terms": {
+      "title": "利用規約 - MokerSaaS オープンソースSaaSテンプレート",
+      "description": "MokerSaaSオープンソースSaaSテンプレートの利用規約をご覧いただき、テンプレート利用ルール、ライセンス契約、ユーザーの権利と責任をご確認ください。"
+    },
+    "privacy": {
+      "title": "プライバシーポリシー - MokerSaaS オープンソースSaaSテンプレート",
+      "description": "MokerSaaSオープンソースSaaSテンプレートがユーザーデータとプライバシーをどのように取り扱い、個人情報セキュリティを確保するかを理解する。"
+    },
+    "cookies": {
+      "title": "Cookieポリシー - MokerSaaS オープンソースSaaSテンプレート",
+      "description": "MokerSaaSオープンソースSaaSテンプレートがCookieおよび関連技術を利用してユーザー体験とウェブサイトパフォーマンスを最適化する方法について。"
+    }
+  },
+  "navbar": {
+    "home": "ホーム",
+    "featuresArchitecture": "機能アーキテクチャ",
+    "demo": "ライブデモ",
+    "pricing": "料金プラン",
+    "signUp": "はじめる",
+    "signIn": "ログイン",
+    "profile": "ダッシュボード",
+    "affiliate": "アフィリエイト",
+    "referral": "招待",
+    "accountSettings": "アカウント設定",
+    "signOut": "ログアウト",
+    "language": "言語切替",
+    "switchLanguage": "言語を切り替える",
+    "chinese": "中国語",
+    "english": "英語",
+    "japanese": "日本語",
+    "korean": "韓国語",
+    "traditionalChinese": "繁体字中国語",
+    "currentLocale": "中",
+    "currentLocaleTw": "繁",
+    "currentLocaleEn": "EN",
+    "currentLocaleJa": "JP",
+    "currentLocaleKo": "KR",
+    "switchToLight": "ライトモードに切り替え",
+    "switchToDark": "ダークモードに切り替え"
+  },
+  "hero": {
+    "title": "SaaSを光速で構築、",
+    "highlight": "数時間でリリース。",
+    "description": "すぐに使えるエンタープライズ向けSaaSソリューションを提供し、認証、Stripe決済、多言語i18n、SEO最適化、管理ダッシュボード、招待・アフィリエイト機能を標準搭載。Next.js最新技術スタックで、アイディアから収益までの時間を劇的に短縮します。",
+    "badge": "100% オープンソース＆無料",
+    "primaryCta": "テンプレートを無料で入手",
+    "secondaryCta": "アーキテクチャを見る",
+    "techStackLabel": "コア技術スタック：",
+    "techStack": {
+      "nextjs": "Next.js 16",
+      "nextjsTitle": "Next.js 16 App Router",
+      "neon": "Neon",
+      "neonTitle": "Neon Serverless Postgresデータベース",
+      "stripe": "Stripe",
+      "stripeTitle": "Stripeサブスクリプション決済"
+    },
+    "uptimeBadge": {
+      "label": "リリース効率向上",
+      "value": "10倍速く出荷"
+    },
+    "code": {
+      "tabTitle": "referral-rewards · route.ts",
+      "runTitle": "テスト実行",
+      "runLabel": "実行",
+      "copyTitle": "コードをコピー",
+      "simulateLog1": "[04:22:01] Next.js 16 App Routerワークフローを初期化中...",
+      "simulateLog2": "[04:22:02] Neon Postgresの招待チェーンとクレジット台帳を照会中...",
+      "simulateLog3": "[04:22:03] NextAuth.jsと招待リワード配布を検証完了。",
+      "simulateSuccess": "✓ 模擬実行成功：招待リワードAPIがクレジットと日数を自動付与しました！"
+    }
+  },
+  "orchestration": {
+    "sectionBadge": "フルスタック技術 · モダンSaaSインフラ",
+    "sectionTitle": "フルスタック オープンソース技術",
+    "sectionHighlight": "アーキテクチャスタック。",
+    "sectionSubtitle": "本番グレードの最新開発フレームワーク、ゼロコンフィグで箱から出してすぐに使えるため、コアビジネスロジックに集中できます。",
+    "left1": {
+      "title": "Next.js 16 App Router",
+      "meta": "スタック：",
+      "metaValue": "React 19 + TS",
+      "desc": "最新のNext.js App Routerを基盤に、サーバーサイドレンダリング（SSR）とエッジレンダリングの最適化で超高速な初回描画を実現。"
+    },
+    "left2": {
+      "title": "Neon + Drizzle",
+      "meta": "ステータス：",
+      "metaValue": "型安全ORM",
+      "desc": "高性能Neon Serverless Postgresと軽量Drizzle ORMによる完全型安全なデータベース操作。"
+    },
+    "node1": {
+      "label": "NEXT_JS_16"
+    },
+    "node2": {
+      "label": "NEON_POSTGRES"
+    },
+    "node3": {
+      "label": "STRIPE_BILLING"
+    },
+    "floatingBadge1": {
+      "label": "節約した開発時間",
+      "value": "200時間以上"
+    },
+    "floatingBadge2": {
+      "label": "ライセンス",
+      "value": "MITオープンソース"
+    },
+    "terminal": {
+      "title": "フレームワークライブテストステータス",
+      "simulateBtn": "APIリクエストフローをシミュレート",
+      "log1": "> [04:22:11] Next.js 16 App Routerルート読み込み完了... OK",
+      "log2": "> [04:22:15] Neon Postgresサーバーレスプール初期化成功（12ms）",
+      "log3": "> [04:22:19] Stripe SDKとWebhookがイベント受信：checkout.session.completed",
+      "simulateLog": "新規ユーザー登録とStripe自動請求をシミュレート中..."
+    },
+    "right1": {
+      "title": "Stripeサブスクリプション連携",
+      "meta": "連携：",
+      "metaValue": "Webhook + Portal",
+      "desc": "Stripe Checkout、月額/年額サブスクリプション、Webhookエンドポイント、セルフサービスの顧客請求ポータルを内蔵。"
+    },
+    "right2": {
+      "title": "100% オープン＆無料",
+      "meta": "デプロイ：",
+      "metaValue": "Vercel / Docker",
+      "desc": "クラウドベンダーロックインなし。Vercel、Cloud Run、任意のNode.js / Docker対応サーバーへワンクリックデプロイ。"
+    },
+    "metrics": {
+      "1": {
+        "label": "開発効率向上",
+        "value": "10倍以上"
+      },
+      "2": {
+        "label": "コアコンポーネント",
+        "value": "40以上すぐ使える"
+      },
+      "3": {
+        "label": "DB互換",
+        "value": "Neon Postgres完全対応"
+      },
+      "4": {
+        "label": "オープンソースライセンス",
+        "value": "MITライセンス"
+      }
+    }
+  },
+  "engineeringValidation": {
+    "sectionBadge": "本物の開発者レビュー",
+    "sectionTitlePrefix": "開発者と",
+    "sectionTitleHighlight": "クリエイターに信頼されています。",
+    "testimonials": [
+      {
+        "name": "Zhang Ming",
+        "title": "個人開発者 · 創設者 @ AIライティングアシスタント",
+        "badge": "認証済み",
+        "quote": "MokerSaaSのおかげで、Next.js App RouterとStripeサブスクリプションの繰り返し設定を大幅に節約できました。3日でリリースし、最初の海外サブスク支払いを受け取りました！",
+        "icon": "star"
+      },
+      {
+        "name": "Alex Chen",
+        "title": "CTO @ CloudScale Engineering",
+        "badge": "認証済み",
+        "quote": "すぐに使えるPostgreSQLとDrizzle ORMのスキーマ構成は非常にエレガント。コードベースがきれいで、二次開発が楽です。",
+        "icon": "cloud"
+      },
+      {
+        "name": "Wang Xiaolei",
+        "title": "フルスタックエンジニア @ Global SaaS Geek",
+        "badge": "認証済み",
+        "quote": "今まで見た中で最もクリーンなNext.jsオープンソーステンプレート。無駄なサードパーティ依存がなく、認証、データベース、Stripeサブスクリプションに焦点 — 強くお勧めします！",
+        "icon": "terminal"
+      }
+    ]
+  },
+  "technicalFAQ": {
+    "sectionBadge": "FAQ",
+    "sectionTitlePrefix": "技術＆デプロイ",
+    "sectionTitleHighlight": "FAQ。",
+    "sectionSubtitle": "個人開発者やスタートアップがテンプレートの利用、アーキテクチャ選定、本番リリースについてよく尋ねる質問への回答。",
+    "faqs": [
+      {
+        "question": "どの技術スタックとフレームワークが含まれていますか？",
+        "answer": "テンプレートはフルスタックNext.js 16（App Router）、NextAuth.js認証、Resendメール、Neon Serverless Postgres（Drizzle ORM）、StripeサブスクリプションSDKで構築されています。"
+      },
+      {
+        "question": "このSaaSテンプレートは完全オープンソースで無料ですか？",
+        "answer": "はい！ベースバージョンは100% MITライセンスです。商用プロジェクト、個人開発、クライアント納品にロイヤリティやライセンス料なしで自由にご利用いただけます。"
+      },
+      {
+        "question": "プロジェクトをどのように迅速にデプロイしてリリースしますか？",
+        "answer": "リポジトリをフォークし、ローカルにクローン、環境変数（Neon Postgres接続文字列やStripe APIキーなど）を設定し、Vercel、Cloud Run、または自分のDockerサーバーへワンコマンドでデプロイできます。"
+      },
+      {
+        "question": "Stripe決済の設定とテスト方法は？",
+        "answer": "事前構築されたAPIルートとWebhookイベントハンドラーを用意しています。Stripeダッシュボードからテスト/ライブAPIキーとWebhookシークレットを取得し、.envに設定するだけで、月額/年額サブスクリプションフローが自動的に有効になります。"
+      }
+    ]
+  },
+  "missionControl": {
+    "sectionBadge": "オールインワン オープンソースSaaSソリューション",
+    "sectionTitlePrefix": "すぐに使える",
+    "sectionTitleHighlight": "コアビジネスモジュール。",
+    "sectionSubtitle": "管理コンソール、ユーザーワークスペース、Stripe多層サブスクリプション、アフィリエイト報酬 — すべて準備済み、車輪の再発明は不要。",
+    "moduleCounter": "モジュール {current} / {total}",
+    "nextButton": "次のモジュール",
+    "readyBadge": "モジュール準備完了",
+    "metrics": {
+      "savedTime": {
+        "label": "平均節約開発時間",
+        "value": "200時間以上",
+        "caption": "コアビジネスをリリース"
+      },
+      "commission": {
+        "label": "招待コミッション",
+        "value": "30%レート",
+        "caption": "自動精算・出金可能"
+      }
+    },
+    "tabs": {
+      "admin": {
+        "tabTitle": "管理コンソール",
+        "title": "管理コンソール",
+        "highlight": "SaaSを完全に制御。",
+        "description": "ユーザー管理、ロールベースのアクセス、分析、ポイント調整を備えた強力な管理システムで、プラットフォーム全体を安心して運営できます。",
+        "items": [
+          "きめ細かいロールのユーザー管理（管理者 / メンバー）",
+          "アクティブユーザー、MRR収益、サブスクリプション転換の追跡",
+          "手動/自動ポイント調整と完全な監査ログ"
+        ]
+      },
+      "dashboard": {
+        "tabTitle": "ユーザーダッシュボード",
+        "title": "ユーザーダッシュボード",
+        "highlight": "直感的なワークスペース。",
+        "description": "サブスクリプションステータス、ポイント残高、招待統計、アカウント設定を示すクリーンなユーザーダッシュボード — すべてが一目でわかります。",
+        "items": [
+          "リアルタイムのサブスクリプション状況、月次使用量、残クレジット",
+          "個別の招待実績、招待コード、招待ユーザー",
+          "メール認証、連携アカウント、セッションセキュリティ状況"
+        ]
+      },
+      "subscriptions": {
+        "tabTitle": "サブスクリプションプラン",
+        "title": "サブスクリプションプラン",
+        "highlight": "自動課金エンジン。",
+        "description": "トライアル、Pro、年額プランをサポートする柔軟なサブスクリプション管理、自動更新、キャンセル、更新リマインダー。",
+        "items": [
+          "トライアル、Pro月額、年額割引プランをすぐに利用可能",
+          "自動更新、満期リマインダー、アップグレード/ダウングレードロジック",
+          "Stripeカスタマーポータルでセルフキャンセルと請求書"
+        ]
+      },
+      "affiliate": {
+        "tabTitle": "アフィリエイトプログラム",
+        "title": "アフィリエイトプログラム",
+        "highlight": "バイラル成長＆報酬。",
+        "description": "カスタムコード、コミッション分析、出金管理を備えた完全なアフィリエイトシステム — すべての初回有料注文で30%を獲得。",
+        "items": [
+          "カスタム招待リンクと割引コード",
+          "リアルタイム30%初回コミッションと収益パネル",
+          "出金リクエスト、台帳履歴、状況追跡"
+        ]
+      }
+    },
+    "previews": {
+      "admin": {
+        "title": "スーパー管理パネル（管理コンソール）",
+        "subtitle": "サイト全体のユーザー、ロール、ポイント活動、財務分析",
+        "badge": "SUPER_ADMIN",
+        "imageAlt": "管理コンソールプレビュー",
+        "imageCaption": "ダッシュボード + ユーザー管理 + ロール権限"
+      },
+      "dashboard": {
+        "title": "ユーザーワークスペース",
+        "subtitle": "クレジット購入、招待報酬、請求履歴、サブスクリプションを一ヶ所に",
+        "badge": "Proメンバー有効",
+        "imageAlt": "ユーザーワークスペースプレビュー",
+        "imageCaption": "チャージ · 招待リンク · 請求 · 連携アカウント"
+      },
+      "subscriptions": {
+        "title": "Stripeサブスクリプション＆請求",
+        "subtitle": "トライアル、Pro月額、年額割引サブスクリプションをサポート",
+        "badge": "Stripe決済",
+        "imageAlt": "Stripeプランプレビュー",
+        "imageCaption": "トライアル / Pro / 年額 3層プラン"
+      },
+      "affiliate": {
+        "title": "アフィリエイトプログラム",
+        "subtitle": "ディストリビュションネットワークを構築し、最大30%の初回コミッションを獲得",
+        "badge": "30%初回ルール",
+        "imageAlt": "アフィリエイトプログラムプレビュー",
+        "imageCaption": "アフィリエイトコード · コミッション統計 · 出金"
+      }
+    }
+  },
+  "pricing": {
+    "title": "あなたに最適なSaaSテンプレートプランを選択",
+    "recommended": "おすすめ",
+    "header": {
+      "badge": "100%透明な商用ライセンス",
+      "titlePrefix": "柔軟なプラン、",
+      "titleHighlight": "個人開発者と成長中のチーム向け",
+      "subtitle": "オープンソース版は永久無料。商用ライセンスまたは深いカスタマイズサポートにアップグレードして、SaaSをより速くリリース・収益化しましょう。",
+      "fetchStatusError": "サブスクリプション状況の取得に失敗しました："
+    },
+    "trial": {
+      "name": "トライアル",
+      "price": "$4.99",
+      "periodUnit": "/ 7日間トライアル",
+      "description": "7日間トライアルで全機能を体験",
+      "features": {
+        "period": "期間：7日間",
+        "points": "クレジット：1,000付属",
+        "template": "完全なSaaSテンプレート + 高度な機能",
+        "auth": "完全なユーザー認証システム"
+      },
+      "cta": "トライアル開始",
+      "trial_only_once": "トライアルは1回のみ利用可能",
+      "not_available_for_pro": "Proユーザーはトライアル利用不可",
+      "not_available_for_annual": "年額ユーザーはトライアル利用不可"
+    },
+    "pro": {
+      "name": "プロフェッショナル",
+      "price": "$15.9",
+      "periodUnit": "/ 月",
+      "originalPrice": "$19.9",
+      "discountPercent": "20",
+      "savings": "$4",
+      "discountBadge": "期間限定20%OFF",
+      "description": "スタートアップや中堅企業に最適、高度な機能を含む",
+      "features": {
+        "period": "期間：30日間",
+        "points": "クレジット：1,000付属",
+        "template": "完全なSaaSテンプレート + 高度な機能",
+        "payment": "Stripe決済連携",
+        "support": "1年間の技術サポート"
+      },
+      "cta": "今すぐ購入",
+      "renew": "Proを更新",
+      "cannot_downgrade": "年額サブスクリプションはダウングレードできません"
+    },
+    "annual": {
+      "name": "年額",
+      "price": "$159",
+      "periodUnit": "/ 年",
+      "originalPrice": "$240",
+      "discountPercent": "34",
+      "savings": "$81",
+      "discountBadge": "期間限定34%OFF",
+      "description": "年額サブスクリプション、最も価値あるオプション",
+      "features": {
+        "period": "期間：365日間",
+        "template": "完全なSaaSテンプレート + 高度な機能",
+        "points": "15,000クレジット付属",
+        "payment": "Stripe決済連携",
+        "support": "1年間の技術サポート",
+        "value": "最高の価値 - 34%節約"
+      },
+      "cta": "今すぐ購入",
+      "upgrade": "年額にアップグレード",
+      "renew": "年額を更新",
+      "cannot_downgrade": "年額サブスクリプションはダウングレードできません"
+    },
+    "discount": {
+      "was": "通常",
+      "now": "今だけ",
+      "save": "節約",
+      "off": "OFF"
+    },
+    "enterprise": {
+      "name": "エンタープライズ",
+      "price": "お問い合わせ",
+      "description": "大企業向け、カスタマイズサービスを提供",
+      "features": {
+        "custom": "カスタマイズ開発サービス",
+        "deployment": "プライベートデプロイサポート",
+        "support": "7×24 技術サポート",
+        "training": "チーム研修とコンサルティング"
+      },
+      "cta": "営業に問い合わせ"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "unsubscribe": {
+        "title": "ニュースレターの配信停止",
+        "description": "退会されることは残念ですが、選択を尊重します",
+        "emailLabel": "メールアドレス",
+        "emailPlaceholder": "メールアドレスを入力",
+        "button": "配信停止",
+        "processing": "処理中...",
+        "loadingText": "処理中...",
+        "successMessage": "気が変わったら、いつでもニュースレターを再登録できます。",
+        "backToHome": "ホームに戻る",
+        "networkError": "ネットワークエラー、後でもう一度お試しください",
+        "unsubscribeError": "配信停止に失敗しました"
+      }
+    },
+    "home": {
+      "brand": {
+        "name": "MokerSaaS オープンソーステンプレート",
+        "description": "Next.js 16、Neon Postgres、Stripe上に構築されたフルスタック・収益化可能なSaaSスターター — プロダクトをリリースし、サブスクリプションを接続し、迅速に顧客獲得を始めましょう。",
+        "statusBadge": "全システムとAPI稼働中"
+      },
+      "products": {
+        "title": "プロダクト",
+        "items": {
+          "orchestration": "フルスタックアーキテクチャ",
+          "missionControl": "機能デモ",
+          "pricing": "料金とライセンス"
+        }
+      },
+      "productsColumn": {
+        "title": "プロダクト",
+        "items": {
+          "magiviz": "Magiviz",
+          "editf": "Editf",
+          "voiceCanvas": "VoiceCanvas"
+        }
+      },
+      "newsletter": {
+        "title": "ニュースレター＆テンプレート更新",
+        "heading": "最新のNext.js & SaaS収益化プレイブックを入手",
+        "subtitle": "フルスタックアーキテクチャのベストプラクティス、Stripe決済設定のヒント、MokerSaaSテンプレートの更新情報に関する週刊ダイジェスト。",
+        "emailPlaceholder": "メールアドレスを入力...",
+        "subscribeButton": "購読",
+        "loadingButton": "購読中…",
+        "subscribedBadge": "購読済み",
+        "successMessage": "✓ ご購読ありがとうございます！初回の配信をメールボックスに送信しました。",
+        "errorMessage": "購読に失敗しました。後でもう一度お試しください。",
+        "serverError": "サーバーエラー。後でもう一度お試しください。",
+        "networkError": "ネットワークエラー。接続を確認して再試行してください。"
+      },
+      "bottomBar": {
+        "copyright": "© {year} MokerSaaS オープンソーステンプレート。Next.js 16、Neon Postgres、Stripeで構築。",
+        "social": {
+          "github": "GitHubリポジトリ",
+          "twitter": "X / Twitter"
+        }
+      }
+    }
+  },
+  "verify": {
+    "title": "メール認証",
+    "description": "メールアドレスを認証してアカウント登録を完了",
+    "meta_title": "メール認証",
+    "meta_description": "MokerSaaSアカウントのメールアドレスを認証して、アカウント有効化を完了する",
+    "verifying": "メールアドレスを認証中...",
+    "success": "メール認証成功！",
+    "failed": "メール認証に失敗しました",
+    "token_missing": "認証トークンがありません",
+    "token_invalid": "認証トークンが無効または期限切れです",
+    "failed_retry": "認証に失敗しました。後でもう一度お試しください",
+    "please_wait": "お待ちください、メールアドレスを認証しています...",
+    "login_now": "今すぐログイン",
+    "register_again": "再登録",
+    "or": "または",
+    "back_to_login": "ログインに戻る"
+  },
+  "auth": {
+    "meta_title": "認証 - MokerSaaS",
+    "signin_title": "ログイン",
+    "signin_description": "MokerSaaSアカウントにログインして、モダンSaaSテンプレートの利用を開始",
+    "signup_title": "新規登録",
+    "signup_description": "MokerSaaSアカウントを作成してSaaS開発ジャーニーを開始",
+    "error_title": "認証エラー",
+    "error_description": "認証中にエラーが発生しました。もう一度お試しいただくか、技術サポートにお問い合わせください",
+    "error_page_title": "ログイン失敗",
+    "error_page_description": "認証中にエラーが発生しました",
+    "error_back_to_signin": "ログインに戻る",
+    "error_back_to_home": "ホームに戻る",
+    "error_contact_support": "問題が解決しない場合は、お問い合わせください",
+    "error_technical_support": "技術サポート",
+    "errors": {
+      "Configuration": "サーバー設定エラー、管理者にお問い合わせください",
+      "AccessDenied": "アクセス拒否、このアプリケーションへのアクセス権限がない可能性があります",
+      "Verification": "認証に失敗しました、もう一度お試しください",
+      "OAuthSignin": "サードパーティログインに失敗しました、もう一度お試しください",
+      "OAuthCallback": "サードパーティログインコールバックに失敗しました",
+      "OAuthCreateAccount": "アカウントを作成できません、このメールアドレスは既に使用されている可能性があります",
+      "EmailCreateAccount": "アカウントを作成できません、メールアドレスを確認してください",
+      "Callback": "コールバックエラー、もう一度お試しください",
+      "OAuthAccountNotLinked": "このサードパーティアカウントは既存アカウントに連携されていません、他のログイン方法をご利用ください",
+      "EmailSignin": "メールログインに失敗しました、メールアドレスを確認してください",
+      "CredentialsSignin": "認証情報が無効です、メールアドレスとパスワードを確認してください",
+      "SessionRequired": "このページにアクセスするにはログインが必要です",
+      "OAuthTokenError": "認証トークンの取得に失敗しました、もう一度ログインしてください",
+      "OAuthUserInfoError": "ユーザー情報の取得に失敗しました、認証権限を確認してください",
+      "default": "認証中に不明なエラーが発生しました、もう一度お試しください",
+      "contact_admin": "管理者にお問い合わせください",
+      "error_type_label": "エラー種別："
+    },
+    "welcome_back": "おかえりなさい",
+    "login_description": "MokerSaaSアカウントにログイン",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "email_placeholder": "メールアドレスを入力",
+    "or_continue_with_email": "またはメールで続行",
+    "password_placeholder": "パスワードを入力",
+    "login": "ログイン",
+    "logging_in": "ログイン中...",
+    "login_error": "メールアドレスまたはパスワードが無効です",
+    "login_failed": "ログインに失敗しました、後でもう一度お試しください",
+    "no_account": "アカウントをお持ちでない方は？",
+    "signup_now": "今すぐ登録",
+    "forgot_password": "パスワードをお忘れですか？",
+    "create_account": "アカウント作成",
+    "name": "ユーザー名",
+    "name_placeholder": "ユーザー名を入力",
+    "password_signup_placeholder": "パスワードを入力（6文字以上）",
+    "confirm_password": "パスワード確認",
+    "confirm_password_placeholder": "パスワードを再入力",
+    "password_mismatch": "パスワードが一致しません",
+    "password_too_short": "パスワードは6文字以上必要です",
+    "register_failed": "登録に失敗しました",
+    "register_retry": "登録に失敗しました、後でもう一度お試しください",
+    "registering": "アカウント作成中...",
+    "register_success": "登録成功",
+    "register_success_check_email": "登録成功！メールを確認し、認証リンクをクリックして有効化を完了してください。",
+    "missing_fields": "必須項目をすべて入力してください",
+    "email_exists": "このメールアドレスは既に登録されています",
+    "invalid_referral_code": "無効な招待コード",
+    "verification_email_failed": "登録は成功しましたが、認証メール送信に失敗しました。後でもう一度お試しください",
+    "rate_limit": "リクエストが多すぎます、後でもう一度お試しください",
+    "has_account": "すでにアカウントをお持ちですか？",
+    "login_now": "今すぐログイン",
+    "terms_agreement": "登録することで、当社の",
+    "terms_of_service": "利用規約",
+    "and": "および",
+    "privacy_policy": "プライバシーポリシー",
+    "loginRequiredMessage": "音声要約機能を利用するには、まずログインしてください。",
+    "loginNow": "今すぐログイン",
+    "or_register_with_email": "またはメールで登録",
+    "referral_code": "招待コード（任意）",
+    "referral_code_placeholder": "招待コードを入力",
+    "affiliate_code": "アフィリエイトコード（任意）",
+    "affiliate_code_placeholder": "アフィリエイトコードを入力"
+  },
+  "common": {
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "close": "閉じる",
+    "back": "戻る",
+    "login": "今すぐログイン"
+  },
+  "forgot_password": {
+    "title": "パスワードを忘れた",
+    "description": "メールアドレスを入力いただければ、パスワードリセットリンクをお送りします",
+    "meta_title": "パスワードを忘れた",
+    "meta_description": "MokerSaaSアカウントのパスワードをメール経由でリセットして復元",
+    "email_label": "メールアドレス",
+    "email_placeholder": "メールアドレスを入力",
+    "send_reset_link": "リセットリンクを送信",
+    "sending": "送信中...",
+    "success_message": "パスワードリセットリンクをメールに送信しました",
+    "check_email": "メールを確認し、リンクをクリックしてパスワードをリセットしてください",
+    "back_to_login": "ログインに戻る",
+    "email_required": "メールアドレスを入力してください",
+    "email_invalid": "有効なメールアドレスを入力してください",
+    "send_failed": "送信に失敗しました、後でもう一度お試しください",
+    "user_not_found": "このメールアドレスは登録されていません",
+    "rate_limit": "リクエストが多すぎます、後でもう一度お試しください"
+  },
+  "reset_password": {
+    "title": "パスワードリセット",
+    "description": "新しいパスワードを入力",
+    "meta_title": "パスワードリセット",
+    "meta_description": "MokerSaaSアカウントのパスワードをリセットし、新しい安全なパスワードを設定",
+    "password_label": "新しいパスワード",
+    "password_placeholder": "新しいパスワードを入力",
+    "confirm_password_label": "パスワード確認",
+    "confirm_password_placeholder": "新しいパスワードを再入力",
+    "reset_password": "パスワードをリセット",
+    "resetting": "リセット中...",
+    "success_message": "パスワードリセット成功！",
+    "login_now": "今すぐログイン",
+    "password_required": "パスワードを入力してください",
+    "password_min_length": "パスワードは6文字以上必要です",
+    "password_mismatch": "パスワードが一致しません",
+    "token_invalid": "リセットリンクが無効または期限切れです",
+    "token_expired": "リセットリンクが期限切れです、新しいリンクをリクエストしてください",
+    "reset_failed": "リセットに失敗しました、後でもう一度お試しください",
+    "back_to_forgot": "パスワードリセットに戻る"
+  },
+  "profile": {
+    "title": "ダッシュボード",
+    "description": "アカウント情報の表示と管理",
+    "menu": "メニュー",
+    "please_login": "プロフィールを表示するにはログインしてください",
+    "login_required": "まずログインしてください",
+    "no_name_set": "ユーザー名が未設定",
+    "not_set": "未設定",
+    "verified": "認証済み",
+    "unverified": "未認証",
+    "resend_verification": "認証メールを再送信",
+    "sending": "送信中...",
+    "verification_email_sent": "認証メールを送信しました、受信箱を確認してください",
+    "verification_email_failed": "認証メール送信に失敗しました、後でもう一度お試しください",
+    "loading": "読み込み中...",
+    "points": "クレジット",
+    "points_history": "クレジット履歴",
+    "points_history_description": "クレジットの獲得と使用履歴を表示",
+    "no_points_history": "クレジット履歴がまだありません",
+    "register_bonus": "登録ボーナスクレジット",
+    "email_verify_bonus": "メール認証ボーナスクレジット",
+    "daily_login_bonus": "毎日ログインボーナスクレジット",
+    "referral_bonus": "招待ボーナスクレジット",
+    "manual_operation": "管理者操作",
+    "points_operation": "クレジット操作",
+    "pagination": {
+      "page_info": "{total}ページ中{current}ページ",
+      "total_records": "全{total}件",
+      "previous": "前へ",
+      "next": "次へ"
+    },
+    "points_actions": {
+      "register": "登録ボーナスクレジット",
+      "email_verify": "メール認証ボーナスクレジット",
+      "daily_login": "毎日ログインボーナスクレジット",
+      "referral": "招待ボーナスクレジット",
+      "manual": "管理者操作",
+      "purchase": "クレジット購入",
+      "subscription_gift": "{plan}ボーナスクレジット",
+      "subscription_renewal_gift": "{plan}更新ボーナスクレジット",
+      "subscription_upgrade_gift": "{plan}にアップグレードボーナスクレジット",
+      "subscription_reward": "招待サブスクリプション報酬クレジット",
+      "subscription_expired": "クレジット失効",
+      "unknown": "不明な操作",
+      "pay_amount": "{amount}を支払う"
+    },
+    "account_info": "アカウント情報",
+    "registration_date": "登録日",
+    "last_login": "最終ログイン",
+    "account_status": "アカウントステータス",
+    "email_verified": "メール認証済み",
+    "account_secure": "アカウント安全",
+    "profile_complete": "プロフィール完成",
+    "personal_info": "個人情報",
+    "account_settings": "アカウント設定",
+    "connected_accounts": "連携アカウント",
+    "security": "セキュリティ設定",
+    "name": "ユーザー名",
+    "name_placeholder": "ユーザー名を入力",
+    "email": "メールアドレス",
+    "email_unverified": "未認証",
+    "verify_email": "メールを認証",
+    "avatar": "アバター",
+    "change_avatar": "アバターを変更",
+    "current_password": "現在のパスワード",
+    "current_password_placeholder": "現在のパスワードを入力",
+    "new_password": "新しいパスワード",
+    "new_password_placeholder": "新しいパスワードを入力",
+    "confirm_new_password": "新しいパスワード確認",
+    "confirm_new_password_placeholder": "新しいパスワードを再入力",
+    "change_password": "パスワードを変更",
+    "save_changes": "変更を保存",
+    "saving": "保存中...",
+    "saved": "保存しました",
+    "cancel": "キャンセル",
+    "connect": "連携",
+    "connecting": "連携中...",
+    "disconnect": "連携解除",
+    "connected": "連携済み",
+    "not_connected": "未連携",
+    "github_account": "GitHubアカウント",
+    "google_account": "Googleアカウント",
+    "delete_account": "アカウント削除",
+    "delete_account_warning": "アカウントを削除すると、すべてのデータが永久に削除されます。この操作は元に戻せません！",
+    "delete_account_confirm": "アカウントを削除することを確認します",
+    "delete_account_button": "アカウントを永久に削除",
+    "member_since": "登録日",
+    "success_message": "更新成功！",
+    "error_message": "更新失敗、後でもう一度お試しください",
+    "password_changed": "パスワード変更成功！",
+    "password_change_failed": "パスワード変更失敗",
+    "account_connected": "アカウント連携成功！",
+    "account_disconnected": "アカウント連携解除成功！",
+    "account_connection_failed": "アカウント連携失敗",
+    "email_verification_sent": "認証メール送信済み",
+    "name_required": "ユーザー名を入力してください",
+    "current_password_required": "現在のパスワードを入力してください",
+    "new_password_required": "新しいパスワードを入力してください",
+    "password_min_length": "パスワードは6文字以上必要です",
+    "password_mismatch": "パスワードが一致しません",
+    "current_password_incorrect": "現在のパスワードが正しくありません",
+    "subscription_info": "サブスクリプションプラン",
+    "subscription_info_description": "サブスクリプションプランの表示と管理",
+    "subscription_status": "サブスクリプションステータス",
+    "subscription_active": "有効",
+    "subscription_cancelled": "キャンセル済み",
+    "subscription_past_due": "支払い遅延",
+    "subscription_free": "無料ユーザー",
+    "subscription_expires": "満期日",
+    "points_purchase_success_toast": "ポイント購入が完了しました！ポイントがアカウントに追加されました",
+    "payment_cancelled_toast": "支払いがキャンセルされました",
+    "stripe_load_failed": "Stripe の読み込みに失敗しました",
+    "subscription_expiring_soon": "まもなく満期",
+    "subscription_expired": "満期切れ",
+    "plan_free": "フリープラン",
+    "plan_trial": "トライアル",
+    "plan_pro": "Pro",
+    "plan_annual": "年額",
+    "plan_enterprise": "エンタープライズプラン",
+    "plan_free_description": "個人開発者向け基本テンプレート",
+    "plan_trial_description": "7日間トライアルで全機能を体験",
+    "plan_pro_description": "プロフェッショナル開発向け全機能",
+    "plan_annual_description": "年額サブスクリプション、最も価値あるオプション、15,000クレジット含む",
+    "plan_enterprise_description": "エンタープライズチーム向けカスタムサービス",
+    "manage_subscription": "サブスクリプションを管理",
+    "upgrade_to_pro": "Proにアップグレード",
+    "upgrade_benefits_title": "アップグレードでさらにクレジットを獲得",
+    "upgrade_benefits_1": "完全なSaaSテンプレートソースコード",
+    "upgrade_benefits_2": "優先技術サポート",
+    "upgrade_benefits_3": "高度な機能コンポーネント",
+    "upgrade_benefits_4": "カスタム開発サービス",
+    "upgrade_benefits_description": "Proにアップグレードしてボーナスクレジットを獲得し、すべての機能を解放。",
+    "view_pricing": "料金を見る",
+    "points_purchase": "クレジット購入",
+    "points_purchase_description": "さらにポイントが必要ですか？パッケージを選択して即座に入手",
+    "points_package_starter": "スターターパッケージ",
+    "points_package_popular": "人気パッケージ",
+    "points_package_premium": "プレミアムパッケージ",
+    "points_usage_title": "クレジット使用",
+    "points_usage_ai_service": "SaaSテンプレート機能使用",
+    "points_usage_premium_features": "高度な機能コンポーネント",
+    "points_usage_priority_support": "優先技術サポート",
+    "purchase_now": "今すぐ購入",
+    "processing_payment": "処理中...",
+    "payment_success": "支払い成功",
+    "payment_failed": "支払い失敗",
+    "order_details": "注文詳細",
+    "complete_payment": "支払いを完了",
+    "cancel_payment": "キャンセル",
+    "card_info": "カード情報",
+    "pay_amount": "支払う",
+    "purchase_success": "購入成功！",
+    "points_added": "クレジット追加",
+    "current_points": "現在のクレジット",
+    "purchased_points_label": "購入クレジット（永久）",
+    "gifted_points_label": "ボーナスクレジット（サブスク付随）",
+    "subscription_gift_notice": "有効なサブスクリプションがあり、1,000ボーナスクレジットを受け取りました",
+    "purchased_points": "購入クレジット",
+    "purchased_points_description": "支払いで購入したクレジット、永久に失効しません",
+    "gifted_points": "ボーナスクレジット",
+    "gifted_points_description": "サブスクリプションに付属するクレジット、サブスクリプション満期時にクリア",
+    "usage_priority": "使用優先度",
+    "usage_priority_description": "システムはボーナスポイントを優先的に使用し、その後購入ポイントを使用します",
+    "recommended": "おすすめ",
+    "processing": "処理中...",
+    "payment_history": "支払い履歴",
+    "referral": {
+      "title": "招待プログラム",
+      "description": "友達を招待して登録すると、お互いに報酬を獲得",
+      "total_referrals": "総招待数",
+      "subscribed_referrals": "購読済み招待",
+      "referral_code": "招待コード",
+      "referral_link": "招待リンク",
+      "history": "招待履歴",
+      "no_history": "招待履歴がまだありません",
+      "code_copied": "招待コードをコピーしました",
+      "link_copied": "招待リンクをコピーしました",
+      "copy_failed": "コピー失敗",
+      "action_register_bonus": "登録ボーナス",
+      "action_referrer_bonus": "招待者ボーナス",
+      "action_subscription_reward": "招待サブスク報酬",
+      "days": "日間",
+      "records": "招待記録",
+      "no_records": "招待記録がまだありません",
+      "subscribed": "購読済み",
+      "not_subscribed": "未購読",
+      "anonymous_user": "匿名ユーザー"
+    },
+    "payment_history_details": {
+      "title": "支払い履歴",
+      "stats": {
+        "title": "支払い統計",
+        "total_payments": "総支払い回数",
+        "total_amount": "総額",
+        "total_points_purchased": "購入クレジット総数",
+        "total_points_gifted": "サブスクリプションから獲得したクレジット",
+        "successful_payments": "成功した支払い"
+      },
+      "payment_types": {
+        "subscription": "サブスクリプション",
+        "points_purchase": "クレジット購入",
+        "other": "その他"
+      },
+      "payment_statuses": {
+        "succeeded": "成功",
+        "failed": "失敗",
+        "pending": "保留中",
+        "refunded": "返金済み",
+        "cancelled": "キャンセル済み"
+      },
+      "table": {
+        "type": "タイプ",
+        "product": "プロダクト",
+        "amount": "金額",
+        "points": "クレジット",
+        "status": "ステータス",
+        "time": "時間"
+      },
+      "filters": {
+        "type_placeholder": "タイプでフィルター",
+        "status_placeholder": "ステータスでフィルター",
+        "all_types": "全タイプ",
+        "all_statuses": "全ステータス"
+      },
+      "empty_state": {
+        "title": "支払い記録がありません"
+      },
+      "errors": {
+        "fetch_failed": "支払い記録の取得に失敗しました"
+      }
+    },
+    "payment_history_description": "すべての支払い記録と取引詳細を表示"
+  },
+  "referral_page": {
+    "title": "招待プログラム",
+    "subtitle": "友達を招待して一緒に報酬を獲得",
+    "keywords": "リファラルプログラム,招待報酬,パートナーシップ,SaaS リファラル,MokerSaaS",
+    "custom_code": {
+      "title": "カスタム招待コード",
+      "description": "友達が覚えやすいユニークな招待コードを設定",
+      "current_code": "現在のコード",
+      "placeholder": "カスタムコードを入力（4〜20文字）",
+      "button": "コードを設定",
+      "button_updating": "設定中...",
+      "success": "招待コード設定成功",
+      "error": "招待コード設定失敗",
+      "already_set": "コードは設定済み、変更できません",
+      "invalid_format": "無効な形式（4〜20文字、英数字のみ）",
+      "already_taken": "このコードは既に使用されています",
+      "note": "注意：招待コードは1回のみ設定可能、変更できません"
+    },
+    "stats": {
+      "title": "招待統計",
+      "total_invites": "総招待数",
+      "people": "人",
+      "total_rewards": "総報酬",
+      "points": "ポイント",
+      "subscribed_users": "購読済みユーザー",
+      "pending_users": "保留中ユーザー"
+    },
+    "share": {
+      "title": "招待を共有",
+      "copy_code": "コードをコピー",
+      "copy_link": "リンクをコピー",
+      "share_text": "友達と共有"
+    },
+    "rules": {
+      "title": "報酬ルール",
+      "rule1_title": "登録ボーナス",
+      "rule1_desc": "友達があなたのコードで登録すると、両者とも100クレジット獲得（永久）",
+      "rule2_title": "サブスクリプション報酬",
+      "rule2_desc": "友達が任意のプランに購読すると、同等のサブスクリプション延長＋プランのボーナスクレジットを獲得",
+      "rule3_title": "複数回報酬",
+      "rule3_desc": "友達が更新またはアップグレードするたびに報酬を獲得（無制限）",
+      "rule4_title": "期間限定",
+      "rule4_desc": "招待関係は30日間有効、期限後は報酬なし",
+      "note": "注意：すべての報酬は友達の登録またはサブスクリプション完了後に自動付与されます"
+    },
+    "recent_referrals": {
+      "title": "最近の招待",
+      "view_all": "すべて表示",
+      "registered_at": "登録日時"
+    },
+    "records": {
+      "title": "招待記録",
+      "description": "あなたの招待コードで登録したユーザーを表示",
+      "loading": "読み込み中...",
+      "empty": "招待記録がありません",
+      "unknown_user": "不明なユーザー",
+      "subscribed": "購読済み",
+      "pending": "保留中",
+      "filter_all": "すべて",
+      "table": {
+        "user": "ユーザー",
+        "email": "メール",
+        "register_time": "登録時間",
+        "status": "ステータス"
+      }
+    },
+    "rewards": {
+      "title": "報酬記録",
+      "description": "各サブスクリプションのポイントとサブスクリプション延長記録を表示",
+      "loading": "読み込み中...",
+      "empty": "報酬記録がありません",
+      "unknown_user": "不明なユーザー",
+      "points": "ポイント",
+      "days": "日間",
+      "filter_all": "すべて",
+      "action_register_bonus": "登録ボーナス",
+      "action_referrer_bonus": "招待者ボーナス",
+      "action_subscription_reward": "サブスクリプション報酬",
+      "table": {
+        "action": "アクションタイプ",
+        "from": "送信元",
+        "reward": "報酬",
+        "create_time": "作成時間"
+      }
+    }
+  },
+  "affiliate_page": {
+    "title": "アフィリエイトシステム",
+    "subtitle": "招待でコミッションを獲得、注文ごとに30%",
+    "keywords": "アフィリエイ トプログラム,紹介報酬,コミッション報酬,パートナーシップ,SaaS アフィリエイ ト,MokerSaaS",
+    "loading": "読み込み中...",
+    "stats": {
+      "total_invites": "総招待数",
+      "converted": "転換済み",
+      "available_balance": "利用可能残高",
+      "frozen_balance": "凍結残高"
+    },
+    "code_setting": {
+      "title": "アフィリエイトコード設定",
+      "description": "アフィリエイトコードを設定、1回のみ変更可能",
+      "current_code": "現在のコード",
+      "placeholder": "新しいコードを入力（8〜20文字の英数字）",
+      "placeholder_set": "コードを入力（8〜20文字の英数字）",
+      "button_update": "コード更新",
+      "button_set": "コード設定",
+      "updating": "更新中...",
+      "setting": "設定中...",
+      "note": "注意：アフィリエイトコードは1回のみ変更可能、よく考えて設定してください",
+      "already_changed": "コードは変更済み、再度変更できません",
+      "enter_code": "アフィリエイトコードを入力してください",
+      "invalid_format": "無効な形式、8〜20文字の英数字である必要",
+      "update_success": "コード更新成功",
+      "update_failed": "コード更新失敗",
+      "already_taken": "このコードは既に使用されています",
+      "code_copied": "コードをコピーしました",
+      "link_copied": "リンクをコピーしました",
+      "copy_failed": "コピー失敗",
+      "set_first": "まずアフィリエイトコードを設定してください"
+    },
+    "share": {
+      "title": "アフィリエイトを共有",
+      "link_label": "アフィリエイトリンク",
+      "copy_code": "コードをコピー",
+      "copy_link": "リンクをコピー"
+    },
+    "relations": {
+      "title": "招待データ",
+      "description": "あなたのアフィリエイトコードで登録したユーザーを表示",
+      "loading": "読み込み中...",
+      "empty": "招待データがありません",
+      "unknown_user": "不明なユーザー",
+      "register_time": "登録時間",
+      "converted": "転換済み",
+      "expired": "期限切れ",
+      "pending": "保留中",
+      "filter_all": "すべて",
+      "table": {
+        "user": "ユーザー",
+        "email": "メール",
+        "register_time": "登録時間",
+        "status": "ステータス"
+      }
+    },
+    "earnings": {
+      "title": "収益記録",
+      "description": "コミッション収入とステータスを表示",
+      "loading": "読み込み中...",
+      "empty": "収益記録がありません",
+      "from": "送信元",
+      "create_time": "作成時間",
+      "release_time": "解放時間",
+      "frozen": "凍結",
+      "released": "解放済み",
+      "cancelled": "キャンセル済み",
+      "unknown_user": "不明なユーザー",
+      "filter_all": "すべて",
+      "table": {
+        "amount": "金額",
+        "from": "送信元",
+        "status": "ステータス",
+        "create_time": "作成時間",
+        "release_time": "解放時間"
+      }
+    },
+    "withdraw": {
+      "title": "出金リクエスト",
+      "description": "利用可能残高を自分のアカウントに出金",
+      "button": "出金",
+      "amount": "出金額",
+      "amount_placeholder": "出金額を入力",
+      "min_amount": "最低金額",
+      "min_amount_error": "最低出金額は$10です",
+      "payment_method": "支払い方法",
+      "alipay": "Alipay",
+      "paypal": "PayPal",
+      "account_name": "アカウント名",
+      "account_name_placeholder": "アカウント名を入力",
+      "alipay_account": "Alipayアカウント",
+      "alipay_placeholder": "Alipayアカウントまたは電話番号を入力",
+      "paypal_email": "PayPalメール",
+      "paypal_placeholder": "PayPalメールを入力",
+      "available_balance": "利用可能残高",
+      "exceeds_balance": "出金額が残高を超えています",
+      "submit": "リクエスト送信",
+      "processing": "処理中...",
+      "success": "出金リクエスト送信済み",
+      "failed": "出金リクエスト失敗",
+      "invalid_amount": "無効な出金額",
+      "invalid_payment_method": "無効な支払い方法",
+      "invalid_account_info": "無効なアカウント情報",
+      "insufficient_balance": "残高不足",
+      "account_info_required": "アカウント情報を入力してください"
+    },
+    "withdrawals": {
+      "title": "出金記録",
+      "description": "出金リクエストの記録を表示",
+      "loading": "読み込み中...",
+      "empty": "出金記録がありません",
+      "pending": "保留中",
+      "processing": "処理中",
+      "completed": "完了",
+      "failed": "失敗",
+      "cancelled": "キャンセル済み",
+      "failure_reason": "失敗理由",
+      "create_time": "リクエスト時間",
+      "processed_time": "処理時間",
+      "filter_all": "すべて",
+      "table": {
+        "amount": "金額",
+        "payment_method": "支払い方法",
+        "account": "アカウント",
+        "status": "ステータス",
+        "create_time": "リクエスト時間",
+        "processed_time": "処理時間"
+      }
+    }
+  },
+  "dashboard": {
+    "payment_success": {
+      "title": "購入成功！",
+      "subtitle": "MokerSaaSへようこそ",
+      "subtitle_with_plan": "MokerSaaS {plan}へようこそ",
+      "processing_title": "支払い結果を処理中",
+      "processing_description": "購入状況を確認するまでお待ちください...",
+      "verifying_title": "購入状況を検証中",
+      "verifying_description": "購入を確認中...",
+      "success_toast": "🎉 購入成功！完全なSaaSテンプレートと技術サポートを受け取りました",
+      "success_toast_with_plan": "🎉 {plan}購入成功！完全なSaaSテンプレートと技術サポートを受け取りました",
+      "no_session_toast": "💡 購入成功ページにアクセスしました、下のナビゲーションボタンをご利用ください"
+    },
+    "subscription_info": {
+      "title": "サブスクリプション情報",
+      "title_with_plan": "{plan}サブスクリプション",
+      "status_label": "サブスクリプションステータス：",
+      "status_active": "有効",
+      "status_processing": "処理中",
+      "plan_label": "サブスクリプションタイプ：",
+      "plan_pro": "Pro",
+      "expires_label": "サポート満期日："
+    },
+    "points_reward": {
+      "title": "クレジット報酬",
+      "total_points": "総クレジット",
+      "purchased_points": "購入クレジット",
+      "gifted_points": "ボーナスクレジット",
+      "gift_notice": "🎁 テンプレート機能利用のためのサブスクリプションボーナスクレジットを受け取りました！"
+    },
+    "actions": {
+      "view_profile": "プロフィールを見る",
+      "back_home": "ホームに戻る"
+    },
+    "loading": "読み込み中...",
+    "error": {
+      "fetch_failed": "サブスクリプション情報の取得に失敗しました、更新して再試行してください",
+      "manage_subscription_failed": "サブスクリプション管理ページを開けません、後でもう一度お試しください"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "meta_title": "管理ダッシュボード - MokerSaaS",
+      "meta_description": "ユーザー、ニュースレターサブスクリプション、システム設定などを統一管理する管理ダッシュボード。",
+      "title": "管理ダッシュボード",
+      "sidebar": {
+        "title": "管理機能"
+      },
+      "menu": {
+        "overview": "概要",
+        "overview_desc": "コアシステムデータ統計とトレンド分析をリアルタイム表示",
+        "users": "ユーザー管理",
+        "users_desc": "登録ユーザーと権限を管理",
+        "referral": "招待管理",
+        "referral_desc": "すべてのユーザー招待記録と報酬を管理",
+        "affiliate": "アフィリエイト管理",
+        "affiliate_desc": "すべてのユーザーアフィリエイト記録とコミッションを管理",
+        "newsletter": "ニュースレター",
+        "newsletter_desc": "ニュースレター購読者を管理",
+        "traffic": "トラフィック分析",
+        "traffic_desc": "ウェブサイトトラフィック統計と訪問者インサイトを表示"
+      },
+      "overview": {
+        "title": "システム概要",
+        "description": "コアシステムデータ統計とトレンド分析をリアルタイム表示",
+        "categories": {
+          "users_revenue": "ユーザー＆収益",
+          "referral_affiliate": "招待＆アフィリエイト"
+        },
+        "cards": {
+          "users": {
+            "title": "ユーザー管理",
+            "description": "登録ユーザー、ロール、権限を管理"
+          },
+          "newsletter": {
+            "title": "ニュースレター",
+            "description": "ニュースレター購読と統計を管理"
+          }
+        },
+        "quick_actions": {
+          "title": "クイックアクション",
+          "manage_users": "ユーザー管理",
+          "manage_users_desc": "すべての登録ユーザーを表示および管理",
+          "manage_newsletter": "購読管理",
+          "manage_newsletter_desc": "ニュースレター購読を表示および管理"
+        },
+        "stats": {
+          "total_users": "総ユーザー数",
+          "subscribed_users": "購読済みユーザー",
+          "subscription_revenue": "サブスクリプション収益",
+          "points_revenue": "ポイント収益",
+          "total_points": "総ポイント",
+          "total_referrals": "総招待数",
+          "referral_subscribed": "招待購読",
+          "referral_reward_points": "招待報酬ポイント",
+          "affiliate_count": "アフィリエイト数",
+          "affiliate_earnings": "アフィリエイト収益",
+          "affiliate_withdrawals": "総出金",
+          "newsletter_subscribers": "ニュースレター購読者"
+        },
+        "trends": {
+          "title": "トレンド分析",
+          "days_7": "7日間",
+          "days_30": "30日間",
+          "days_90": "90日間",
+          "registration": "登録トレンド",
+          "registration_count": "登録数",
+          "subscription": "サブスクリプション＆収益トレンド",
+          "subscription_count": "サブスクリプション",
+          "subscription_revenue": "サブスクリプション収益",
+          "total_revenue": "総収益トレンド",
+          "revenue": "収益"
+        }
+      }
+    },
+    "traffic": {
+      "days_7": "7日間",
+      "days_30": "30日間",
+      "days_90": "90日間",
+      "stats": {
+        "pageviews": "ページビュー",
+        "visitors": "ユニーク訪問者",
+        "visits": "訪問",
+        "bounce_rate": "直帰率",
+        "avg_time": "平均時間"
+      },
+      "charts": {
+        "pageviews_trend": "ページビュートレンド",
+        "top_pages": "人気ページ",
+        "devices": "デバイス",
+        "browsers": "ブラウザ",
+        "countries": "人気国",
+        "referrers": "人気リファラー"
+      },
+      "not_configured": {
+        "title": "Umami分析未設定",
+        "description": "トラフィック分析を有効にするには、環境変数でUmamiを設定してください：",
+        "frontend_tracking": "フロントエンドトラッキング（必須）",
+        "backend_api": "バックエンドAPI（必須）",
+        "authentication": "認証（1つ選択）",
+        "umami_cloud": "オプション1：Umami Cloud - APIキーを使用",
+        "self_hosted": "オプション2：セルフホストUmami - ユーザー名とパスワードを使用（推奨）",
+        "learn_more": "Umamiの詳細を見る"
+      },
+      "error_title": "分析読み込み失敗",
+      "error_message": "分析データを取得できません。後でもう一度お試しください。"
+    },
+    "newsletter": {
+      "meta_title": "ニュースレター統計 - MokerSaaS",
+      "meta_description": "ニュースレター購読統計を表示および管理、購読者数や言語分布など。",
+      "title": "ニュースレター統計",
+      "stats": {
+        "total_subscriptions": "総購読数",
+        "active_subscribers": "アクティブ購読者",
+        "chinese_subscriptions": "中国語購読",
+        "chinese_users": "中国語ユーザー",
+        "english_subscriptions": "英語購読",
+        "english_users": "英語ユーザー",
+        "total_registrations": "総登録数",
+        "including_unsubscribed": "配信停止含む",
+        "japanese_subscriptions": "日本語購読",
+        "japanese_users": "日本語ユーザー",
+        "korean_subscriptions": "韓国語購読",
+        "korean_users": "韓国語ユーザー",
+        "traditional_chinese_subscriptions": "繁体字中国語購読",
+        "traditional_chinese_users": "繁体字中国語ユーザー"
+      },
+      "subscription_list": {
+        "title": "購読リスト",
+        "description": "すべてのニュースレター購読者の詳細情報",
+        "export": "エクスポート",
+        "export_success": "エクスポート成功",
+        "export_failed": "エクスポート失敗",
+        "active_tab": "アクティブ購読",
+        "inactive_tab": "キャンセル済み購読",
+        "no_data": "データがありません",
+        "table": {
+          "email": "メールアドレス",
+          "language": "言語",
+          "status": "ステータス",
+          "subscribed_at": "購読日時",
+          "unsubscribed_at": "配信停止日時",
+          "chinese": "中国語",
+          "english": "英語",
+          "active": "アクティブ",
+          "cancelled": "キャンセル済み"
+        },
+        "japanese": "日本語",
+        "korean": "韓国語",
+        "traditionalChinese": "繁体字中国語"
+      },
+      "actions": {
+        "retry": "再試行",
+        "refresh": "更新",
+        "export": "エクスポート"
+      },
+      "error": {
+        "fetch_stats_failed": "統計取得失敗",
+        "fetch_subscriptions_failed": "購読リスト取得失敗"
+      },
+      "japanese_subscriptions": "日本語購読",
+      "japanese_users": "日本語ユーザー",
+      "korean_subscriptions": "韓国語購読",
+      "korean_users": "韓国語ユーザー",
+      "traditional_chinese_subscriptions": "繁体字中国語購読",
+      "traditional_chinese_users": "繁体字中国語ユーザー"
+    },
+    "users": {
+      "meta_title": "ユーザー管理 - MokerSaaS",
+      "meta_description": "すべての登録ユーザーの詳細情報を表示および管理、ユーザー統計、ロール管理、ポイント調整など。",
+      "title": "ユーザー管理",
+      "stats": {
+        "total_users": "総ユーザー数",
+        "total_users_desc": "登録ユーザー総数",
+        "verified_users": "認証済みユーザー",
+        "verified_users_desc": "メール認証済み",
+        "admin_users": "管理者",
+        "admin_users_desc": "管理者ユーザー",
+        "subscribed_users": "購読済みユーザー",
+        "subscribed_users_desc": "有効なサブスクリプション",
+        "total_points": "総ポイント",
+        "total_points_desc": "ユーザーポイント合計",
+        "total_payments": "総収益",
+        "total_payments_desc": "成功した支払い合計"
+      },
+      "user_list": {
+        "title": "ユーザーリスト",
+        "description": "すべての登録ユーザーの詳細情報を管理",
+        "search_placeholder": "メールまたはユーザー名で検索...",
+        "filter_role": "ロールでフィルター",
+        "filter_email_status": "認証ステータス",
+        "all_roles": "全ロール",
+        "all_statuses": "全メールステータス",
+        "role_user": "ユーザー",
+        "role_admin": "管理者",
+        "email_verified": "認証済み",
+        "email_unverified": "未認証",
+        "filter_subscription_status": "サブスクリプションステータス",
+        "all_subscription_statuses": "全サブスクリプションステータス",
+        "subscription_active": "有効",
+        "subscription_cancelled": "キャンセル済み",
+        "subscription_past_due": "支払い遅延",
+        "subscription_paused": "一時停止",
+        "subscription_none": "サブスクリプションなし",
+        "no_data": "ユーザーデータがありません",
+        "table": {
+          "user_info": "ユーザー情報",
+          "role": "ロール",
+          "email_status": "メールステータス",
+          "points": "ポイント",
+          "subscription": "サブスクリプション",
+          "subscription_expiry": "サブスクリプション満期",
+          "created_at": "登録日",
+          "actions": "アクション",
+          "edit_role": "ロール編集",
+          "adjust_points": "ポイント調整",
+          "manage_subscription": "サブスクリプション管理",
+          "no_name": "未設定",
+          "role_admin": "管理者",
+          "role_user": "ユーザー",
+          "email_verified": "認証済み",
+          "email_unverified": "未認証",
+          "points_total": "合計",
+          "points_purchased": "購入",
+          "points_gifted": "ボーナス",
+          "no_subscription": "サブスクリプションなし",
+          "plan_trial": "トライアル",
+          "plan_pro": "Pro",
+          "plan_annual": "年額",
+          "status_active": "有効",
+          "status_cancelled": "キャンセル済み",
+          "status_past_due": "支払い遅延",
+          "status_paused": "一時停止",
+          "status_expired": "満期切れ",
+          "expired": "満期切れ",
+          "expiring_soon": "まもなく満期"
+        }
+      },
+      "actions": {
+        "refresh": "更新",
+        "retry": "再試行",
+        "edit_role": "ロール編集",
+        "adjust_points": "ポイント調整",
+        "manage_subscription": "サブスクリプション管理",
+        "view_details": "詳細を見る"
+      },
+      "dialogs": {
+        "user_info": "ユーザー：{name} ({email})",
+        "no_name": "未設定",
+        "cancel": "キャンセル",
+        "confirm": "確認",
+        "edit_role": {
+          "title": "ユーザーロール編集",
+          "description": "ユーザーのシステムロール権限を変更",
+          "role_label": "ユーザーロール",
+          "role_placeholder": "ロール選択",
+          "role_user": "ユーザー",
+          "role_admin": "管理者"
+        },
+        "adjust_points": {
+          "title": "ユーザーポイント調整",
+          "description": "ユーザーポイントを追加または控除",
+          "points_label": "ポイント変更",
+          "points_placeholder": "ポイント量を入力（正の数は追加、負の数は控除）",
+          "points_type_label": "ポイントタイプ",
+          "points_type_purchased": "購入ポイント",
+          "points_type_gifted": "ボーナスポイント",
+          "description_label": "操作説明",
+          "description_placeholder": "操作説明を入力（任意）",
+          "purchased_points_info": "購入ポイントは失効せず、いつでも使用可能",
+          "gifted_points_expiry_label": "連携サブスクリプション満期",
+          "gifted_points_expiry_info": "ボーナスポイントはサブスクリプション満期時に自動クリアされます。満期時間はユーザーのサブスクリプション満期時間と同じです",
+          "gifted_points_requires_subscription": "⚠️ ボーナスポイントにはサブスクリプション満期が必要",
+          "gifted_points_no_subscription": "このユーザーにはサブスクリプションが設定されていません。ボーナスポイントは追加できません。先にユーザーのサブスクリプションを設定してください",
+          "subscription_expired_error": "ユーザーのサブスクリプションが満期切れです。ボーナスポイントを追加できません。先にサブスクリプション満期時間を更新してください"
+        },
+        "manage_subscription": {
+          "title": "ユーザーサブスクリプション管理",
+          "description": "ユーザーのサブスクリプションステータスとプランを変更",
+          "status_label": "サブスクリプションステータス",
+          "status_placeholder": "サブスクリプションステータス選択",
+          "status_active": "有効",
+          "status_cancelled": "キャンセル済み",
+          "status_past_due": "支払い遅延",
+          "status_paused": "一時停止",
+          "plan_label": "サブスクリプションプラン",
+          "plan_placeholder": "サブスクリプションプラン選択",
+          "plan_trial": "トライアル",
+          "plan_pro": "Pro",
+          "plan_annual": "年額",
+          "end_date_label": "サブスクリプション終了日",
+          "end_date_placeholder": "終了日選択",
+          "auto_calculated": "終了日はサブスクリプションプランに基づいて自動計算",
+          "cumulative_calculated": "時間は既存サブスクリプションに累積加算",
+          "select_plan_first": "まずサブスクリプションプランを選択してください"
+        }
+      },
+      "pagination": {
+        "page_info": "全{totalPages}ページ中{page}ページ",
+        "total_records": "総{total}件",
+        "previous": "前へ",
+        "next": "次へ"
+      },
+      "messages": {
+        "role_updated": "ユーザーロール更新成功",
+        "points_updated": "ユーザーポイント調整成功",
+        "subscription_updated": "ユーザーサブスクリプション更新成功",
+        "update_failed": "更新失敗",
+        "fetch_stats_failed": "統計取得失敗",
+        "fetch_users_failed": "ユーザーリスト取得失敗"
+      }
+    },
+    "referral": {
+      "stats": {
+        "total_referrals": "総招待数",
+        "subscribed_referrals": "購読済み招待",
+        "total_points": "授与総ポイント"
+      },
+      "tabs": {
+        "records": "招待記録",
+        "rewards": "報酬記録"
+      },
+      "records": {
+        "title": "招待記録",
+        "description": "すべてのユーザー招待関係を表示",
+        "empty": "招待記録がありません",
+        "subscribed": "購読済み",
+        "pending": "保留中",
+        "table": {
+          "referrer": "招待者",
+          "referred": "被招待者",
+          "code": "コード",
+          "status": "ステータス",
+          "created_at": "作成日時"
+        }
+      },
+      "rewards": {
+        "title": "報酬記録",
+        "description": "すべての招待報酬記録を表示",
+        "empty": "報酬記録がありません",
+        "days": "日間",
+        "table": {
+          "user": "ユーザー",
+          "from": "送信元",
+          "action": "アクションタイプ",
+          "reward": "報酬",
+          "created_at": "作成日時"
+        },
+        "actions": {
+          "register_bonus": "登録ボーナス",
+          "referrer_bonus": "招待者ボーナス",
+          "subscription_reward": "サブスクリプション報酬",
+          "unknown": "その他 ({action})"
+        }
+      }
+    },
+    "affiliate": {
+      "stats": {
+        "total_profiles": "総アフィリエイト数",
+        "total_relations": "総関係数",
+        "converted_relations": "転換済み",
+        "total_earnings": "総収益",
+        "total_withdrawals": "総出金"
+      },
+      "tabs": {
+        "profiles": "アフィリエイト",
+        "relations": "関係",
+        "earnings": "収益",
+        "withdrawals": "出金"
+      },
+      "profiles": {
+        "title": "アフィリエイトプロフィール",
+        "description": "すべてのアフィリエイトプロフィールを表示",
+        "loading": "読み込み中...",
+        "empty": "アフィリエイトプロフィールがありません",
+        "table": {
+          "user": "ユーザー",
+          "code": "コード",
+          "balance": "残高",
+          "frozen_balance": "凍結残高",
+          "created_at": "作成日時"
+        }
+      },
+      "relations": {
+        "title": "アフィリエイト関係",
+        "description": "すべてのアフィリエイト関係を表示",
+        "loading": "読み込み中...",
+        "empty": "アフィリエイト関係がありません",
+        "converted": "転換済み",
+        "expired": "期限切れ",
+        "pending": "保留中",
+        "table": {
+          "referrer": "アフィリエイト",
+          "invitee": "被招待者",
+          "status": "ステータス",
+          "expires_at": "満期日時",
+          "created_at": "作成日時"
+        }
+      },
+      "earnings": {
+        "title": "収益記録",
+        "description": "すべてのコミッション収益を表示",
+        "loading": "読み込み中...",
+        "empty": "収益記録がありません",
+        "frozen": "凍結",
+        "released": "解放済み",
+        "cancelled": "キャンセル済み",
+        "table": {
+          "affiliate": "アフィリエイト",
+          "invitee": "被招待者",
+          "amount": "金額",
+          "status": "ステータス",
+          "created_at": "作成日時"
+        }
+      },
+      "withdrawals": {
+        "title": "出金記録",
+        "description": "すべての出金記録を表示",
+        "loading": "読み込み中...",
+        "empty": "出金記録がありません",
+        "pending": "保留中",
+        "processing": "処理中",
+        "completed": "完了",
+        "failed": "失敗",
+        "cancelled": "キャンセル済み",
+        "table": {
+          "user": "ユーザー",
+          "amount": "金額",
+          "payment_method": "支払い方法",
+          "account": "アカウント",
+          "status": "ステータス",
+          "created_at": "作成日時",
+          "actions": "アクション"
+        },
+        "process": {
+          "title": "出金処理",
+          "description": "出金リクエストのステータスを更新",
+          "button": "処理",
+          "update": "更新",
+          "user": "ユーザー",
+          "amount": "金額",
+          "payment_method": "支払い方法",
+          "account_info": "アカウント情報",
+          "status": "ステータス",
+          "select_status": "ステータス選択",
+          "transaction_id": "トランザクションID",
+          "transaction_id_placeholder": "サードパーティのトランザクションIDを入力",
+          "failure_reason": "失敗理由",
+          "failure_reason_placeholder": "失敗理由を入力",
+          "status_required": "ステータスを選択してください",
+          "transaction_id_required": "完了した出金にはトランザクションIDが必要です",
+          "failure_reason_required": "失敗した出金には失敗理由が必要です",
+          "success": "出金処理成功",
+          "failed": "出金処理失敗",
+          "processing": "処理中...",
+          "submit": "送信",
+          "cancel": "キャンセル"
+        }
+      }
+    }
+  },
+  "legal": {
+    "title": "法的情報",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "cookies": "Cookieポリシー"
+  },
+  "unauthorized": {
+    "title": "アクセス拒否",
+    "description": "このページへのアクセス権限がありません。このページは管理者専用です。",
+    "errorMessage": "これがエラーだと思われる場合は、システム管理者にお問い合わせください。",
+    "backToHome": "ホームに戻る",
+    "signInAgain": "再ログイン"
+  },
+  "apiErrors": {
+    "unauthorized": "認証されていません",
+    "unauthorized_short": "未認証",
+    "not_logged_in": "ログインしていません",
+    "not_logged_in_alt": "ユーザーはログインしていません",
+    "user_not_found": "ユーザーが見つかりません",
+    "user_not_found_or_no_password": "ユーザーが見つからないか、パスワードが設定されていません",
+    "email_already_verified": "メールアドレスは既に認証済みです",
+    "resend_verification_failed": "認証メールの再送信に失敗しました。後でもう一度お試しください",
+    "name_required": "名前は必須です",
+    "current_and_new_password_required": "現在のパスワードと新しいパスワードを入力してください",
+    "new_password_min_length": "新しいパスワードは6文字以上必要です",
+    "current_password_incorrect": "現在のパスワードが正しくありません",
+    "points_invalid_amount": "ポイント数が無効です",
+    "points_missing_params": "必要なパラメータが不足しています",
+    "points_insufficient": "ポイント不足です",
+    "points_deduct_insufficient": "差し引く付与ポイントは現在の付与ポイント数を超えることはできません",
+    "points_grant_needs_subscription": "付与ポイントにはサブスクリプションの有効期限が必要です。先にユーザーのサブスクリプションを設定してください",
+    "points_grant_subscription_expired": "ユーザーのサブスクリプションが満期切れのため、付与ポイントを追加できません。先にサブスクリプションの有効期限を更新してください",
+    "fetch_points_failed": "ポイントの読み込みに失敗しました",
+    "fetch_points_history_failed": "ポイント履歴の読み込みに失敗しました",
+    "fetch_points_detail_failed": "ポイント詳細の読み込みに失敗しました",
+    "admin_required": "管理者権限が必要です",
+    "user_id_required": "ユーザーIDは必須です",
+    "invalid_role": "無効なユーザーロールです",
+    "invalid_subscription_status": "無効なサブスクリプションステータスです",
+    "invalid_subscription_plan": "無効なサブスクリプションプランです",
+    "invalid_operation_type": "無効な操作タイプです",
+    "invalid_type_param": "無効なタイプパラメータです",
+    "fetch_statistics_failed": "統計データの取得に失敗しました",
+    "set_admin_email_required_query": "URLにメールパラメータを指定してください。例：?email=your@email.com",
+    "set_admin_email_required_body": "メールアドレスは必須です",
+    "set_admin_failed": "管理者の設定に失敗しました",
+    "server_error": "サーバーエラー",
+    "server_internal_error": "サーバー内部エラー",
+    "webhook_failed": "Webhookの処理に失敗しました",
+    "resend_verification_email_sent": "認証メールを送信しました。メールをご確認ください",
+    "profile_updated": "プロフィールを更新しました",
+    "user_promoted_to_admin": "ユーザー {email} を管理者に設定しました",
+    "role_updated": "ユーザーロールを更新しました",
+    "points_adjusted": "ポイントを調整しました",
+    "subscription_updated": "サブスクリプション情報を更新しました",
+    "points_operation_success": "ポイント操作が成功しました",
+    "points_operation_failed": "ポイント操作に失敗しました",
+    "points_deducted_successfully": "ポイント控除に成功しました",
+    "password_changed": "パスワードを変更しました",
+    "referral_code_required": "紹介コードが無効です",
+    "referral_code_length": "紹介コードの長さは4〜20文字です",
+    "referral_code_invalid_chars": "紹介コードには英数字のみ使用できます",
+    "referral_code_already_changed": "紹介コードは1回のみ変更可能です",
+    "referral_code_already_taken": "この紹介コードは既に使用されています",
+    "CODE_EMPTY": "プロモーションコードを入力してください",
+    "INVALID_FORMAT": "プロモーションコードの形式が無効です",
+    "CODE_ALREADY_TAKEN": "このプロモーションコードは既に使用されています",
+    "CODE_ALREADY_CHANGED": "プロモーションコードは1回のみ変更可能です",
+    "UPDATE_FAILED": "更新に失敗しました",
+    "WITHDRAWAL_FAILED": "出金に失敗しました",
+    "INVALID_AMOUNT": "出金額が無効です",
+    "INVALID_PAYMENT_METHOD": "支払い方法が無効です",
+    "INVALID_ACCOUNT_NAME": "受取人名を入力してください",
+    "INVALID_ACCOUNT_INFO": "受取口座情報を入力してください",
+    "MIN_AMOUNT_NOT_MET": "出金額が最低出金額を下回っています",
+    "INSUFFICIENT_BALANCE": "出金可能残高が不足しています",
+    "affiliate_code_required": "プロモーションコードを入力してください",
+    "affiliate_code_invalid": "プロモーションコードが無効です",
+    "affiliate_code_self": "自分のプロモーションコードは使用できません",
+    "affiliate_new_user_only": "プロモーションコードは新規登録ユーザーにのみ適用されます",
+    "affiliate_relation_exists": "プロモーション関係は既に存在します",
+    "affiliate_relation_created": "プロモーション関係が作成されました",
+    "referral_new_user_only": "紹介コードは新規登録ユーザーにのみ適用されます",
+    "referral_already_referred": "このユーザーは既に紹介されています",
+    "referral_code_invalid": "紹介コードが無効です",
+    "referral_code_self": "自分の紹介コードは使用できません",
+    "referral_relation_created": "紹介関係が正常に作成されました",
+    "unknown_error": "不明なエラー",
+    "stripe_not_configured": "Stripe が設定されていません",
+    "enterprise_contact_sales": "エンタープライズプランは営業担当へのお問い合わせが必要です",
+    "missing_price_id_for_plan": "プランの価格 ID がありません",
+    "price_id_not_configured": "このプランの価格 ID は設定されていません",
+    "no_stripe_customer_found": "Stripe 顧客が見つかりません",
+    "failed_to_create_checkout_session": "チェックアウトセッションの作成に失敗しました",
+    "failed_to_create_customer_portal_session": "カスタマーポータルセッションの作成に失敗しました",
+    "failed_to_fetch_payment_history": "支払い履歴の取得に失敗しました",
+    "failed_to_get_affiliate_earnings": "アフィリエイ ト収益の取得に失敗しました",
+    "failed_to_get_affiliate_relations": "アフィリエイ ト関係の取得に失敗しました",
+    "failed_to_get_affiliate_stats": "アフィリエイ ト統計の取得に失敗しました",
+    "failed_to_get_withdrawals": "出金履歴の取得に失敗しました",
+    "failed_to_get_referral_records": "紹介記録の取得に失敗しました",
+    "failed_to_get_referral_rewards": "紹介リワードの取得に失敗しました",
+    "failed_to_get_referral_stats": "紹介統計の取得に失敗しました",
+    "affiliate_profile_not_found": "アフィリエイ トプロフィールが見つかりません",
+    "affiliate_stats_not_found": "アフィリエイ ト統計が見つかりません",
+    "missing_required_fields": "必須項目が入力されていません"
+  },
+  "newsletter": {
+    "invalid_email": "有効なメールアドレスを入力してください",
+    "already_subscribed": "すでにニュースレターを購読されています",
+    "resubscribed": "おかえりなさい！再購読が完了しました",
+    "subscribed": "購読成功！ご興味をお持ちいただきありがとうございます",
+    "missing_input": "メールアドレスまたは配信停止トークンを指定してください",
+    "not_found": "購読記録が見つかりません",
+    "already_unsubscribed": "すでに配信停止されています",
+    "unsubscribed": "配信停止が完了しました",
+    "invalid_link": "無効な配信停止リンクです"
+  },
+  "stripe_checkout": {
+    "trial_already_used": "トライアルプランは既に登録済みです。お一人様1回限りご利用いただけます。",
+    "trial_blocked_for_paid": "有効なサブスクリプションがあるため、Pro/Annual ユーザーはトライアルに登録できません。",
+    "annual_no_downgrade": "Annual から Pro へのダウングレードはできません。Annual サブスクリプションはダウングレード不可です。"
+  }
+}
