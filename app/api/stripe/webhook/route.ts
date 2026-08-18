@@ -11,6 +11,7 @@ import { handleReferredUserSubscription } from '@/lib/referral'
 import { SUBSCRIPTION_PRODUCTS } from '@/lib/stripe'
 import { processAffiliateCommission, handleAffiliateRefund } from '@/lib/affiliate'
 import { sendPointsPurchaseEmail, sendSubscriptionSuccessEmail } from '@/lib/email'
+import { expireSubscriptionIfNeeded } from '@/lib/subscription'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!
@@ -849,59 +850,18 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 处理订阅取消事件 - 清零赠送积分
+    // 处理订阅取消事件 - 统一走过期检测 helper
+    //  - 如果 currentPeriodEnd 已过:helper 会清零赠送积分 + 改 status='expired'
+    //  - 如果 currentPeriodEnd 未到(用户主动取消但仍享受权益到期末):保持 active,期末由 cron/入口拦截处理
     if (event.type === 'customer.subscription.deleted') {
       const subscription = event.data.object as Stripe.Subscription
-      
-      try {
-        // 获取用户当前信息
-        const user = await db.select().from(users).where(eq(users.subscriptionId, subscription.id)).limit(1)
-        
-        if (user.length > 0) {
-          const currentUser = user[0]
-          
-          // 从配置中获取订阅赠送的积分数量，用于取消订阅时清零
-          const subscriptionPlan = currentUser.subscriptionPlan || 'pro'
-          const giftedPointsPerSubscription = getSubscriptionGiftedPoints(subscriptionPlan as keyof typeof SUBSCRIPTION_PRODUCTS)
-          
-          // 由于每次订阅都会赠送积分，订阅取消时清零对应数量的积分
-          // 如果用户的赠送积分少于赠送数量，则清零所有赠送积分
-          const pointsToRemove = Math.min(currentUser.giftedPoints || 0, giftedPointsPerSubscription)
-          
-          if (pointsToRemove > 0) {
-            // 更新用户状态，清零部分赠送积分
-            await db
-              .update(users)
-              .set({
-                subscriptionStatus: 'canceled',
-                subscriptionPlan: null,
-                points: sql`${users.points} - ${pointsToRemove}`,
-                giftedPoints: sql`${users.giftedPoints} - ${pointsToRemove}`,
-                updatedAt: new Date(),
-              })
-              .where(eq(users.subscriptionId, subscription.id))
 
-            // 记录积分清零历史
-            await db.insert(pointsHistory).values({
-              id: uuidv4(),
-              userId: currentUser.id,
-              points: -pointsToRemove,
-              pointsType: 'gifted',
-              action: 'subscription_expired',
-              description: `订阅取消，清零本次订阅赠送的积分`,
-              createdAt: new Date(),
-            })
-          } else {
-            // 没有赠送积分需要清零的情况
-            await db
-              .update(users)
-              .set({
-                subscriptionStatus: 'canceled',
-                subscriptionPlan: null,
-                updatedAt: new Date(),
-              })
-              .where(eq(users.subscriptionId, subscription.id))
-          }
+      try {
+        const user = await db.select().from(users).where(eq(users.subscriptionId, subscription.id)).limit(1)
+
+        if (user.length > 0) {
+          // helper 内部用乐观并发:只在到期时清零
+          await expireSubscriptionIfNeeded(user[0].id)
         }
       } catch (error) {
         logWebhookError('Subscription cancellation processing failed:', error)

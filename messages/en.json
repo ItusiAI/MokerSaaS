@@ -1099,7 +1099,9 @@
         "newsletter": "Newsletter",
         "newsletter_desc": "Manage newsletter subscribers",
         "traffic": "Traffic Analytics",
-        "traffic_desc": "View website traffic statistics and visitor insights"
+        "traffic_desc": "View website traffic statistics and visitor insights",
+        "reminders": "Reminder Emails",
+        "reminders_desc": "Query subscription expiration reminder email logs"
       },
       "overview": {
         "title": "System Overview",
@@ -1245,6 +1247,72 @@
       "korean_users": "Korean Users",
       "traditional_chinese_subscriptions": "Traditional Chinese Subscriptions",
       "traditional_chinese_users": "Traditional Chinese Users"
+    },
+    "reminders": {
+      "meta_title": "Reminder Email Logs - MokerSaaS",
+      "meta_description": "Query subscription expiration reminder email logs, filterable by type and language",
+      "title": "Reminder Emails",
+      "description": "Query subscription expiration reminder email logs. Search by user, filter by type and language.",
+      "stats": {
+        "total": "Total Sent",
+        "7d": "7-day Reminders",
+        "3d": "3-day Reminders",
+        "today": "Today Reminders"
+      },
+      "search_placeholder": "Search email or name",
+      "search_button": "Search",
+      "reset": "Reset",
+      "filter": {
+        "type": "Reminder Type",
+        "all_types": "All Types",
+        "type_7d": "7 days",
+        "type_3d": "3 days",
+        "type_today": "Today",
+        "language": "Email Language",
+        "all_languages": "All Languages",
+        "lang_zh": "Simplified Chinese",
+        "lang_en": "English",
+        "lang_ja": "Japanese",
+        "lang_ko": "Korean",
+        "lang_tw": "Traditional Chinese"
+      },
+      "type": {
+        "7d": "7 days",
+        "3d": "3 days",
+        "today": "Today"
+      },
+      "lang": {
+        "chinese": "Chinese",
+        "english": "English",
+        "japanese": "Japanese",
+        "korean": "Korean",
+        "traditionalChinese": "Traditional Chinese"
+      },
+      "table": {
+        "sent_at": "Sent At",
+        "type": "Type",
+        "user": "User",
+        "lang": "Language",
+        "period_end": "Period End",
+        "subject": "Subject",
+        "message_id": "Resend ID"
+      },
+      "labels": {
+        "email": "Email",
+        "subject": "Subject",
+        "message_id": "Message ID"
+      },
+      "no_data": "No reminder emails sent yet",
+      "copied": "Copied {value}",
+      "pagination": {
+        "prev": "Previous",
+        "next": "Next",
+        "summary": "{from}-{to} of {total}"
+      },
+      "error": {
+        "fetch_failed": "Failed to fetch reminder emails",
+        "copy_failed": "Copy failed"
+      }
     },
     "users": {
       "meta_title": "User Management - MokerSaaS",
@@ -1657,6 +1725,28 @@
     "already_unsubscribed": "You have already unsubscribed",
     "unsubscribed": "Successfully unsubscribed",
     "invalid_link": "Invalid unsubscribe link"
+  },
+  "subscription": {
+    "reminder": {
+      "unsubscribe": {
+        "title": "Cancel subscription reminders",
+        "description": "You will no longer receive subscription expiration reminder emails. Transactional emails (orders, verification codes, credit changes) are not affected.",
+        "loadingText": "Processing...",
+        "successMessage": "If you change your mind, you can re-subscribe to reminders at any time.",
+        "backToHome": "Back to home",
+        "networkError": "Network error, please try again later.",
+        "unsubscribeError": "Failed to unsubscribe, please try again later.",
+        "successFromEmail": "Successfully unsubscribed from subscription reminders",
+        "resubscribeButton": "Re-subscribe to reminders",
+        "api": {
+          "invalid_link": "Invalid unsubscribe link",
+          "not_found": "Subscription record not found",
+          "already_unsubscribed": "You have already unsubscribed",
+          "unsubscribed": "Successfully unsubscribed",
+          "resubscribed": "Successfully re-subscribed"
+        }
+      }
+    }
   },
   "stripe_checkout": {
     "trial_already_used": "You have already subscribed to the trial plan. Each user can only subscribe once.",

@@ -1099,7 +1099,9 @@
         "newsletter": "ニュースレター",
         "newsletter_desc": "ニュースレター購読者を管理",
         "traffic": "トラフィック分析",
-        "traffic_desc": "ウェブサイトトラフィック統計と訪問者インサイトを表示"
+        "traffic_desc": "ウェブサイトトラフィック統計と訪問者インサイトを表示",
+        "reminders": "リマインダーメール",
+        "reminders_desc": "サブスクリプション期限切れリマインダーメールの送信ログを確認"
       },
       "overview": {
         "title": "システム概要",
@@ -1245,6 +1247,72 @@
       "korean_users": "韓国語ユーザー",
       "traditional_chinese_subscriptions": "繁体字中国語購読",
       "traditional_chinese_users": "繁体字中国語ユーザー"
+    },
+    "reminders": {
+      "meta_title": "リマインダーメールログ - MokerSaaS",
+      "meta_description": "サブスクリプション期限切れリマインダーメールの送信ログを確認、種類と言語で絞り込み可能",
+      "title": "リマインダーメール",
+      "description": "サブスクリプション期限切れリマインダーメールの送信ログを確認。ユーザー検索、種類と言語で絞り込み可能。",
+      "stats": {
+        "total": "総送信数",
+        "7d": "7日前通知",
+        "3d": "3日前通知",
+        "today": "当日期限切れ通知"
+      },
+      "search_placeholder": "メールまたは名前で検索",
+      "search_button": "検索",
+      "reset": "リセット",
+      "filter": {
+        "type": "通知種類",
+        "all_types": "すべての種類",
+        "type_7d": "7日前",
+        "type_3d": "3日前",
+        "type_today": "当日",
+        "language": "メール言語",
+        "all_languages": "すべての言語",
+        "lang_zh": "簡体字中国語",
+        "lang_en": "英語",
+        "lang_ja": "日本語",
+        "lang_ko": "韓国語",
+        "lang_tw": "繁体字中国語"
+      },
+      "type": {
+        "7d": "7日前",
+        "3d": "3日前",
+        "today": "当日"
+      },
+      "lang": {
+        "chinese": "中国語",
+        "english": "英語",
+        "japanese": "日本語",
+        "korean": "韓国語",
+        "traditionalChinese": "繁体字中国語"
+      },
+      "table": {
+        "sent_at": "送信日時",
+        "type": "種類",
+        "user": "ユーザー",
+        "lang": "言語",
+        "period_end": "契約満了日",
+        "subject": "件名",
+        "message_id": "Resend ID"
+      },
+      "labels": {
+        "email": "メール",
+        "subject": "件名",
+        "message_id": "メッセージID"
+      },
+      "no_data": "送信履歴がありません",
+      "copied": "{value} をコピーしました",
+      "pagination": {
+        "prev": "前へ",
+        "next": "次へ",
+        "summary": "{from}-{to} 件目、全 {total} 件"
+      },
+      "error": {
+        "fetch_failed": "リマインダーメールの取得に失敗しました",
+        "copy_failed": "コピーに失敗しました"
+      }
     },
     "users": {
       "meta_title": "ユーザー管理 - MokerSaaS",
@@ -1657,6 +1725,28 @@
     "already_unsubscribed": "すでに配信停止されています",
     "unsubscribed": "配信停止が完了しました",
     "invalid_link": "無効な配信停止リンクです"
+  },
+  "subscription": {
+    "reminder": {
+      "unsubscribe": {
+        "title": "サブスクリプション通知を解除",
+        "description": "サブスクリプション期限切れの通知メールは届かなくなります。取引関連メール(注文、認証コード、ポイント変動)は引き続き送信されます。",
+        "loadingText": "処理中...",
+        "successMessage": "気が変わられた場合は、いつでも通知を再購読できます。",
+        "backToHome": "ホームへ戻る",
+        "networkError": "ネットワークエラー。後でもう一度お試しください。",
+        "unsubscribeError": "配信停止に失敗しました。後でもう一度お試しください。",
+        "successFromEmail": "サブスクリプション通知の配信停止が完了しました",
+        "resubscribeButton": "通知を再購読",
+        "api": {
+          "invalid_link": "無効な配信停止リンクです",
+          "not_found": "購読記録が見つかりません",
+          "already_unsubscribed": "すでに配信停止されています",
+          "unsubscribed": "配信停止が完了しました",
+          "resubscribed": "再購読しました"
+        }
+      }
+    }
   },
   "stripe_checkout": {
     "trial_already_used": "トライアルプランは既に登録済みです。お一人様1回限りご利用いただけます。",

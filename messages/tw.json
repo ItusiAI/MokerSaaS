@@ -1099,7 +1099,9 @@
         "newsletter": "郵件訂閱",
         "newsletter_desc": "管理郵件訂閱用戶",
         "traffic": "流量分析",
-        "traffic_desc": "查看網站流量統計和訪客洞察"
+        "traffic_desc": "查看網站流量統計和訪客洞察",
+        "reminders": "提醒郵件",
+        "reminders_desc": "查詢訂閱到期提醒郵件的發送記錄"
       },
       "overview": {
         "title": "系統概覽",
@@ -1245,6 +1247,72 @@
       "korean_users": "韓語用戶",
       "traditional_chinese_subscriptions": "繁體中文訂閱",
       "traditional_chinese_users": "繁體中文用戶"
+    },
+    "reminders": {
+      "meta_title": "提醒郵件日誌 - MokerSaaS",
+      "meta_description": "查詢訂閱到期提醒郵件的發送記錄,可按類型/語體筛选",
+      "title": "提醒郵件",
+      "description": "查詢訂閱到期提醒郵件的發送記錄,可按用戶搜索、按類型和語體筛选",
+      "stats": {
+        "total": "總發送數",
+        "7d": "7天前提醒",
+        "3d": "3天前提醒",
+        "today": "當天到期提醒"
+      },
+      "search_placeholder": "搜尋郵箱或用戶名",
+      "search_button": "搜尋",
+      "reset": "重置",
+      "filter": {
+        "type": "提醒類型",
+        "all_types": "全部類型",
+        "type_7d": "7天前",
+        "type_3d": "3天前",
+        "type_today": "當天到期",
+        "language": "郵件語言",
+        "all_languages": "全部語言",
+        "lang_zh": "簡體中文",
+        "lang_en": "英語",
+        "lang_ja": "日語",
+        "lang_ko": "韓語",
+        "lang_tw": "繁體中文"
+      },
+      "type": {
+        "7d": "7天前",
+        "3d": "3天前",
+        "today": "當天"
+      },
+      "lang": {
+        "chinese": "中文",
+        "english": "English",
+        "japanese": "日本語",
+        "korean": "한국어",
+        "traditionalChinese": "繁體中文"
+      },
+      "table": {
+        "sent_at": "發送時間",
+        "type": "類型",
+        "user": "用戶",
+        "lang": "語言",
+        "period_end": "訂閱到期",
+        "subject": "郵件主題",
+        "message_id": "Resend ID"
+      },
+      "labels": {
+        "email": "郵箱",
+        "subject": "主題",
+        "message_id": "消息ID"
+      },
+      "no_data": "暫無發送記錄",
+      "copied": "已複製 {value}",
+      "pagination": {
+        "prev": "上一頁",
+        "next": "下一頁",
+        "summary": "第 {from}-{to} 條,共 {total} 條"
+      },
+      "error": {
+        "fetch_failed": "取得提醒郵件記錄失敗",
+        "copy_failed": "複製失敗"
+      }
     },
     "users": {
       "meta_title": "用戶管理 - MokerSaaS",
@@ -1657,6 +1725,28 @@
     "already_unsubscribed": "您已經取消了訂閱",
     "unsubscribed": "取消訂閱成功",
     "invalid_link": "無效的取消訂閱鏈接"
+  },
+  "subscription": {
+    "reminder": {
+      "unsubscribe": {
+        "title": "取消訂閱提醒",
+        "description": "您將不再收到訂閱到期的提醒郵件。交易類郵件(訂單、驗證碼、積分變動)不受影響。",
+        "loadingText": "正在處理...",
+        "successMessage": "如果您改變主意,可以隨時恢復訂閱提醒。",
+        "backToHome": "返回首頁",
+        "networkError": "網路錯誤,請稍後重試。",
+        "unsubscribeError": "取消訂閱失敗,請稍後重試。",
+        "successFromEmail": "已成功取消訂閱提醒",
+        "resubscribeButton": "恢復訂�提醒",
+        "api": {
+          "invalid_link": "無效的取消訂閱�接",
+          "not_found": "未找到訂閱記錄",
+          "already_unsubscribed": "您已經取消訂閱提醒",
+          "unsubscribed": "取消訂閱成功",
+          "resubscribed": "恢復訂閱提醒成功"
+        }
+      }
+    }
   },
   "stripe_checkout": {
     "trial_already_used": "您已訂閱過試用計畫，每個使用者只能訂閱一次",

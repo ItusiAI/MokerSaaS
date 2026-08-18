@@ -8,6 +8,7 @@ import {
   BarChart3,
   UserCog,
   MailOpen,
+  Mail,
   Gift,
   TrendingUp,
   DollarSign,
@@ -24,9 +25,10 @@ import { NewsletterStats } from '../newsletter/newsletter-stats'
 import { ReferralManagement } from './referral-management'
 import { AffiliateManagement } from './affiliate-management'
 import { TrafficAnalytics } from './traffic-analytics'
+import { ReminderLogs } from './reminder-logs'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-type AdminSection = 'overview' | 'users' | 'newsletter' | 'referral' | 'affiliate' | 'traffic'
+type AdminSection = 'overview' | 'users' | 'newsletter' | 'referral' | 'affiliate' | 'traffic' | 'reminders'
 
 interface MenuItem {
   id: AdminSection
@@ -43,12 +45,12 @@ export function AdminDashboard() {
     if (typeof window !== 'undefined') {
       // 优先使用 URL hash
       const hash = window.location.hash.replace('#', '')
-      if (hash === 'newsletter' || hash === 'users' || hash === 'overview' || hash === 'referral' || hash === 'affiliate' || hash === 'traffic') {
+      if (['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders'].includes(hash)) {
         return hash as AdminSection
       }
       // 其次使用 localStorage
       const saved = localStorage.getItem('adminActiveSection')
-      if (saved === 'newsletter' || saved === 'users' || saved === 'overview' || saved === 'referral' || saved === 'affiliate' || saved === 'traffic') {
+      if (saved && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders'].includes(saved)) {
         return saved as AdminSection
       }
     }
@@ -77,7 +79,7 @@ export function AdminDashboard() {
     if (typeof window !== 'undefined') {
       const handleHashChange = () => {
         const hash = window.location.hash.replace('#', '')
-        if (hash === 'newsletter' || hash === 'users' || hash === 'overview' || hash === 'referral' || hash === 'affiliate' || hash === 'traffic') {
+        if (['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders'].includes(hash)) {
           setActiveSection(hash as AdminSection)
         }
       }
@@ -130,6 +132,12 @@ export function AdminDashboard() {
       label: t('menu.newsletter'),
       icon: <MailOpen className="h-5 w-5" />,
       description: t('menu.newsletter_desc')
+    },
+    {
+      id: 'reminders',
+      label: t('menu.reminders'),
+      icon: <Mail className="h-5 w-5" />,
+      description: t('menu.reminders_desc')
     }
   ]
 
@@ -147,6 +155,8 @@ export function AdminDashboard() {
         return <NewsletterStats />
       case 'traffic':
         return <TrafficAnalytics />
+      case 'reminders':
+        return <ReminderLogs />
       default:
         return <AdminOverview />
     }

@@ -4,6 +4,7 @@ import { db } from '@/lib/db'
 import { users } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
 import { redirect } from 'next/navigation'
+import { expireSubscriptionIfNeeded } from '@/lib/subscription'
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions)
@@ -11,13 +12,26 @@ export async function getCurrentUser() {
     return null
   }
 
-  const user = await db
+  const result = await db
     .select()
     .from(users)
     .where(eq(users.email, session.user.email))
     .limit(1)
 
-  return user[0] || null
+  const user = result[0]
+  if (!user) return null
+
+  // 入口拦截:每次请求检查订阅是否过期(带 10s 缓存,避免重复查询)
+  await expireSubscriptionIfNeeded(user.id)
+
+  // 重新读取 fresh 状态(因为可能刚清零)
+  const fresh = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, user.id))
+    .limit(1)
+
+  return fresh[0] ?? null
 }
 
 export async function isAdmin() {

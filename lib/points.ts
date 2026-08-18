@@ -3,6 +3,7 @@ import { SUBSCRIPTION_PRODUCTS, type SubscriptionPlanType } from '@/lib/stripe'
 import { users, pointsHistory } from '@/lib/schema'
 import { eq, desc, sql } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
+import { expireSubscriptionIfNeeded } from '@/lib/subscription'
 
 // 积分配置 - 可以在这里修改各种奖励积分
 export const POINTS_CONFIG = {
@@ -62,13 +63,16 @@ async function addPointsHistory(
 
 // 添加积分
 export async function addPoints(
-  userId: string, 
-  points: number, 
+  userId: string,
+  points: number,
   action: PointsAction = PointsAction.MANUAL,
   pointsType: PointsType = PointsType.PURCHASED, // 默认为购买积分
   description?: string
 ) {
   try {
+    // 入口拦截:先检查订阅是否过期
+    await expireSubscriptionIfNeeded(userId)
+
     // 根据积分类型更新不同的字段
     if (pointsType === PointsType.PURCHASED) {
       await db
@@ -128,6 +132,9 @@ export async function getUserPoints(userId: string) {
 // 扣除积分
 export async function deductPoints(userId: string, points: number, description?: string) {
   try {
+    // 入口拦截:先检查订阅是否过期
+    await expireSubscriptionIfNeeded(userId)
+
     const currentPoints = await getUserPoints(userId)
 
     if (currentPoints < points) {

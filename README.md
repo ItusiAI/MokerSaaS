@@ -20,7 +20,7 @@
 
 > **极速构建 SaaS，数天出海收款。** Ship your SaaS at light speed, earn globally in days.
 
-MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证、Stripe 订阅与积分、推广返利与推荐奖励、邮件营销、管理后台、双语与 SEO 等功能。技术栈基于 Next.js 16 + PostgreSQL + Drizzle ORM，可直接部署到 Vercel。线上演示 → **[mokersaas.com](https://mokersaas.com)**
+MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证、Stripe 订阅与积分、推广返利与推荐奖励、邮件营销、管理后台、五语与 SEO 等功能。技术栈基于 Next.js 16 + PostgreSQL + Drizzle ORM，可直接部署到 Vercel。线上演示 → **[mokersaas.com](https://mokersaas.com)**
 
 ## ✨ 核心功能 | Core Features
 
@@ -36,7 +36,7 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 - `lib/points-manager.ts` 统一消费、退还、过期流水
 
 ### 🌐 多语言与 SEO
-- 内置中英双语（`next-intl`），URL 形如 `/zh/...` 与 `/en/...`
+- 内置中 / 英 / 日 / 韩 / 繁五语（`next-intl`），URL 形如 `/zh/...` `/en/...` `/ja/...` `/ko/...` `/tw/...`
 - 完整 i18n 元数据、hreflang、`sitemap.xml`、JSON-LD 结构化数据
 - Open Graph 与 Twitter Card 分享预览
 
@@ -65,6 +65,12 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 - 角色权限（`user` / `admin`），管理员路由受 `requireAdmin()` 守卫
 - 环境变量隔离，敏感配置走 `.env.local`
 
+### 📅 订阅到期提醒（邮件自动化）
+- Cron Job 自动扫描到期用户，提前 7 天 / 3 天 / 当天各发一封邮件
+- 用户可一键关闭全部提醒（`subscriptionReminderDisabled`），每封邮件含独立退订链接
+- 管理后台独立 Tab 查看所有发送记录（类型 / 时间 / 语言 / 计划 / 主题）
+- 支持中 / 英 / 日 / 韩 / 繁五语邮件偏好（`preferredLanguage`）
+
 ## 📸 功能预览 | Feature Preview
 
 <div align="center">
@@ -90,7 +96,7 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 | 前端框架 | Next.js 16 (App Router) · React 19 · TypeScript 5 |
 | 样式 | Tailwind CSS 3 · Radix UI · shadcn/ui 风格组件 |
 | 表单 | React Hook Form · Zod · `react-icons` |
-| 国际化 | `next-intl` · `messages/{en,zh}.json` |
+| 国际化 | `next-intl` · `messages/{en,zh,ja,ko,tw}.json` |
 | 后端 | Next.js API Routes · Server Actions |
 | 数据库 | PostgreSQL · Drizzle ORM · `drizzle-kit` 迁移 |
 | 认证 | NextAuth.js v4 · `@auth/drizzle-adapter` |
@@ -169,6 +175,9 @@ UMAMI_API_KEY="your-api-key"
 
 # 应用
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
+
+# Cron 提醒（可选，Vercel Cron Job 调用）
+CRON_SECRET="<openssl rand -base64 32>"
 ```
 
 ### 4. 数据库初始化
@@ -227,6 +236,7 @@ npm run dev
 │   │   ├── referral/                   # 推荐（stats / records / rewards / update-code）
 │   │   ├── stripe/                     # 支付（checkout / create-checkout-session / customer-portal / webhook）
 │   │   └── user/                       # 用户资料 / 订阅 / 积分 / 推荐 / 关联账号
+│   ├── cron/                           # Cron Job（订阅到期提醒）
 │   ├── globals.css                     # 全局样式
 │   ├── layout.tsx                      # 根布局
 │   ├── page.tsx                        # 根路由重定向
@@ -260,7 +270,10 @@ npm run dev
 │   └── utils.ts                        # 通用工具（cn / dateFmt / currency）
 ├── messages/
 │   ├── en.json                         # 英文翻译
-│   └── zh.json                         # 中文翻译
+│   ├── zh.json                         # 中文翻译（简体）
+│   ├── tw.json                         # 中文翻译（繁体）
+│   ├── ja.json                         # 日文翻译
+│   └── ko.json                         # 韩文翻译
 ├── public/                             # 静态资源
 │   ├── images/                         # 海报、演示截图
 │   ├── logo.png
@@ -310,8 +323,8 @@ npm run db:studio    # 打开 Drizzle Studio 可视化管理
 | `/unauthorized` | 权限不足 |
 
 ### 🛡️ 管理后台
-- `/admin` → 6 大模块：概览、流量、用户、邮件订阅、推荐、返利
-- URL hash 切换：`/#overview` `/#traffic` `/#users` `/#newsletter` `/#referral` `/#affiliate`
+- `/admin` → 7 大模块：概览、流量、用户、邮件订阅、推荐、返利、提醒日志
+- URL hash 切换：`/#overview` `/#traffic` `/#users` `/#newsletter` `/#referral` `/#affiliate` `/#reminders`
 
 ### 🔗 API 端点
 
@@ -325,6 +338,7 @@ npm run db:studio    # 打开 Drizzle Studio 可视化管理
 | `/api/referral/*` | `stats`、`records`、`rewards`、`update-code` |
 | `/api/newsletter/*` | `subscribe`、`unsubscribe` |
 | `/api/points/*` | `history` |
+| `/api/cron/reminders` | 订阅到期提醒 Cron（需 CRON_SECRET 鉴权） |
 
 ## 💰 商业模式 | Business Model
 
@@ -394,7 +408,7 @@ npm run db:studio    # 打开 Drizzle Studio 可视化管理
 4. 推送分支：`git push origin feature/awesome`
 5. 提交 Pull Request
 
-请遵循现有代码风格，公共组件与 API 同步更新中英翻译。
+请遵循现有代码风格，公共组件与 API 同步更新五语翻译。
 
 ## 📄 许可证 | License
 

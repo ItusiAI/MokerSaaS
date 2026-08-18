@@ -1099,7 +1099,9 @@
         "newsletter": "뉴스레터",
         "newsletter_desc": "뉴스레터 구독자 관리",
         "traffic": "트래픽 분석",
-        "traffic_desc": "웹사이트 트래픽 통계 및 방문자 인사이트 보기"
+        "traffic_desc": "웹사이트 트래픽 통계 및 방문자 인사이트 보기",
+        "reminders": "리마인더 이메일",
+        "reminders_desc": "구독 만료 리마인더 이메일 발송 기록 조회"
       },
       "overview": {
         "title": "시스템 개요",
@@ -1245,6 +1247,72 @@
       "korean_users": "한국어 사용자",
       "traditional_chinese_subscriptions": "번체 중국어 구독",
       "traditional_chinese_users": "번체 중국어 사용자"
+    },
+    "reminders": {
+      "meta_title": "리마인더 이메일 로그 - MokerSaaS",
+      "meta_description": "구독 만료 리마인더 이메일의 발송 기록을 조회하며 유형 및 언어로 필터링 가능",
+      "title": "리마인더 이메일",
+      "description": "구독 만료 리마인더 이메일의 발송 기록을 조회합니다. 사용자 검색, 유형 및 언어로 필터링 가능.",
+      "stats": {
+        "total": "총 발송 수",
+        "7d": "7일 전 알림",
+        "3d": "3일 전 알림",
+        "today": "당일 만료 알림"
+      },
+      "search_placeholder": "이메일 또는 이름 검색",
+      "search_button": "검색",
+      "reset": "초기화",
+      "filter": {
+        "type": "알림 유형",
+        "all_types": "모든 유형",
+        "type_7d": "7일 전",
+        "type_3d": "3일 전",
+        "type_today": "당일",
+        "language": "이메일 언어",
+        "all_languages": "모든 언어",
+        "lang_zh": "간체 중국어",
+        "lang_en": "영어",
+        "lang_ja": "일본어",
+        "lang_ko": "한국어",
+        "lang_tw": "번체 중국어"
+      },
+      "type": {
+        "7d": "7일 전",
+        "3d": "3일 전",
+        "today": "당일"
+      },
+      "lang": {
+        "chinese": "중국어",
+        "english": "영어",
+        "japanese": "일본어",
+        "korean": "한국어",
+        "traditionalChinese": "번체 중국어"
+      },
+      "table": {
+        "sent_at": "발송 시각",
+        "type": "유형",
+        "user": "사용자",
+        "lang": "언어",
+        "period_end": "구독 만료",
+        "subject": "제목",
+        "message_id": "Resend ID"
+      },
+      "labels": {
+        "email": "이메일",
+        "subject": "제목",
+        "message_id": "메시지 ID"
+      },
+      "no_data": "발송 기록이 없습니다",
+      "copied": "{value} 복사됨",
+      "pagination": {
+        "prev": "이전",
+        "next": "다음",
+        "summary": "{from}-{to} / 전체 {total}개"
+      },
+      "error": {
+        "fetch_failed": "리마인더 이메일 조회 실패",
+        "copy_failed": "복사 실패"
+      }
     },
     "users": {
       "meta_title": "사용자 관리 - MokerSaaS",
@@ -1657,6 +1725,28 @@
     "already_unsubscribed": "이미 구독을 해지하셨습니다",
     "unsubscribed": "구독 해지 완료",
     "invalid_link": "유효하지 않은 구독 해지 링크입니다"
+  },
+  "subscription": {
+    "reminder": {
+      "unsubscribe": {
+        "title": "구독 알림 해지",
+        "description": "구독 만료 알림 메일을 더 이상 받지 않습니다. 거래 메일(주문, 인증 코드, 포인트 변동)은 계속 발송됩니다.",
+        "loadingText": "처리 중...",
+        "successMessage": "마음이 바뀌시면 언제든지 알림을 다시 구독할 수 있습니다.",
+        "backToHome": "홈으로 돌아가기",
+        "networkError": "네트워크 오류. 잠시 후 다시 시도해 주세요.",
+        "unsubscribeError": "구독 해지에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+        "successFromEmail": "구독 알림이 성공적으로 해지되었습니다",
+        "resubscribeButton": "알림 다시 구독",
+        "api": {
+          "invalid_link": "유효하지 않은 구독 해지 링크입니다",
+          "not_found": "구독 기록을 찾을 수 없습니다",
+          "already_unsubscribed": "이미 구독을 해지하셨습니다",
+          "unsubscribed": "구독 해지 완료",
+          "resubscribed": "구독 다시 받기 완료"
+        }
+      }
+    }
   },
   "stripe_checkout": {
     "trial_already_used": "이미 체험 플랜에 가입하셨습니다. 사용자당 한 번만 가입할 수 있습니다.",

@@ -1053,4 +1053,397 @@ export async function sendSubscriptionSuccessEmail(
     console.error('发送订阅成功邮件异常:', error)
     return { success: false, error: '发送邮件失败' }
   }
+}
+
+// ============================================================
+// ============ 订阅到期提醒邮件 (cron 自动发送) =============
+// ============================================================
+
+import type { ReminderType } from '@/lib/subscription'
+
+// 订阅提醒专用 sender(独立于 RESEND_FROM_EMAIL)
+// 如果未配置,fallback 到通用 sender,保证至少能发送
+const getSubscriptionFromAddress = () => {
+  const sub = process.env.RESEND_SUBSCRIPTION_FROM_EMAIL
+  if (sub) return sub
+  return getFromAddress()
+}
+
+// 计划显示名(5 语言)
+const PLAN_DISPLAY_NAMES: Record<string, Record<EmailLocale, string>> = {
+  trial:     { zh: '试用版',     tw: '試用版',     en: 'Trial',         ja: 'トライアル',     ko: 'Trial' },
+  pro:       { zh: '专业版',     tw: '專業版',     en: 'Professional',  ja: 'プロフェッショナル', ko: 'Professional' },
+  annual:    { zh: '年度版',     tw: '年度版',     en: 'Annual',        ja: '年間',             ko: 'Annual' },
+  enterprise:{ zh: '企业版',     tw: '企業版',     en: 'Enterprise',    ja: 'エンタープライズ', ko: 'Enterprise' },
+}
+
+function getReminderPlanDisplayName(plan: string, locale: EmailLocale): string {
+  return PLAN_DISPLAY_NAMES[plan]?.[locale] ?? plan
+}
+
+// 5 语言邮件内容(7d / 3d / today 各一套)
+const reminderCopy = {
+  '7d': {
+    zh: {
+      subject: '您的订阅将在 7 天后到期',
+      preview: '您的订阅将在 7 天后到期,请考虑续订以保持服务不中断。',
+      heading: '订阅即将到期',
+      greeting: (name: string) => `${name},您好:`,
+      body1: '感谢您使用 MokerSaaS。为避免您的服务中断,请考虑在到期前续订。',
+      body2: '当前订阅计划:',
+      body3: '您可访问下方页面查看续订方案并完成续订,服务将在到期后自动顺延。',
+      cta: '前往续订',
+      footer1: '本邮件由 MokerSaaS 自动发送,仅与您的订阅状态相关。',
+      footer2: '如果您不再希望收到此类提醒,可以随时取消订阅提醒。',
+      footer3: '取消订阅提醒',
+      importantNote: '重要提示:订阅到期后,系统将自动清零本次订阅赠送的积分,您购买/充值的积分不受影响。',
+    },
+    en: {
+      subject: 'Your subscription expires in 7 days',
+      preview: 'Your subscription expires in 7 days. Renew to keep your service uninterrupted.',
+      heading: 'Subscription Expiring Soon',
+      greeting: (name: string) => `Hi ${name},`,
+      body1: 'Thanks for using MokerSaaS. To avoid any service interruption, please renew before it expires.',
+      body2: 'Current plan:',
+      body3: 'Visit the page below to review renewal options and complete your subscription. Service continues automatically once renewed.',
+      cta: 'Renew Now',
+      footer1: 'This is an automated message from MokerSaaS regarding your subscription.',
+      footer2: 'You can opt out of these reminders at any time.',
+      footer3: 'Unsubscribe from reminders',
+      importantNote: 'Important: when your subscription expires, gifted credits will be cleared. Purchased/top-up credits are not affected.',
+    },
+    ja: {
+      subject: 'サブスクリプションは7日後に到期します',
+      preview: 'サブスクリプションは7日後に到期します。サービス継続のため更新をご検討ください。',
+      heading: 'サブスクリプション即将到期',
+      greeting: (name: string) => `${name} 様`,
+      body1: 'MokerSaaSをご利用いただきありがとうございます。サービス中断を避けるため、有効期限前に更新をご検討ください。',
+      body2: '現在の購読プラン:',
+      body3: '下記のページから更新プランを確認し、更新手続きを行ってください。',
+      cta: '更新へ',
+      footer1: '本メールはサブスクリプション状態に関する自動通知です。',
+      footer2: '此类提醒をご希望でない場合は、随时取消できます。',
+      footer3: 'リマインダーを解除',
+      importantNote: '重要:サブスクリプション到期後、赠送ポイントは自動的にクリアされます。購入/チャージポイントは影響を受けません。',
+    },
+    ko: {
+      subject: '구독이 7일 후 만료됩니다',
+      preview: '구독이 7일 후 만료됩니다. 서비스 연속을 위해 갱신을 고려해 주세요.',
+      heading: '구독이 곧 만료됩니다',
+      greeting: (name: string) => `${name} 님, 안녕하세요.`,
+      body1: 'MokerSaaS를 이용해 주셔서 감사합니다. 서비스 중단을 피하시려면 만료 전에 갱신해 주세요.',
+      body2: '현재 구독 플랜:',
+      body3: '아래 페이지에서 갱신 옵션을 확인하고 구독을 이어가세요.',
+      cta: '갱신하러 가기',
+      footer1: '본 메일은 구독 상태에 관한 자동 알림입니다.',
+      footer2: '此类 알림을 더 이상 원치 않으시면 随时 해지할 수 있습니다.',
+      footer3: '알림 해지',
+      importantNote: '중요: 구독 만료 시赠送 포인트는 자동으로 소멸됩니다. 구매/충전 포인트는 영향을 받지 않습니다.',
+    },
+    tw: {
+      subject: '您的訂閱將在 7 天後到期',
+      preview: '您的訂閱將在 7 天後到期,請考慮續訂以保持服務不中斷。',
+      heading: '訂閱即將到期',
+      greeting: (name: string) => `${name},您好:`,
+      body1: '感謝您使用 MokerSaaS。為避免您的服務中斷,請考慮在到期前續訂。',
+      body2: '當前訂閱計劃:',
+      body3: '請前往下方頁面查看續訂方案並完成續訂,服務將在到期後自動順延。',
+      cta: '前往續訂',
+      footer1: '本郵件由 MokerSaaS 自動發送,僅與您的訂閱狀態相關。',
+      footer2: '如果您不再希望收到此類提醒,可以隨時取消訂閱提醒。',
+      footer3: '取消訂閱提醒',
+      importantNote: '重要提示:訂閱到期後,系統將自動清零本次訂閱贈送的積分,您購買/充值的積分不受影響。',
+    },
+  },
+  '3d': {
+    zh: {
+      subject: '您的订阅将在 3 天后到期',
+      preview: '您的订阅将在 3 天后到期,请尽快续订。',
+      heading: '订阅即将到期',
+      greeting: (name: string) => `${name},您好:`,
+      body1: '再过 3 天您的订阅即将到期。为了不间断使用 MokerSaaS 的全部功能,请尽快续订。',
+      body2: '当前订阅计划:',
+      body3: '点击下方按钮查看续订方案并立即续订。',
+      cta: '立即续订',
+      footer1: '本邮件由 MokerSaaS 自动发送,仅与您的订阅状态相关。',
+      footer2: '如果您不再希望收到此类提醒,可以随时取消订阅提醒。',
+      footer3: '取消订阅提醒',
+      importantNote: '重要提示:订阅到期后,系统将自动清零本次订阅赠送的积分,您购买/充值的积分不受影响。',
+    },
+    en: {
+      subject: 'Your subscription expires in 3 days',
+      preview: 'Your subscription expires in 3 days. Renew now to keep your access.',
+      heading: 'Subscription Expiring in 3 Days',
+      greeting: (name: string) => `Hi ${name},`,
+      body1: 'Your subscription will end in 3 days. To keep using all MokerSaaS features without interruption, please renew now.',
+      body2: 'Current plan:',
+      body3: 'Tap the button below to review renewal options and continue your subscription.',
+      cta: 'Renew Now',
+      footer1: 'This is an automated message from MokerSaaS regarding your subscription.',
+      footer2: 'You can opt out of these reminders at any time.',
+      footer3: 'Unsubscribe from reminders',
+      importantNote: 'Important: when your subscription expires, gifted credits will be cleared. Purchased/top-up credits are not affected.',
+    },
+    ja: {
+      subject: 'サブスクリプションは3日後に到期します',
+      preview: 'サブスクリプションは3日後に到期します。サービス継続のため今すぐご更新ください。',
+      heading: 'サブスクリプションまで3日',
+      greeting: (name: string) => `${name} 様`,
+      body1: 'あと3日でサブスクリプションが到期します。MokerSaaSの全機能を中断なくご利用いただくため、今すぐ更新してください。',
+      body2: '現在の購読プラン:',
+      body3: '下記のボタンから更新プランを確認し、即時更新手続きを行ってください。',
+      cta: '今すぐ更新',
+      footer1: '本メールはサブスクリプション状態に関する自動通知です。',
+      footer2: '此类提醒をご希望でない場合は、随时取消できます。',
+      footer3: 'リマインダーを解除',
+      importantNote: '重要:サブスクリプション到期後、赠送ポイントは自動的にクリアされます。購入/チャージポイントは影響を受けません。',
+    },
+    ko: {
+      subject: '구독이 3일 후 만료됩니다',
+      preview: '구독이 3일 후 만료됩니다. 지금 갱신해 주세요.',
+      heading: '구독이 3일 남았습니다',
+      greeting: (name: string) => `${name} 님, 안녕하세요.`,
+      body1: '3일 후 구독이 만료됩니다. MokerSaaS의 모든 기능을 중단 없이 이용하시려면 지금 갱신해 주세요.',
+      body2: '현재 구독 플랜:',
+      body3: '아래 버튼을 눌러 갱신 옵션을 확인하고 즉시 구독을 이어가세요.',
+      cta: '지금 갱신',
+      footer1: '본 메일은 구독 상태에 관한 자동 알림입니다.',
+      footer2: '此类 알림을 더 이상 원치 않으시면 随时 해지할 수 있습니다.',
+      footer3: '알림 해지',
+      importantNote: '중요: 구독 만료 시赠送 포인트는 자동으로 소멸됩니다. 구매/충전 포인트는 영향을 받지 않습니다.',
+    },
+    tw: {
+      subject: '您的訂閱將在 3 天後到期',
+      preview: '您的訂閱將在 3 天後到期,請儘快續訂。',
+      heading: '訂閱即將到期',
+      greeting: (name: string) => `${name},您好:`,
+      body1: '再過 3 天您的訂閱即將到期。為了不中斷使用 MokerSaaS 的全部功能,請儘快續訂。',
+      body2: '當前訂閱計劃:',
+      body3: '點擊下方按鈕查看續訂方案並立即續訂。',
+      cta: '立即續訂',
+      footer1: '本郵件由 MokerSaaS 自動發送,僅與您的訂閱狀態相關。',
+      footer2: '如果您不再希望收到此類提醒,可以隨時取消訂閱提醒。',
+      footer3: '取消訂閱提醒',
+      importantNote: '重要提示:訂閱到期後,系統將自動清零本次訂閱贈送的積分,您購買/充值的積分不受影響。',
+    },
+  },
+  'today': {
+    zh: {
+      subject: '您的订阅今天到期',
+      preview: '您的订阅今天到期,请尽快续订以保持服务不中断。',
+      heading: '订阅今天到期',
+      greeting: (name: string) => `${name},您好:`,
+      body1: '您的订阅将在今天到期。续订后将自动顺延,无需重新设置。',
+      body2: '当前订阅计划:',
+      body3: '点击下方按钮立即续订,保持服务不中断。',
+      cta: '立即续订',
+      footer1: '本邮件由 MokerSaaS 自动发送,仅与您的订阅状态相关。',
+      footer2: '如果您不再希望收到此类提醒,可以随时取消订阅提醒。',
+      footer3: '取消订阅提醒',
+      importantNote: '重要提示:订阅到期后,系统将自动清零本次订阅赠送的积分,您购买/充值的积分不受影响。',
+    },
+    en: {
+      subject: 'Your subscription expires today',
+      preview: 'Your subscription expires today. Renew now to keep your access.',
+      heading: 'Subscription Expires Today',
+      greeting: (name: string) => `Hi ${name},`,
+      body1: 'Your subscription ends today. Renew now and it will continue seamlessly without any extra setup.',
+      body2: 'Current plan:',
+      body3: 'Tap the button below to renew and keep your service active.',
+      cta: 'Renew Now',
+      footer1: 'This is an automated message from MokerSaaS regarding your subscription.',
+      footer2: 'You can opt out of these reminders at any time.',
+      footer3: 'Unsubscribe from reminders',
+      importantNote: 'Important: when your subscription expires, gifted credits will be cleared. Purchased/top-up credits are not affected.',
+    },
+    ja: {
+      subject: 'サブスクリプションは本日到期します',
+      preview: 'サブスクリプションは本日到期します。今すぐご更新ください。',
+      heading: '本日サブスクリプション到期',
+      greeting: (name: string) => `${name} 様`,
+      body1: '本日サブスクリプションが到期します。今すぐ更新すれば、手続き不要でそのまま継続できます。',
+      body2: '現在の購読プラン:',
+      body3: '下記のボタンから今すぐ更新し、サービス継続にお進みください。',
+      cta: '今すぐ更新',
+      footer1: '本メールはサブスクリプション状態に関する自動通知です。',
+      footer2: '此类提醒をご希望でない場合は、随时取消できます。',
+      footer3: 'リマインダーを解除',
+      importantNote: '重要:サブスクリプション到期後、赠送ポイントは自動的にクリアされます。購入/チャージポイントは影響を受けません。',
+    },
+    ko: {
+      subject: '구독이 오늘 만료됩니다',
+      preview: '구독이 오늘 만료됩니다. 지금 갱신해 주세요.',
+      heading: '구독이 오늘 만료됩니다',
+      greeting: (name: string) => `${name} 님, 안녕하세요.`,
+      body1: '구독이 오늘 만료됩니다. 지금 갱신하시면 별도 설정 없이 바로 이어서 이용하실 수 있습니다.',
+      body2: '현재 구독 플랜:',
+      body3: '아래 버튼을 눌러 지금 갱신하고 서비스를 이어가세요.',
+      cta: '지금 갱신',
+      footer1: '본 메일은 구독 상태에 관한 자동 알림입니다.',
+      footer2: '此类 알림을 더 이상 원치 않으시면 随时 해지할 수 있습니다.',
+      footer3: '알림 해지',
+      importantNote: '중요: 구독 만료 시赠送 포인트는 자동으로 소멸됩니다. 구매/충전 포인트는 영향을 받지 않습니다.',
+    },
+    tw: {
+      subject: '您的訂閱今天到期',
+      preview: '您的訂閱今天到期,請儘快續訂以保持服務不中斷。',
+      heading: '訂閱今天到期',
+      greeting: (name: string) => `${name},您好:`,
+      body1: '您的訂閱將在今天到期。續訂後將自動順延,無需重新設定。',
+      body2: '當前訂閱計劃:',
+      body3: '點擊下方按鈕立即續訂,保持服務不中斷。',
+      cta: '立即續訂',
+      footer1: '本郵件由 MokerSaaS 自動發送,僅與您的訂閱狀態相關。',
+      footer2: '如果您不再希望收到此類提醒,可以隨時取消訂閱提醒。',
+      footer3: '取消訂閱提醒',
+      importantNote: '重要提示:訂閱到期後,系統將自動清零本次訂閱贈送的積分,您購買/充值的積分不受影響。',
+    },
+  },
+} as const
+
+interface ReminderCopy {
+  subject: string
+  preview: string
+  heading: string
+  greeting: (name: string) => string
+  body1: string
+  body2: string
+  body3: string
+  cta: string
+  footer1: string
+  footer2: string
+  footer3: string
+  importantNote: string
+}
+
+/**
+ * 生成订阅提醒邮件 HTML 模板(纯字符串,不用 react-email)
+ */
+function generateReminderEmailHTML(
+  copy: ReminderCopy,
+  planName: string,
+  userName: string | null | undefined,
+  renewUrl: string,
+  unsubscribeUrl: string,
+): string {
+  const colors = BRAND_COLORS
+  const safeName = (userName || '').trim() || '用户'
+  return `
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${copy.subject}</title>
+    </head>
+    <body style="margin: 0; padding: 0; background-color: ${colors.background}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+      <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 40px; padding: 20px 0;">
+          <div style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryDark} 100%); border-radius: 12px; margin-bottom: 16px;">
+            <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">${BRAND_NAME}</h1>
+          </div>
+          <p style="color: ${colors.muted}; font-size: 14px; margin: 8px 0 0 0;">${copy.preview}</p>
+        </div>
+
+        <!-- Main Content -->
+        <div style="background: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #f1f5f9;">
+          <h2 style="color: ${colors.text}; margin: 0 0 24px 0; text-align: center; font-size: 26px; font-weight: 700;">${copy.heading}</h2>
+
+          <p style="color: ${colors.text}; line-height: 1.7; margin-bottom: 16px; font-size: 16px;">${copy.greeting(safeName)}</p>
+          <p style="color: ${colors.text}; line-height: 1.7; margin-bottom: 16px; font-size: 16px;">${copy.body1}</p>
+
+          <div style="background: linear-gradient(135deg, ${colors.primaryLight} 0%, white 100%); padding: 20px 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid ${colors.primary};">
+            <span style="color: ${colors.muted}; font-size: 14px; font-weight: 500;">${copy.body2}</span>
+            <div style="color: ${colors.text}; font-size: 20px; font-weight: 700; margin-top: 4px;">${planName}</div>
+          </div>
+
+          <p style="color: ${colors.text}; line-height: 1.7; margin: 16px 0 24px; font-size: 16px;">${copy.body3}</p>
+
+          <p style="color: ${colors.accent}; line-height: 1.6; margin: 24px 0; font-size: 14px; background: ${colors.accentLight}; padding: 12px 16px; border-radius: 8px;">
+            ${copy.importantNote}
+          </p>
+
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="${renewUrl}" style="background: linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryDark} 100%); color: white; padding: 14px 36px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);">
+              ${copy.cta}
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; color: ${colors.muted}; font-size: 13px; line-height: 1.6;">
+          <p style="margin: 0 0 8px 0;">${copy.footer1}</p>
+          <p style="margin: 0 0 16px 0;">
+            <a href="${unsubscribeUrl}" style="color: ${colors.muted}; text-decoration: underline;">${copy.footer2} ${copy.footer3}</a>
+          </p>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
+            <p style="margin: 0; font-size: 12px;">
+              Powered by <strong style="color: ${colors.primary};">${BRAND_NAME}</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+  `
+}
+
+export async function sendSubscriptionReminder(params: {
+  to: string
+  name?: string | null
+  plan: string
+  type: ReminderType
+  locale?: string | null
+  unsubscribeUrl: string
+  renewUrl: string
+}): Promise<{ success: boolean; messageId?: string; subject?: string; error?: string }> {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('[email] RESEND_API_KEY 未配置,跳过订阅提醒发送')
+    return { success: false, error: 'api_key_not_configured' }
+  }
+  if (!params.to) {
+    return { success: false, error: 'no_recipient' }
+  }
+
+  // 安全回退到默认 locale
+  const locale: EmailLocale = (
+    ['en', 'zh', 'ja', 'ko', 'tw'].includes(params.locale ?? '')
+      ? (params.locale as EmailLocale)
+      : 'en'
+  )
+
+  const copy = reminderCopy[params.type][locale]
+  const planName = getReminderPlanDisplayName(params.plan, locale)
+  const html = generateReminderEmailHTML(
+    copy,
+    planName,
+    params.name,
+    params.renewUrl,
+    params.unsubscribeUrl,
+  )
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: getSubscriptionFromAddress(),
+      to: [params.to],
+      subject: copy.subject,
+      html,
+      headers: {
+        'List-Unsubscribe': `<${params.unsubscribeUrl}>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
+    })
+
+    if (error) {
+      console.error(`[email] 订阅提醒(${params.type})发送失败:`, error)
+      return { success: false, error: error.message }
+    }
+
+    console.log(`[email] 订阅提醒(${params.type})发送成功: ${params.to} (messageId=${data?.id})`)
+    return { success: true, messageId: data?.id, subject: copy.subject }
+  } catch (err) {
+    console.error(`[email] 订阅提醒(${params.type})异常:`, err)
+    return { success: false, error: 'send_exception' }
+  }
 } 

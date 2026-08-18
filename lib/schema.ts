@@ -27,6 +27,10 @@ export const users = pgTable('users', {
   referralCode: text('referralCode').unique(), // 用户的推荐码（唯一）
   referralCodeChanged: boolean('referralCodeChanged').default(false), // 是否已经修改过推荐码一次
   referredBy: text('referredBy'), // 邀请者的用户ID
+  // 订阅到期提醒（cron 自动发邮件用）
+  subscriptionUnsubscribeToken: text('subscription_unsubscribe_token'), // 退订链接的 token（首次创建或 cron 时生成）
+  subscriptionReminderDisabled: boolean('subscription_reminder_disabled').notNull().default(false), // 是否关闭订阅到期提醒（一键全关）
+  preferredLanguage: text('preferred_language').default('en'), // 邮件语言偏好：en | zh | ja | ko | tw
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow(),
 })
@@ -283,4 +287,30 @@ export const affiliateWithdrawalsRelations = relations(affiliateWithdrawals, ({ 
     fields: [affiliateWithdrawals.affiliateId],
     references: [affiliateProfiles.id],
   }),
+}))
+
+// ========== 订阅到期提醒系统 ==========
+
+// 提醒发送日志：保证同一用户同一订阅周期同一类型邮件不会重复发送
+export const subscriptionReminders = pgTable('subscription_reminders', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  periodEnd: timestamp('period_end', { mode: 'date' }).notNull(),
+  reminderType: text('reminder_type').notNull(), // 7d | 3d | today
+  sentAt: timestamp('sent_at', { mode: 'date' }).notNull(),
+  emailMessageId: text('email_message_id'), // Resend 返回的消息 ID，用于排错
+  // admin 后台展示用
+  subject: text('subject'), // 邮件主题
+  locale: text('locale'), // 邮件语言（en/zh/ja/ko/tw）
+  plan: text('plan'), // 订阅计划（pro/enterprise 等）
+}, (table) => ({
+  uniqUserPeriodType: unique('uniq_user_period_type').on(
+    table.userId,
+    table.periodEnd,
+    table.reminderType,
+  ),
+  idxSentAt: index('idx_reminders_sent_at').on(table.sentAt),
+  idxMessageId: index('idx_reminders_message_id').on(table.emailMessageId),
 })) 
