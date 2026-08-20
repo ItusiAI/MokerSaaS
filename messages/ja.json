@@ -1101,7 +1101,9 @@
         "traffic": "トラフィック分析",
         "traffic_desc": "ウェブサイトトラフィック統計と訪問者インサイトを表示",
         "reminders": "リマインダーメール",
-        "reminders_desc": "サブスクリプション期限切れリマインダーメールの送信ログを確認"
+        "reminders_desc": "サブスクリプション期限切れリマインダーメールの送信ログを確認",
+        "reengagement": "休眠ユーザー",
+        "reengagement_desc": "休眠・離脱ユーザーを閲覧・分析し、休眠日数でバケット筛选"
       },
       "overview": {
         "title": "システム概要",
@@ -1246,7 +1248,17 @@
       "korean_subscriptions": "韓国語購読",
       "korean_users": "韓国語ユーザー",
       "traditional_chinese_subscriptions": "繁体字中国語購読",
-      "traditional_chinese_users": "繁体字中国語ユーザー"
+      "traditional_chinese_users": "繁体字中国語ユーザー",
+      "page_size_10": "10件/ページ",
+      "page_size_20": "20件/ページ",
+      "page_size_50": "50件/ページ",
+      "page_size_100": "100件/ページ",
+      "pagination": {
+        "summary": "{from}-{to} / 合計{total}件",
+        "total": "合計 {total}件",
+        "prev": "前へ",
+        "next": "次へ"
+      }
     },
     "reminders": {
       "meta_title": "リマインダーメールログ - MokerSaaS",
@@ -1274,7 +1286,11 @@
         "lang_en": "英語",
         "lang_ja": "日本語",
         "lang_ko": "韓国語",
-        "lang_tw": "繁体字中国語"
+        "lang_tw": "繁体字中国語",
+        "page_size_10": "10件/ページ",
+        "page_size_20": "20件/ページ",
+        "page_size_50": "50件/ページ",
+        "page_size_100": "100件/ページ"
       },
       "type": {
         "7d": "7日前",
@@ -1312,6 +1328,106 @@
       "error": {
         "fetch_failed": "リマインダーメールの取得に失敗しました",
         "copy_failed": "コピーに失敗しました"
+      }
+    },
+    "reengagement": {
+      "meta_title": "休眠ユーザー照会 - MokerSaaS",
+      "meta_description": "休眠・離脱ユーザーを閲覧し、休眠日数、購読状態、言語で筛选",
+      "title": "休眠ユーザー",
+      "description": "休眠および離脱ユーザーの照会と分析。休眠日数、購読状態、言語別にバケット統計、キーワード検索をサポート。",
+      "stats": {
+        "total_users": "総ユーザー数",
+        "active_subscribers": "有効な購読ユーザー",
+        "active_subscribers_hint": "購読期間内、休眠にカウントされません",
+        "active": "アクティブ (<7日)",
+        "active_hint": "過去7日間に活動",
+        "warm": "軽度休眠 (7-30日)",
+        "warm_hint": "穏やかなリマインドを送信",
+        "dormant": "中度休眠 (30-90日)",
+        "inactive": "重度休眠 (90-180日)",
+        "churned": "離脱済み (≥180日)",
+        "dormant_paid": "休眠+過去の有料",
+        "dormant_paid_hint": "高価値復帰対象"
+      },
+      "click_to_view": "クリックで閲覧 →",
+      "click_to_filter": "クリックで筛选 →",
+      "filter_applied": "筛选を適用:過去の有料休眠ユーザー",
+      "export_csv": "CSV エクスポート",
+      "exported": "{count} 件をエクスポートしました",
+      "export_empty": "現在の筛选下にデータがありません",
+      "export_preparing": "エクスポート準備中...",
+      "export_progress": "エクスポート中 {fetched}/{total} 件",
+      "search_placeholder": "メールまたは名前で検索",
+      "search_button": "検索",
+      "reset": "リセット",
+      "filter": {
+        "bucket": "休眠バケット",
+        "all_buckets": "全休眠",
+        "bucket_warm": "轻度休眠 (7-30日)",
+        "bucket_dormant": "中度休眠 (30-90日)",
+        "bucket_inactive": "重度休眠 (90-180日)",
+        "bucket_churned": "離脱済み (≥180日)",
+        "subscription": "購読状態",
+        "all_subscriptions": "全購読",
+        "sub_active": "現在アクティブ",
+        "sub_history": "過去に有料",
+        "sub_never": "有料履歴なし",
+        "language": "メール言語",
+        "all_languages": "全言語",
+        "lang_zh": "簡体字中国語",
+        "lang_en": "英語",
+        "lang_ja": "日本語",
+        "lang_ko": "韓国語",
+        "lang_tw": "繁体字中国語",
+        "sort": "並び替え",
+        "sort_inactive_desc": "休眠が長い順",
+        "sort_inactive_asc": "最近沉默した順",
+        "sort_points_desc": "ポイントが多い順",
+        "sort_created_desc": "最近登録順",
+        "page_size_10": "10件/ページ",
+        "page_size_20": "20件/ページ",
+        "page_size_50": "50件/ページ",
+        "page_size_100": "100件/ページ"
+      },
+      "bucket": {
+        "active": "アクティブ",
+        "warm": "轻度休眠",
+        "dormant": "中度休眠",
+        "inactive": "重度休眠",
+        "churned": "離脱済み"
+      },
+      "table": {
+        "user": "ユーザー",
+        "inactive_days": "休眠日数",
+        "bucket": "バケット",
+        "subscription": "購読",
+        "points": "ポイント",
+        "lang": "言語",
+        "last_active": "最終アクティブ",
+        "created": "登録日"
+      },
+      "labels": {
+        "email": "メール",
+        "unverified": "メール未認証",
+        "expires": "期限:"
+      },
+      "no_data": "条件に一致する休眠ユーザーはいません",
+      "copied": "{value} をコピーしました",
+      "pagination": {
+        "prev": "前へ",
+        "next": "次へ",
+        "summary": "{from}-{to} 件目、全 {total} 件"
+      },
+      "dialog": {
+        "active_subscribers_title": "有効な購読ユーザー",
+        "active_subscribers_desc": "現在購読が有効なユーザー(status=active かつ periodEnd > 現在)。",
+        "total_count": "合計 {count} 名",
+        "no_active_subscribers": "有効な購読ユーザーはいません"
+      },
+      "error": {
+        "fetch_failed": "休眠ユーザーの取得に失敗しました",
+        "copy_failed": "コピーに失敗しました",
+        "export_failed": "CSV のエクスポートに失敗しました"
       }
     },
     "users": {
@@ -1383,7 +1499,16 @@
           "status_expired": "満期切れ",
           "expired": "満期切れ",
           "expiring_soon": "まもなく満期"
-        }
+        },
+        "pagination": {
+          "summary": "{from}-{to} / 合計{total}件",
+          "prev": "前へ",
+          "next": "次へ"
+        },
+        "page_size_10": "10件/ページ",
+        "page_size_20": "20件/ページ",
+        "page_size_50": "50件/ページ",
+        "page_size_100": "100件/ページ"
       },
       "actions": {
         "refresh": "更新",
@@ -1448,7 +1573,11 @@
         "page_info": "全{totalPages}ページ中{page}ページ",
         "total_records": "総{total}件",
         "previous": "前へ",
-        "next": "次へ"
+        "next": "次へ",
+        "page_size_10": "10件/ページ",
+        "page_size_20": "20件/ページ",
+        "page_size_50": "50件/ページ",
+        "page_size_100": "100件/ページ"
       },
       "messages": {
         "role_updated": "ユーザーロール更新成功",
@@ -1468,6 +1597,15 @@
       "tabs": {
         "records": "招待記録",
         "rewards": "報酬記録"
+      },
+      "page_size_10": "10件/ページ",
+      "page_size_20": "20件/ページ",
+      "page_size_50": "50件/ページ",
+      "page_size_100": "100件/ページ",
+      "pagination": {
+        "summary": "{from}-{to} / 合計{total}件",
+        "prev": "前へ",
+        "next": "次へ"
       },
       "records": {
         "title": "招待記録",
@@ -1500,7 +1638,16 @@
           "referrer_bonus": "招待者ボーナス",
           "subscription_reward": "サブスクリプション報酬",
           "unknown": "その他 ({action})"
-        }
+        },
+        "pagination": {
+          "summary": "{from}-{to} / 合計{total}件",
+          "prev": "前へ",
+          "next": "次へ"
+        },
+        "page_size_10": "10件/ページ",
+        "page_size_20": "20件/ページ",
+        "page_size_50": "50件/ページ",
+        "page_size_100": "100件/ページ"
       }
     },
     "affiliate": {
@@ -1605,7 +1752,16 @@
           "submit": "送信",
           "cancel": "キャンセル"
         }
-      }
+      },
+      "pagination": {
+        "summary": "{from}-{to} / 合計{total}件",
+        "prev": "前へ",
+        "next": "次へ"
+      },
+      "page_size_10": "10件/ページ",
+      "page_size_20": "20件/ページ",
+      "page_size_50": "50件/ページ",
+      "page_size_100": "100件/ページ"
     }
   },
   "legal": {

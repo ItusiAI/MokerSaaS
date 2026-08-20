@@ -17,7 +17,8 @@ import {
   Award,
   CreditCard,
   Wallet,
-  Loader2
+  Loader2,
+  UserMinus
 } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { UserStats } from './user-stats'
@@ -26,9 +27,10 @@ import { ReferralManagement } from './referral-management'
 import { AffiliateManagement } from './affiliate-management'
 import { TrafficAnalytics } from './traffic-analytics'
 import { ReminderLogs } from './reminder-logs'
+import { ReengagementList } from './reengagement-list'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-type AdminSection = 'overview' | 'users' | 'newsletter' | 'referral' | 'affiliate' | 'traffic' | 'reminders'
+type AdminSection = 'overview' | 'users' | 'newsletter' | 'referral' | 'affiliate' | 'traffic' | 'reminders' | 'reengagement'
 
 interface MenuItem {
   id: AdminSection
@@ -40,60 +42,44 @@ interface MenuItem {
 export function AdminDashboard() {
   const t = useTranslations('admin.dashboard')
   
-  // 从 URL hash 或 localStorage 获取初始标签页，默认为 'overview'
-  const getInitialSection = (): AdminSection => {
-    if (typeof window !== 'undefined') {
-      // 优先使用 URL hash
-      const hash = window.location.hash.replace('#', '')
-      if (['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders'].includes(hash)) {
-        return hash as AdminSection
-      }
-      // 其次使用 localStorage
-      const saved = localStorage.getItem('adminActiveSection')
-      if (saved && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders'].includes(saved)) {
-        return saved as AdminSection
-      }
-    }
-    return 'overview'
-  }
-
+  // 始终使用固定默认值，sessionStorage 的读取放在 useEffect（CSR 阶段）中进行
+  // 这样服务器和客户端首次渲染都输出相同内容，避免 hydration mismatch
   const [activeSection, setActiveSection] = useState<AdminSection>('overview')
+  const [hydrated, setHydrated] = useState(false)
 
-  // 首次挂载后再根据 hash/localStorage 设置，避免 SSR 与 CSR 初始状态不一致
-  useEffect(() => {
-    setActiveSection(getInitialSection())
-  }, [])
-
-  // 同步状态到 URL hash 和 localStorage
+  // 挂载后从 sessionStorage 恢复（仅在 CSR 阶段运行，不影响 SSR 结果）
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // 更新 URL hash（不使用 router.push，避免页面刷新）
-      window.history.replaceState(null, '', `${window.location.pathname}#${activeSection}`)
-      // 保存到 localStorage
-      localStorage.setItem('adminActiveSection', activeSection)
-    }
-  }, [activeSection])
-
-  // 监听 URL hash 变化（例如语言切换后页面重新加载）
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const handleHashChange = () => {
-        const hash = window.location.hash.replace('#', '')
-        if (['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders'].includes(hash)) {
-          setActiveSection(hash as AdminSection)
+      const hash = window.location.hash.replace('#', '')
+      if (hash && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement'].includes(hash)) {
+        setActiveSection(hash as AdminSection)
+      } else {
+        const saved = sessionStorage.getItem('adminActiveSection')
+        if (saved && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement'].includes(saved)) {
+          setActiveSection(saved as AdminSection)
         }
       }
+    }
+    setHydrated(true)
+  }, [])
 
-      // 页面加载时检查 hash
-      handleHashChange()
+  // 同步到 sessionStorage
+  useEffect(() => {
+    if (hydrated && typeof window !== 'undefined') {
+      sessionStorage.setItem('adminActiveSection', activeSection)
+    }
+  }, [activeSection, hydrated])
 
-      // 监听 hash 变化
-      window.addEventListener('hashchange', handleHashChange)
-
-      return () => {
-        window.removeEventListener('hashchange', handleHashChange)
+  // 浏览器前进/后退时同步
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash.replace('#', '')
+      if (hash && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement'].includes(hash)) {
+        setActiveSection(hash as AdminSection)
       }
     }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
   const menuItems: MenuItem[] = [
@@ -138,6 +124,12 @@ export function AdminDashboard() {
       label: t('menu.reminders'),
       icon: <Mail className="h-5 w-5" />,
       description: t('menu.reminders_desc')
+    },
+    {
+      id: 'reengagement',
+      label: t('menu.reengagement'),
+      icon: <UserMinus className="h-5 w-5" />,
+      description: t('menu.reengagement_desc')
     }
   ]
 
@@ -157,6 +149,8 @@ export function AdminDashboard() {
         return <TrafficAnalytics />
       case 'reminders':
         return <ReminderLogs />
+      case 'reengagement':
+        return <ReengagementList />
       default:
         return <AdminOverview />
     }
@@ -176,7 +170,6 @@ export function AdminDashboard() {
                 className="flex items-center gap-2"
                 onClick={() => {
                   setActiveSection(item.id)
-                  // 更新 URL hash
                   if (typeof window !== 'undefined') {
                     window.history.replaceState(null, '', `${window.location.pathname}#${item.id}`)
                   }

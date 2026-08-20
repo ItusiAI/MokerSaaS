@@ -1101,7 +1101,9 @@
         "traffic": "Traffic Analytics",
         "traffic_desc": "View website traffic statistics and visitor insights",
         "reminders": "Reminder Emails",
-        "reminders_desc": "Query subscription expiration reminder email logs"
+        "reminders_desc": "Query subscription expiration reminder email logs",
+        "reengagement": "Dormant Users",
+        "reengagement_desc": "View and analyze dormant/churned users, filter by inactivity buckets"
       },
       "overview": {
         "title": "System Overview",
@@ -1246,7 +1248,17 @@
       "korean_subscriptions": "Korean Subscriptions",
       "korean_users": "Korean Users",
       "traditional_chinese_subscriptions": "Traditional Chinese Subscriptions",
-      "traditional_chinese_users": "Traditional Chinese Users"
+      "traditional_chinese_users": "Traditional Chinese Users",
+      "page_size_10": "10 / page",
+      "page_size_20": "20 / page",
+      "page_size_50": "50 / page",
+      "page_size_100": "100 / page",
+      "pagination": {
+        "summary": "{from}-{to} of {total}",
+        "total": "{total} records",
+        "prev": "Previous",
+        "next": "Next"
+      }
     },
     "reminders": {
       "meta_title": "Reminder Email Logs - MokerSaaS",
@@ -1274,7 +1286,11 @@
         "lang_en": "English",
         "lang_ja": "Japanese",
         "lang_ko": "Korean",
-        "lang_tw": "Traditional Chinese"
+        "lang_tw": "Traditional Chinese",
+        "page_size_10": "10 / page",
+        "page_size_20": "20 / page",
+        "page_size_50": "50 / page",
+        "page_size_100": "100 / page"
       },
       "type": {
         "7d": "7 days",
@@ -1312,6 +1328,106 @@
       "error": {
         "fetch_failed": "Failed to fetch reminder emails",
         "copy_failed": "Copy failed"
+      }
+    },
+    "reengagement": {
+      "meta_title": "Dormant Users - MokerSaaS",
+      "meta_description": "View dormant/churned users, filter by inactivity days, subscription status, and language",
+      "title": "Dormant Users",
+      "description": "Query and analyze dormant and churned users. Bucket by inactivity days, subscription status, and email language, with keyword search.",
+      "stats": {
+        "total_users": "Total Users",
+        "active_subscribers": "Active Subscribers",
+        "active_subscribers_hint": "Subscription valid, not counted as dormant",
+        "active": "Active (<7d)",
+        "active_hint": "Active in last 7 days",
+        "warm": "Warm (7-30d)",
+        "warm_hint": "Send gentle reminders",
+        "dormant": "Dormant (30-90d)",
+        "inactive": "Inactive (90-180d)",
+        "churned": "Churned (>180d)",
+        "dormant_paid": "Dormant + Past Paid",
+        "dormant_paid_hint": "High-value win-back"
+      },
+      "click_to_view": "Click to view →",
+      "click_to_filter": "Click to filter →",
+      "filter_applied": "Filter applied: dormant users with past payment",
+      "export_csv": "Export CSV",
+      "exported": "Exported {count} rows",
+      "export_empty": "No data to export under the current filter",
+      "export_preparing": "Preparing export...",
+      "export_progress": "Exporting {fetched}/{total} rows",
+      "search_placeholder": "Search email or name",
+      "search_button": "Search",
+      "reset": "Reset",
+      "filter": {
+        "bucket": "Inactivity Bucket",
+        "all_buckets": "All Dormant",
+        "bucket_warm": "Warm (7-30d)",
+        "bucket_dormant": "Dormant (30-90d)",
+        "bucket_inactive": "Inactive (90-180d)",
+        "bucket_churned": "Churned (≥180d)",
+        "subscription": "Subscription",
+        "all_subscriptions": "All Subscriptions",
+        "sub_active": "Currently Active",
+        "sub_history": "Ever Paid",
+        "sub_never": "Never Paid",
+        "language": "Email Language",
+        "all_languages": "All Languages",
+        "lang_zh": "Simplified Chinese",
+        "lang_en": "English",
+        "lang_ja": "Japanese",
+        "lang_ko": "Korean",
+        "lang_tw": "Traditional Chinese",
+        "sort": "Sort",
+        "sort_inactive_desc": "Longest inactive first",
+        "sort_inactive_asc": "Recently silent first",
+        "sort_points_desc": "Most points first",
+        "sort_created_desc": "Newest registrations first",
+        "page_size_10": "10 / page",
+        "page_size_20": "20 / page",
+        "page_size_50": "50 / page",
+        "page_size_100": "100 / page"
+      },
+      "bucket": {
+        "active": "Active",
+        "warm": "Warm",
+        "dormant": "Dormant",
+        "inactive": "Inactive",
+        "churned": "Churned"
+      },
+      "table": {
+        "user": "User",
+        "inactive_days": "Inactive Days",
+        "bucket": "Bucket",
+        "subscription": "Subscription",
+        "points": "Points",
+        "lang": "Lang",
+        "last_active": "Last Active",
+        "created": "Created"
+      },
+      "labels": {
+        "email": "Email",
+        "unverified": "Email unverified",
+        "expires": "Expires:"
+      },
+      "no_data": "No dormant users match the current filters",
+      "copied": "Copied {value}",
+      "pagination": {
+        "prev": "Previous",
+        "next": "Next",
+        "summary": "{from}-{to} of {total}"
+      },
+      "dialog": {
+        "active_subscribers_title": "Active Subscribers",
+        "active_subscribers_desc": "Users with an active subscription (status=active AND periodEnd > now).",
+        "total_count": "Total: {count}",
+        "no_active_subscribers": "No active subscribers"
+      },
+      "error": {
+        "fetch_failed": "Failed to fetch dormant users",
+        "copy_failed": "Copy failed",
+        "export_failed": "CSV export failed"
       }
     },
     "users": {
@@ -1383,7 +1499,16 @@
           "status_expired": "Expired",
           "expired": "Expired",
           "expiring_soon": "Expiring Soon"
-        }
+        },
+        "pagination": {
+          "summary": "{from}-{to} of {total}",
+          "prev": "Previous",
+          "next": "Next"
+        },
+        "page_size_10": "10 / page",
+        "page_size_20": "20 / page",
+        "page_size_50": "50 / page",
+        "page_size_100": "100 / page"
       },
       "actions": {
         "refresh": "Refresh",
@@ -1448,7 +1573,11 @@
         "page_info": "Page {page} of {totalPages}",
         "total_records": "Total {total} records",
         "previous": "Previous",
-        "next": "Next"
+        "next": "Next",
+        "page_size_10": "10 / page",
+        "page_size_20": "20 / page",
+        "page_size_50": "50 / page",
+        "page_size_100": "100 / page"
       },
       "messages": {
         "role_updated": "User role updated successfully",
@@ -1468,6 +1597,15 @@
       "tabs": {
         "records": "Referral Records",
         "rewards": "Reward Records"
+      },
+      "page_size_10": "10 / page",
+      "page_size_20": "20 / page",
+      "page_size_50": "50 / page",
+      "page_size_100": "100 / page",
+      "pagination": {
+        "summary": "{from}-{to} of {total}",
+        "prev": "Previous",
+        "next": "Next"
       },
       "records": {
         "title": "Referral Records",
@@ -1500,7 +1638,16 @@
           "referrer_bonus": "Referrer Bonus",
           "subscription_reward": "Subscription Reward",
           "unknown": "Other ({action})"
-        }
+        },
+        "pagination": {
+          "summary": "{from}-{to} of {total}",
+          "prev": "Previous",
+          "next": "Next"
+        },
+        "page_size_10": "10 / page",
+        "page_size_20": "20 / page",
+        "page_size_50": "50 / page",
+        "page_size_100": "100 / page"
       }
     },
     "affiliate": {
@@ -1605,7 +1752,16 @@
           "submit": "Submit",
           "cancel": "Cancel"
         }
-      }
+      },
+      "pagination": {
+        "summary": "{from}-{to} of {total}",
+        "prev": "Previous",
+        "next": "Next"
+      },
+      "page_size_10": "10 / page",
+      "page_size_20": "20 / page",
+      "page_size_50": "50 / page",
+      "page_size_100": "100 / page"
     }
   },
   "legal": {

@@ -102,7 +102,7 @@ export function ReminderLogs() {
   const [data, setData] = useState<RemindersResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [limit] = useState(20)
+  const [limit, setLimit] = useState(10)
   const [search, setSearch] = useState('')
   const [searchInput, setSearchInput] = useState('')
   const [reminderType, setReminderType] = useState<string>('')
@@ -136,7 +136,7 @@ export function ReminderLogs() {
   useEffect(() => {
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, search, reminderType, lang])
+  }, [page, limit, search, reminderType, lang])
 
   const onSearch = () => {
     setPage(1)
@@ -148,6 +148,7 @@ export function ReminderLogs() {
     setSearch('')
     setReminderType('')
     setLang('')
+    setLimit(10)
   }
 
   const copyText = async (text: string, label: string) => {
@@ -272,6 +273,24 @@ export function ReminderLogs() {
                 <SelectItem value="ja">{t('filter.lang_ja')}</SelectItem>
                 <SelectItem value="ko">{t('filter.lang_ko')}</SelectItem>
                 <SelectItem value="tw">{t('filter.lang_tw')}</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select
+              value={String(limit)}
+              onValueChange={(v) => {
+                setPage(1)
+                setLimit(parseInt(v, 10))
+              }}
+            >
+              <SelectTrigger className="w-[110px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">{t('filter.page_size_10')}</SelectItem>
+                <SelectItem value="20">{t('filter.page_size_20')}</SelectItem>
+                <SelectItem value="50">{t('filter.page_size_50')}</SelectItem>
+                <SelectItem value="100">{t('filter.page_size_100')}</SelectItem>
               </SelectContent>
             </Select>
 

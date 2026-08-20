@@ -34,13 +34,22 @@ import {
   CheckCircle,
   Clock,
   XCircle,
-  Edit
+  Edit,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
 import { format } from 'date-fns'
 import { useTranslations, useLocale } from 'next-intl'
 import { zhCN, enUS } from 'date-fns/locale'
 import { toast } from 'sonner'
 import { useApiError } from '@/hooks/use-api-error'
+
+interface Pagination {
+  page: number
+  limit: number
+  total: number
+  totalPages: number
+}
 
 interface AffiliateStats {
   totalProfiles: number
@@ -65,10 +74,15 @@ export function AffiliateManagement() {
   const [loadingEarnings, setLoadingEarnings] = useState(false)
   const [loadingWithdrawals, setLoadingWithdrawals] = useState(false)
   const [activeTab, setActiveTab] = useState('profiles')
+  const [limit, setLimit] = useState(10)
   const [profilesPage, setProfilesPage] = useState(1)
   const [relationsPage, setRelationsPage] = useState(1)
   const [earningsPage, setEarningsPage] = useState(1)
   const [withdrawalsPage, setWithdrawalsPage] = useState(1)
+  const [profilesPagination, setProfilesPagination] = useState<Pagination>({ page: 1, limit: 10, total: 0, totalPages: 0 })
+  const [relationsPagination, setRelationsPagination] = useState<Pagination>({ page: 1, limit: 10, total: 0, totalPages: 0 })
+  const [earningsPagination, setEarningsPagination] = useState<Pagination>({ page: 1, limit: 10, total: 0, totalPages: 0 })
+  const [withdrawalsPagination, setWithdrawalsPagination] = useState<Pagination>({ page: 1, limit: 10, total: 0, totalPages: 0 })
   const [initialized, setInitialized] = useState(false)
   
   // 处理提现相关状态
@@ -96,6 +110,37 @@ export function AffiliateManagement() {
     }).format(amount / 100)
   }
 
+  function PaginationFooter({ pagination, page, setPage, t }: {
+    pagination: Pagination
+    page: number
+    setPage: (p: number) => void
+    t: ReturnType<typeof useTranslations<string>>
+  }) {
+    if (pagination.totalPages <= 1) return null
+    return (
+      <div className="flex items-center justify-between border-t pt-3 mt-3 text-sm">
+        <div className="text-muted-foreground">
+          {t('pagination.summary', {
+            from: (pagination.page - 1) * pagination.limit + 1,
+            to: Math.min(pagination.page * pagination.limit, pagination.total),
+            total: pagination.total,
+          })}
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => setPage(Math.max(1, pagination.page - 1))} disabled={pagination.page <= 1}>
+            <ChevronLeft className="h-4 w-4" />
+            {t('pagination.prev')}
+          </Button>
+          <span className="text-xs text-muted-foreground">{pagination.page} / {pagination.totalPages}</span>
+          <Button variant="outline" size="sm" onClick={() => setPage(Math.min(pagination.totalPages, pagination.page + 1))} disabled={pagination.page >= pagination.totalPages}>
+            {t('pagination.next')}
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
   const fetchStats = async () => {
     try {
       const response = await fetch('/api/admin/affiliates?action=stats')
@@ -111,10 +156,11 @@ export function AffiliateManagement() {
   const fetchProfiles = async (page = 1) => {
     setLoadingProfiles(true)
     try {
-      const response = await fetch(`/api/admin/affiliates?action=profiles&page=${page}&limit=10`)
+      const response = await fetch(`/api/admin/affiliates?action=profiles&page=${page}&limit=${limit}`)
       if (response.ok) {
         const data = await response.json()
         setProfiles(data.profiles)
+        setProfilesPagination(data.pagination)
       }
     } catch (error) {
       console.error('Error fetching affiliate profiles:', error)
@@ -126,10 +172,11 @@ export function AffiliateManagement() {
   const fetchRelations = async (page = 1) => {
     setLoadingRelations(true)
     try {
-      const response = await fetch(`/api/admin/affiliates?action=relations&page=${page}&limit=10`)
+      const response = await fetch(`/api/admin/affiliates?action=relations&page=${page}&limit=${limit}`)
       if (response.ok) {
         const data = await response.json()
         setRelations(data.relations)
+        setRelationsPagination(data.pagination)
       }
     } catch (error) {
       console.error('Error fetching affiliate relations:', error)
@@ -141,10 +188,11 @@ export function AffiliateManagement() {
   const fetchEarnings = async (page = 1) => {
     setLoadingEarnings(true)
     try {
-      const response = await fetch(`/api/admin/affiliates?action=earnings&page=${page}&limit=10`)
+      const response = await fetch(`/api/admin/affiliates?action=earnings&page=${page}&limit=${limit}`)
       if (response.ok) {
         const data = await response.json()
         setEarnings(data.earnings)
+        setEarningsPagination(data.pagination)
       }
     } catch (error) {
       console.error('Error fetching affiliate earnings:', error)
@@ -156,10 +204,11 @@ export function AffiliateManagement() {
   const fetchWithdrawals = async (page = 1) => {
     setLoadingWithdrawals(true)
     try {
-      const response = await fetch(`/api/admin/affiliates?action=withdrawals&page=${page}&limit=10`)
+      const response = await fetch(`/api/admin/affiliates?action=withdrawals&page=${page}&limit=${limit}`)
       if (response.ok) {
         const data = await response.json()
         setWithdrawals(data.withdrawals)
+        setWithdrawalsPagination(data.pagination)
       }
     } catch (error) {
       console.error('Error fetching affiliate withdrawals:', error)
@@ -200,6 +249,20 @@ export function AffiliateManagement() {
       fetchWithdrawals(withdrawalsPage)
     }
   }, [profilesPage, relationsPage, earningsPage, withdrawalsPage, activeTab, initialized])
+
+  // limit 变化时回到第1页并重新拉数据
+  useEffect(() => {
+    if (!initialized) return
+    setProfilesPage(1)
+    setRelationsPage(1)
+    setEarningsPage(1)
+    setWithdrawalsPage(1)
+    if (activeTab === 'profiles') fetchProfiles(1)
+    else if (activeTab === 'relations') fetchRelations(1)
+    else if (activeTab === 'earnings') fetchEarnings(1)
+    else if (activeTab === 'withdrawals') fetchWithdrawals(1)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [limit])
 
   const handleOpenProcessDialog = (withdrawal: any) => {
     setSelectedWithdrawal(withdrawal)
@@ -327,12 +390,30 @@ export function AffiliateManagement() {
 
       {/* 标签页 */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="profiles">{t('tabs.profiles')}</TabsTrigger>
-          <TabsTrigger value="relations">{t('tabs.relations')}</TabsTrigger>
-          <TabsTrigger value="earnings">{t('tabs.earnings')}</TabsTrigger>
-          <TabsTrigger value="withdrawals">{t('tabs.withdrawals')}</TabsTrigger>
-        </TabsList>
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <TabsList>
+            <TabsTrigger value="profiles">{t('tabs.profiles')}</TabsTrigger>
+            <TabsTrigger value="relations">{t('tabs.relations')}</TabsTrigger>
+            <TabsTrigger value="earnings">{t('tabs.earnings')}</TabsTrigger>
+            <TabsTrigger value="withdrawals">{t('tabs.withdrawals')}</TabsTrigger>
+          </TabsList>
+          <div className="ml-auto">
+            <Select
+              value={String(limit)}
+              onValueChange={(v) => setLimit(parseInt(v, 10))}
+            >
+              <SelectTrigger className="w-[110px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">{t('page_size_10')}</SelectItem>
+                <SelectItem value="20">{t('page_size_20')}</SelectItem>
+                <SelectItem value="50">{t('page_size_50')}</SelectItem>
+                <SelectItem value="100">{t('page_size_100')}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
         <TabsContent value="profiles" className="space-y-4">
           <Card>
@@ -390,6 +471,12 @@ export function AffiliateManagement() {
                   </Table>
                 </div>
               )}
+              <PaginationFooter
+                pagination={profilesPagination}
+                page={profilesPage}
+                setPage={setProfilesPage}
+                t={t}
+              />
             </CardContent>
           </Card>
         </TabsContent>
@@ -471,6 +558,12 @@ export function AffiliateManagement() {
                   </Table>
                 </div>
               )}
+              <PaginationFooter
+                pagination={relationsPagination}
+                page={relationsPage}
+                setPage={setRelationsPage}
+                t={t}
+              />
             </CardContent>
           </Card>
         </TabsContent>
@@ -550,6 +643,12 @@ export function AffiliateManagement() {
                   </Table>
                 </div>
               )}
+              <PaginationFooter
+                pagination={earningsPagination}
+                page={earningsPage}
+                setPage={setEarningsPage}
+                t={t}
+              />
             </CardContent>
           </Card>
         </TabsContent>
@@ -677,6 +776,12 @@ export function AffiliateManagement() {
                   </Table>
                 </div>
               )}
+              <PaginationFooter
+                pagination={withdrawalsPagination}
+                page={withdrawalsPage}
+                setPage={setWithdrawalsPage}
+                t={t}
+              />
             </CardContent>
           </Card>
         </TabsContent>

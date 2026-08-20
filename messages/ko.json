@@ -1101,7 +1101,9 @@
         "traffic": "트래픽 분석",
         "traffic_desc": "웹사이트 트래픽 통계 및 방문자 인사이트 보기",
         "reminders": "리마인더 이메일",
-        "reminders_desc": "구독 만료 리마인더 이메일 발송 기록 조회"
+        "reminders_desc": "구독 만료 리마인더 이메일 발송 기록 조회",
+        "reengagement": "휴면 사용자",
+        "reengagement_desc": "휴면/이탈 사용자 조회 및 분석, 휴면 일수별 버킷 필터링"
       },
       "overview": {
         "title": "시스템 개요",
@@ -1246,7 +1248,17 @@
       "korean_subscriptions": "한국어 구독",
       "korean_users": "한국어 사용자",
       "traditional_chinese_subscriptions": "번체 중국어 구독",
-      "traditional_chinese_users": "번체 중국어 사용자"
+      "traditional_chinese_users": "번체 중국어 사용자",
+      "page_size_10": "10개/페이지",
+      "page_size_20": "20개/페이지",
+      "page_size_50": "50개/페이지",
+      "page_size_100": "100개/페이지",
+      "pagination": {
+        "summary": "{from}-{to} / 총 {total}개",
+        "total": "총 {total}개 기록",
+        "prev": "이전",
+        "next": "다음"
+      }
     },
     "reminders": {
       "meta_title": "리마인더 이메일 로그 - MokerSaaS",
@@ -1274,7 +1286,11 @@
         "lang_en": "영어",
         "lang_ja": "일본어",
         "lang_ko": "한국어",
-        "lang_tw": "번체 중국어"
+        "lang_tw": "번체 중국어",
+        "page_size_10": "10개/페이지",
+        "page_size_20": "20개/페이지",
+        "page_size_50": "50개/페이지",
+        "page_size_100": "100개/페이지"
       },
       "type": {
         "7d": "7일 전",
@@ -1312,6 +1328,106 @@
       "error": {
         "fetch_failed": "리마인더 이메일 조회 실패",
         "copy_failed": "복사 실패"
+      }
+    },
+    "reengagement": {
+      "meta_title": "휴면 사용자 조회 - MokerSaaS",
+      "meta_description": "휴면/이탈 사용자 조회, 휴면 일수, 구독 상태, 언어별 필터링",
+      "title": "휴면 사용자",
+      "description": "휴면 및 이탈 사용자를 조회하고 분석합니다. 휴면 일수, 구독 상태, 이메일 언어별로 버킷 통계, 키워드 검색 지원.",
+      "stats": {
+        "total_users": "총 사용자 수",
+        "active_subscribers": "유효 구독 사용자",
+        "active_subscribers_hint": "구독 기간 내, 휴면에 미산입",
+        "active": "활성 (<7일)",
+        "active_hint": "최근 7일 활동",
+        "warm": "경도 휴면 (7-30일)",
+        "warm_hint": "부드러운 알림 발송",
+        "dormant": "중도 휴면 (30-90일)",
+        "inactive": "중증 휴면 (90-180일)",
+        "churned": "이탈 (≥180일)",
+        "dormant_paid": "휴면+과거 유료",
+        "dormant_paid_hint": "고가치 복귀 대상"
+      },
+      "click_to_view": "클릭하여 보기 →",
+      "click_to_filter": "클릭하여 필터링 →",
+      "filter_applied": "필터 적용됨: 과거 유료 휴면 사용자",
+      "export_csv": "CSV 내보내기",
+      "exported": "{count}개 항목 내보내기 완료",
+      "export_empty": "현재 필터에 데이터가 없습니다",
+      "export_preparing": "내보내기 준비 중...",
+      "export_progress": "내보내는 중 {fetched}/{total}",
+      "search_placeholder": "이메일 또는 이름 검색",
+      "search_button": "검색",
+      "reset": "초기화",
+      "filter": {
+        "bucket": "휴면 버킷",
+        "all_buckets": "전체 휴면",
+        "bucket_warm": "경도 휴면 (7-30일)",
+        "bucket_dormant": "중도 휴면 (30-90일)",
+        "bucket_inactive": "중증 휴면 (90-180일)",
+        "bucket_churned": "이탈 (≥180일)",
+        "subscription": "구독 상태",
+        "all_subscriptions": "전체 구독",
+        "sub_active": "현재 활성",
+        "sub_history": "과거 유료",
+        "sub_never": "유료 이력 없음",
+        "language": "이메일 언어",
+        "all_languages": "전체 언어",
+        "lang_zh": "간체 중국어",
+        "lang_en": "영어",
+        "lang_ja": "일본어",
+        "lang_ko": "한국어",
+        "lang_tw": "번체 중국어",
+        "sort": "정렬",
+        "sort_inactive_desc": "휴면 긴 순",
+        "sort_inactive_asc": "최근 정적 순",
+        "sort_points_desc": "포인트 많은 순",
+        "sort_created_desc": "최근 가입 순",
+        "page_size_10": "10개/페이지",
+        "page_size_20": "20개/페이지",
+        "page_size_50": "50개/페이지",
+        "page_size_100": "100개/페이지"
+      },
+      "bucket": {
+        "active": "활성",
+        "warm": "경도 휴면",
+        "dormant": "중도 휴면",
+        "inactive": "중증 휴면",
+        "churned": "이탈"
+      },
+      "table": {
+        "user": "사용자",
+        "inactive_days": "휴면 일수",
+        "bucket": "버킷",
+        "subscription": "구독",
+        "points": "포인트",
+        "lang": "언어",
+        "last_active": "최종 활동",
+        "created": "가입일"
+      },
+      "labels": {
+        "email": "이메일",
+        "unverified": "이메일 미인증",
+        "expires": "만료:"
+      },
+      "no_data": "조건에 맞는 휴면 사용자가 없습니다",
+      "copied": "{value} 복사됨",
+      "pagination": {
+        "prev": "이전",
+        "next": "다음",
+        "summary": "{from}-{to} / 전체 {total}개"
+      },
+      "dialog": {
+        "active_subscribers_title": "유효 구독 사용자",
+        "active_subscribers_desc": "현재 구독이 유효한 사용자(status=active AND periodEnd > now).",
+        "total_count": "총 {count}명",
+        "no_active_subscribers": "유효 구독 사용자가 없습니다"
+      },
+      "error": {
+        "fetch_failed": "휴면 사용자 조회 실패",
+        "copy_failed": "복사 실패",
+        "export_failed": "CSV 내보내기 실패"
       }
     },
     "users": {
@@ -1383,7 +1499,16 @@
           "status_expired": "만료됨",
           "expired": "만료됨",
           "expiring_soon": "곧 만료"
-        }
+        },
+        "pagination": {
+          "summary": "{from}-{to} / 총 {total}개",
+          "prev": "이전",
+          "next": "다음"
+        },
+        "page_size_10": "10개/페이지",
+        "page_size_20": "20개/페이지",
+        "page_size_50": "50개/페이지",
+        "page_size_100": "100개/페이지"
       },
       "actions": {
         "refresh": "새로 고침",
@@ -1448,7 +1573,11 @@
         "page_info": "전체 {totalPages}페이지 중 {page}페이지",
         "total_records": "총 {total}개",
         "previous": "이전",
-        "next": "다음"
+        "next": "다음",
+        "page_size_10": "10개/페이지",
+        "page_size_20": "20개/페이지",
+        "page_size_50": "50개/페이지",
+        "page_size_100": "100개/페이지"
       },
       "messages": {
         "role_updated": "사용자 역할 업데이트 성공",
@@ -1468,6 +1597,15 @@
       "tabs": {
         "records": "추천 기록",
         "rewards": "리워드 기록"
+      },
+      "page_size_10": "10개/페이지",
+      "page_size_20": "20개/페이지",
+      "page_size_50": "50개/페이지",
+      "page_size_100": "100개/페이지",
+      "pagination": {
+        "summary": "{from}-{to} / 총 {total}개",
+        "prev": "이전",
+        "next": "다음"
       },
       "records": {
         "title": "추천 기록",
@@ -1500,7 +1638,16 @@
           "referrer_bonus": "추천자 보너스",
           "subscription_reward": "구독 리워드",
           "unknown": "기타 ({action})"
-        }
+        },
+        "pagination": {
+          "summary": "{from}-{to} / 총 {total}개",
+          "prev": "이전",
+          "next": "다음"
+        },
+        "page_size_10": "10개/페이지",
+        "page_size_20": "20개/페이지",
+        "page_size_50": "50개/페이지",
+        "page_size_100": "100개/페이지"
       }
     },
     "affiliate": {
@@ -1605,7 +1752,16 @@
           "submit": "제출",
           "cancel": "취소"
         }
-      }
+      },
+      "pagination": {
+        "summary": "{from}-{to} / 총 {total}개",
+        "prev": "이전",
+        "next": "다음"
+      },
+      "page_size_10": "10개/페이지",
+      "page_size_20": "20개/페이지",
+      "page_size_50": "50개/페이지",
+      "page_size_100": "100개/페이지"
     }
   },
   "legal": {

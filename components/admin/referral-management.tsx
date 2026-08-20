@@ -21,10 +21,18 @@ import {
   Crown,
   Calendar
 } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { useTranslations, useLocale } from 'next-intl'
 import { zhCN, enUS } from 'date-fns/locale'
 import { toast } from 'sonner'
+
+interface Pagination {
+  page: number
+  limit: number
+  total: number
+  totalPages: number
+}
 
 interface ReferralStats {
   totalReferrals: number
@@ -71,6 +79,13 @@ export function ReferralManagement() {
   const [initialized, setInitialized] = useState(false)
   const [recordsPage, setRecordsPage] = useState(1)
   const [rewardsPage, setRewardsPage] = useState(1)
+  const [limit, setLimit] = useState(10)
+  const [recordsPagination, setRecordsPagination] = useState<Pagination>({
+    page: 1, limit: 10, total: 0, totalPages: 0
+  })
+  const [rewardsPagination, setRewardsPagination] = useState<Pagination>({
+    page: 1, limit: 10, total: 0, totalPages: 0
+  })
   const [activeTab, setActiveTab] = useState('records')
 
   const formatDate = (dateString: string) => {
@@ -96,10 +111,11 @@ export function ReferralManagement() {
 
   const fetchRecords = async (page = 1) => {
     try {
-      const response = await fetch(`/api/admin/referrals?action=records&page=${page}&limit=10`)
+      const response = await fetch(`/api/admin/referrals?action=records&page=${page}&limit=${limit}`)
       if (response.ok) {
         const data = await response.json()
         setRecords(data.records)
+        setRecordsPagination(data.pagination)
       }
     } catch (error) {
       console.error('Error fetching referral records:', error)
@@ -108,10 +124,11 @@ export function ReferralManagement() {
 
   const fetchRewards = async (page = 1) => {
     try {
-      const response = await fetch(`/api/admin/referrals?action=rewards&page=${page}&limit=10`)
+      const response = await fetch(`/api/admin/referrals?action=rewards&page=${page}&limit=${limit}`)
       if (response.ok) {
         const data = await response.json()
         setRewards(data.rewards)
+        setRewardsPagination(data.pagination)
       }
     } catch (error) {
       console.error('Error fetching referral rewards:', error)
@@ -146,6 +163,19 @@ export function ReferralManagement() {
       fetchRewards(rewardsPage)
     }
   }, [recordsPage, rewardsPage, activeTab, initialized])
+
+  // limit 变化时回到第1页并重新拉数据
+  useEffect(() => {
+    if (!initialized) return
+    setRecordsPage(1)
+    setRewardsPage(1)
+    if (activeTab === 'records') {
+      fetchRecords(1)
+    } else if (activeTab === 'rewards') {
+      fetchRewards(1)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [limit])
 
   const getRewardActionLabel = (action: string) => {
     switch (action) {
@@ -205,10 +235,28 @@ export function ReferralManagement() {
 
       {/* 标签页 */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="records">{t('tabs.records')}</TabsTrigger>
-          <TabsTrigger value="rewards">{t('tabs.rewards')}</TabsTrigger>
-        </TabsList>
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <TabsList>
+            <TabsTrigger value="records">{t('tabs.records')}</TabsTrigger>
+            <TabsTrigger value="rewards">{t('tabs.rewards')}</TabsTrigger>
+          </TabsList>
+          <div className="ml-auto">
+            <Select
+              value={String(limit)}
+              onValueChange={(v) => setLimit(parseInt(v, 10))}
+            >
+              <SelectTrigger className="w-[110px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">{t('page_size_10')}</SelectItem>
+                <SelectItem value="20">{t('page_size_20')}</SelectItem>
+                <SelectItem value="50">{t('page_size_50')}</SelectItem>
+                <SelectItem value="100">{t('page_size_100')}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
         <TabsContent value="records" className="space-y-4">
           <Card>
@@ -278,6 +326,40 @@ export function ReferralManagement() {
                       ))}
                     </TableBody>
                   </Table>
+                </div>
+              )}
+              {recordsPagination.totalPages > 1 && (
+                <div className="flex items-center justify-between border-t pt-3 mt-3 text-sm">
+                  <div className="text-muted-foreground">
+                    {t('pagination.summary', {
+                      from: (recordsPagination.page - 1) * recordsPagination.limit + 1,
+                      to: Math.min(recordsPagination.page * recordsPagination.limit, recordsPagination.total),
+                      total: recordsPagination.total,
+                    })}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setRecordsPage(Math.max(1, recordsPagination.page - 1))}
+                      disabled={recordsPagination.page <= 1}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      {t('pagination.prev')}
+                    </Button>
+                    <span className="text-xs text-muted-foreground">
+                      {recordsPagination.page} / {recordsPagination.totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setRecordsPage(Math.min(recordsPagination.totalPages, recordsPagination.page + 1))}
+                      disabled={recordsPagination.page >= recordsPagination.totalPages}
+                    >
+                      {t('pagination.next')}
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               )}
             </CardContent>
@@ -354,6 +436,40 @@ export function ReferralManagement() {
                       ))}
                     </TableBody>
                   </Table>
+                </div>
+              )}
+              {rewardsPagination.totalPages > 1 && (
+                <div className="flex items-center justify-between border-t pt-3 mt-3 text-sm">
+                  <div className="text-muted-foreground">
+                    {t('pagination.summary', {
+                      from: (rewardsPagination.page - 1) * rewardsPagination.limit + 1,
+                      to: Math.min(rewardsPagination.page * rewardsPagination.limit, rewardsPagination.total),
+                      total: rewardsPagination.total,
+                    })}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setRewardsPage(Math.max(1, rewardsPagination.page - 1))}
+                      disabled={rewardsPagination.page <= 1}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      {t('pagination.prev')}
+                    </Button>
+                    <span className="text-xs text-muted-foreground">
+                      {rewardsPagination.page} / {rewardsPagination.totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setRewardsPage(Math.min(rewardsPagination.totalPages, rewardsPagination.page + 1))}
+                      disabled={rewardsPagination.page >= rewardsPagination.totalPages}
+                    >
+                      {t('pagination.next')}
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               )}
             </CardContent>

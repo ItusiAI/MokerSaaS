@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { newsletterSubscriptions } from '@/lib/schema'
-import { eq } from 'drizzle-orm'
+import { eq, desc, count } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
 import crypto from 'crypto'
 import { isAdmin } from '@/lib/auth-utils'
@@ -114,7 +114,17 @@ export async function GET(request: NextRequest) {
     }
 
     if (action === 'list') {
-      const allSubscriptions = await db
+      const page = Math.max(1, parseInt(searchParams.get('page') || '1'))
+      const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '10')))
+      const filter = (searchParams.get('filter') || '').trim() // 'active' | 'inactive' | ''
+
+      const whereClause = filter === 'active'
+        ? eq(newsletterSubscriptions.isActive, true)
+        : filter === 'inactive'
+        ? eq(newsletterSubscriptions.isActive, false)
+        : undefined
+
+      const baseQuery = db
         .select({
           id: newsletterSubscriptions.id,
           email: newsletterSubscriptions.email,
@@ -124,10 +134,28 @@ export async function GET(request: NextRequest) {
           unsubscribedAt: newsletterSubscriptions.unsubscribedAt,
         })
         .from(newsletterSubscriptions)
-        .orderBy(newsletterSubscriptions.subscribedAt)
+        .orderBy(desc(newsletterSubscriptions.subscribedAt))
+        .limit(limit)
+        .offset((page - 1) * limit)
+
+      const rows = whereClause
+        ? await baseQuery.where(whereClause)
+        : await baseQuery
+
+      const totalRow = await db
+        .select({ total: count() })
+        .from(newsletterSubscriptions)
+        .where(whereClause ?? undefined)
+      const total = totalRow[0]?.total ?? 0
 
       return NextResponse.json({
-        subscriptions: allSubscriptions
+        subscriptions: rows,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.max(1, Math.ceil(total / limit)),
+        },
       })
     }
 

@@ -81,6 +81,8 @@ export function UserStats() {
   const locale = useLocale()
   const [stats, setStats] = useState<UserStats | null>(null)
   const [users, setUsers] = useState<User[]>([])
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(10)
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -119,12 +121,13 @@ export function UserStats() {
     }
   }
 
-  const fetchUsers = async (page = 1) => {
+  const fetchUsers = async (targetPage?: number) => {
+    const pageToFetch = targetPage ?? page
     try {
       const params = new URLSearchParams({
         action: 'list',
-        page: page.toString(),
-        limit: pagination.limit.toString(),
+        page: pageToFetch.toString(),
+        limit: limit.toString(),
       })
       
       if (search) params.append('search', search)
@@ -156,11 +159,19 @@ export function UserStats() {
 
   useEffect(() => {
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
+    setPage(1)
     fetchUsers(1)
-  }, [search, roleFilter, emailVerifiedFilter, subscriptionStatusFilter])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [limit, search, roleFilter, emailVerifiedFilter, subscriptionStatusFilter])
+
+  useEffect(() => {
+    fetchUsers(page)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
 
   const handleUpdateUser = async (userId: string, action: string, data: any) => {
     try {
@@ -179,7 +190,7 @@ export function UserStats() {
 
       const result = await response.json()
       toast.success(result.message)
-      fetchUsers(pagination.page)
+      fetchUsers(page)
       setDialogOpen(false)
     } catch (error) {
       toast.error(error instanceof Error ? error.message : '更新失败')
@@ -356,6 +367,20 @@ export function UserStats() {
                   <SelectItem value="none">{t('user_list.subscription_none')}</SelectItem>
                 </SelectContent>
               </Select>
+              <Select
+                value={String(limit)}
+                onValueChange={(v) => setLimit(parseInt(v, 10))}
+              >
+                <SelectTrigger className="w-full sm:w-[110px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="10">{t('user_list.page_size_10')}</SelectItem>
+                  <SelectItem value="20">{t('user_list.page_size_20')}</SelectItem>
+                  <SelectItem value="50">{t('user_list.page_size_50')}</SelectItem>
+                  <SelectItem value="100">{t('user_list.page_size_100')}</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
@@ -504,7 +529,7 @@ export function UserStats() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => fetchUsers(pagination.page - 1)}
+                  onClick={() => setPage(pagination.page - 1)}
                   disabled={pagination.page <= 1}
                 >
                   {t('pagination.previous')}
@@ -512,7 +537,7 @@ export function UserStats() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => fetchUsers(pagination.page + 1)}
+                  onClick={() => setPage(pagination.page + 1)}
                   disabled={pagination.page >= pagination.totalPages}
                 >
                   {t('pagination.next')}
