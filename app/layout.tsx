@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { AuthSessionProvider } from "@/components/providers/session-provider"
 import { Analytics } from "@/components/seo/analytics"
@@ -25,23 +26,21 @@ function resolveHtmlLang(rawLocale: string | string[] | undefined): string {
   return head || DEFAULT_HTML_LANG
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale?: string }>
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {}
 }
 
 export default async function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode
-  params: Promise<{ locale?: string }>
 }) {
-  const { locale } = await params
-  const htmlLang = resolveHtmlLang(locale)
+  // next-intl middleware sets x-next-intl-locale on every matched request.
+  // Root layout sits ABOVE [locale], so its own params never contains the
+  // locale segment — read it from the request headers instead.
+  const headerStore = await headers()
+  const headerLocale = headerStore.get('x-next-intl-locale')
+  const htmlLang = resolveHtmlLang(headerLocale ?? undefined)
 
   return (
     <html lang={htmlLang} suppressHydrationWarning>

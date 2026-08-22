@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { SiteChrome } from '@/components/home/site-chrome'
+import { JsonLd } from '@/components/seo/json-ld'
 
 const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
@@ -93,7 +94,6 @@ export async function generateMetadata({
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
       'apple-mobile-web-app-title': 'MokerSaaS',
-      'application/ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
     },
   }
 }
@@ -110,6 +110,29 @@ export default async function TermsLayout({
     notFound()
   }
 
+  const t = await getTranslations({ locale, namespace: 'metadata.terms' })
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+
+  const localizedBase = (loc: string): string =>
+    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: t('title'),
+    url: `${localizedBase(locale)}/terms`,
+    description: t('description'),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   const messages = await getMessages({ locale })
 
   return (
@@ -117,6 +140,7 @@ export default async function TermsLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <JsonLd data={jsonLd} />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>

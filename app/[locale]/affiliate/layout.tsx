@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { SiteChrome } from '@/components/home/site-chrome'
+import { JsonLd } from '@/components/seo/json-ld'
 
 const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
@@ -108,7 +109,6 @@ export async function generateMetadata({
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
       'apple-mobile-web-app-title': 'MokerSaaS',
-      'application/ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
     },
   }
 }
@@ -125,6 +125,36 @@ export default async function AffiliateLayout({
     notFound()
   }
 
+  const t = await getTranslations({ locale, namespace: 'affiliate_page' })
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+  const localizedBase = (loc: string): string =>
+    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+  const currentUrl = `${localizedBase(locale)}/affiliate`
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MokerSaaS - Affiliate Program',
+    url: currentUrl,
+    description: t('subtitle'),
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   const messages = await getMessages({ locale })
 
   return (
@@ -132,6 +162,7 @@ export default async function AffiliateLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <JsonLd data={jsonLd} />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>
