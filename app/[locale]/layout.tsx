@@ -45,14 +45,21 @@ export async function generateMetadata({
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'MokerSaaS',
-    url: baseUrl,
+    url: currentUrl,
     description: t('description'),
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
+    inLanguage: locale,
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
     },
     provider: {
       '@type': 'Organization',
@@ -139,6 +146,7 @@ export async function generateMetadata({
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
       'apple-mobile-web-app-title': 'MokerSaaS',
+      'application/ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
     },
   }
 }

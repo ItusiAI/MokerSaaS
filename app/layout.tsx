@@ -4,7 +4,9 @@ import { AuthSessionProvider } from "@/components/providers/session-provider"
 import { Analytics } from "@/components/seo/analytics"
 import './globals.css'
 
-const localeMap: Record<string, string> = {
+const SUPPORTED_LOCALES = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const
+
+const htmlLangMap: Record<(typeof SUPPORTED_LOCALES)[number], string> = {
   'en': 'en-US',
   'zh-CN': 'zh-CN',
   'zh-TW': 'zh-TW',
@@ -12,11 +14,15 @@ const localeMap: Record<string, string> = {
   'ko': 'ko-KR',
 }
 
-function resolveHtmlLang(rawLocale: string | undefined): string {
-  if (!rawLocale) return 'en'
-  if (rawLocale in localeMap) return localeMap[rawLocale]
-  const head = rawLocale.split('-')[0]
-  return head || 'en'
+const DEFAULT_HTML_LANG = 'en-US'
+
+function resolveHtmlLang(rawLocale: string | string[] | undefined): string {
+  const candidate = Array.isArray(rawLocale) ? rawLocale[0] : rawLocale
+  const normalized = candidate?.trim()
+  if (!normalized) return DEFAULT_HTML_LANG
+  if (normalized in htmlLangMap) return htmlLangMap[normalized as keyof typeof htmlLangMap]
+  const head = normalized.split('-')[0]?.toLowerCase()
+  return head || DEFAULT_HTML_LANG
 }
 
 export async function generateMetadata({

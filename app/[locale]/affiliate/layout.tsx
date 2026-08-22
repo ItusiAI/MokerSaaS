@@ -39,6 +39,26 @@ export async function generateMetadata({
   const description = t('subtitle')
   const keywords = t('keywords')
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MokerSaaS - Affiliate Program',
+    url: currentUrl,
+    description,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   return {
     title,
     description,
@@ -88,6 +108,7 @@ export async function generateMetadata({
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
       'apple-mobile-web-app-title': 'MokerSaaS',
+      'application/ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
     },
   }
 }
@@ -106,42 +127,11 @@ export default async function AffiliateLayout({
 
   const messages = await getMessages({ locale })
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    DEFAULT_BASE_URL
-
-  const t = await getTranslations({ locale, namespace: 'affiliate_page' })
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'MokerSaaS - Affiliate Program',
-    url: `${baseUrl}/affiliate`,
-    description: t('subtitle'),
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    provider: {
-      '@type': 'Organization',
-      name: 'MokerSaaS',
-      url: baseUrl,
-    },
-  }
-
   return (
     <>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>

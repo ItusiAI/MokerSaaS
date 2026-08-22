@@ -40,6 +40,19 @@ export async function generateMetadata({
   const currentUrl = `${localizedBase(locale)}/terms`
   const ogImageUrl = `${baseUrl}/images/og.png`
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: t('title'),
+    url: currentUrl,
+    description: t('description'),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   return {
     title: t('title'),
     description: t('description'),
@@ -80,6 +93,7 @@ export async function generateMetadata({
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
       'apple-mobile-web-app-title': 'MokerSaaS',
+      'application/ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
     },
   }
 }
@@ -98,35 +112,11 @@ export default async function TermsLayout({
 
   const messages = await getMessages({ locale })
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    DEFAULT_BASE_URL
-
-  const t = await getTranslations({ locale, namespace: 'metadata.terms' })
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: t('title'),
-    url: `${baseUrl}/terms`,
-    description: t('description'),
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'MokerSaaS',
-      url: baseUrl,
-    },
-  }
-
   return (
     <>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>
