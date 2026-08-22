@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, integer, primaryKey, index, unique } from 'drizzle-orm/pg-core'
+import { pgTable, text, timestamp, boolean, integer, primaryKey, index, unique, jsonb } from 'drizzle-orm/pg-core'
 import type { AdapterAccount } from 'next-auth/adapters'
 import { relations } from 'drizzle-orm'
 
@@ -226,6 +226,73 @@ export const affiliateEarnings = pgTable('affiliate_earnings', {
 }))
 
 // ========== Relations 定义 ==========
+
+// ========== 沉睡用户召回系统 ==========
+
+// 召回活动配置表
+export const reengagementCampaigns = pgTable('reengagement_campaigns', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(), // 活动名称
+  bucket: text('bucket').notNull(), // warm | dormant | inactive | churned
+  // 内容：5 个语言的模板，key 为语言代码，value 为该语言的主题和正文
+  content: jsonb('content').$type<Record<string, { subject: string; heading: string; body: string; cta: string; footer: string }>>(),
+  // 发送统计
+  targetCount: integer('target_count').notNull().default(0), // 目标用户数
+  sentCount: integer('sent_count').notNull().default(0), // 已发送数
+  failedCount: integer('failed_count').notNull().default(0), // 失败数
+  // 状态：draft(草稿) | ready(待发送) | sending(发送中) | completed(已完成) | cancelled(已取消)
+  status: text('status').notNull().default('draft'),
+  // 时间
+  scheduledAt: timestamp('scheduled_at', { mode: 'date' }), // 计划发送时间
+  startedAt: timestamp('started_at', { mode: 'date' }), // 开始发送时间
+  completedAt: timestamp('completed_at', { mode: 'date' }), // 完成时间
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow(),
+}, (table) => ({
+  idxBucket: index('idx_campaign_bucket').on(table.bucket),
+  idxStatus: index('idx_campaign_status').on(table.status),
+  idxScheduledAt: index('idx_campaign_scheduled_at').on(table.scheduledAt),
+}))
+
+// 召回邮件发送记录表
+export const reengagementLogs = pgTable('reengagement_logs', {
+  id: text('id').primaryKey(),
+  campaignId: text('campaign_id')
+    .notNull()
+    .references(() => reengagementCampaigns.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  email: text('email').notNull(),
+  subject: text('subject').notNull(),
+  locale: text('locale').notNull(),
+  bucket: text('bucket').notNull(), // 用户所属的分组
+  // 发送状态：pending | sent | failed | bounced | unsubscribed
+  status: text('status').notNull().default('pending'),
+  messageId: text('message_id'), // Resend 消息 ID
+  errorMessage: text('error_message'), // 失败原因
+  sentAt: timestamp('sent_at', { mode: 'date' }),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow(),
+}, (table) => ({
+  idxCampaignId: index('idx_relog_campaign_id').on(table.campaignId),
+  idxUserId: index('idx_relog_user_id').on(table.userId),
+  idxStatus: index('idx_relog_status').on(table.status),
+  idxSentAt: index('idx_relog_sent_at').on(table.sentAt),
+}))
+
+export const reengagementCampaignsRelations = relations(reengagementCampaigns, ({ many }) => ({
+  logs: many(reengagementLogs),
+}))
+
+export const reengagementLogsRelations = relations(reengagementLogs, ({ one }) => ({
+  campaign: one(reengagementCampaigns, {
+    fields: [reengagementLogs.campaignId],
+    references: [reengagementCampaigns.id],
+  }),
+  user: one(users, {
+    fields: [reengagementLogs.userId],
+    references: [users.id],
+  }),
+}))
 
 export const affiliateProfilesRelations = relations(affiliateProfiles, ({ one, many }) => ({
   user: one(users, {

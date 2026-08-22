@@ -1446,4 +1446,417 @@ export async function sendSubscriptionReminder(params: {
     console.error(`[email] 订阅提醒(${params.type})异常:`, err)
     return { success: false, error: 'send_exception' }
   }
+}
+
+// ============================================================
+// ============ 沉睡用户召回邮件系统 ===========================
+// ============================================================
+
+export type ReengagementBucket = 'warm' | 'dormant' | 'inactive' | 'churned' | 'sleeping_paid'
+
+export async function sendEmail(params: {
+  to: string
+  subject: string
+  html: string
+  headers?: Record<string, string>
+}) {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: getFromAddress(),
+      to: [params.to],
+      subject: params.subject,
+      html: params.html,
+      headers: params.headers,
+    })
+    if (error) {
+      return { success: false as const, error: error.message }
+    }
+    return { success: true as const, messageId: data?.id }
+  } catch (err) {
+    console.error('[email] sendEmail error:', err)
+    return { success: false as const, error: 'send_exception' }
+  }
+}
+
+export interface ReengagementCopy {
+  subject: string
+  preview: string
+  heading: string
+  greeting: (name: string) => string
+  body1: string
+  body2: string
+  cta: string
+  footer1: string
+  footer2: string
+  footer3: string
+}
+
+export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, ReengagementCopy>> = {
+  warm: {
+    zh: {
+      subject: '好久不见，MokerSaaS 有新功能等你体验',
+      preview: '您有一段时间没来了，我们新增了很多实用的功能，快来看看吧！',
+      heading: '想念你，来看新功能',
+      greeting: (name) => `${name}，您好：`,
+      body1: '您有一段时间没使用 MokerSaaS 了。期间我们上线了不少新功能和改进，希望您会喜欢。',
+      body2: '感谢您的陪伴，期待再次看到您的活跃身影。',
+      cta: '立即体验新功能',
+      footer1: '本邮件由 MokerSaaS 自动发送。',
+      footer2: '如果您不想再收到此类邮件，可以取消订阅。',
+      footer3: '取消邮件订阅',
+    },
+    en: {
+      subject: "Been a while? New features await you on MokerSaaS",
+      preview: "It's been a while since your last visit. We've added exciting new features — come check them out!",
+      heading: 'Miss You — New Features Inside',
+      greeting: (name) => `Hi ${name},`,
+      body1: "It's been a while since your last visit. We've been busy adding new features and improvements we think you'll love.",
+      body2: "Thanks for being part of MokerSaaS. We'd love to see you back!",
+      cta: 'Try New Features',
+      footer1: 'This is an automated email from MokerSaaS.',
+      footer2: 'If you prefer not to receive emails like this, you can unsubscribe.',
+      footer3: 'Unsubscribe',
+    },
+    ja: {
+      subject: 'しばらくぶりのご挨拶 — MokerSaaSに新機能登場',
+      preview: '最後にご利用顶いてから时日が経ちました。新しい機能が牺い上がっています！',
+      heading: 'おかえりなさい — 新機能が登場',
+      greeting: (name) => `${name} 様`,
+      body1: '最後にご利用顶いてから時間が空きました。この間に多くの新機能・改善を追加しました。',
+      body2: 'MokerSaaSを利用いただきありがとうございます。またのご登录をお待ちしています。',
+      cta: '新機能を見る',
+      footer1: '本メールは MokerSaaS から自動送信されています。',
+      footer2: '此类メールの受信をご希望でない場合は購読解除できます。',
+      footer3: '購読解除',
+    },
+    ko: {
+      subject: '오랜만이에요 — MokerSaaS에 새로운 기능이 탄생했어요',
+      preview: '마지막 방문 후 시간이 흘렀어요. 많은 새로운 기능이 추가되었답니다!',
+      heading: '다시 만나서 반가워요 — 새로운 기능',
+      greeting: (name) => `${name} 님, 안녕하세요`,
+      body1: '마지막 방문 후 시간이 많이 지났어요. 그동안 많은 새 기능과 개선 사항이 추가되었답니다.',
+      body2: 'MokerSaaS를 이용해 주셔서 감사합니다. 다시 뵐 수 있기를 기대할게요!',
+      cta: '새로운 기능 보기',
+      footer1: '본 메일은 MokerSaaS에서 자동 발송됩니다。',
+      footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
+      footer3: '구독 해지',
+    },
+    tw: {
+      subject: '好久不見，MokerSaaS 有新功能等你體驗',
+      preview: '您有一段時間沒來了，我們新增了很多實用的功能，快來看看吧！',
+      heading: '想念你，來看新功能',
+      greeting: (name) => `${name}，您好：`,
+      body1: '您有一段時間沒使用 MokerSaaS 了。期間我們上線了不少新功能和改進，希望您會喜歡。',
+      body2: '感謝您的陪伴，期待再次看到您的活躍身影。',
+      cta: '立即體驗新功能',
+      footer1: '本郵件由 MokerSaaS 自動發送。',
+      footer2: '如果您不想再收到此類郵件，可以取消訂閱。',
+      footer3: '取消郵件訂閱',
+    },
+  },
+  dormant: {
+    zh: {
+      subject: '您有专属福利待领取，MokerSaaS 等您回来',
+      preview: '我们注意到您一段时间没访问了，这里有一份专为您准备的特别福利。',
+      heading: '我们想念你，专属福利送你',
+      greeting: (name) => `${name}，您好：`,
+      body1: '我们注意到您已经有一段时间没有使用 MokerSaaS 了。我们想念您，也为您准备了一份专属福利作为感谢。',
+      body2: '回来看看吧，希望这次能让您满意。',
+      cta: '领取专属福利',
+      footer1: '本邮件由 MokerSaaS 自动发送。',
+      footer2: '如果您不想再收到此类邮件，可以取消订阅。',
+      footer3: '取消邮件订阅',
+    },
+    en: {
+      subject: "We miss you — a special offer just for you on MokerSaaS",
+      preview: "It's been a while since your last visit. We have a special offer prepared exclusively for you.",
+      heading: 'We Miss You — Exclusive Offer Inside',
+      greeting: (name) => `Hi ${name},`,
+      body1: "It's been a while since you last visited MokerSaaS. We miss you, and we've prepared a special offer as a token of our appreciation.",
+      body2: "Come back and see what's waiting for you.",
+      cta: 'Claim Your Offer',
+      footer1: 'This is an automated email from MokerSaaS.',
+      footer2: 'If you prefer not to receive emails like this, you can unsubscribe.',
+      footer3: 'Unsubscribe',
+    },
+    ja: {
+      subject: 'おかえりなさい — 特別な 혜택をご用意しました',
+      preview: 'しばらくご利用顶いていませんが、为您准备了的特別な 혜택为您准备しました。',
+      heading: 'お帰りなさい — 特別な 혜택をご用意',
+      greeting: (name) => `${name} 様`,
+      body1: 'しばらく MokerSaaS をご利用いただけていませんが、私たちがあなたのために特別な 혜택を用意しました。',
+      body2: '是非またお会いできることを楽しみにしています。',
+      cta: '혜택 받기',
+      footer1: '本メールは MokerSaaS から自動送信されています。',
+      footer2: '此类メールの受信をご希望でない場合は購読解除できます。',
+      footer3: '購読解除',
+    },
+    ko: {
+      subject: '환영합니다 — MokerSaaS가 당신을 위해 특별 혜택을 준비했어요',
+      preview: '오랫동안 방문하지 않으셨지만, 당신만을 위한 특별한 혜택을 준비했답니다。',
+      heading: '다시 오신 것을 환영합니다 — 특별 혜택',
+      greeting: (name) => `${name} 님, 안녕하세요`,
+      body1: '오랫동안 MokerSaaS를 방문하지 않으셨네요。당신을 위한 특별 혜택을 준비했답니다。',
+      body2: '다시 방문해 주시면 정말 기쁠 거예요。',
+      cta: '특별 혜택 받기',
+      footer1: '본 메일은 MokerSaaS에서 자동 발송됩니다。',
+      footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
+      footer3: '구독 해지',
+    },
+    tw: {
+      subject: '您有專屬福利待領取，MokerSaaS 等您回來',
+      preview: '我們注意到您一段時間沒訪問了，這裡有一份專為您準備的特別福利。',
+      heading: '我們想念你，專屬福利送你',
+      greeting: (name) => `${name}，您好：`,
+      body1: '我們注意到您已經有一段時間沒有使用 MokerSaaS 了。我們想念您，也為您準備了一份專屬福利作為感謝。',
+      body2: '回來看看吧，希望這次能讓您滿意。',
+      cta: '領取專屬福利',
+      footer1: '本郵件由 MokerSaaS 自動發送。',
+      footer2: '如果您不想再收到此類郵件，可以取消訂閱。',
+      footer3: '取消郵件訂閱',
+    },
+  },
+  inactive: {
+    zh: {
+      subject: '限时回归优惠，仅剩 3 天 — MokerSaaS',
+      preview: '我们想念您！现在回来可享受限时回归优惠，仅剩 3 天。',
+      heading: '限时 3 天回归优惠',
+      greeting: (name) => `${name}，您好：`,
+      body1: '我们注意到您已经很久没有使用 MokerSaaS 了。为了感谢您曾经的陪伴，我们准备了一个限时回归优惠。',
+      body2: '此优惠仅剩 3 天有效期，诚邀您回来继续体验。',
+      cta: '立即获取优惠',
+      footer1: '本邮件由 MokerSaaS 自动发送。',
+      footer2: '如果您不想再收到此类邮件，可以取消订阅。',
+      footer3: '取消邮件订阅',
+    },
+    en: {
+      subject: "Your exclusive return offer expires in 3 days — MokerSaaS",
+      preview: "We miss you! Claim your exclusive return offer — only 3 days left.",
+      heading: '3-Day Return Offer',
+      greeting: (name) => `Hi ${name},`,
+      body1: "It's been a while since you last used MokerSaaS. As a token of our appreciation for your past support, we'd like to offer you an exclusive return deal.",
+      body2: "This offer expires in 3 days. We'd love to welcome you back.",
+      cta: 'Claim Offer Now',
+      footer1: 'This is an automated email from MokerSaaS.',
+      footer2: 'If you prefer not to receive emails like this, you can unsubscribe.',
+      footer3: 'Unsubscribe',
+    },
+    ja: {
+      subject: '限定回来了优惠 — 残り3日間有効',
+      preview: 'おかえりなさい！限定回来了优惠让您のために3日間有効です。',
+      heading: '3日間有効な回来了优惠',
+      greeting: (name) => `${name} 様`,
+      body1: '最後に MokerSaaS をご利用顶いてから已经很长时间。我们为您准备了限定的回来了优惠。',
+      body2: 'この优惠は3日間有効です。お待ちしています。',
+      cta: '优惠を obtain',
+      footer1: '本メールは MokerSaaS から自動送信されています。',
+      footer2: '此类メールの受信をご希望でない場合は購読解除できます。',
+      footer3: '購読解除',
+    },
+    ko: {
+      subject: '당신을 위한 특별回来了 혜택 — 3일만有効',
+      preview: '오랜분이네요！3일 동안만有効な 특별 돌아온 혜택을 준비했답니다。',
+      heading: '3일 동안有效的 특별 혜택',
+      greeting: (name) => `${name} 님, 안녕하세요`,
+      body1: '오랫동안 MokerSaaS를 방문하지 않으셨네요。당신을 위한 특별한 돌아온 혜택을 준비했어요。',
+      body2: '이 혜택은 3일 동안만有效합니다。돌아와 주세요！',
+      cta: '혜택 받기',
+      footer1: '본 메일은 MokerSaaS에서 자동 발송됩니다。',
+      footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
+      footer3: '구독 해지',
+    },
+    tw: {
+      subject: '限時回歸優惠，僅剩 3 天 — MokerSaaS',
+      preview: '我們想念您！現在回來可享受限時回歸優惠，僅剩 3 天。',
+      heading: '限時 3 天回歸優惠',
+      greeting: (name) => `${name}，您好：`,
+      body1: '我們注意到您已經很久沒有使用 MokerSaaS 了。為了感謝您曾經的陪伴，我們準備了一個限時回歸優惠。',
+      body2: '此優惠僅剩 3 天有效期，誠邀您回來繼續體驗。',
+      cta: '立即獲取優惠',
+      footer1: '本郵件由 MokerSaaS 自動發送。',
+      footer2: '如果您不想再收到此類郵件，可以取消訂閱。',
+      footer3: '取消郵件訂閱',
+    },
+  },
+  churned: {
+    zh: {
+      subject: '感谢一路相伴，我们依然在这里等你回来',
+      preview: '即使您已经离开，我们依然保留着您的账户，期待您再次回来。',
+      heading: '感谢您曾经的陪伴',
+      greeting: (name) => `${name}，您好：`,
+      body1: '我们注意到您已经很久没有使用 MokerSaaS 了。感谢您曾经选择我们，即使您离开了，我们依然保留着您的账户和所有数据。',
+      body2: '如果您愿意，我们随时欢迎您的回归。也欢迎您将 MokerSaaS 推荐给需要的朋友。',
+      cta: '重新激活账户',
+      footer1: '本邮件由 MokerSaaS 自动发送。',
+      footer2: '如果您不想再收到此类邮件，可以取消订阅。',
+      footer3: '取消邮件订阅',
+    },
+    en: {
+      subject: "Thank you for being with us — we're still here whenever you're ready",
+      preview: "Even though you've been away, we've kept your account safe. We'd love to have you back.",
+      heading: 'Thank You for Being Part of Our Journey',
+      greeting: (name) => `Hi ${name},`,
+      body1: "We've noticed you haven't been active on MokerSaaS for a while. Thank you for having been part of our community. Even though you've stepped away, we've kept your account and data safe.",
+      body2: "When you're ready, we'd love to welcome you back. And if MokerSaaS could help someone you know, feel free to share it with them.",
+      cta: 'Reactivate Account',
+      footer1: 'This is an automated email from MokerSaaS.',
+      footer2: 'If you prefer not to receive emails like this, you can unsubscribe.',
+      footer3: 'Unsubscribe',
+    },
+    ja: {
+      subject: '長い間のご愛顧に感謝します — いつでも戻って来吧',
+      preview: '離れていても、あなたのアカウントは安全に保たれています。またお会いできるのを楽しみにしています。',
+      heading: '長い間のご愛顧に感謝します',
+      greeting: (name) => `${name} 様`,
+      body1: '長い間 MokerSaaS をご爱顧いただきありがとうございます。離れていても、あなたのアカウントとデータは安全に保たれています。',
+      body2: 'もしよければ、いつでも。欢迎您をじます。また、MokerSaaS がお友達のお役にも立ちそうであれば、ぜひご 추천ください。',
+      cta: 'アカウントを再開',
+      footer1: '本メールは MokerSaaS から自動送信されています。',
+      footer2: '此类メールの受信をご希望でない場合は購読解除できます。',
+      footer3: '購読解除',
+    },
+    ko: {
+      subject: '함께해 주셔서 감사합니다 — 언제든 다시 오세요',
+      preview: '떠나셨더라도 계정은 안전하게 보관하고 있습니다。다시 만나뵙게 되기를 바랍니다。',
+      heading: '함께해 주셔서 감사합니다',
+      greeting: (name) => `${name} 님`,
+      body1: '긴 시간 MokerSaaS를 이용해주셔서 감사합니다。떠나셨더라도 계정과 데이터는 안전하게 보관하고 있습니다。',
+      body2: '언제든 다시 오시면 기쁠 거예요。또한 MokerSaaS가 지인분께 도움이 될 것 같으시다면 언제든 추천해 주세요。',
+      cta: '계정 재활성화',
+      footer1: '본 메일은 MokerSaaS에서 자동 발송됩니다。',
+      footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
+      footer3: '구독 해지',
+    },
+    tw: {
+      subject: '感謝一路相伴，我們依然在這裡等你回來',
+      preview: '即使您已經離開，我們依然保留著您的帳戶，期待您再次回來。',
+      heading: '感謝您曾經的陪伴',
+      greeting: (name) => `${name}，您好：`,
+      body1: '我們注意到您已經很久沒有使用 MokerSaaS 了。感謝您曾經選擇我們，即使您離開了，我們依然保留著您的帳戶和所有資料。',
+      body2: '如果您願意，我們隨時歡迎您的回歸。也歡迎您將 MokerSaaS 推薦給需要的朋友。',
+      cta: '重新啟動帳戶',
+      footer1: '本郵件由 MokerSaaS 自動發送。',
+      footer2: '如果您不想再收到此類郵件，可以取消訂閱。',
+      footer3: '取消郵件訂閱',
+    },
+  },
+  sleeping_paid: {
+    zh: {
+      subject: '感谢您曾经的信任，MokerSaaS 为您准备了专属回归礼',
+      preview: '我们注意到您曾是我们的付费用户，感谢您一路陪伴。为您准备了专属优惠，期待您回来。',
+      heading: '欢迎回来，专属优惠等您领取',
+      greeting: (name) => `${name}，您好：`,
+      body1: '感谢您曾选择 MokerSaaS 作为您的工具。我们注意到您已有一段时间没有使用，感谢您曾经的陪伴。',
+      body2: '为了表达感谢，我们为您准备了一份专属回归礼。无论您是想继续使用，还是想了解最新功能，我们都期待您的回归。',
+      cta: '领取专属回归礼',
+      footer1: '本邮件由 MokerSaaS 自动发送。',
+      footer2: '如果您不想再收到此类邮件，可以取消订阅。',
+      footer3: '取消邮件订阅',
+    },
+    en: {
+      subject: "Welcome back — your exclusive return offer is here",
+      preview: "As a former paying customer, you've earned a special welcome-back offer. We'd love to have you back.",
+      heading: 'Welcome Back — Exclusive Offer Awaits',
+      greeting: (name) => `Hi ${name},`,
+      body1: "Thank you for being a valued MokerSaaS customer. We've missed you and want to welcome you back with an exclusive offer.",
+      body2: "Whether you're looking to continue your journey or explore what's new, we're here for you. Claim your special return gift on us.",
+      cta: 'Claim Your Return Gift',
+      footer1: 'This is an automated email from MokerSaaS.',
+      footer2: 'If you prefer not to receive emails like this, you can unsubscribe.',
+      footer3: 'Unsubscribe',
+    },
+    ja: {
+      subject: 'おかえりなさい — 特別な復帰プランをご用意しました',
+      preview: 'かつて有料お客様だったあなたに、特別な復帰ギフトをご用意しました。',
+      heading: 'おかえりなさい — 特別な復帰ギフト',
+      greeting: (name) => `${name} 様`,
+      body1: 'かつて MokerSaaS をご利用いただき、誠にありがとうございます。ご不在の間、私たちはあなたの復帰を待ち望んでいました。',
+      body2: '特別な復帰ギフトをご用意しましたので、ぜひ受け取ってしてください。再びお会いできるのを楽しみにしています。',
+      cta: '復帰ギフトを受け取る',
+      footer1: '本メールは MokerSaaS から自動送信されています。',
+      footer2: '此类メールの受信をご希望でない場合は購読解除できます。',
+      footer3: '購読解除',
+    },
+    ko: {
+      subject: '다시 오신 것을 환영합니다 — 특별한 복귀 혜택이 기다리고 있어요',
+      preview: '예전 유료 고객이셨던 당신에게 특별한 복귀 혜택을 준비했어요.',
+      heading: '다시 오신 것을 환영합니다',
+      greeting: (name) => `${name} 님`,
+      body1: '예전에 MokerSaaS 를 이용해 주셔서 진심으로 감사드립니다. 당신이 없는 동안 우리는 당신의 복귀를 손꼽아 기다렸어요.',
+      body2: '특별한 복귀 혜택을 준비했으니 꼭 받아주세요. 다시 만나게 되어 정말 기쁩니다.',
+      cta: '복귀 혜택 받기',
+      footer1: '본 메일은 MokerSaaS에서 자동 발송됩니다。',
+      footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
+      footer3: '구독 해지',
+    },
+    tw: {
+      subject: '歡迎回來 — 我們為您準備了專屬回歸禮',
+      preview: '感謝您曾是我們的付費客戶，我們為您準備了專屬優惠，期待您回來。',
+      heading: '歡迎回來，專屬優惠等您領取',
+      greeting: (name) => `${name}，您好：`,
+      body1: '感謝您曾選擇 MokerSaaS 作為您的工具。我們注意到您已有一段時間沒有使用，感謝您一路的陪伴。',
+      body2: '為了表達感謝，我們為您準備了一份專屬回歸禮。無論您是想繼續使用，還是想了解最新功能，我們都期待您的回歸。',
+      cta: '領取專屬回歸禮',
+      footer1: '本郵件由 MokerSaaS 自動發送。',
+      footer2: '如果您不想再收到此類郵件，可以取消訂閱。',
+      footer3: '取消郵件訂閱',
+    },
+  },
+}
+
+/**
+ * 渲染召回邮件 HTML（纯字符串模板，无 env 依赖）
+ */
+// HTML 字符转义:阻断 subject/body/cta 等用户/管理员输入导致的 XSS。
+// 同时处理 href 属性中的双引号,避免属性值提前闭合。
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+export function generateReengagementEmailHTML(
+  copy: ReengagementCopy,
+  name: string | null,
+  ctaUrl: string,
+  unsubscribeUrl: string,
+): string {
+  const safeName = name?.trim() || 'User'
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(copy.subject)}</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+
+    <div style="background: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #f1f5f9;">
+      <h2 style="color: #1e293b; margin: 0 0 24px 0; text-align: center; font-size: 26px; font-weight: 700;">${escapeHtml(copy.heading)}</h2>
+
+      <p style="color: #1e293b; line-height: 1.7; margin-bottom: 16px; font-size: 16px;">${escapeHtml(copy.greeting(safeName))}</p>
+      <p style="color: #1e293b; line-height: 1.7; margin-bottom: 16px; font-size: 16px;">${escapeHtml(copy.body1)}</p>
+      <p style="color: #475569; line-height: 1.7; margin-bottom: 32px; font-size: 16px;">${escapeHtml(copy.body2)}</p>
+
+      <div style="text-align: center; margin: 32px 0;">
+        <a href="${escapeHtml(ctaUrl)}" style="background: #d97706; color: white; padding: 14px 36px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; display: inline-block;">
+          ${escapeHtml(copy.cta)}
+        </a>
+      </div>
+    </div>
+
+    <div style="text-align: center; padding: 0 20px;">
+      <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin-bottom: 8px;">${escapeHtml(copy.footer1)}</p>
+      <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin-bottom: 8px;">${escapeHtml(copy.footer2)}</p>
+      <p style="margin-top: 16px;">
+        <a href="${escapeHtml(unsubscribeUrl)}" style="color: #94a3b8; font-size: 13px; text-decoration: underline;">${escapeHtml(copy.footer3)}</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>`
 } 

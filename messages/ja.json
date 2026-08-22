@@ -1103,7 +1103,9 @@
         "reminders": "リマインダーメール",
         "reminders_desc": "サブスクリプション期限切れリマインダーメールの送信ログを確認",
         "reengagement": "休眠ユーザー",
-        "reengagement_desc": "休眠・離脱ユーザーを閲覧・分析し、休眠日数でバケット筛选"
+        "reengagement_desc": "休眠・離脱ユーザーを閲覧・分析し、休眠日数でバケット筛选",
+        "reengagement_campaigns": "り返し 캠페인",
+        "reengagement_campaigns_desc": "休眠ユーザー向けの为止返しメール кампанииを作成・送信"
       },
       "overview": {
         "title": "システム概要",
@@ -1337,8 +1339,8 @@
       "description": "休眠および離脱ユーザーの照会と分析。休眠日数、購読状態、言語別にバケット統計、キーワード検索をサポート。",
       "stats": {
         "total_users": "総ユーザー数",
-        "active_subscribers": "有効な購読ユーザー",
-        "active_subscribers_hint": "購読期間内、休眠にカウントされません",
+        "inactive_signups": "未アクティブ登録",
+        "inactive_signups_hint": "メール未認証、活動なし",
         "active": "アクティブ (<7日)",
         "active_hint": "過去7日間に活動",
         "warm": "軽度休眠 (7-30日)",
@@ -1419,15 +1421,141 @@
         "summary": "{from}-{to} 件目、全 {total} 件"
       },
       "dialog": {
-        "active_subscribers_title": "有効な購読ユーザー",
-        "active_subscribers_desc": "現在購読が有効なユーザー(status=active かつ periodEnd > 現在)。",
+        "inactive_signups_title": "未アクティブ登録ユーザー",
+        "inactive_signups_desc": "メール未認証かつ登録後アクティブ履歴がない(updatedAt が NULL)ユーザー一覧。リコールのメールは送信できません。",
         "total_count": "合計 {count} 名",
-        "no_active_subscribers": "有効な購読ユーザーはいません"
+        "no_inactive_signups": "未アクティブ登録ユーザーはいません"
       },
       "error": {
         "fetch_failed": "休眠ユーザーの取得に失敗しました",
         "copy_failed": "コピーに失敗しました",
         "export_failed": "CSV のエクスポートに失敗しました"
+      },
+      "campaigns": {
+        "no_data": " кампанияがありません",
+        "create": {
+          "title": " кампанияを作成",
+          "description": "特定の休眠ユーザーバケットを対象とした为止返し кампанияを作成します"
+        },
+        "edit": {
+          "title": " кампанияを編集",
+          "template_note": " кампанияメールテンプレートはコード内置のデフォルトテンプレートを使用します。変更は開発者に連絡してください。"
+        },
+        "form": {
+          "name": " кампания名",
+          "name_placeholder": "例：7月回报 кампания",
+          "bucket": "対象バケット",
+          "template_note": " кампанияメールテンプレートはコード内置のデフォルトテンプレートを使用します。変更は開発者に連絡してください。"
+        },
+        "filter": {
+          "status": "ステータス",
+          "bucket": "バケット",
+          "all_statuses": "全ステータス",
+          "all_buckets": "全バケット",
+          "all_status": "全ステータス"
+        },
+        "status": {
+          "draft": "下書き",
+          "ready": "送信準備完了",
+          "sending": "送信中",
+          "completed": "完了",
+          "cancelled": "キャンセル済み"
+        },
+        "bucket": {
+          "warm": "轻度休眠 (7-30日)",
+          "dormant": "中度休眠 (30-90日)",
+          "inactive": "重度休眠 (90-180日)",
+          "churned": "離脱ユーザー (180日+)",
+          "sleeping_paid": "休眠+有料顧客"
+        },
+        "table": {
+          "name": " кампания",
+          "bucket": "バケット",
+          "status": "ステータス",
+          "sent": "送信済",
+          "created": "作成日時",
+          "actions": "操作",
+          "empty": " кампанияがありません"
+        },
+        "actions": {
+          "send": " кампанияを送信",
+          "delete": "削除",
+          "cancel": "キャンセル",
+          "create": " кампанияを作成",
+          "edit": "編集",
+          "close": "閉じる",
+          "logs": "ログを見る"
+        },
+        "send": {
+          "title": "キャンペーン送信",
+          "description": "此キャンペーンの受信者を選択してください",
+          "mode_bucket": "バケットで自動選択",
+          "mode_specific": "特定のユーザーを選択",
+          "bucket_count": "このバケットには {count} 人のユーザーがいます",
+          "selected_users": "選択した受信者",
+          "search_placeholder": "ユーザーを検索...",
+          "confirm": "今すぐ送信",
+          "select_all": "すべて選択",
+          "clear_all": "すべてクリア",
+          "no_users": "ユーザーが見つかりません"
+        },
+        "logs": {
+          "title": "送信ログ",
+          "description": "この кампанияのメール送信記録"
+        },
+        "confirm": {
+          "send": "この кампанияをすべての対象ユーザーに送信しますか？この操作は元に戻せません。",
+          "delete": "この кампанияを削除してもよろしいですか？"
+        },
+        "success": {
+          "created": " кампанияを作成しました",
+          "sent": "{sent}/{total}件のメールを送信しました（{failed}件失敗）",
+          "deleted": " кампанияを削除しました"
+        },
+        "error": {
+          "fetch_failed": " кампанияの取得に失敗しました",
+          "create_failed": " кампанияの作成に失敗しました",
+          "send_failed": "送信に失敗しました",
+          "delete_failed": " кампанияの削除に失敗しました",
+          "fill_required": "すべての必須フィールドを入力してください",
+          "select_users": "少なくとも1人のユーザーを選択してください"
+        }
+      },
+      "logs": {
+        "no_data": "送信ログがありません",
+        "search_placeholder": "メールで検索...",
+        "filter": {
+          "type": "ステータス",
+          "all_types": "全ステータス",
+          "bucket": "バケット",
+          "all_buckets": "全バケット"
+        },
+        "bucket": {
+          "warm": "轻度休眠",
+          "dormant": "中度休眠",
+          "inactive": "重度休眠",
+          "churned": "離脱ユーザー",
+          "sleeping_paid": "休眠+有料顧客"
+        },
+        "status": {
+          "pending": "保留中",
+          "sent": "送信済",
+          "failed": "失敗",
+          "bounced": "バウンス",
+          "unsubscribed": "購読解除"
+        },
+        "table": {
+          "email": "メール",
+          "campaign": " кампания",
+          "bucket": "バケット",
+          "status": "ステータス",
+          "sent_at": "送信日時",
+          "error": "エラー"
+        },
+        "copied": "コピーしました！",
+        "error": {
+          "fetch_failed": "送信ログの取得に失敗しました"
+        }
       }
     },
     "users": {

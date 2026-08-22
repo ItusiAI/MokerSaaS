@@ -36,7 +36,7 @@ import {
   Copy,
   Clock,
   AlertCircle,
-  CreditCard,
+  UserPlus,
   ExternalLink,
   Download,
 } from 'lucide-react'
@@ -76,7 +76,7 @@ interface DormantUserRow {
 
 interface DormantStats {
   totalUsers: number
-  activeSubscribers: number
+  inactiveSignups: number    // 未激活账号(updatedAt IS NULL,邮箱已验证)
   active: number
   warm: number
   dormant: number
@@ -89,7 +89,7 @@ interface DormantStats {
 interface DormantListResponse {
   rows: DormantUserRow[]
   pagination: { page: number; limit: number; total: number; totalPages: number }
-  mode: 'dormant' | 'active_subscribers'
+  mode: 'dormant' | 'inactive_signups'
   stats: DormantStats
 }
 
@@ -317,20 +317,20 @@ function DormantUsersTable({
   )
 }
 
-// ========== 有效订阅用户 Dialog 子组件 ==========
-interface ActiveSubscribersDialogProps {
+// ========== 未激活账号 Dialog 子组件 ==========
+interface InactiveSignupsDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   t: ReturnType<typeof useTranslations<string>>
   locale: string
 }
 
-function ActiveSubscribersDialog({
+function InactiveSignupsDialog({
   open,
   onOpenChange,
   t,
   locale,
-}: ActiveSubscribersDialogProps) {
+}: InactiveSignupsDialogProps) {
   const dateLocale = getDateFnsLocale(locale)
   const [data, setData] = useState<DormantListResponse | null>(null)
   const [loading, setLoading] = useState(false)
@@ -344,7 +344,7 @@ function ActiveSubscribersDialog({
     setLoading(true)
     try {
       const params = new URLSearchParams({
-        mode: 'active_subscribers',
+        mode: 'inactive_signups',
         page: String(page),
         limit: String(limit),
       })
@@ -377,7 +377,7 @@ function ActiveSubscribersDialog({
     setExporting(true)
     const buildParams = (page: number) => {
       const params = new URLSearchParams({
-        mode: 'active_subscribers',
+        mode: 'inactive_signups',
         page: String(page),
         limit: '100', // API 硬上限 100
       })
@@ -450,7 +450,7 @@ function ActiveSubscribersDialog({
       ])
 
       const csv = buildCsv(headers, lines)
-      const filename = buildExportFilename('active_subscribers_export')
+      const filename = buildExportFilename('inactive_signups_export')
       downloadCsv(filename, csv)
       toast.success(t('exported', { count: allRows.length }))
     } catch (err) {
@@ -478,11 +478,11 @@ function ActiveSubscribersDialog({
       <DialogContent className="max-w-5xl max-h-[85vh] overflow-hidden flex flex-col p-0">
         <DialogHeader className="px-6 pt-6 pb-2">
           <DialogTitle className="flex items-center gap-2">
-            <CreditCard className="h-5 w-5 text-sky-600" />
-            {t('dialog.active_subscribers_title')}
+            <UserPlus className="h-5 w-5 text-sky-600" />
+            {t('dialog.inactive_signups_title')}
           </DialogTitle>
           <DialogDescription>
-            {t('dialog.active_subscribers_desc')}
+            {t('dialog.inactive_signups_desc')}
           </DialogDescription>
         </DialogHeader>
 
@@ -566,7 +566,7 @@ function ActiveSubscribersDialog({
                 t={t}
                 dateLocale={dateLocale}
                 onCopy={onCopy}
-                emptyText={t('dialog.no_active_subscribers')}
+                emptyText={t('dialog.no_inactive_signups')}
                 showInactiveDays={false}
               />
               {pagination && pagination.totalPages > 1 && (
@@ -674,7 +674,7 @@ export function ReengagementList() {
   const [lang, setLang] = useState<string>('')
   const [subscription, setSubscription] = useState<string>('')
   const [sort, setSort] = useState<string>('inactive_desc')
-  const [activeSubscribersOpen, setActiveSubscribersOpen] = useState(false)
+  const [inactiveSignupsOpen, setActiveSubscribersOpen] = useState(false)
 
   const fetchData = async () => {
     setLoading(true)
@@ -843,16 +843,31 @@ export function ReengagementList() {
   }
 
   // 点击"沉睡+曾付费"卡片 → 设置筛选
+  // 同时重置 bucket / 搜索 / 语言 / 排序,避免与"分桶卡片点击"行为不一致
+  //(都是为了切换到新筛选视图,不要带上前一个查询的搜索条件)
   const onClickDormantPaid = () => {
     setPage(1)
+    setBucket('')
     setSubscription('paid_history')
+    setSearch('')
+    setSearchInput('')
+    setLang('')
+    setSort('inactive_desc')
     toast.info(t('filter_applied'))
   }
 
   // 通用:点击 bucket 卡片 → 切换到该桶筛选
+  // 切换桶时重置所有上下文筛选条件,避免上一次桶的查询残留
+  // 干扰新桶的展示(典型场景:用户先在 active 桶搜了 "xxx@email.com",
+  // 再切换到 warm 桶时如果保留搜索,会看不到 warm 桶的真实数据)
   const onClickBucket = (bucketValue: string) => {
     setPage(1)
     setBucket(bucketValue)
+    setSearch('')
+    setSearchInput('')
+    setLang('')
+    setSubscription('')
+    setSort('inactive_desc')
     toast.info(t('filter_applied'))
   }
 
@@ -869,10 +884,10 @@ export function ReengagementList() {
           icon={<Users className="h-4 w-4 text-muted-foreground" />}
         />
         <StatCard
-          title={t('stats.active_subscribers')}
-          value={stats?.activeSubscribers}
-          hint={t('stats.active_subscribers_hint')}
-          icon={<CreditCard className="h-4 w-4 text-muted-foreground" />}
+          title={t('stats.inactive_signups')}
+          value={stats?.inactiveSignups}
+          hint={t('stats.inactive_signups_hint')}
+          icon={<UserPlus className="h-4 w-4 text-muted-foreground" />}
           valueClassName="text-sky-600 dark:text-sky-400"
           onClick={() => setActiveSubscribersOpen(true)}
           clickHint={t('click_to_view')}
@@ -1126,9 +1141,9 @@ export function ReengagementList() {
         </CardContent>
       </Card>
 
-      {/* 有效订阅用户 Dialog */}
-      <ActiveSubscribersDialog
-        open={activeSubscribersOpen}
+      {/* 未激活账号 Dialog */}
+      <InactiveSignupsDialog
+        open={inactiveSignupsOpen}
         onOpenChange={setActiveSubscribersOpen}
         t={t}
         locale={locale}

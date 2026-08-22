@@ -1103,7 +1103,9 @@
         "reminders": "提醒郵件",
         "reminders_desc": "查詢訂閱到期提醒郵件的發送記錄",
         "reengagement": "沉睡用戶",
-        "reengagement_desc": "查看和分析沉睡/流失用戶,按沉睡天數分桶筛选"
+        "reengagement_desc": "查看和分析沉睡/流失用戶,按沉睡天數分桶筛选",
+        "reengagement_campaigns": "召回活動",
+        "reengagement_campaigns_desc": "創建並發送針對沉睡用戶的召回郵件活動"
       },
       "overview": {
         "title": "系統概覽",
@@ -1337,8 +1339,8 @@
       "description": "查詢和分析沉睡與流失用戶。按沉睡天數、訂閱狀態、郵件語言分桶統計,支援關鍵字搜尋。",
       "stats": {
         "total_users": "總用戶數",
-        "active_subscribers": "有效訂閱用戶",
-        "active_subscribers_hint": "訂閱期內,不計入沉睡",
+        "inactive_signups": "未啟動帳號",
+        "inactive_signups_hint": "郵箱未驗證,從無活躍",
         "active": "活躍(<7天)",
         "active_hint": "近 7 天活躍",
         "warm": "輕度沉睡(7-30天)",
@@ -1419,15 +1421,141 @@
         "summary": "第 {from}-{to} 條,共 {total} 條"
       },
       "dialog": {
-        "active_subscribers_title": "有效訂閱用戶",
-        "active_subscribers_desc": "當前訂閱有效期內(status=active 且 periodEnd > 現在)的用戶列表。",
+        "inactive_signups_title": "未啟動帳號",
+        "inactive_signups_desc": "郵箱未驗證且註冊後從未活躍(updatedAt 為空)的用戶列表。這些帳號無法發送召回郵件。",
         "total_count": "共 {count} 人",
-        "no_active_subscribers": "暫無有效訂閱用戶"
+        "no_inactive_signups": "暫無未啟動帳號"
       },
       "error": {
         "fetch_failed": "取得沉睡用戶列表失敗",
         "copy_failed": "複製失敗",
         "export_failed": "匯出 CSV 失敗"
+      },
+      "campaigns": {
+        "no_data": "暫無召回活動",
+        "create": {
+          "title": "創建召回活動",
+          "description": "創建針對特定沉睡用戶分組的召回郵件活動"
+        },
+        "edit": {
+          "title": "編輯召回活動",
+          "template_note": "郵件模板使用代碼內置默認模板，如需修改請聯繫開發"
+        },
+        "form": {
+          "name": "活動名稱",
+          "name_placeholder": "例如：七月喚醒活動",
+          "bucket": "目標分組",
+          "template_note": "郵件模板使用代碼內置默認模板，如需修改請聯繫開發"
+        },
+        "filter": {
+          "status": "狀態",
+          "bucket": "分組",
+          "all_statuses": "全部狀態",
+          "all_buckets": "全部分組",
+          "all_status": "全部狀態"
+        },
+        "status": {
+          "draft": "草稿",
+          "ready": "待發送",
+          "sending": "發送中",
+          "completed": "已完成",
+          "cancelled": "已取消"
+        },
+        "bucket": {
+          "warm": "輕度沉睡 (7-30天)",
+          "dormant": "中度沉睡 (30-90天)",
+          "inactive": "重度沉睡 (90-180天)",
+          "churned": "流失用戶 (180天+)",
+          "sleeping_paid": "沉睡+曾付費"
+        },
+        "table": {
+          "name": "活動",
+          "bucket": "分組",
+          "status": "狀態",
+          "sent": "已發送",
+          "created": "創建時間",
+          "actions": "操作",
+          "empty": "暫無召回活動"
+        },
+        "actions": {
+          "send": "發送活動",
+          "delete": "刪除",
+          "cancel": "取消",
+          "create": "創建活動",
+          "edit": "編輯",
+          "close": "關閉",
+          "logs": "查看日誌"
+        },
+        "send": {
+          "title": "發送召回郵件",
+          "description": "選擇此活動的收件人",
+          "mode_bucket": "按用戶群自動篩選",
+          "mode_specific": "指定用戶",
+          "bucket_count": "此用戶群共 {count} 人",
+          "selected_users": "已選收件人",
+          "search_placeholder": "搜索用戶...",
+          "confirm": "立即發送",
+          "select_all": "全選",
+          "clear_all": "清空",
+          "no_users": "未找到用戶"
+        },
+        "logs": {
+          "title": "發送日誌",
+          "description": "此活動的郵件發送記錄"
+        },
+        "confirm": {
+          "send": "確認向所有符合條件的用戶發送此召回郵件？此操作無法撤銷。",
+          "delete": "確定要刪除此召回活動嗎？"
+        },
+        "success": {
+          "created": "召回活動創建成功",
+          "sent": "已發送 {sent}/{total} 封郵件（{failed} 封失敗）",
+          "deleted": "召回活動已刪除"
+        },
+        "error": {
+          "fetch_failed": "獲取召回活動列表失敗",
+          "create_failed": "創建召回活動失敗",
+          "send_failed": "發送失敗",
+          "delete_failed": "刪除召回活動失敗",
+          "fill_required": "請填寫所有必填欄位",
+          "select_users": "請至少選擇一名用戶"
+        }
+      },
+      "logs": {
+        "no_data": "暫無發送記錄",
+        "search_placeholder": "按郵箱搜索...",
+        "filter": {
+          "type": "狀態",
+          "all_types": "全部狀態",
+          "bucket": "分組",
+          "all_buckets": "全部分組"
+        },
+        "bucket": {
+          "warm": "輕度沉睡",
+          "dormant": "中度沉睡",
+          "inactive": "重度沉睡",
+          "churned": "已流失",
+          "sleeping_paid": "沉睡+曾付費"
+        },
+        "status": {
+          "pending": "等待中",
+          "sent": "已發送",
+          "failed": "失敗",
+          "bounced": "退回",
+          "unsubscribed": "已退訂"
+        },
+        "table": {
+          "email": "郵箱",
+          "campaign": "活動",
+          "bucket": "分組",
+          "status": "狀態",
+          "sent_at": "發送時間",
+          "error": "錯誤"
+        },
+        "copied": "已複製！",
+        "error": {
+          "fetch_failed": "獲取發送記錄失敗"
+        }
       }
     },
     "users": {

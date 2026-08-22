@@ -1103,7 +1103,9 @@
         "reminders": "리마인더 이메일",
         "reminders_desc": "구독 만료 리마인더 이메일 발송 기록 조회",
         "reengagement": "휴면 사용자",
-        "reengagement_desc": "휴면/이탈 사용자 조회 및 분석, 휴면 일수별 버킷 필터링"
+        "reengagement_desc": "휴면/이탈 사용자 조회 및 분석, 휴면 일수별 버킷 필터링",
+        "reengagement_campaigns": "재활성화 캠페인",
+        "reengagement_campaigns_desc": "휴면 사용자를 위한 재활성화 이메일 캠페인 생성 및 발송"
       },
       "overview": {
         "title": "시스템 개요",
@@ -1337,8 +1339,8 @@
       "description": "휴면 및 이탈 사용자를 조회하고 분석합니다. 휴면 일수, 구독 상태, 이메일 언어별로 버킷 통계, 키워드 검색 지원.",
       "stats": {
         "total_users": "총 사용자 수",
-        "active_subscribers": "유효 구독 사용자",
-        "active_subscribers_hint": "구독 기간 내, 휴면에 미산입",
+        "inactive_signups": "비활성 가입 계정",
+        "inactive_signups_hint": "이메일 미인증, 활동 없음",
         "active": "활성 (<7일)",
         "active_hint": "최근 7일 활동",
         "warm": "경도 휴면 (7-30일)",
@@ -1419,15 +1421,141 @@
         "summary": "{from}-{to} / 전체 {total}개"
       },
       "dialog": {
-        "active_subscribers_title": "유효 구독 사용자",
-        "active_subscribers_desc": "현재 구독이 유효한 사용자(status=active AND periodEnd > now).",
+        "inactive_signups_title": "비활성 가입 계정",
+        "inactive_signups_desc": "이메일 미인증이며 가입 후 활동 기록이 없는(updatedAt NULL) 사용자 목록입니다. 리커널 이메일을 발송할 수 없습니다.",
         "total_count": "총 {count}명",
-        "no_active_subscribers": "유효 구독 사용자가 없습니다"
+        "no_inactive_signups": "비활성 가입 계정이 없습니다"
       },
       "error": {
         "fetch_failed": "휴면 사용자 조회 실패",
         "copy_failed": "복사 실패",
         "export_failed": "CSV 내보내기 실패"
+      },
+      "campaigns": {
+        "no_data": "캠페인이 없습니다",
+        "create": {
+          "title": "캠페인 생성",
+          "description": "특정 휴면 사용자 버킷을 대상으로 한 재활성화 이메일을 생성합니다"
+        },
+        "edit": {
+          "title": "캠페인 수정",
+          "template_note": "이메일 템플릿은 코드 내장 기본 템플릿을 사용합니다. 수정이 필요하면 개발자에게 연락하세요."
+        },
+        "form": {
+          "name": "캠페인 이름",
+          "name_placeholder": "예: 7월 돌아오기 캠페인",
+          "bucket": "대상 버킷",
+          "template_note": "이메일 템플릿은 코드 내장 기본 템플릿을 사용합니다. 수정이 필요하면 개발자에게 연락하세요."
+        },
+        "filter": {
+          "status": "상태",
+          "bucket": "버킷",
+          "all_statuses": "전체 상태",
+          "all_buckets": "전체 버킷",
+          "all_status": "전체 상태"
+        },
+        "status": {
+          "draft": "초안",
+          "ready": "준비됨",
+          "sending": "발송 중",
+          "completed": "완료",
+          "cancelled": "취소됨"
+        },
+        "bucket": {
+          "warm": "가벼운 휴면 (7-30일)",
+          "dormant": "중간 휴면 (30-90일)",
+          "inactive": "심각한 휴면 (90-180일)",
+          "churned": "이탈 사용자 (180일+)",
+          "sleeping_paid": "휴면+유료 고객"
+        },
+        "table": {
+          "name": "캠페인",
+          "bucket": "버킷",
+          "status": "상태",
+          "sent": "발송",
+          "created": "생성일",
+          "actions": "작업",
+          "empty": "캠페인이 없습니다"
+        },
+        "actions": {
+          "send": "캠페인 발송",
+          "delete": "삭제",
+          "cancel": "취소",
+          "create": "캠페인 생성",
+          "edit": "수정",
+          "close": "닫기",
+          "logs": "로그 보기"
+        },
+        "send": {
+          "title": "캠페인 발송",
+          "description": "이 캠페인의 수신자를 선택하세요",
+          "mode_bucket": "버킷으로 자동 선택",
+          "mode_specific": "특정 사용자 선택",
+          "bucket_count": "이 버킷에 {count}명의 사용자가 있습니다",
+          "selected_users": "선택한 수신자",
+          "search_placeholder": "사용자 검색...",
+          "confirm": "지금 발송",
+          "select_all": "모두 선택",
+          "clear_all": "모두 지우기",
+          "no_users": "사용자를 찾을 수 없습니다"
+        },
+        "logs": {
+          "title": "발송 로그",
+          "description": "이 캠페인의 이메일 발송 기록"
+        },
+        "confirm": {
+          "send": "이 캠페인을 모든 대상 사용자에게 발송하시겠습니까? 이 작업은 취소할 수 없습니다.",
+          "delete": "이 캠페인을 삭제하시겠습니까?"
+        },
+        "success": {
+          "created": "캠페인이 생성되었습니다",
+          "sent": "{sent}/{total}건 이메일 발송 완료 ({failed}건 실패)",
+          "deleted": "캠페인이 삭제되었습니다"
+        },
+        "error": {
+          "fetch_failed": "캠페인 조회 실패",
+          "create_failed": "캠페인 생성 실패",
+          "send_failed": "발송 실패",
+          "delete_failed": "캠페인 삭제 실패",
+          "fill_required": "모든 필수 필드를 입력해 주세요",
+          "select_users": "최소 1명의 사용자를 선택해 주세요"
+        }
+      },
+      "logs": {
+        "no_data": "발송 로그가 없습니다",
+        "search_placeholder": "이메일로 검색...",
+        "filter": {
+          "type": "상태",
+          "all_types": "전체 상태",
+          "bucket": "버킷",
+          "all_buckets": "전체 버킷"
+        },
+        "bucket": {
+          "warm": "가벼운 휴면",
+          "dormant": "중간 휴면",
+          "inactive": "심각한 휴면",
+          "churned": "이탈 사용자",
+          "sleeping_paid": "휴면+유료 고객"
+        },
+        "status": {
+          "pending": "대기 중",
+          "sent": "발송됨",
+          "failed": "실패",
+          "bounced": "반송",
+          "unsubscribed": "구독 해지"
+        },
+        "table": {
+          "email": "이메일",
+          "campaign": "캠페인",
+          "bucket": "버킷",
+          "status": "상태",
+          "sent_at": "발송 시각",
+          "error": "오류"
+        },
+        "copied": "복사되었습니다!",
+        "error": {
+          "fetch_failed": "발송 로그 조회 실패"
+        }
       }
     },
     "users": {

@@ -18,7 +18,8 @@ import {
   CreditCard,
   Wallet,
   Loader2,
-  UserMinus
+  UserMinus,
+  Rocket,
 } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { UserStats } from './user-stats'
@@ -28,9 +29,10 @@ import { AffiliateManagement } from './affiliate-management'
 import { TrafficAnalytics } from './traffic-analytics'
 import { ReminderLogs } from './reminder-logs'
 import { ReengagementList } from './reengagement-list'
+import { ReengagementCampaigns } from './reengagement-campaigns'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-type AdminSection = 'overview' | 'users' | 'newsletter' | 'referral' | 'affiliate' | 'traffic' | 'reminders' | 'reengagement'
+type AdminSection = 'overview' | 'users' | 'newsletter' | 'referral' | 'affiliate' | 'traffic' | 'reminders' | 'reengagement' | 'reengagement-campaigns'
 
 interface MenuItem {
   id: AdminSection
@@ -51,11 +53,11 @@ export function AdminDashboard() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.replace('#', '')
-      if (hash && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement'].includes(hash)) {
+      if (hash && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement', 'reengagement-campaigns'].includes(hash)) {
         setActiveSection(hash as AdminSection)
       } else {
         const saved = sessionStorage.getItem('adminActiveSection')
-        if (saved && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement'].includes(saved)) {
+        if (saved && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement', 'reengagement-campaigns'].includes(saved)) {
           setActiveSection(saved as AdminSection)
         }
       }
@@ -74,7 +76,7 @@ export function AdminDashboard() {
   useEffect(() => {
     const onHashChange = () => {
       const hash = window.location.hash.replace('#', '')
-      if (hash && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement'].includes(hash)) {
+      if (hash && ['newsletter', 'users', 'overview', 'referral', 'affiliate', 'traffic', 'reminders', 'reengagement', 'reengagement-campaigns'].includes(hash)) {
         setActiveSection(hash as AdminSection)
       }
     }
@@ -130,6 +132,12 @@ export function AdminDashboard() {
       label: t('menu.reengagement'),
       icon: <UserMinus className="h-5 w-5" />,
       description: t('menu.reengagement_desc')
+    },
+    {
+      id: 'reengagement-campaigns',
+      label: t('menu.reengagement_campaigns'),
+      icon: <Rocket className="h-5 w-5" />,
+      description: t('menu.reengagement_campaigns_desc')
     }
   ]
 
@@ -151,6 +159,8 @@ export function AdminDashboard() {
         return <ReminderLogs />
       case 'reengagement':
         return <ReengagementList />
+      case 'reengagement-campaigns':
+        return <ReengagementCampaigns />
       default:
         return <AdminOverview />
     }

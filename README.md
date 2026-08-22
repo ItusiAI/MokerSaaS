@@ -71,6 +71,16 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 - 管理后台独立 Tab 查看所有发送记录（类型 / 时间 / 语言 / 计划 / 主题）
 - 支持中 / 英 / 日 / 韩 / 繁五语邮件偏好（`preferredLanguage`）
 
+### 🛌 沉睡用户召回（Re-engagement）
+- **5 段分桶**自动识别用户沉睡天数：`active (<7d)` → `warm (7-30d)` → `dormant (30-90d)` → `inactive (90-180d)` → `churned (>180d)`
+- 顶部 8 张统计卡片实时展示全量用户、未激活账号、各桶人数、沉睡+曾付费用户，全部加总可与 `users` 表对账
+- **多维度筛选**：分桶 / 语言 / 订阅状态（从未 / 当前 / 历史）/ 注册渠道 / 关键字搜索 + 多种排序
+- **批量召回活动（Campaign）**：基于分桶 + 筛选条件构建目标人群，预览实际可发送数量（自动排除邮箱未验证、当前有效订阅、黑名单用户），分批发送召回邮件，每批间隔节流防频控
+- **黑名单机制**：单个 campaign 内已发过同类邮件 / 全局退订 / 历史硬退的用户自动跳过，避免打扰
+- **发送日志**：记录每封邮件的目标用户 / 模板 / 发送状态 / 失败原因，支持重试与统计
+- 数据表：`reengagement_campaigns`、`reengagement_logs`、`reengagement_excluded_users`
+- 触发入口：管理后台 → 用户管理 → "沉睡召回" Tab
+
 ## 📸 功能预览 | Feature Preview
 
 <div align="center">
@@ -228,7 +238,7 @@ npm run dev
 │   │   ├── layout.tsx                  # 共享布局（SiteChrome + Navbar + Footer）
 │   │   └── page.tsx                    # 首页（Hero / Orchestration / MissionControl / Pricing / FAQ）
 │   ├── api/                            # API 路由
-│   │   ├── admin/                      # 管理员 API（users / affiliates / referrals / statistics / set-admin / analytics）
+│   │   ├── admin/                      # 管理员 API（users / affiliates / referrals / statistics / set-admin / analytics / reengagement）
 │   │   ├── affiliate/                  # 推广（stats / relations / earnings / update-code / withdraw / withdrawals）
 │   │   ├── auth/                       # NextAuth + 邮箱验证 / 重置 / 注册 / OAuth 绑定
 │   │   ├── newsletter/                 # 订阅 / 退订
@@ -242,7 +252,7 @@ npm run dev
 │   ├── page.tsx                        # 根路由重定向
 │   └── sitemap.ts                      # 自动生成 sitemap.xml
 ├── components/
-│   ├── admin/                          # 管理后台模块（dashboard / user-stats / newsletter / referral / affiliate / traffic）
+│   ├── admin/                          # 管理后台模块（dashboard / user-stats / newsletter / referral / affiliate / traffic / reengagement-list / reengagement-campaigns）
 │   ├── affiliate/                      # 推广返利页面组件
 │   ├── auth/                           # 登录 / 注册 / 验证表单 + OAuth handler
 │   ├── home/                           # 首页 Section（Hero / Navbar / Footer / Pricing / MissionControl / Orchestration / FAQ / Validation）
@@ -251,7 +261,7 @@ npm run dev
 │   ├── ui/                             # 基础 UI 组件库（Radix UI 封装）
 │   └── seo/analytics.tsx               # Umami 追踪脚本
 ├── drizzle/                            # 数据库迁移
-│   ├── 0000_*.sql ~ 0008_*.sql         # 13 份迁移文件
+│   ├── 0000_*.sql ~ 0009_*.sql         # 14 份迁移文件（含 reengagement 系统）
 │   ├── add_performance_indexes.sql
 │   └── meta/                           # Drizzle 元数据
 ├── lib/
@@ -266,6 +276,7 @@ npm run dev
 │   ├── referral.ts                     # 推荐奖励发放
 │   ├── affiliate.ts                    # 推广返利计算
 │   ├── email.ts                        # Resend 邮件模板
+│   ├── reengagement-buckets.ts         # 沉睡分桶阈值与 SQL 表达式
 │   ├── seo-config.ts                   # 多语言 SEO 元数据
 │   └── utils.ts                        # 通用工具（cn / dateFmt / currency）
 ├── messages/

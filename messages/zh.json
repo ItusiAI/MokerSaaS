@@ -1103,7 +1103,9 @@
         "reminders": "提醒邮件",
         "reminders_desc": "查询订阅到期提醒邮件的发送记录",
         "reengagement": "沉睡用户",
-        "reengagement_desc": "查看和分析沉睡/流失用户,按沉睡天数分桶筛选"
+        "reengagement_desc": "查看和分析沉睡/流失用户,按沉睡天数分桶筛选",
+        "reengagement_campaigns": "召回活动",
+        "reengagement_campaigns_desc": "创建并发送针对沉睡用户的召回邮件活动"
       },
       "overview": {
         "title": "系统概览",
@@ -1337,8 +1339,8 @@
       "description": "查询和分析沉睡与流失用户。按沉睡天数、订阅状态、邮件语言分桶统计,支持关键字搜索。",
       "stats": {
         "total_users": "总用户数",
-        "active_subscribers": "有效订阅用户",
-        "active_subscribers_hint": "订阅期内,不计入沉睡",
+        "inactive_signups": "未激活账号",
+        "inactive_signups_hint": "邮箱未验证,从无活跃",
         "active": "活跃(<7天)",
         "active_hint": "近 7 天活跃",
         "warm": "轻度沉睡(7-30天)",
@@ -1419,15 +1421,141 @@
         "summary": "第 {from}-{to} 条,共 {total} 条"
       },
       "dialog": {
-        "active_subscribers_title": "有效订阅用户",
-        "active_subscribers_desc": "当前订阅有效期内(status=active 且 periodEnd > 现在)的用户列表。",
+        "inactive_signups_title": "未激活账号",
+        "inactive_signups_desc": "邮箱未验证且注册后从未活跃(updatedAt 为空)的用户列表。这些账号不能发送召回邮件。",
         "total_count": "共 {count} 人",
-        "no_active_subscribers": "暂无有效订阅用户"
+        "no_inactive_signups": "暂无未激活账号"
       },
       "error": {
         "fetch_failed": "获取沉睡用户列表失败",
         "copy_failed": "复制失败",
         "export_failed": "导出 CSV 失败"
+      },
+      "campaigns": {
+        "no_data": "暂无召回活动",
+        "create": {
+          "title": "创建召回活动",
+          "description": "创建针对特定沉睡用户分组的召回邮件活动"
+        },
+        "edit": {
+          "title": "编辑召回活动",
+          "template_note": "邮件模板使用代码内置默认模板，如需修改请联系开发"
+        },
+        "form": {
+          "name": "活动名称",
+          "name_placeholder": "例如：七月唤醒活动",
+          "bucket": "目标分组",
+          "template_note": "邮件模板使用代码内置默认模板，如需修改请联系开发"
+        },
+        "filter": {
+          "status": "状态",
+          "bucket": "分组",
+          "all_statuses": "全部状态",
+          "all_buckets": "全部分组",
+          "all_status": "全部状态"
+        },
+        "status": {
+          "draft": "草稿",
+          "ready": "待发送",
+          "sending": "发送中",
+          "completed": "已完成",
+          "cancelled": "已取消"
+        },
+        "bucket": {
+          "warm": "轻度沉睡 (7-30天)",
+          "dormant": "中度沉睡 (30-90天)",
+          "inactive": "重度沉睡 (90-180天)",
+          "churned": "流失用户 (180天+)",
+          "sleeping_paid": "沉睡+曾付费"
+        },
+        "table": {
+          "name": "活动",
+          "bucket": "分组",
+          "status": "状态",
+          "sent": "已发送",
+          "created": "创建时间",
+          "actions": "操作",
+          "empty": "暂无召回活动"
+        },
+        "actions": {
+          "send": "发送活动",
+          "delete": "删除",
+          "cancel": "取消",
+          "create": "创建活动",
+          "edit": "编辑",
+          "close": "关闭",
+          "logs": "查看日志"
+        },
+        "send": {
+          "title": "发送召回邮件",
+          "description": "选择此活动的收件人",
+          "mode_bucket": "按用户群自动筛选",
+          "mode_specific": "指定用户",
+          "bucket_count": "此用户群共 {count} 人",
+          "selected_users": "已选收件人",
+          "search_placeholder": "搜索用户...",
+          "confirm": "立即发送",
+          "select_all": "全选",
+          "clear_all": "清空",
+          "no_users": "未找到用户"
+        },
+        "logs": {
+          "title": "发送日志",
+          "description": "此活动的邮件发送记录"
+        },
+        "confirm": {
+          "send": "确认向所有符合条件的用户发送此召回邮件？此操作无法撤销。",
+          "delete": "确定要删除此召回活动吗？"
+        },
+        "success": {
+          "created": "召回活动创建成功",
+          "sent": "已发送 {sent}/{total} 封邮件（{failed} 封失败）",
+          "deleted": "召回活动已删除"
+        },
+        "error": {
+          "fetch_failed": "获取召回活动列表失败",
+          "create_failed": "创建召回活动失败",
+          "send_failed": "发送失败",
+          "delete_failed": "删除召回活动失败",
+          "fill_required": "请填写所有必填字段",
+          "select_users": "请至少选择一名用户"
+        }
+      },
+      "logs": {
+        "no_data": "暂无发送记录",
+        "search_placeholder": "按邮箱搜索...",
+        "filter": {
+          "type": "状态",
+          "all_types": "全部状态",
+          "bucket": "分组",
+          "all_buckets": "全部分组"
+        },
+        "bucket": {
+          "warm": "轻度沉睡",
+          "dormant": "中度沉睡",
+          "inactive": "重度沉睡",
+          "churned": "已流失",
+          "sleeping_paid": "沉睡+曾付费"
+        },
+        "status": {
+          "pending": "等待中",
+          "sent": "已发送",
+          "failed": "失败",
+          "bounced": "退回",
+          "unsubscribed": "已退订"
+        },
+        "table": {
+          "email": "邮箱",
+          "campaign": "活动",
+          "bucket": "分组",
+          "status": "状态",
+          "sent_at": "发送时间",
+          "error": "错误"
+        },
+        "copied": "已复制！",
+        "error": {
+          "fetch_failed": "获取发送记录失败"
+        }
       }
     },
     "users": {
