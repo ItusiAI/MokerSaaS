@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const { name, email, password, locale, referralCode } = await request.json()
 
     // 从请求中获取语言信息，默认为英文（仅用于邮件内容）
-    const language = (locale as 'en' | 'zh' | 'ja' | 'ko' | 'tw') || 'en'
+    const language = (locale as 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW') || 'en'
     
     // 验证输入
     if (!name || !email || !password) {
@@ -168,7 +168,7 @@ export async function POST(request: NextRequest) {
     const clientIP = getClientIP(request)
 
     // 发送验证邮件（根据语言）
-    const emailResult = await sendVerificationEmail(email, verificationToken, language as 'zh' | 'en' | 'ja' | 'ko', clientIP)
+    const emailResult = await sendVerificationEmail(email, verificationToken, language as 'zh-CN' | 'zh-TW' | 'en' | 'ja' | 'ko', clientIP)
 
     if (!emailResult.success) {
       // 如果是频率限制错误，返回429状态码

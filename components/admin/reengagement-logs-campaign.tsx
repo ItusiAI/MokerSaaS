@@ -37,7 +37,8 @@ import { useTranslations, useLocale } from 'next-intl'
 import { toast } from 'sonner'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }

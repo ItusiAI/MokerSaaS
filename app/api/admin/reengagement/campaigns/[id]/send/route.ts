@@ -10,8 +10,8 @@ import { isAdmin } from '@/lib/auth-utils'
 import { generateReengagementEmailHTML, sendEmail } from '@/lib/email'
 import { getCampaignBucketConditions } from '@/lib/reengagement-buckets'
 
-type EmailLocale = 'en' | 'zh' | 'ja' | 'ko' | 'tw'
-const VALID_LOCALES: EmailLocale[] = ['en', 'zh', 'ja', 'ko', 'tw']
+type EmailLocale = 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW'
+const VALID_LOCALES: EmailLocale[] = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
 function safeLocale(locale: string | null | undefined): EmailLocale {
   return VALID_LOCALES.includes(locale as EmailLocale)

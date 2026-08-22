@@ -4,9 +4,9 @@ import { authOptions } from '@/lib/auth'
 import { getOrCreateAffiliateProfile, createWithdrawal } from '@/lib/affiliate'
 import { sendWithdrawRequestAdminEmail } from '@/lib/email'
 
-function normalizeAppLocale(input: unknown, fallback: 'en' | 'zh' | 'ja' | 'ko' | 'tw' = 'en'): 'en' | 'zh' | 'ja' | 'ko' | 'tw' {
-  if (typeof input === 'string' && (['en', 'zh', 'ja', 'ko', 'tw'] as const).includes(input as any)) {
-    return input as 'en' | 'zh' | 'ja' | 'ko' | 'tw'
+function normalizeAppLocale(input: unknown, fallback: 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW' = 'en'): 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW' {
+  if (typeof input === 'string' && (['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const).includes(input as any)) {
+    return input as 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW'
   }
   return fallback
 }

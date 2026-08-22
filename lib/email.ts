@@ -142,12 +142,103 @@ const getFromAddress = () =>
   process.env.RESEND_FROM_EMAIL || `${BRAND_NAME} <onboarding@resend.dev>`
 
 // 支持的邮件语言
-export type EmailLocale = 'en' | 'zh' | 'ja' | 'ko' | 'tw'
+export type EmailLocale = 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW'
+
+// 把 EmailLocale 映射到 Intl 使用的 BCP47 locale tag。
+// zh-CN / zh-TW 走各自的 BCP47 tag，ja/ko 走 ja-JP/ko-KR，其它（包括 en）落到 en-US。
+const EMAIL_INTL_LOCALE_TAG: Record<EmailLocale, string> = {
+  en: 'en-US',
+  'zh-CN': 'zh-CN',
+  'zh-TW': 'zh-TW',
+  ja: 'ja-JP',
+  ko: 'ko-KR',
+}
+
+function getEmailIntlLocale(locale: EmailLocale): string {
+  return EMAIL_INTL_LOCALE_TAG[locale] || 'en-US'
+}
+
+// 各语言"积分/点数"单位文案。注意 en 模板里 pointsLabel 已经是 "Credits"，
+// 这里只在模板未覆盖时用于拼接数值。
+const POINTS_UNIT_TEXT: Record<EmailLocale, string> = {
+  en: 'Credits',
+  'zh-CN': '积分',
+  'zh-TW': '積分',
+  ja: 'ポイント',
+  ko: '포인트',
+}
+
+// 提现状态文案映射（覆盖所有 5 种语言）
+const WITHDRAW_STATUS_TEXT: Record<EmailLocale, Record<'PROCESSING' | 'COMPLETED' | 'FAILED' | 'CANCELLED', string>> = {
+  en: {
+    PROCESSING: 'Processing',
+    COMPLETED: 'Completed',
+    FAILED: 'Failed',
+    CANCELLED: 'Cancelled',
+  },
+  'zh-CN': {
+    PROCESSING: '处理中',
+    COMPLETED: '已完成',
+    FAILED: '失败',
+    CANCELLED: '已取消',
+  },
+  'zh-TW': {
+    PROCESSING: '處理中',
+    COMPLETED: '已完成',
+    FAILED: '失敗',
+    CANCELLED: '已取消',
+  },
+  ja: {
+    PROCESSING: '処理中',
+    COMPLETED: '完了',
+    FAILED: '失敗',
+    CANCELLED: 'キャンセル',
+  },
+  ko: {
+    PROCESSING: '처리 중',
+    COMPLETED: '완료',
+    FAILED: '실패',
+    CANCELLED: '취소됨',
+  },
+}
+
+// 提现状态备注文案（按 COMPLETED/其它 二分 × 5 语言）
+const WITHDRAW_NOTE_TEXT: Record<EmailLocale, { completed: string; fallback: string }> = {
+  en: {
+    completed: 'Funds should arrive shortly. Thanks for your patience.',
+    fallback: 'If you need more details, you can contact us via the help center or in‑app support.',
+  },
+  'zh-CN': {
+    completed: '款项将很快到账，如有延迟请耐心等待。',
+    fallback: '如需更多详情，可以通过官网或应用内的支持渠道联系我们。',
+  },
+  'zh-TW': {
+    completed: '款項將很快到賬，如有延遲請耐心等待。',
+    fallback: '如需更多詳情，可以通過官網或應用內的支持渠道聯繫我們。',
+  },
+  ja: {
+    completed: '資金はまもなく着金します。遅延した場合はしばらくお待ちください。',
+    fallback: '詳細につきましては、公式サイトまたはアプリ内サポートよりお問い合わせください。',
+  },
+  ko: {
+    completed: '입금이 곧 완료됩니다. 지연될 경우 양해 부탁드립니다.',
+    fallback: '자세한 내용은 공식 사이트 또는 앱 내 지원 채널을 통해 문의해 주세요.',
+  },
+}
+
+// 邮件发送频率超限时的本地化提示
+const RATE_LIMIT_ERROR_TEXT: Record<EmailLocale, string> = {
+  en: 'Too many requests, please try again later',
+  'zh-CN': '发送邮件过于频繁，请稍后再试',
+  'zh-TW': '發送郵件過於頻繁，請稍後再試',
+  ja: 'メール送信の頻度が高すぎます。しばらくしてから再度お試しください',
+  ko: '이메일 발송 빈도가 너무 많습니다. 잠시 후 다시 시도해 주세요',
+}
 
 // 邮件模板配置
 const emailTemplates = {
   verification: {
-    zh: {
+    'zh-CN': {
       subject: `欢迎加入 ${BRAND_NAME} - 请验证邮箱`,
       title: '确认您的邮箱',
       subtitle: `${BRAND_NAME} 想和你一起打造全球化产品`,
@@ -177,7 +268,7 @@ const emailTemplates = {
       footer1: '일회용 인증 메일이므로 직접 회신하지 마세요.',
       footer2: `도움이 필요하시면 공식 사이트 또는 앱 내 지원 채널을 통해 ${BRAND_NAME} 팀에 문의해 주세요.`
     },
-    tw: {
+    'zh-TW': {
       subject: `歡迎加入 ${BRAND_NAME} - 請驗證郵箱`,
       title: '確認您的郵箱',
       subtitle: `${BRAND_NAME} 想和你一起打造全球化產品`,
@@ -199,7 +290,7 @@ const emailTemplates = {
     }
   },
   passwordReset: {
-    zh: {
+    'zh-CN': {
       subject: `重设 ${BRAND_NAME} 密码`,
       title: '我们在这里帮你找回访问权限',
       subtitle: '别担心，几步内即可完成密码重设',
@@ -229,7 +320,7 @@ const emailTemplates = {
       footer1: `${BRAND_NAME}의 안내: 비밀번호는 안전하게 보관하고 다른 사람과 공유하지 마세요.`,
       footer2: '추가 지원이 필요하시면 공식 사이트 또는 앱 내 지원 채널로 문의해 주세요.'
     },
-    tw: {
+    'zh-TW': {
       subject: `重設 ${BRAND_NAME} 密碼`,
       title: '我們在這裡幫你找回訪問權限',
       subtitle: '別擔心，幾步內即可完成密碼重設',
@@ -251,7 +342,7 @@ const emailTemplates = {
     }
   },
   pointsPurchase: {
-    zh: {
+    'zh-CN': {
       subject: `积分已到账 - 感谢支持 ${BRAND_NAME}`,
       title: '积分充值成功',
       subtitle: `让 ${BRAND_NAME} 的积分助你发挥更多创意`,
@@ -284,7 +375,7 @@ const emailTemplates = {
       amountLabel: '결제 금액',
       successMessage: '포인트가 충전되었습니다. 즐겁게 창작하세요.'
     },
-    tw: {
+    'zh-TW': {
       subject: `積分已到賬 - 感謝支持 ${BRAND_NAME}`,
       title: '積分充值成功',
       subtitle: `讓 ${BRAND_NAME} 的積分助你發揮更多創意`,
@@ -308,7 +399,7 @@ const emailTemplates = {
     }
   },
   subscriptionSuccess: {
-    zh: {
+    'zh-CN': {
       subject: `订阅成功 - ${BRAND_NAME} 陪你长期成长`,
       title: '订阅已经激活',
       subtitle: '欢迎继续和我们一起探索更多可能',
@@ -344,7 +435,7 @@ const emailTemplates = {
       amountLabel: '결제 금액',
       successMessage: '구독이 활성화되었습니다. 모든 프리미엄 기능을 이용하실 수 있습니다.'
     },
-    tw: {
+    'zh-TW': {
       subject: `訂閱成功 - ${BRAND_NAME} 陪你長期成長`,
       title: '訂閱已經激活',
       subtitle: '歡迎繼續和我們一起探索更多可能',
@@ -370,7 +461,7 @@ const emailTemplates = {
     }
   },
   withdrawRequestAdmin: {
-    zh: {
+    'zh-CN': {
       subject: `有新的提现申请待审核 - ${BRAND_NAME}`,
       title: '新的提现申请',
       subtitle: '有推广用户发起了新的提现申请，请尽快在后台处理',
@@ -412,7 +503,7 @@ const emailTemplates = {
       accountLabel: '수령 계좌',
       timeLabel: '신청 시간'
     },
-    tw: {
+    'zh-TW': {
       subject: `有新的提現申請待審核 - ${BRAND_NAME}`,
       title: '新的提現申請',
       subtitle: '有推廣用戶發起了新的提現申請，請儘快在後臺處理',
@@ -442,7 +533,7 @@ const emailTemplates = {
     }
   },
   withdrawStatusUser: {
-    zh: {
+    'zh-CN': {
       subject: `提现申请状态更新 - ${BRAND_NAME}`,
       title: '提现审核进度更新',
       subtitle: '你的提现申请有了最新进展',
@@ -481,7 +572,7 @@ const emailTemplates = {
       accountLabel: '수령 계좌',
       noteLabel: '비고'
     },
-    tw: {
+    'zh-TW': {
       subject: `提現申請狀態更新 - ${BRAND_NAME}`,
       title: '提現審核進度更新',
       subtitle: '你的提現申請有了最新進展',
@@ -513,7 +604,7 @@ const emailTemplates = {
 // 生成邮件HTML模板
 function generateEmailTemplate(
   url: string,
-  template: typeof emailTemplates.verification.zh
+  template: typeof emailTemplates.verification['zh-CN']
 ): string {
   const colors = BRAND_COLORS
   
@@ -599,9 +690,9 @@ export async function sendVerificationEmail(
   // 检查频率限制
   const rateLimitCheck = checkEmailRateLimit(email, 'verification', ipAddress)
   if (!rateLimitCheck.allowed) {
-    const errorMessage = locale === 'zh' 
-      ? '发送邮件过于频繁，请稍后再试' 
-      : rateLimitCheck.error || 'Too many requests, please try again later'
+    const errorMessage = rateLimitCheck.error
+      ? `${RATE_LIMIT_ERROR_TEXT[locale] || RATE_LIMIT_ERROR_TEXT.en} (${rateLimitCheck.error})`
+      : (RATE_LIMIT_ERROR_TEXT[locale] || RATE_LIMIT_ERROR_TEXT.en)
     return { success: false, error: errorMessage }
   }
 
@@ -638,9 +729,9 @@ export async function sendPasswordResetEmail(
   // 检查频率限制
   const rateLimitCheck = checkEmailRateLimit(email, 'password_reset', ipAddress)
   if (!rateLimitCheck.allowed) {
-    const errorMessage = locale === 'zh' 
-      ? '发送邮件过于频繁，请稍后再试' 
-      : rateLimitCheck.error || 'Too many requests, please try again later'
+    const errorMessage = rateLimitCheck.error
+      ? `${RATE_LIMIT_ERROR_TEXT[locale] || RATE_LIMIT_ERROR_TEXT.en} (${rateLimitCheck.error})`
+      : (RATE_LIMIT_ERROR_TEXT[locale] || RATE_LIMIT_ERROR_TEXT.en)
     return { success: false, error: errorMessage }
   }
 
@@ -671,10 +762,10 @@ export async function sendPasswordResetEmail(
 // 生成通知邮件HTML模板（无按钮）
 function generateNotificationEmailTemplate(
   template:
-    | typeof emailTemplates.pointsPurchase.zh
-    | typeof emailTemplates.subscriptionSuccess.zh
-    | typeof emailTemplates.withdrawRequestAdmin.zh
-    | typeof emailTemplates.withdrawStatusUser.zh,
+    | typeof emailTemplates.pointsPurchase['zh-CN']
+    | typeof emailTemplates.subscriptionSuccess['zh-CN']
+    | typeof emailTemplates.withdrawRequestAdmin['zh-CN']
+    | typeof emailTemplates.withdrawStatusUser['zh-CN'],
   content: string
 ): string {
   const colors = BRAND_COLORS
@@ -738,13 +829,13 @@ export async function sendPointsPurchaseEmail(
 ) {
   const template = emailTemplates.pointsPurchase[locale]
   const colors = BRAND_COLORS
-  
-  const formattedAmount = new Intl.NumberFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
+
+  const formattedAmount = new Intl.NumberFormat(getEmailIntlLocale(locale), {
     style: 'currency',
     currency: currency.toUpperCase(),
   }).format(amount / 100)
-  
-  const pointsText = locale === 'zh' ? `${points.toLocaleString()} 积分` : `${points.toLocaleString()} Points`
+
+  const pointsText = `${points.toLocaleString(getEmailIntlLocale(locale))} ${POINTS_UNIT_TEXT[locale]}`
   
   const content = `
     <div style="background: linear-gradient(135deg, ${colors.primaryLight} 0%, white 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border-left: 4px solid ${colors.primary};">
@@ -795,12 +886,12 @@ export async function sendWithdrawRequestAdminEmail(params: {
   requestedAt: Date
   locale?: EmailLocale
 }) {
-  const locale: EmailLocale = params.locale || 'zh'
+  const locale: EmailLocale = params.locale || 'zh-CN'
   const template = emailTemplates.withdrawRequestAdmin[locale]
   const colors = BRAND_COLORS
 
   const formattedAmount = new Intl.NumberFormat(
-    locale === 'zh' ? 'zh-CN' : 'en-US',
+    getEmailIntlLocale(locale),
     {
       style: 'currency',
       currency: 'USD',
@@ -808,7 +899,7 @@ export async function sendWithdrawRequestAdminEmail(params: {
   ).format(params.amountInCents / 100)
 
   const formattedTime = new Intl.DateTimeFormat(
-    locale === 'zh' ? 'zh-CN' : 'en-US',
+    getEmailIntlLocale(locale),
     {
       year: 'numeric',
       month: '2-digit',
@@ -885,47 +976,28 @@ export async function sendWithdrawStatusEmail(params: {
   note?: string | null
   locale?: EmailLocale
 }) {
-  const locale: EmailLocale = params.locale || 'zh'
+  const locale: EmailLocale = params.locale || 'zh-CN'
   const template = emailTemplates.withdrawStatusUser[locale]
   const colors = BRAND_COLORS
 
   const formattedAmount = new Intl.NumberFormat(
-    locale === 'zh' ? 'zh-CN' : 'en-US',
+    getEmailIntlLocale(locale),
     {
       style: 'currency',
       currency: 'USD',
     }
   ).format(params.amountInCents / 100)
 
-  const statusTextMapZh: Record<typeof params.status, string> = {
-    PROCESSING: '处理中',
-    COMPLETED: '已完成',
-    FAILED: '失败',
-    CANCELLED: '已取消',
-  }
+  const statusTextMap = WITHDRAW_STATUS_TEXT[locale] || WITHDRAW_STATUS_TEXT.en
+  const statusText = statusTextMap[params.status]
 
-  const statusTextMapEn: Record<typeof params.status, string> = {
-    PROCESSING: 'Processing',
-    COMPLETED: 'Completed',
-    FAILED: 'Failed',
-    CANCELLED: 'Cancelled',
-  }
-
-  const statusText =
-    locale === 'zh'
-      ? statusTextMapZh[params.status]
-      : statusTextMapEn[params.status]
-
+  const fallbackNote = WITHDRAW_NOTE_TEXT[locale] || WITHDRAW_NOTE_TEXT.en
   const note =
     params.note && params.note.trim().length > 0
       ? params.note.trim()
-      : locale === 'zh'
-      ? params.status === 'COMPLETED'
-        ? '款项将很快到账，如有延迟请耐心等待。'
-      : '如需更多详情，可以通过官网或应用内的支持渠道联系我们。'
       : params.status === 'COMPLETED'
-      ? 'Funds should arrive shortly. Thanks for your patience.'
-      : 'If you need more details, you can contact us via the help center or in‑app support.'
+      ? fallbackNote.completed
+      : fallbackNote.fallback
 
   const content = `
     <div style="background: #f9fafb; padding: 24px; border-radius: 12px; margin: 24px 0; border: 1px solid #e5e7eb;">
@@ -976,10 +1048,10 @@ export async function sendWithdrawStatusEmail(params: {
 // 获取计划显示名称
 function getPlanDisplayName(plan: string, lang: EmailLocale): string {
   const planMap: Record<string, Record<EmailLocale, string>> = {
-    trial:     { zh: '试用版',  tw: '試用版',  en: 'Trial',         ja: 'トライアル',     ko: 'Trial' },
-    pro:       { zh: '专业版',  tw: '專業版',  en: 'Professional',  ja: 'プロフェッショナル', ko: 'Professional' },
-    annual:    { zh: '年度版',  tw: '年度版',  en: 'Annual',        ja: '年間',             ko: 'Annual' },
-    enterprise:{ zh: '企业版',  tw: '企業版',  en: 'Enterprise',    ja: 'エンタープライズ', ko: 'Enterprise' },
+    trial:     { 'zh-CN': '试用版',  'zh-TW': '試用版',  en: 'Trial',         ja: 'トライアル',     ko: 'Trial' },
+    pro:       { 'zh-CN': '专业版',  'zh-TW': '專業版',  en: 'Professional',  ja: 'プロフェッショナル', ko: 'Professional' },
+    annual:    { 'zh-CN': '年度版',  'zh-TW': '年度版',  en: 'Annual',        ja: '年間',             ko: 'Annual' },
+    enterprise:{ 'zh-CN': '企业版',  'zh-TW': '企業版',  en: 'Enterprise',    ja: 'エンタープライズ', ko: 'Enterprise' },
   }
   return planMap[plan]?.[lang] || plan
 }
@@ -997,12 +1069,12 @@ export async function sendSubscriptionSuccessEmail(
   const template = emailTemplates.subscriptionSuccess[locale]
   const colors = BRAND_COLORS
   
-  const formattedAmount = new Intl.NumberFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
+  const formattedAmount = new Intl.NumberFormat(getEmailIntlLocale(locale), {
     style: 'currency',
     currency: currency.toUpperCase(),
   }).format(amount / 100)
-  
-  const formattedDate = new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
+
+  const formattedDate = new Intl.DateTimeFormat(getEmailIntlLocale(locale), {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -1071,10 +1143,10 @@ const getSubscriptionFromAddress = () => {
 
 // 计划显示名(5 语言)
 const PLAN_DISPLAY_NAMES: Record<string, Record<EmailLocale, string>> = {
-  trial:     { zh: '试用版',     tw: '試用版',     en: 'Trial',         ja: 'トライアル',     ko: 'Trial' },
-  pro:       { zh: '专业版',     tw: '專業版',     en: 'Professional',  ja: 'プロフェッショナル', ko: 'Professional' },
-  annual:    { zh: '年度版',     tw: '年度版',     en: 'Annual',        ja: '年間',             ko: 'Annual' },
-  enterprise:{ zh: '企业版',     tw: '企業版',     en: 'Enterprise',    ja: 'エンタープライズ', ko: 'Enterprise' },
+  trial:     { 'zh-CN': '试用版',     'zh-TW': '試用版',     en: 'Trial',         ja: 'トライアル',     ko: 'Trial' },
+  pro:       { 'zh-CN': '专业版',     'zh-TW': '專業版',     en: 'Professional',  ja: 'プロフェッショナル', ko: 'Professional' },
+  annual:    { 'zh-CN': '年度版',     'zh-TW': '年度版',     en: 'Annual',        ja: '年間',             ko: 'Annual' },
+  enterprise:{ 'zh-CN': '企业版',     'zh-TW': '企業版',     en: 'Enterprise',    ja: 'エンタープライズ', ko: 'Enterprise' },
 }
 
 function getReminderPlanDisplayName(plan: string, locale: EmailLocale): string {
@@ -1084,7 +1156,7 @@ function getReminderPlanDisplayName(plan: string, locale: EmailLocale): string {
 // 5 语言邮件内容(7d / 3d / today 各一套)
 const reminderCopy = {
   '7d': {
-    zh: {
+    'zh-CN': {
       subject: '您的订阅将在 7 天后到期',
       preview: '您的订阅将在 7 天后到期,请考虑续订以保持服务不中断。',
       heading: '订阅即将到期',
@@ -1140,7 +1212,7 @@ const reminderCopy = {
       footer3: '알림 해지',
       importantNote: '중요: 구독 만료 시赠送 포인트는 자동으로 소멸됩니다. 구매/충전 포인트는 영향을 받지 않습니다.',
     },
-    tw: {
+    'zh-TW': {
       subject: '您的訂閱將在 7 天後到期',
       preview: '您的訂閱將在 7 天後到期,請考慮續訂以保持服務不中斷。',
       heading: '訂閱即將到期',
@@ -1156,7 +1228,7 @@ const reminderCopy = {
     },
   },
   '3d': {
-    zh: {
+    'zh-CN': {
       subject: '您的订阅将在 3 天后到期',
       preview: '您的订阅将在 3 天后到期,请尽快续订。',
       heading: '订阅即将到期',
@@ -1212,7 +1284,7 @@ const reminderCopy = {
       footer3: '알림 해지',
       importantNote: '중요: 구독 만료 시赠送 포인트는 자동으로 소멸됩니다. 구매/충전 포인트는 영향을 받지 않습니다.',
     },
-    tw: {
+    'zh-TW': {
       subject: '您的訂閱將在 3 天後到期',
       preview: '您的訂閱將在 3 天後到期,請儘快續訂。',
       heading: '訂閱即將到期',
@@ -1228,7 +1300,7 @@ const reminderCopy = {
     },
   },
   'today': {
-    zh: {
+    'zh-CN': {
       subject: '您的订阅今天到期',
       preview: '您的订阅今天到期,请尽快续订以保持服务不中断。',
       heading: '订阅今天到期',
@@ -1284,7 +1356,7 @@ const reminderCopy = {
       footer3: '알림 해지',
       importantNote: '중요: 구독 만료 시赠送 포인트는 자동으로 소멸됩니다. 구매/충전 포인트는 영향을 받지 않습니다.',
     },
-    tw: {
+    'zh-TW': {
       subject: '您的訂閱今天到期',
       preview: '您的訂閱今天到期,請儘快續訂以保持服務不中斷。',
       heading: '訂閱今天到期',
@@ -1408,7 +1480,7 @@ export async function sendSubscriptionReminder(params: {
 
   // 安全回退到默认 locale
   const locale: EmailLocale = (
-    ['en', 'zh', 'ja', 'ko', 'tw'].includes(params.locale ?? '')
+    ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'].includes(params.locale ?? '')
       ? (params.locale as EmailLocale)
       : 'en'
   )
@@ -1493,7 +1565,7 @@ export interface ReengagementCopy {
 
 export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, ReengagementCopy>> = {
   warm: {
-    zh: {
+    'zh-CN': {
       subject: '好久不见，MokerSaaS 有新功能等你体验',
       preview: '您有一段时间没来了，我们新增了很多实用的功能，快来看看吧！',
       heading: '想念你，来看新功能',
@@ -1541,7 +1613,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
       footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
       footer3: '구독 해지',
     },
-    tw: {
+    'zh-TW': {
       subject: '好久不見，MokerSaaS 有新功能等你體驗',
       preview: '您有一段時間沒來了，我們新增了很多實用的功能，快來看看吧！',
       heading: '想念你，來看新功能',
@@ -1555,7 +1627,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
     },
   },
   dormant: {
-    zh: {
+    'zh-CN': {
       subject: '您有专属福利待领取，MokerSaaS 等您回来',
       preview: '我们注意到您一段时间没访问了，这里有一份专为您准备的特别福利。',
       heading: '我们想念你，专属福利送你',
@@ -1603,7 +1675,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
       footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
       footer3: '구독 해지',
     },
-    tw: {
+    'zh-TW': {
       subject: '您有專屬福利待領取，MokerSaaS 等您回來',
       preview: '我們注意到您一段時間沒訪問了，這裡有一份專為您準備的特別福利。',
       heading: '我們想念你，專屬福利送你',
@@ -1617,7 +1689,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
     },
   },
   inactive: {
-    zh: {
+    'zh-CN': {
       subject: '限时回归优惠，仅剩 3 天 — MokerSaaS',
       preview: '我们想念您！现在回来可享受限时回归优惠，仅剩 3 天。',
       heading: '限时 3 天回归优惠',
@@ -1665,7 +1737,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
       footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
       footer3: '구독 해지',
     },
-    tw: {
+    'zh-TW': {
       subject: '限時回歸優惠，僅剩 3 天 — MokerSaaS',
       preview: '我們想念您！現在回來可享受限時回歸優惠，僅剩 3 天。',
       heading: '限時 3 天回歸優惠',
@@ -1679,7 +1751,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
     },
   },
   churned: {
-    zh: {
+    'zh-CN': {
       subject: '感谢一路相伴，我们依然在这里等你回来',
       preview: '即使您已经离开，我们依然保留着您的账户，期待您再次回来。',
       heading: '感谢您曾经的陪伴',
@@ -1727,7 +1799,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
       footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
       footer3: '구독 해지',
     },
-    tw: {
+    'zh-TW': {
       subject: '感謝一路相伴，我們依然在這裡等你回來',
       preview: '即使您已經離開，我們依然保留著您的帳戶，期待您再次回來。',
       heading: '感謝您曾經的陪伴',
@@ -1741,7 +1813,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
     },
   },
   sleeping_paid: {
-    zh: {
+    'zh-CN': {
       subject: '感谢您曾经的信任，MokerSaaS 为您准备了专属回归礼',
       preview: '我们注意到您曾是我们的付费用户，感谢您一路陪伴。为您准备了专属优惠，期待您回来。',
       heading: '欢迎回来，专属优惠等您领取',
@@ -1789,7 +1861,7 @@ export const reengagementCopy: Record<ReengagementBucket, Record<EmailLocale, Re
       footer2: '此类 메일을 더 이상 원치 않으시면 구독을 해지할 수 있습니다。',
       footer3: '구독 해지',
     },
-    tw: {
+    'zh-TW': {
       subject: '歡迎回來 — 我們為您準備了專屬回歸禮',
       preview: '感謝您曾是我們的付費客戶，我們為您準備了專屬優惠，期待您回來。',
       heading: '歡迎回來，專屬優惠等您領取',

@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     const clientIP = getClientIP(request)
 
     // 发送重置密码邮件（根据语言）
-    const emailResult = await sendPasswordResetEmail(email, resetToken, language as 'en' | 'zh' | 'ja' | 'ko' | 'tw', clientIP)
+    const emailResult = await sendPasswordResetEmail(email, resetToken, language as 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW', clientIP)
 
     if (!emailResult.success) {
       // 如果是频率限制错误，返回429状态码

@@ -30,7 +30,7 @@ export const users = pgTable('users', {
   // 订阅到期提醒（cron 自动发邮件用）
   subscriptionUnsubscribeToken: text('subscription_unsubscribe_token'), // 退订链接的 token（首次创建或 cron 时生成）
   subscriptionReminderDisabled: boolean('subscription_reminder_disabled').notNull().default(false), // 是否关闭订阅到期提醒（一键全关）
-  preferredLanguage: text('preferred_language').default('en'), // 邮件语言偏好：en | zh | ja | ko | tw
+  preferredLanguage: text('preferred_language').default('en'), // 邮件语言偏好：en | zh-CN | ja | ko | zh-TW
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow(),
 })
@@ -83,7 +83,7 @@ export const newsletterSubscriptions = pgTable('newsletterSubscriptions', {
   id: text('id').primaryKey(),
   email: text('email').notNull().unique(),
   isActive: boolean('isActive').default(true),
-  locale: text('locale').notNull().default('en'), // 用户订阅时的语言偏好：en | zh | ja | ko | tw
+  locale: text('locale').notNull().default('en'), // 用户订阅时的语言偏好：en | zh-CN | ja | ko | zh-TW
   subscribedAt: timestamp('subscribedAt', { mode: 'date' }).defaultNow(),
   unsubscribedAt: timestamp('unsubscribedAt', { mode: 'date' }),
   unsubscribeToken: text('unsubscribeToken').unique(), // 用于取消订阅的令牌
@@ -370,7 +370,7 @@ export const subscriptionReminders = pgTable('subscription_reminders', {
   emailMessageId: text('email_message_id'), // Resend 返回的消息 ID，用于排错
   // admin 后台展示用
   subject: text('subject'), // 邮件主题
-  locale: text('locale'), // 邮件语言（en/zh/ja/ko/tw）
+  locale: text('locale'), // 邮件语言（en/zh-CN/ja/ko/zh-TW）
   plan: text('plan'), // 订阅计划（pro/enterprise 等）
 }, (table) => ({
   uniqUserPeriodType: unique('uniq_user_period_type').on(

@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
   if (reminderType && ['7d', '3d', 'today'].includes(reminderType)) {
     where.push(eq(subscriptionReminders.reminderType, reminderType))
   }
-  if (locale && ['en', 'zh', 'ja', 'ko', 'tw'].includes(locale)) {
+  if (locale && ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'].includes(locale)) {
     where.push(eq(subscriptionReminders.locale, locale))
   }
 

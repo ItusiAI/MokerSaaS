@@ -48,7 +48,8 @@ import { Logs } from 'lucide-react'
 import { LogsCampaign } from './reengagement-logs-campaign'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }

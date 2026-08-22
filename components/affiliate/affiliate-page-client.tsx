@@ -45,7 +45,8 @@ import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
 import type { Locale as DateFnsLocale } from 'date-fns/locale'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }
@@ -203,7 +204,7 @@ export default function AffiliatePageClient() {
   // 日期格式化函数
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    if (locale === 'zh') {
+    if (locale === 'zh-CN' || locale === 'zh-TW') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
     }
     return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })

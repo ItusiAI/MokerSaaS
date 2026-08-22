@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { priceId, planType, locale = 'en' } = await request.json()
-    const validLocales = ['en', 'zh', 'ja', 'ko', 'tw']
+    const validLocales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
     const validLocale = validLocales.includes(locale) ? locale : 'en'
     const t = await getTranslations({ locale: validLocale, namespace: 'stripe_checkout' })
 

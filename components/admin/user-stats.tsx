@@ -31,7 +31,8 @@ import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
 import type { Locale as DateFnsLocale } from 'date-fns/locale'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }
@@ -92,7 +93,7 @@ export function UserStats() {
   const formatShort = (date: Date) =>
     format(
       date,
-      (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+      (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
       { locale: getDateFnsLocale(locale) }
     )
   const [loading, setLoading] = useState(true)
@@ -446,7 +447,7 @@ export function UserStats() {
                             <span>
                               {format(
                                 new Date(user.subscriptionCurrentPeriodEnd),
-                                (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                                (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
                                 { locale: getDateFnsLocale(locale) }
                               )}
                             </span>
@@ -467,7 +468,7 @@ export function UserStats() {
                         <span className="text-sm">
                           {format(
                             new Date(user.createdAt),
-                            (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                            (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
                             { locale: getDateFnsLocale(locale) }
                           )}
                         </span>
@@ -582,7 +583,7 @@ function UserActionDialog({
   const formatShort = (date: Date) =>
     format(
       date,
-      (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+      (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
       { locale: getDateFnsLocale(locale) }
     )
   const [subscriptionStatus, setSubscriptionStatus] = useState('')
@@ -745,7 +746,7 @@ function UserActionDialog({
                         <span className="ml-2 text-blue-700 dark:text-blue-300">
                           {format(
                             new Date(user.subscriptionCurrentPeriodEnd),
-                            (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                            (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
                             { locale: getDateFnsLocale(locale) }
                           )}
                         </span>
@@ -824,7 +825,7 @@ function UserActionDialog({
                   <Label>{t('dialogs.manage_subscription.end_date_label')}</Label>
                   <div className="p-2 bg-muted rounded-md text-sm">
                     {subscriptionEndDate ? 
-                      format(new Date(subscriptionEndDate), (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy', { locale: getDateFnsLocale(locale) }) : 
+                      format(new Date(subscriptionEndDate), (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy', { locale: getDateFnsLocale(locale) }) : 
                       t('dialogs.manage_subscription.select_plan_first')
                     }
                   </div>

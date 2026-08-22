@@ -2,17 +2,17 @@
 
 import { useParams } from 'next/navigation'
 
-type L = 'en' | 'zh' | 'ja' | 'ko' | 'tw'
+type L = 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW'
 
 export function CookieContent() {
   const params = useParams()
   const localeRaw = (params.locale as string) || 'en'
-  const locale: L = (['en', 'zh', 'ja', 'ko', 'tw'] as const).includes(localeRaw as any)
+  const locale: L = (['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const).includes(localeRaw as any)
     ? (localeRaw as L)
     : 'en'
   const t = (zh: string, tw: string, ja: string, ko: string, en: string): string => {
-    if (locale === 'zh') return zh
-    if (locale === 'tw') return tw
+    if (locale === 'zh-CN') return zh
+    if (locale === 'zh-TW') return tw
     if (locale === 'ja') return ja
     if (locale === 'ko') return ko
     return en

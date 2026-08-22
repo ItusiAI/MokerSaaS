@@ -24,7 +24,7 @@ const logWebhookError = (...args: any[]) => {
 }
 
 // 默认邮件语言（注册流程未在 users 表中持久化语言偏好，故此处统一使用英文）
-const DEFAULT_EMAIL_LOCALE: 'en' | 'zh' | 'ja' | 'ko' | 'tw' = 'en'
+const DEFAULT_EMAIL_LOCALE: 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW' = 'en'
 
 export async function POST(request: NextRequest) {
   try {

@@ -59,7 +59,7 @@ export function SignUpForm() {
 
   // 根据语言环境构建正确的路径
   const getLocalizedPath = (path: string) => {
-    return locale === "en" ? `/en${path}` : `/zh${path}`
+    return `/${locale}${path}`
   }
 
   // 获取回调URL
@@ -382,14 +382,14 @@ export function SignUpForm() {
           <div className="text-center text-sm text-muted-foreground">
             {t('terms_agreement')}{' '}
             <Link
-              href={locale === "en" ? "/en/terms" : "/zh/terms"}
+              href={`/${locale}/terms`}
               className="text-primary hover:text-primary/80 font-medium"
             >
               {t('terms_of_service')}
             </Link>
             {' '}{t('and')}{' '}
             <Link
-              href={locale === "en" ? "/en/privacy" : "/zh/privacy"}
+              href={`/${locale}/privacy`}
               className="text-primary hover:text-primary/80 font-medium"
             >
               {t('privacy_policy')}

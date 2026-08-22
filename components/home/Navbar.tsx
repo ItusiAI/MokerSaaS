@@ -160,9 +160,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <Globe className="w-4 h-4 text-[var(--color-primary)]" />
                 <span className="text-xs font-medium">
-                  {locale === "zh"
+                  {locale === "zh-CN"
                       ? t("currentLocale")
-                      : locale === "tw"
+                      : locale === "zh-TW"
                       ? t("currentLocaleTw")
                       : locale === "ja"
                       ? t("currentLocaleJa")
@@ -174,10 +174,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[110px] p-1 bg-[var(--color-surface)] border-[var(--color-border)]/50">
               <DropdownMenuItem
-                onClick={() => switchLocale("zh")}
+                onClick={() => switchLocale('zh-CN')}
                 className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
               >
-                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-CN" ? "bg-[var(--color-primary)] text-white" : ""}`}>
                   🇨🇳 {t("chinese")}
                 </span>
               </DropdownMenuItem>
@@ -206,10 +206,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => switchLocale("tw")}
+                onClick={() => switchLocale('zh-TW')}
                 className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
               >
-                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "tw" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-TW" ? "bg-[var(--color-primary)] text-white" : ""}`}>
                   🇨🇳 {t("traditionalChinese")}
                 </span>
               </DropdownMenuItem>
@@ -299,9 +299,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <Globe className="w-4 h-4 text-[var(--color-primary)]" />
                 <span className="text-xs font-medium">
-                  {locale === "zh"
+                  {locale === "zh-CN"
                       ? t("currentLocale")
-                      : locale === "tw"
+                      : locale === "zh-TW"
                       ? t("currentLocaleTw")
                       : locale === "ja"
                       ? t("currentLocaleJa")
@@ -313,10 +313,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[100px] p-1 bg-[var(--color-surface)] border-[var(--color-border)]/50">
               <DropdownMenuItem
-                onClick={() => switchLocale("zh")}
+                onClick={() => switchLocale('zh-CN')}
                 className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
               >
-                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-CN" ? "bg-[var(--color-primary)] text-white" : ""}`}>
                   🇨🇳 {t("chinese")}
                 </span>
               </DropdownMenuItem>
@@ -345,10 +345,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => switchLocale("tw")}
+                onClick={() => switchLocale('zh-TW')}
                 className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
               >
-                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "tw" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-TW" ? "bg-[var(--color-primary)] text-white" : ""}`}>
                   🇨🇳 {t("traditionalChinese")}
                 </span>
               </DropdownMenuItem>

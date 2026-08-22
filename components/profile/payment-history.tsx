@@ -38,7 +38,8 @@ import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
 import type { Locale as DateFnsLocale } from 'date-fns/locale'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }
@@ -378,7 +379,9 @@ export function PaymentHistory() {
   }, [filter])
 
   const formatAmount = (amount: number, currency: string) => {
-    return new Intl.NumberFormat('zh-CN', {
+    // 与当前 locale 对齐: 简体/繁体中文走 zh-CN,其他走 en-US(数据库统一存 USD)
+    const intlLocale = locale === 'zh-CN' || locale === 'zh-TW' ? 'zh-CN' : 'en-US'
+    return new Intl.NumberFormat(intlLocale, {
       style: 'currency',
       currency: currency.toUpperCase(),
       minimumFractionDigits: 2,
@@ -387,7 +390,7 @@ export function PaymentHistory() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    if (locale === 'zh') {
+    if (locale === 'zh-CN' || locale === 'zh-TW') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
     }
     return format(date, 'MMM dd, yyyy HH:mm', { locale: getDateFnsLocale(locale) })

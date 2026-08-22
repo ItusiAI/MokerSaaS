@@ -45,7 +45,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'
 export function TrafficAnalytics() {
   const t = useTranslations('admin.traffic')
   const locale = useLocale()
-  const localeTag = locale === 'zh' || locale === 'tw' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : locale === 'ko' ? 'ko-KR' : 'en-US'
+  const localeTag = locale === 'zh-CN' || locale === 'zh-TW' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : locale === 'ko' ? 'ko-KR' : 'en-US'
   const [stats, setStats] = useState<UmamiStats | null>(null)
   const [metrics, setMetrics] = useState<UmamiMetrics | null>(null)
   const [pageviews, setPageviews] = useState<UmamiPageviews | null>(null)

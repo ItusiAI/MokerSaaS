@@ -36,9 +36,10 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 - `lib/points-manager.ts` 统一消费、退还、过期流水
 
 ### 🌐 多语言与 SEO
-- 内置中 / 英 / 日 / 韩 / 繁五语（`next-intl`），URL 形如 `/zh/...` `/en/...` `/ja/...` `/ko/...` `/tw/...`
+- 内置中 / 英 / 日 / 韩 / 繁五语（`next-intl`），URL 形如 `/zh-CN/...` `/en/...` `/ja/...` `/ko/...` `/zh-TW/...` （BCP47 locale）
 - 完整 i18n 元数据、hreflang、`sitemap.xml`、JSON-LD 结构化数据
 - Open Graph 与 Twitter Card 分享预览
+- 语言标识采用 BCP47 标准（`zh-CN` / `zh-TW`），数据库中已通过 `0010_locale_bcp47_normalization.sql` 迁移把历史 `zh` / `tw` 数据归一化
 
 ### 📣 推广返利（Affiliate）
 - 用户生成专属推广码，1%–20% 多档佣金比例
@@ -106,7 +107,7 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 | 前端框架 | Next.js 16 (App Router) · React 19 · TypeScript 5 |
 | 样式 | Tailwind CSS 3 · Radix UI · shadcn/ui 风格组件 |
 | 表单 | React Hook Form · Zod · `react-icons` |
-| 国际化 | `next-intl` · `messages/{en,zh,ja,ko,tw}.json` |
+| 国际化 | `next-intl` · `messages/{en,zh-CN,ja,ko,zh-TW}.json` |
 | 后端 | Next.js API Routes · Server Actions |
 | 数据库 | PostgreSQL · Drizzle ORM · `drizzle-kit` 迁移 |
 | 认证 | NextAuth.js v4 · `@auth/drizzle-adapter` |
@@ -217,7 +218,7 @@ curl -X POST "http://localhost:3000/api/admin/set-admin" \
 npm run dev
 ```
 
-访问 `http://localhost:3000`，使用管理员账号登录后访问 `http://localhost:3000/zh/admin` 进入管理后台。
+访问 `http://localhost:3000`，使用管理员账号登录后访问 `http://localhost:3000/zh-CN/admin` 进入管理后台。
 
 ## 📁 项目结构 | Project Structure
 
@@ -261,7 +262,7 @@ npm run dev
 │   ├── ui/                             # 基础 UI 组件库（Radix UI 封装）
 │   └── seo/analytics.tsx               # Umami 追踪脚本
 ├── drizzle/                            # 数据库迁移
-│   ├── 0000_*.sql ~ 0009_*.sql         # 14 份迁移文件（含 reengagement 系统）
+│   ├── 0000_*.sql ~ 0010_*.sql         # 15 份迁移文件（含 reengagement 与 locale BCP47 归一化）
 │   ├── add_performance_indexes.sql
 │   └── meta/                           # Drizzle 元数据
 ├── lib/
@@ -281,8 +282,8 @@ npm run dev
 │   └── utils.ts                        # 通用工具（cn / dateFmt / currency）
 ├── messages/
 │   ├── en.json                         # 英文翻译
-│   ├── zh.json                         # 中文翻译（简体）
-│   ├── tw.json                         # 中文翻译（繁体）
+│   ├── zh-CN.json                      # 中文翻译（简体）
+│   ├── zh-TW.json                      # 中文翻译（繁体）
 │   ├── ja.json                         # 日文翻译
 │   └── ko.json                         # 韩文翻译
 ├── public/                             # 静态资源

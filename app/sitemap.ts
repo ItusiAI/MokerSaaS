@@ -5,15 +5,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
   // 定义支持的语言
-  const locales = ['zh', 'en', 'ja', 'ko', 'tw']
-  
+  const locales = ['zh-CN', 'en', 'ja', 'ko', 'zh-TW']
+
   // 定义页面路径
   const pages = [
     '',  // 首页
     '/terms',
     '/privacy',
     '/cookies',
-  ] 
+  ]
 
   // 生成所有语言版本的页面
   const sitemapEntries: MetadataRoute.Sitemap = []
@@ -28,12 +28,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: page === '' ? 1.0 : 0.8,
         alternates: {
           languages: {
-'zh': `${baseUrl}/zh${page}`,
-          'zh-CN': `${baseUrl}/zh${page}`,
-          'en': `${baseUrl}/en${page}`,
-          'ja': `${baseUrl}/ja${page}`,
-          'ko': `${baseUrl}/ko${page}`,
-          'tw': `${baseUrl}/tw${page}`,
+            'zh-CN': `${baseUrl}/zh-CN${page}`,
+            'zh-TW': `${baseUrl}/zh-TW${page}`,
+            'en': `${baseUrl}/en${page}`,
+            'ja': `${baseUrl}/ja${page}`,
+            'ko': `${baseUrl}/ko${page}`,
           }
         }
       })

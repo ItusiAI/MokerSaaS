@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { SiteChrome } from '@/components/home/site-chrome'
 
-const locales = ['en', 'zh', 'ja', 'ko', 'tw']
+const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
 export async function generateMetadata({
   params
@@ -51,18 +51,16 @@ export async function generateMetadata({
     alternates: baseUrl ? {
       canonical: currentUrl,
       languages: {
-        'zh': `${baseUrl}/zh`,
-        'zh-CN': `${baseUrl}/zh`,
-        'zh-TW': `${baseUrl}/tw`,
+        'zh-CN': `${baseUrl}/zh-CN`,
+        'zh-TW': `${baseUrl}/zh-TW`,
         'en': `${baseUrl}/en`,
         'ja': `${baseUrl}/ja`,
         'ko': `${baseUrl}/ko`,
-        'tw': `${baseUrl}/tw`,
       },
     } : undefined,
     openGraph: {
       type: 'website',
-      locale: locale === 'zh' ? 'zh_CN' : locale === 'tw' ? 'zh_TW' : locale === 'ja' ? 'ja_JP' : locale === 'ko' ? 'ko_KR' : 'en_US',
+      locale: locale === 'zh-CN' ? 'zh_CN' : locale === 'zh-TW' ? 'zh_TW' : locale === 'ja' ? 'ja_JP' : locale === 'ko' ? 'ko_KR' : 'en_US',
       url: currentUrl,
       title: t('title'),
       description: t('description'),

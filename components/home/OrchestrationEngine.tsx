@@ -32,7 +32,7 @@ export const OrchestrationEngine: React.FC = () => {
 
   const triggerSurgeSimulation = () => {
     setIsSimulating(true);
-    const tag = locale === 'zh' || locale === 'tw' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : locale === 'ko' ? 'ko-KR' : 'en-US';
+    const tag = locale === 'zh-CN' || locale === 'zh-TW' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : locale === 'ko' ? 'ko-KR' : 'en-US';
     const now = new Date().toLocaleTimeString(tag, { hour12: false });
     const newLog = `> [${now}] ${tTerm('simulateLog')}`;
     setActiveLogs((prev) => [newLog, ...prev.slice(0, 3)]);

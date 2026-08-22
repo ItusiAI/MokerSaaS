@@ -153,7 +153,7 @@ export async function GET(request: NextRequest) {
 
   // 语言
   const localeWhere: any[] = []
-  if (locale && ['en', 'zh', 'ja', 'ko', 'tw'].includes(locale)) {
+  if (locale && ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'].includes(locale)) {
     localeWhere.push(eq(users.preferredLanguage, locale))
   }
 

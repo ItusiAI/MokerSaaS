@@ -15,7 +15,7 @@ import { useTranslations, useLocale } from 'next-intl'
 import { toast } from 'sonner'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }
@@ -41,16 +41,16 @@ interface Pagination {
 
 interface Stats {
   total: number
-  zh: number
+  'zh-CN': number
   en: number
   ja: number
   ko: number
-  tw: number
+  'zh-TW': number
 }
 
 const LOCALE_BADGE: Record<string, 'default' | 'secondary' | 'outline'> = {
-  zh: 'default',
-  tw: 'default',
+  'zh-CN': 'default',
+  'zh-TW': 'default',
   ja: 'secondary',
   ko: 'outline',
   en: 'secondary',
@@ -58,9 +58,9 @@ const LOCALE_BADGE: Record<string, 'default' | 'secondary' | 'outline'> = {
 
 function languageDisplayName(locale: string, t: ReturnType<typeof useTranslations<string>>): string {
   switch (locale) {
-    case 'zh':
+    case 'zh-CN':
       return t('subscription_list.table.chinese')
-    case 'tw':
+    case 'zh-TW':
       return t('subscription_list.table.traditionalChinese')
     case 'ja':
       return t('subscription_list.table.japanese')
@@ -175,7 +175,7 @@ export function NewsletterStats() {
       }
 
       const csvHeader =
-        locale === 'zh' || locale === 'tw'
+        locale === 'zh-CN' || locale === 'zh-TW'
           ? '邮箱地址,语言,状态,订阅时间,取消订阅时间\n'
           : locale === 'ja'
           ? 'メールアドレス,言語,ステータス,購読日時,配信停止日時\n'
@@ -187,18 +187,18 @@ export function NewsletterStats() {
         .map((sub) => {
           const language = languageDisplayName(sub.locale, t)
           const status = sub.isActive
-            ? locale === 'zh' || locale === 'tw' ? '活跃'
+            ? locale === 'zh-CN' || locale === 'zh-TW' ? '活跃'
               : locale === 'ja' ? 'アクティブ'
               : locale === 'ko' ? '활성' : 'Active'
-            : locale === 'zh' || locale === 'tw' ? '已取消'
+            : locale === 'zh-CN' || locale === 'zh-TW' ? '已取消'
               : locale === 'ja' ? 'キャンセル済み'
               : locale === 'ko' ? '취소됨' : 'Cancelled'
           const subscribedAt = format(new Date(sub.subscribedAt),
-            (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日 HH:mm' : 'MMM dd, yyyy HH:mm',
+            (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日 HH:mm' : 'MMM dd, yyyy HH:mm',
             { locale: getDateFnsLocale(locale) })
           const unsubscribedAt = sub.unsubscribedAt
             ? format(new Date(sub.unsubscribedAt),
-                (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日 HH:mm' : 'MMM dd, yyyy HH:mm',
+                (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日 HH:mm' : 'MMM dd, yyyy HH:mm',
                 { locale: getDateFnsLocale(locale) }) : '-'
           return `"${sub.email}","${language}","${status}","${subscribedAt}","${unsubscribedAt}"`
         })
@@ -267,7 +267,7 @@ export function NewsletterStats() {
             <Globe className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats?.zh || 0}</div>
+            <div className="text-2xl font-bold">{stats?.['zh-CN'] || 0}</div>
             <p className="text-xs text-muted-foreground">
               {t('stats.chinese_users')}
             </p>
@@ -319,7 +319,7 @@ export function NewsletterStats() {
             <Globe className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats?.tw || 0}</div>
+            <div className="text-2xl font-bold">{stats?.['zh-TW'] || 0}</div>
             <p className="text-xs text-muted-foreground">
               {t('stats.traditional_chinese_users')}
             </p>
@@ -460,7 +460,7 @@ function SubscriptionTable({
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
                   {format(new Date(subscription.subscribedAt),
-                    (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                    (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
                     { locale: getDateFnsLocale(locale) })}
                 </div>
               </TableCell>
@@ -469,7 +469,7 @@ function SubscriptionTable({
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
                     {format(new Date(subscription.unsubscribedAt),
-                      (locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
+                      (locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko') ? 'yyyy年MM月dd日' : 'MMM dd, yyyy',
                       { locale: getDateFnsLocale(locale) })}
                   </div>
                 ) : (

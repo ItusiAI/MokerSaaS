@@ -4,7 +4,7 @@ import { newsletterSubscriptions } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
 import { getTranslations } from 'next-intl/server'
 
-const SUPPORTED_LOCALES = ['en', 'zh', 'ja', 'ko', 'tw'] as const
+const SUPPORTED_LOCALES = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const
 type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
 
 function pickLocale(input: unknown): SupportedLocale {

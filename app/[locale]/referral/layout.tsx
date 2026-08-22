@@ -25,10 +25,8 @@ export async function generateMetadata({
       ? {
           canonical: currentUrl,
           languages: {
-            zh: `${baseUrl}/zh/referral`,
-            'zh-CN': `${baseUrl}/zh/referral`,
-            tw: `${baseUrl}/tw/referral`,
-            'zh-TW': `${baseUrl}/tw/referral`,
+            'zh-CN': `${baseUrl}/zh-CN/referral`,
+            'zh-TW': `${baseUrl}/zh-TW/referral`,
             en: `${baseUrl}/en/referral`,
             ja: `${baseUrl}/ja/referral`,
             ko: `${baseUrl}/ko/referral`,
@@ -37,7 +35,7 @@ export async function generateMetadata({
       : undefined,
     openGraph: {
       type: 'website',
-      locale: locale === 'zh' ? 'zh_CN' : locale === 'tw' ? 'zh_TW' : locale === 'ja' ? 'ja_JP' : locale === 'ko' ? 'ko_KR' : 'en_US',
+      locale: locale === 'zh-CN' ? 'zh_CN' : locale === 'zh-TW' ? 'zh_TW' : locale === 'ja' ? 'ja_JP' : locale === 'ko' ? 'ko_KR' : 'en_US',
       url: currentUrl,
       title,
       description,

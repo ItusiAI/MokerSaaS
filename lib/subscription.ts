@@ -274,7 +274,7 @@ export async function ensureUnsubscribeToken(userId: string): Promise<string> {
 // 语言工具
 // ============================================================
 
-export const SUPPORTED_LOCALES = ['en', 'zh', 'ja', 'ko', 'tw'] as const
+export const SUPPORTED_LOCALES = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
 
 export function pickLocale(input: string | null | undefined): SupportedLocale {

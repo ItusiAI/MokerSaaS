@@ -291,8 +291,8 @@ function AdminOverview() {
   const formatDate = (dateStr: string) => {
     try {
       const date = new Date(dateStr)
-      if ((locale === 'zh' || locale === 'tw' || locale === 'ja' || locale === 'ko')) {
-        const tag = locale === 'zh' || locale === 'tw' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : 'ko-KR'
+      if ((locale === 'zh-CN' || locale === 'zh-TW' || locale === 'ja' || locale === 'ko')) {
+        const tag = locale === 'zh-CN' || locale === 'zh-TW' ? 'zh-CN' : locale === 'ja' ? 'ja-JP' : 'ko-KR'
         return date.toLocaleDateString(tag, { month: 'long', day: 'numeric' })
       }
       return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })

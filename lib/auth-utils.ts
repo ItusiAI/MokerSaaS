@@ -42,7 +42,7 @@ export async function isAdmin() {
 export async function requireAdmin(locale?: string) {
   const admin = await isAdmin()
   if (!admin) {
-    const safeLocale = locale && ['en', 'zh', 'ja', 'ko', 'tw'].includes(locale) ? locale : 'zh'
+    const safeLocale = locale && ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'].includes(locale) ? locale : 'zh-CN'
     redirect(`/${safeLocale}/unauthorized`)
   }
   return true

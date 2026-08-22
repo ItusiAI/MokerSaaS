@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     const clientIP = getClientIP(request)
 
     // 发送验证邮件
-    const emailResult = await sendVerificationEmail(user.email, token, locale as 'en' | 'zh' | 'ja' | 'ko' | 'tw', clientIP)
+    const emailResult = await sendVerificationEmail(user.email, token, locale as 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW', clientIP)
 
     if (!emailResult.success) {
       console.error('发送验证邮件失败:', emailResult.error)

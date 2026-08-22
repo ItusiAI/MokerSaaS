@@ -5,7 +5,7 @@ import createIntlMiddleware from 'next-intl/middleware'
 export default function proxy(request: unknown) {
   const handle = createIntlMiddleware({
     // 支持的语言
-    locales: ['en', 'zh', 'ja', 'ko', 'tw'],
+    locales: ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'],
     // 默认语言
     defaultLocale: 'en',
     // 在路径中总是显示语言前缀

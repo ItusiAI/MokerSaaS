@@ -11,7 +11,8 @@ import { toast } from 'sonner'
 import Link from 'next/link'
 
 const APP_INTL_LOCALE_TAG: Record<string, string> = {
-  zh: 'zh-CN',
+  'zh-CN': 'zh-CN',
+  'zh-TW': 'zh-TW',
   ja: 'ja-JP',
   ko: 'ko-KR',
 }

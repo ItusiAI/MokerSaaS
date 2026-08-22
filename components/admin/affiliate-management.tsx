@@ -95,7 +95,7 @@ export function AffiliateManagement() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    if (locale === 'zh') {
+    if (locale === 'zh-CN' || locale === 'zh-TW') {
       return format(date, 'yyyy年MM月dd日 HH:mm', { locale: zhCN })
     } else {
       return format(date, 'MMM dd, yyyy HH:mm', { locale: enUS })

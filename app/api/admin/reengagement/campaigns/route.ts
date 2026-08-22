@@ -6,8 +6,8 @@ import { isAdmin } from '@/lib/auth-utils'
 import { nanoid } from 'nanoid'
 import { reengagementCopy, type ReengagementBucket, type ReengagementCopy } from '@/lib/email'
 
-type EmailLocale = 'en' | 'zh' | 'ja' | 'ko' | 'tw'
-const VALID_LOCALES: EmailLocale[] = ['en', 'zh', 'ja', 'ko', 'tw']
+type EmailLocale = 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW'
+const VALID_LOCALES: EmailLocale[] = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
 function toSerializableCopy(copy: ReengagementCopy): Record<string, string> {
   return {
@@ -84,10 +84,10 @@ export async function POST(request: NextRequest) {
   const bucketCopy = reengagementCopy[bucket as ReengagementBucket]
   const finalContent: Record<EmailLocale, Record<string, string>> = {
     en: toSerializableCopy(bucketCopy.en),
-    zh: toSerializableCopy(bucketCopy.zh),
+    'zh-CN': toSerializableCopy(bucketCopy['zh-CN']),
     ja: toSerializableCopy(bucketCopy.ja),
     ko: toSerializableCopy(bucketCopy.ko),
-    tw: toSerializableCopy(bucketCopy.tw),
+    'zh-TW': toSerializableCopy(bucketCopy['zh-TW']),
   }
 
   const id = nanoid()

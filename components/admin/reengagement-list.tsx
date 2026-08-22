@@ -47,7 +47,8 @@ import { useTranslations, useLocale } from 'next-intl'
 import { toast } from 'sonner'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }
@@ -102,11 +103,11 @@ const BUCKET_VARIANT: Record<DormantBucket, 'default' | 'secondary' | 'outline' 
 }
 
 const LOCALE_LABEL_KEY: Record<string, string> = {
-  zh: 'chinese',
+  'zh-CN': 'chinese',
   en: 'english',
   ja: 'japanese',
   ko: 'korean',
-  tw: 'traditionalChinese',
+  'zh-TW': 'traditionalChinese',
 }
 
 function languageLabel(locale: string, t: ReturnType<typeof useTranslations<string>>): string {
@@ -1009,11 +1010,11 @@ export function ReengagementList() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{t('filter.all_languages')}</SelectItem>
-                <SelectItem value="zh">{t('filter.lang_zh')}</SelectItem>
+                <SelectItem value="zh-CN">{t('filter.lang_zh')}</SelectItem>
                 <SelectItem value="en">{t('filter.lang_en')}</SelectItem>
                 <SelectItem value="ja">{t('filter.lang_ja')}</SelectItem>
                 <SelectItem value="ko">{t('filter.lang_ko')}</SelectItem>
-                <SelectItem value="tw">{t('filter.lang_tw')}</SelectItem>
+                <SelectItem value="zh-TW">{t('filter.lang_tw')}</SelectItem>
               </SelectContent>
             </Select>
 

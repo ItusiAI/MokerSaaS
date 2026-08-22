@@ -13,7 +13,7 @@ export function AuthError() {
   const searchParams = useSearchParams()
   const params = useParams()
   const rawLocale = params.locale as string
-  const locale = (['en', 'zh', 'ja', 'ko', 'tw'] as const).includes(rawLocale as any) ? rawLocale as 'en' | 'zh' | 'ja' | 'ko' | 'tw' : 'en'
+  const locale = (['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const).includes(rawLocale as any) ? rawLocale as 'en' | 'zh-CN' | 'ja' | 'ko' | 'zh-TW' : 'en'
   const error = searchParams.get('error')
   const t = useTranslations('auth')
 

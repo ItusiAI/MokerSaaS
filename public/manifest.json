@@ -45,7 +45,7 @@
       "name": "功能展示",
       "short_name": "功能",
       "description": "查看SaaS模版核心功能",
-      "url": "/zh#features",
+      "url": "/zh-CN#features",
       "icons": [
         {
           "src": "/favicon.ico",
@@ -57,7 +57,7 @@
       "name": "定价方案",
       "short_name": "定价",
       "description": "查看SaaS模版定价方案",
-      "url": "/zh#pricing",
+      "url": "/zh-CN#pricing",
       "icons": [
         {
           "src": "/favicon.ico",

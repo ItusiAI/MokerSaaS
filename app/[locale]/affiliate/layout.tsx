@@ -17,9 +17,9 @@ export async function generateMetadata({
   const keywords = t('keywords')
 
   const ogLocale =
-    locale === 'zh'
+    locale === 'zh-CN'
       ? 'zh_CN'
-      : locale === 'tw'
+      : locale === 'zh-TW'
       ? 'zh_TW'
       : locale === 'ja'
       ? 'ja_JP'
@@ -36,10 +36,8 @@ export async function generateMetadata({
       ? {
           canonical: currentUrl,
           languages: {
-            zh: `${baseUrl}/zh/affiliate`,
-            'zh-CN': `${baseUrl}/zh/affiliate`,
-            tw: `${baseUrl}/tw/affiliate`,
-            'zh-TW': `${baseUrl}/tw/affiliate`,
+            'zh-CN': `${baseUrl}/zh-CN/affiliate`,
+            'zh-TW': `${baseUrl}/zh-TW/affiliate`,
             en: `${baseUrl}/en/affiliate`,
             ja: `${baseUrl}/ja/affiliate`,
             ko: `${baseUrl}/ko/affiliate`,

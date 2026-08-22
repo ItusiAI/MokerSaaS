@@ -7,7 +7,7 @@ import crypto from 'crypto'
 import { isAdmin } from '@/lib/auth-utils'
 import { getTranslations } from 'next-intl/server'
 
-const SUPPORTED_LOCALES = ['en', 'zh', 'ja', 'ko', 'tw'] as const
+const SUPPORTED_LOCALES = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW'] as const
 type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
 
 function pickLocale(input: unknown): SupportedLocale {
@@ -106,10 +106,11 @@ export async function GET(request: NextRequest) {
 
       return NextResponse.json({
         total: totalSubscriptions.length,
-        zh: counts.zh || 0,
+        'zh-CN': counts['zh-CN'] || 0,
         en: counts.en || 0,
         ja: counts.ja || 0,
         ko: counts.ko || 0,
+        'zh-TW': counts['zh-TW'] || 0,
       })
     }
 

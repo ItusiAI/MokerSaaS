@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
-const locales = ['en', 'zh', 'ja', 'ko', 'tw']
+const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

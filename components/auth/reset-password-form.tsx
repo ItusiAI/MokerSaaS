@@ -31,7 +31,7 @@ export function ResetPasswordForm() {
 
   // 根据语言环境构建正确的路径
   const getLocalizedPath = (path: string) => {
-    return locale === "en" ? `/en${path}` : `/zh${path}`
+    return `/${locale}${path}`
   }
 
   useEffect(() => {

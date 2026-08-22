@@ -24,7 +24,8 @@ import { zhCN, enUS, ja as jaLocale, ko as koLocale } from 'date-fns/locale'
 import type { Locale as DateFnsLocale } from 'date-fns/locale'
 
 const APP_DATE_FNS_LOCALE: Record<string, DateFnsLocale> = {
-  zh: zhCN,
+  'zh-CN': zhCN,
+  'zh-TW': zhCN,
   ja: jaLocale,
   ko: koLocale,
 }
@@ -33,7 +34,8 @@ function getDateFnsLocale(locale: string | undefined | null): DateFnsLocale {
 }
 
 const APP_INTL_LOCALE_TAG: Record<string, string> = {
-  zh: 'zh-CN',
+  'zh-CN': 'zh-CN',
+  'zh-TW': 'zh-TW',
   ja: 'ja-JP',
   ko: 'ko-KR',
 }
