@@ -1,5 +1,10 @@
-import { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import type React from "react"
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages, getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+
+const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
 export async function generateMetadata({
   params
@@ -7,8 +12,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  if (!locales.includes(locale)) {
+    notFound()
+  }
+
   const t = await getTranslations({ locale, namespace: 'unauthorized' })
-  
+
   return {
     title: t('title'),
     description: t('description'),
@@ -16,10 +25,23 @@ export async function generateMetadata({
   }
 }
 
-export default function UnauthorizedLayout({
+export default async function UnauthorizedLayout({
   children,
+  params
 }: {
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
-  return children
-} 
+  const { locale } = await params
+  if (!locales.includes(locale)) {
+    notFound()
+  }
+
+  const messages = await getMessages({ locale })
+
+  return (
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      {children}
+    </NextIntlClientProvider>
+  )
+}

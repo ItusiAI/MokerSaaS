@@ -1,77 +1,19 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages, getTranslations } from 'next-intl/server'
+import { SiteChrome } from '@/components/home/site-chrome'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}): Promise<Metadata> {
-  const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'affiliate_page' })
+const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
+const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    'https://mokersaas.com'
-  const localizedBase = (loc: string): string =>
-    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
-  const currentUrl = `${localizedBase(locale)}/affiliate`
-  const title = t('title')
-  const description = t('subtitle')
-  const keywords = t('keywords')
-
-  const ogLocale =
-    locale === 'zh-CN'
-      ? 'zh_CN'
-      : locale === 'zh-TW'
-      ? 'zh_TW'
-      : locale === 'ja'
-      ? 'ja_JP'
-      : locale === 'ko'
-      ? 'ko_KR'
-      : 'en_US'
-
-  return {
-    title,
-    description,
-    keywords,
-    metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: currentUrl,
-      languages: {
-        'x-default': `${baseUrl}/affiliate`,
-        'en': `${baseUrl}/affiliate`,
-        'zh-CN': `${baseUrl}/zh-CN/affiliate`,
-        'zh-TW': `${baseUrl}/zh-TW/affiliate`,
-        'ja': `${baseUrl}/ja/affiliate`,
-        'ko': `${baseUrl}/ko/affiliate`,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      locale: ogLocale,
-      url: currentUrl,
-      title,
-      description,
-      siteName: 'MokerSaaS',
-      images: [
-        {
-          url: `${baseUrl}/images/og.png`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      creator: '@zyailive',
-      images: [`${baseUrl}/images/og.png`],
-    },
-  }
+function resolveLocale(locale: string) {
+  if (locale === 'zh-CN') return 'zh_CN'
+  if (locale === 'zh-TW') return 'zh_TW'
+  if (locale === 'ja') return 'ja_JP'
+  if (locale === 'ko') return 'ko_KR'
+  return 'en_US'
 }
 
 export function generateHtmlAttributes({
@@ -91,30 +33,28 @@ export function generateHtmlAttributes({
   })
 }
 
-export default async function AffiliateLayout({
-  children,
+export async function generateMetadata({
   params,
 }: {
-  children: ReactNode
   params: Promise<{ locale: string }>
-}) {
+}): Promise<Metadata> {
   const { locale } = await params
+  if (!locales.includes(locale)) {
+    notFound()
+  }
+
+  const t = await getTranslations({ locale, namespace: 'affiliate_page' })
 
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL ||
     process.env.NEXT_PUBLIC_APP_URL ||
-    'https://mokersaas.com'
-
-  const t = await getTranslations({ locale, namespace: 'affiliate_page' })
-
-  const languages: Record<string, string> = {
-    'x-default': `${baseUrl}/affiliate`,
-    'en': `${baseUrl}/affiliate`,
-    'zh-CN': `${baseUrl}/zh-CN/affiliate`,
-    'zh-TW': `${baseUrl}/zh-TW/affiliate`,
-    'ja': `${baseUrl}/ja/affiliate`,
-    'ko': `${baseUrl}/ko/affiliate`,
-  }
+    DEFAULT_BASE_URL
+  const localizedBase = (loc: string): string =>
+    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+  const currentUrl = `${localizedBase(locale)}/affiliate`
+  const title = t('title')
+  const description = t('subtitle')
+  const keywords = t('keywords')
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -136,23 +76,84 @@ export default async function AffiliateLayout({
     },
   }
 
+  return {
+    title,
+    description,
+    keywords,
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: currentUrl,
+      languages: {
+        'x-default': `${baseUrl}/affiliate`,
+        'en': `${baseUrl}/affiliate`,
+        'zh-CN': `${baseUrl}/zh-CN/affiliate`,
+        'zh-TW': `${baseUrl}/zh-TW/affiliate`,
+        'ja': `${baseUrl}/ja/affiliate`,
+        'ko': `${baseUrl}/ko/affiliate`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: resolveLocale(locale),
+      url: currentUrl,
+      title,
+      description,
+      siteName: 'MokerSaaS',
+      images: [
+        {
+          url: `${baseUrl}/images/og.png`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      creator: '@zyailive',
+      images: [`${baseUrl}/images/og.png`],
+    },
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION,
+      yandex: process.env.YANDEX_VERIFICATION,
+      yahoo: process.env.YAHOO_VERIFICATION,
+    },
+    other: {
+      'theme-color': '#00F0FF',
+      'apple-mobile-web-app-capable': 'yes',
+      'apple-mobile-web-app-status-bar-style': 'black-translucent',
+      'apple-mobile-web-app-title': 'MokerSaaS',
+    },
+  }
+}
+
+export default async function AffiliateLayout({
+  children,
+  params,
+}: {
+  children: ReactNode
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  if (!locales.includes(locale)) {
+    notFound()
+  }
+
+  const messages = await getMessages({ locale })
+
   return (
     <>
       <head>
-        {Object.entries(languages).map(([lang, href]) => (
-          <link
-            key={lang}
-            rel="alternate"
-            hrefLang={lang}
-            href={href}
-          />
-        ))}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      {children}
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        <div data-locale={locale}>
+          <SiteChrome>{children}</SiteChrome>
+        </div>
+      </NextIntlClientProvider>
     </>
   )
 }

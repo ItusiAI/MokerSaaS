@@ -1,6 +1,10 @@
+import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
 import type { Metadata } from 'next'
+import { SiteChrome } from '@/components/home/site-chrome'
 
 const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
@@ -83,6 +87,17 @@ export async function generateMetadata({
       description: t('description'),
       images: [ogImageUrl],
     },
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION,
+      yandex: process.env.YANDEX_VERIFICATION,
+      yahoo: process.env.YAHOO_VERIFICATION,
+    },
+    other: {
+      'theme-color': '#00F0FF',
+      'apple-mobile-web-app-capable': 'yes',
+      'apple-mobile-web-app-status-bar-style': 'black-translucent',
+      'apple-mobile-web-app-title': 'MokerSaaS',
+    },
   }
 }
 
@@ -90,7 +105,7 @@ export default async function PrivacyLayout({
   children,
   params
 }: {
-  children: React.ReactNode
+  children: ReactNode
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
@@ -98,47 +113,19 @@ export default async function PrivacyLayout({
     notFound()
   }
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    DEFAULT_BASE_URL
-
-  const t = await getTranslations({ locale, namespace: 'metadata.privacy' })
-
-  const languages: Record<string, string> = {
-    'x-default': `${baseUrl}/privacy`,
-    'en': `${baseUrl}/privacy`,
-    'zh-CN': `${baseUrl}/zh-CN/privacy`,
-    'zh-TW': `${baseUrl}/zh-TW/privacy`,
-    'ja': `${baseUrl}/ja/privacy`,
-    'ko': `${baseUrl}/ko/privacy`,
-  }
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: t('title'),
-    url: `${baseUrl}/privacy`,
-    description: t('description'),
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'MokerSaaS',
-      url: baseUrl,
-    },
-  }
+  const messages = await getMessages({ locale })
 
   return (
     <>
       <head>
-        {Object.entries(languages).map(([lang, href]) => (
-          <link key={lang} rel="alternate" hrefLang={lang} href={href} />
-        ))}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      {children}
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        <div data-locale={locale}>
+          <SiteChrome>{children}</SiteChrome>
+        </div>
+      </NextIntlClientProvider>
     </>
   )
 }

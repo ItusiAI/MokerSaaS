@@ -41,6 +41,26 @@ export async function generateMetadata({
   const currentUrl = localizedBase(locale)
   const ogImageUrl = `${baseUrl}/images/og.png`
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MokerSaaS',
+    url: baseUrl,
+    description: t('description'),
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   return {
     title: {
       default: t('title'),
@@ -154,59 +174,11 @@ export default async function LocaleLayout({
 
   const messages = await getMessages({ locale })
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    DEFAULT_BASE_URL
-
-  const t = await getTranslations({ locale, namespace: 'metadata' })
-
-  const languages: Record<string, string> = {
-    'x-default': baseUrl,
-    'en': baseUrl,
-    'zh-CN': `${baseUrl}/zh-CN`,
-    'zh-TW': `${baseUrl}/zh-TW`,
-    'ja': `${baseUrl}/ja`,
-    'ko': `${baseUrl}/ko`,
-  }
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'MokerSaaS',
-    url: baseUrl,
-    description: t('description'),
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    provider: {
-      '@type': 'Organization',
-      name: 'MokerSaaS',
-      url: baseUrl,
-    },
-  }
-
   return (
     <>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {Object.entries(languages).map(([lang, href]) => (
-          <link
-            key={lang}
-            rel="alternate"
-            hrefLang={lang}
-            href={href}
-          />
-        ))}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>
