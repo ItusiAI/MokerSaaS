@@ -106,7 +106,7 @@ export default function AffiliatePageClient() {
   // 如果未登录，重定向到登录页
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/auth/signin')
+      router.push(`/${locale}/auth/signin`)
     }
   }, [status, router])
 

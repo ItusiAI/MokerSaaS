@@ -16,23 +16,6 @@ function resolveLocale(locale: string) {
   return 'en_US'
 }
 
-export function generateHtmlAttributes({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  return params.then(async ({ locale }) => {
-    const localeMap: Record<string, string> = {
-      'en': 'en-US',
-      'zh-CN': 'zh-CN',
-      'zh-TW': 'zh-TW',
-      'ja': 'ja-JP',
-      'ko': 'ko-KR',
-    }
-    return { lang: localeMap[locale] ?? locale }
-  })
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -92,7 +75,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      creator: '@zyailive',
+      creator: 'MokerSaaS',
       images: [`${baseUrl}/images/og.png`],
     },
     verification: {

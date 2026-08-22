@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "オープンソース SaaS テンプレート - MokerSaaS · 数時間でリリース",
+    "title": "オープンソース SaaS テンプレート — 数時間で SaaS をリリース",
     "description": "数時間で SaaS をリリース。MokerSaaS は Next.js 16、Stripe 決済、認証、i18n、管理者ダッシュボード等功能を標準搭載。永久無料。",
     "shortTitle": "MokerSaaS - SaaSを高速構築",
     "keywords": "MokerSaaS, SaaSを高速構築, オープンソースSaaS, SaaSテンプレート, Next.jsテンプレート, 無料SaaS, TypeScript SaaS, Stripe連携, i18n SaaS, 管理ダッシュボード, 招待制度, アフィリエイトプログラム, 数時間でリリース",
@@ -1108,9 +1108,9 @@
         "reminders": "リマインダーメール",
         "reminders_desc": "サブスクリプション期限切れリマインダーメールの送信ログを確認",
         "reengagement": "休眠ユーザー",
-        "reengagement_desc": "休眠・離脱ユーザーを閲覧・分析し、休眠日数でバケット筛选",
-        "reengagement_campaigns": "り返し 캠페인",
-        "reengagement_campaigns_desc": "休眠ユーザー向けの为止返しメール кампанииを作成・送信"
+        "reengagement_desc": "休眠・離脱ユーザーを閲覧・分析し、休眠日数でバケット絞り込み",
+        "reengagement_campaigns": "再エンゲージメントキャンペーン",
+        "reengagement_campaigns_desc": "休眠ユーザー向けの再エンゲージメントメールキャンペーンを作成・送信"
       },
       "overview": {
         "title": "システム概要",
@@ -1339,7 +1339,7 @@
     },
     "reengagement": {
       "meta_title": "休眠ユーザー照会 - MokerSaaS",
-      "meta_description": "休眠・離脱ユーザーを閲覧し、休眠日数、購読状態、言語で筛选",
+      "meta_description": "休眠・離脱ユーザーを閲覧し、休眠日数、購読状態、言語で絞り込み",
       "title": "休眠ユーザー",
       "description": "休眠および離脱ユーザーの照会と分析。休眠日数、購読状態、言語別にバケット統計、キーワード検索をサポート。",
       "stats": {
@@ -1357,11 +1357,11 @@
         "dormant_paid_hint": "高価値復帰対象"
       },
       "click_to_view": "クリックで閲覧 →",
-      "click_to_filter": "クリックで筛选 →",
-      "filter_applied": "筛选を適用:過去の有料休眠ユーザー",
+      "click_to_filter": "クリックで絞り込み →",
+      "filter_applied": "絞り込みを適用:過去の有料休眠ユーザー",
       "export_csv": "CSV エクスポート",
       "exported": "{count} 件をエクスポートしました",
-      "export_empty": "現在の筛选下にデータがありません",
+      "export_empty": "現在の絞り込み下にデータがありません",
       "export_preparing": "エクスポート準備中...",
       "export_progress": "エクスポート中 {fetched}/{total} 件",
       "search_placeholder": "メールまたは名前で検索",
@@ -1437,20 +1437,20 @@
         "export_failed": "CSV のエクスポートに失敗しました"
       },
       "campaigns": {
-        "no_data": " кампанияがありません",
+        "no_data": "キャンペーンがありません",
         "create": {
-          "title": " кампанияを作成",
-          "description": "特定の休眠ユーザーバケットを対象とした为止返し кампанияを作成します"
+          "title": "キャンペーンを作成",
+          "description": "特定の休眠ユーザーバケットを対象とした再エンゲージメントキャンペーンを作成します"
         },
         "edit": {
-          "title": " кампанияを編集",
-          "template_note": " кампанияメールテンプレートはコード内置のデフォルトテンプレートを使用します。変更は開発者に連絡してください。"
+          "title": "キャンペーンを編集",
+          "template_note": "キャンペーンメールテンプレートはコードビルトインのデフォルトテンプレートを使用します。変更は開発者に連絡してください。"
         },
         "form": {
-          "name": " кампания名",
-          "name_placeholder": "例：7月回报 кампания",
+          "name": "キャンペーン名",
+          "name_placeholder": "例：7月回报キャンペーン",
           "bucket": "対象バケット",
-          "template_note": " кампанияメールテンプレートはコード内置のデフォルトテンプレートを使用します。変更は開発者に連絡してください。"
+          "template_note": "キャンペーンメールテンプレートはコードビルトインのデフォルトテンプレートを使用します。変更は開発者に連絡してください。"
         },
         "filter": {
           "status": "ステータス",
@@ -1474,26 +1474,26 @@
           "sleeping_paid": "休眠+有料顧客"
         },
         "table": {
-          "name": " кампания",
+          "name": "キャンペーン",
           "bucket": "バケット",
           "status": "ステータス",
           "sent": "送信済",
           "created": "作成日時",
           "actions": "操作",
-          "empty": " кампанияがありません"
+          "empty": "キャンペーンがありません"
         },
         "actions": {
-          "send": " кампанияを送信",
+          "send": "キャンペーンを送信",
           "delete": "削除",
           "cancel": "キャンセル",
-          "create": " кампанияを作成",
+          "create": "キャンペーンを作成",
           "edit": "編集",
           "close": "閉じる",
           "logs": "ログを見る"
         },
         "send": {
           "title": "キャンペーン送信",
-          "description": "此キャンペーンの受信者を選択してください",
+          "description": "このキャンペーンの受信者を選択してください",
           "mode_bucket": "バケットで自動選択",
           "mode_specific": "特定のユーザーを選択",
           "bucket_count": "このバケットには {count} 人のユーザーがいます",
@@ -1506,22 +1506,22 @@
         },
         "logs": {
           "title": "送信ログ",
-          "description": "この кампанияのメール送信記録"
+          "description": "このキャンペーンのメール送信記録"
         },
         "confirm": {
-          "send": "この кампанияをすべての対象ユーザーに送信しますか？この操作は元に戻せません。",
-          "delete": "この кампанияを削除してもよろしいですか？"
+          "send": "このキャンペーンをすべての対象ユーザーに送信しますか？この操作は元に戻せません。",
+          "delete": "このキャンペーンを削除してもよろしいですか？"
         },
         "success": {
-          "created": " кампанияを作成しました",
+          "created": "キャンペーンを作成しました",
           "sent": "{sent}/{total}件のメールを送信しました（{failed}件失敗）",
-          "deleted": " кампанияを削除しました"
+          "deleted": "キャンペーンを削除しました"
         },
         "error": {
-          "fetch_failed": " кампанияの取得に失敗しました",
-          "create_failed": " кампанияの作成に失敗しました",
+          "fetch_failed": "キャンペーンの取得に失敗しました",
+          "create_failed": "キャンペーンの作成に失敗しました",
           "send_failed": "送信に失敗しました",
-          "delete_failed": " кампанияの削除に失敗しました",
+          "delete_failed": "キャンペーンの削除に失敗しました",
           "fill_required": "すべての必須フィールドを入力してください",
           "select_users": "少なくとも1人のユーザーを選択してください"
         }
@@ -1551,7 +1551,7 @@
         },
         "table": {
           "email": "メール",
-          "campaign": " кампания",
+          "campaign": "キャンペーン",
           "bucket": "バケット",
           "status": "ステータス",
           "sent_at": "送信日時",

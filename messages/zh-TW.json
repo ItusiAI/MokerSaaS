@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "開源 SaaS 模板 - MokerSaaS · 數小時上線，永久免費",
+    "title": "開源 SaaS 模板 — 數小時上線您的下一個 SaaS",
     "description": "數小時完成 SaaS 上線。MokerSaaS 內置 Next.js 16、Neon Postgres、Stripe 支付、用戶認證、多語言 i18n、後臺管理、推薦系統，永久免費使用。",
     "shortTitle": "MokerSaaS - 極速構建SaaS",
     "keywords": "MokerSaaS, 極速構建SaaS, 開源SaaS, SaaS模版, Next.js模版, 免費SaaS, TypeScript SaaS, Stripe集成, 多語言SaaS, 後臺管理, 推薦系統, 推廣返利, 數小時上線",
@@ -1108,7 +1108,7 @@
         "reminders": "提醒郵件",
         "reminders_desc": "查詢訂閱到期提醒郵件的發送記錄",
         "reengagement": "沉睡用戶",
-        "reengagement_desc": "查看和分析沉睡/流失用戶,按沉睡天數分桶筛选",
+        "reengagement_desc": "查看和分析沉睡/流失用戶,按沉睡天數分桶篩選",
         "reengagement_campaigns": "召回活動",
         "reengagement_campaigns_desc": "創建並發送針對沉睡用戶的召回郵件活動"
       },
@@ -1269,9 +1269,9 @@
     },
     "reminders": {
       "meta_title": "提醒郵件日誌 - MokerSaaS",
-      "meta_description": "查詢訂閱到期提醒郵件的發送記錄,可按類型/語體筛选",
+      "meta_description": "查詢訂閱到期提醒郵件的發送記錄,可按類型/語體篩選",
       "title": "提醒郵件",
-      "description": "查詢訂閱到期提醒郵件的發送記錄,可按用戶搜索、按類型和語體筛选",
+      "description": "查詢訂閱到期提醒郵件的發送記錄,可按用戶搜索、按類型和語言篩選",
       "stats": {
         "total": "總發送數",
         "7d": "7天前提醒",
@@ -1339,7 +1339,7 @@
     },
     "reengagement": {
       "meta_title": "沉睡用戶查詢 - MokerSaaS",
-      "meta_description": "查看沉睡/流失用戶,按沉睡天數、訂閱狀態、語言筛选",
+      "meta_description": "查看沉睡/流失用戶,按沉睡天數、訂閱狀態、語言篩選",
       "title": "沉睡用戶",
       "description": "查詢和分析沉睡與流失用戶。按沉睡天數、訂閱狀態、郵件語言分桶統計,支援關鍵字搜尋。",
       "stats": {
@@ -1357,11 +1357,11 @@
         "dormant_paid_hint": "高價值挽回對象"
       },
       "click_to_view": "點擊查看 →",
-      "click_to_filter": "點擊筛选 →",
-      "filter_applied": "已套用筛选:曾付費沉睡用戶",
+      "click_to_filter": "點擊篩選 →",
+      "filter_applied": "已套用篩選:曾付費沉睡用戶",
       "export_csv": "匯出 CSV",
       "exported": "已匯出 {count} 條",
-      "export_empty": "當前筛选下無資料,無可匯出",
+      "export_empty": "當前篩選下無資料,無可匯出",
       "export_preparing": "準備匯出...",
       "export_progress": "正在匯出 {fetched}/{total} 條",
       "search_placeholder": "搜尋郵箱或用戶名",

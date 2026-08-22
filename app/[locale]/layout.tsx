@@ -69,7 +69,7 @@ export async function generateMetadata({
     description: t('description'),
     keywords: t('keywords'),
     applicationName: 'MokerSaaS',
-    authors: [{ name: 'MokerSaaS Team', url: 'https://github.com/zyailive/MokerSaaS' }],
+    authors: [{ name: 'MokerSaaS Team', url: 'https://mokersaas.com' }],
     creator: 'MokerSaaS',
     publisher: 'MokerSaaS',
     formatDetection: {
@@ -107,7 +107,7 @@ export async function generateMetadata({
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: 'MokerSaaS - Open Source SaaS Template',
+          alt: t('title'),
         },
       ],
     },
@@ -115,7 +115,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      creator: '@zyailive',
+      creator: 'MokerSaaS',
       images: [ogImageUrl],
     },
     robots: {
@@ -141,22 +141,6 @@ export async function generateMetadata({
       'apple-mobile-web-app-title': 'MokerSaaS',
     },
   }
-}
-
-export async function generateHtmlAttributes({
-  params
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
-  const localeMap: Record<string, string> = {
-    'en': 'en-US',
-    'zh-CN': 'zh-CN',
-    'zh-TW': 'zh-TW',
-    'ja': 'ja-JP',
-    'ko': 'ko-KR',
-  }
-  return { lang: localeMap[locale] ?? locale }
 }
 
 export default async function LocaleLayout({

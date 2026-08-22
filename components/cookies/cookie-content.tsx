@@ -27,7 +27,7 @@ export function CookieContent() {
           </h1>
           <div className="prose prose-lg max-w-none">
             <p className="text-muted-foreground mb-8">
-              {t('最后更新：2026年1月6日', '最後更新：2026年1月6日', '最終更新日：2026年1月6日', '최종 업데이트: 2026년 1월 6일', 'Last updated: January 6, 2026')}
+              {t('最后更新：2026年8月22日', '最後更新：2026年8月22日', '最終更新日：2026年8月22日', '최종 업데이트: 2026년 8월 22일', 'Last updated: August 22, 2026')}
             </p>
 
             <section className="mb-8">
@@ -36,20 +36,20 @@ export function CookieContent() {
               </h2>
               <p className="mb-4">
                 {t(
-                  'Cookie是在您访问网站时存储在您设备上的小型文本文件。Cookie帮助我们记住您的偏好设置，提供个性化体验，并改善我们网站的功能。',
-                  'Cookie是在您訪問網站時存儲在您設備上的小型文本文件。Cookie幫助我們記住您的偏好設置，提供個性化體驗，並改善我們網站的功能。',
-                  'Cookieとは、ウェブサイト訪問時にお客様のデバイスに保存される小さなテキストファイルです。Cookieはお客様の設定を記憶し、パーソナライズされた体験を提供し、ウェブサイト機能の向上に役立ちます。',
-                  '쿠키는 웹사이트를 방문할 때 귀하의 장치에 저장되는 작은 텍스트 파일입니다. 쿠키는 귀하의 환경설정을 기억하고, 개인화된 경험을 제공하며, 웹사이트 기능을 개선하는 데 도움이 됩니다.',
-                  'Cookies are small text files that are stored on your device when you visit a website. Cookies help us remember your preferences, provide personalized experiences, and improve our website functionality.'
+                  'Cookie 是您访问网站时存储在您设备上的小型文本文件。Cookie 帮助我们维持登录状态、记住您的偏好（如语言、主题），并了解站点功能的使用情况，以便持续改进。',
+                  'Cookie 是您訪問網站時存儲在您設備上的小型文字檔案。Cookie 幫助我們維持登入狀態、記住您的偏好（如語言、主題），並瞭解站點功能的使用情況，以便持續改進。',
+                  'Cookie とは、ウェブサイト訪問時にお客様のデバイスに保存される小さなテキストファイルです。Cookie はログイン状態の維持、お客様の設定（言語、テーマなど）の記憶、サイト機能の利用状況把握に役立ち、継続的な改善を可能にします。',
+                  '쿠키는 웹사이트를 방문할 때 귀하의 장치에 저장되는 작은 텍스트 파일입니다. 쿠키는 로그인 상태 유지, 환경설정(언어, 테마 등) 기억, 사이트 기능 이용 현황 파악에 도움을 주며 지속적인 개선을 가능하게 합니다.',
+                  'Cookies are small text files stored on your device when you visit a website. They help us maintain your login session, remember your preferences (such as language and theme), and understand how our site features are used so we can keep improving them.'
                 )}
               </p>
               <p className="mb-4">
                 {t(
-                  'MokerSaaS使用Cookie和类似技术来增强您的用户体验，分析网站使用情况，并提供相关的AI服务功能。',
-                  'MokerSaaS使用Cookie和類似技術來增強您的用戶體驗，分析網站使用情況，並提供相關的AI服務功能。',
-                  'MokerSaaSは、Cookieおよび類似技術を使用してユーザー体験を向上させ、ウェブサイト利用状況を分析し、関連するAIサービス機能を提供します。',
-                  'MokerSaaS는 쿠키 및 유사 기술을 사용하여 사용자 경험을 향상시키고, 웹사이트 사용 현황을 분석하며, 관련 AI 서비스 기능을 제공합니다.',
-                  'MokerSaaS uses cookies and similar technologies to enhance your user experience, analyze website usage, and provide relevant AI service features.'
+                  'MokerSaaS 同时使用 Cookie 与类似技术（如 localStorage、sessionStorage）来保证核心功能正常运行、统计站点使用情况，并支持推广返利追踪。',
+                  'MokerSaaS 同時使用 Cookie 與類似技術（如 localStorage、sessionStorage）來保證核心功能正常運行、統計站點使用情況，並支援推廣返利追蹤。',
+                  'MokerSaaS は、Cookie および類似技術（localStorage、sessionStorage など）を使用して、コア機能の安定動作、サイトの利用統計、推薦・アフィリエイトの追跡を実現しています。',
+                  'MokerSaaS는 쿠키와 유사 기술(localStorage, sessionStorage 등)을 함께 사용하여 핵심 기능의 안정적 작동, 사이트 이용 통계, 추천 및 제휴 추적을 지원합니다.',
+                  'MokerSaaS uses cookies and similar technologies (such as localStorage and sessionStorage) to keep core features working, gather site usage statistics, and support referral and affiliate tracking.'
                 )}
               </p>
             </section>
@@ -60,228 +60,167 @@ export function CookieContent() {
               </h2>
 
               <h3 className="text-xl font-semibold mb-3">
-                {t('2.1 必要Cookie', '2.1 必要Cookie', '2.1 必須Cookie', '2.1 필수 쿠키', '2.1 Necessary Cookies')}
+                {t('2.1 必要Cookie', '2.1 必要Cookie', '2.1 必須Cookie', '2.1 필수 쿠키', '2.1 Strictly Necessary Cookies')}
               </h3>
               <p className="mb-4">
-                {t('这些Cookie对于网站的基本功能是必需的，无法禁用：', '這些Cookie對於網站的基本功能是必需的，無法禁用：', 'これらのCookieはウェブサイト基本機能に必須であり、無効化できません：', '이 쿠키는 웹사이트의 기본 기능에 필수적이며 비활성화할 수 없습니다:', 'These cookies are essential for the basic functionality of the website and cannot be disabled:')}
+                {t('这些 Cookie 对于网站的基本功能是必需的，无法禁用：', '這些 Cookie 對於網站的基本功能是必需的，無法停用：', 'これらの Cookie はサイトの基本機能に必須であり、無効化できません：', '이 쿠키는 사이트의 기본 기능에 필수적이며 비활성화할 수 없습니다:', 'These cookies are essential for the basic functionality of the site and cannot be disabled:')}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>
-                  <strong>{t('会话管理', '會話管理', 'セッション管理', '세션 관리', 'Session Management')}</strong>：
-                  {t('保持您的登录状态和会话安全', '保持您的登錄狀態和會話安全', 'ログイン状態とセッションセキュリティを維持', '로그인 상태 및 세션 보안 유지', 'Maintaining your login status and session security')}
+                  <strong>{t('登录与会话', '登入與會話', 'ログインとセッション', '로그인 및 세션', 'Sign-in and Session')}</strong>：
+                  {t('维持您的登录状态，使您在不同页面之间保持已登录', '維持您的登入狀態，使您在不同頁面之間保持已登入', 'お客様のログイン状態を維持し、ページ遷移後もログインを継続', '로그인 상태를 유지하여 페이지 이동 시에도 로그인이 유지되도록 합니다', 'Maintaining your sign-in state so you remain logged in across pages')}
                 </li>
                 <li>
-                  <strong>{t('安全Cookie', '安全Cookie', 'セキュリティCookie', '보안 쿠키', 'Security Cookies')}</strong>：
-                  {t('防止跨站请求伪造（CSRF）攻击', '防止跨站請求偽造（CSRF）攻擊', 'クロスサイトリクエストフォージェリ（CSRF）攻撃を防止', '사이트 간 요청 위조(CSRF) 공격 방지', 'Preventing Cross-Site Request Forgery (CSRF) attacks')}
+                  <strong>{t('安全 Cookie', '安全 Cookie', 'セキュリティ Cookie', '보안 쿠키', 'Security Cookies')}</strong>：
+                  {t('防止跨站请求伪造（CSRF）以及常见的 Web 攻击', '防止跨站請求偽造（CSRF）以及常見的 Web 攻擊', 'CSRF を含む一般的な Web 攻撃の防止', 'CSRF 및 일반적인 웹 공격 방지', 'Preventing Cross-Site Request Forgery (CSRF) and other common web attacks')}
                 </li>
                 <li>
-                  <strong>{t('语言偏好', '語言偏好', '言語設定', '언어 설정', 'Language Preferences')}</strong>：
-                  {t('记住您选择的语言设置', '記住您選擇的語言設置', '選択された言語設定を記憶', '선택한 언어 설정을 기억', 'Remembering your chosen language settings')}
+                  <strong>{t('语言偏好', '語言偏好', '言語設定', '언어 설정', 'Language Preference')}</strong>：
+                  {t('记住您选择的语言，使您下次访问时自动使用同一种语言', '記住您選擇的語言，使您下次訪問時自動使用同一種語言', '選択された言語を記憶し、次回訪問時に同じ言語が自動的に使用されるようにします', '선택한 언어를 기억하여 다음 방문 시 같은 언어가 자동으로 사용되도록 합니다', 'Remembering your chosen language so the next visit is in the same language')}
                 </li>
                 <li>
-                  <strong>{t('负载均衡', '負載均衡', '負荷分散', '로드 밸런싱', 'Load Balancing')}</strong>：
-                  {t('确保请求被正确路由到服务器', '確保請求被正確路由到服務器', 'リクエストが正しくサーバーにルーティングされることを確保', '요청이 서버로 올바르게 라우팅되도록 보장', 'Ensuring requests are properly routed to servers')}
+                  <strong>{t('负载均衡', '負載均衡', 'ロードバランシング', '로드 밸런싱', 'Load Balancing')}</strong>：
+                  {t('将请求正确路由到合适的服务器节点', '將請求正確路由到合適的伺服器節點', 'リクエストを適切なサーバーノードへ正しくルーティング', '요청을 적합한 서버 노드로 올바르게 라우팅', 'Routing requests to the appropriate server node')}
                 </li>
               </ul>
 
               <h3 className="text-xl font-semibold mb-3">
-                {t('2.2 性能Cookie', '2.2 性能Cookie', '2.2 パフォーマンスCookie', '2.2 성능 쿠키', '2.2 Performance Cookies')}
+                {t('2.2 偏好 Cookie', '2.2 偏好 Cookie', '2.2 設定 Cookie', '2.2 환경설정 쿠키', '2.2 Preference Cookies')}
               </h3>
               <p className="mb-4">
-                {t('这些Cookie帮助我们了解网站的使用情况并改进性能：', '這些Cookie幫助我們瞭解網站的使用情況並改進性能：', 'これらのCookieはウェブサイトの利用状況を把握し、パフォーマンスを改善するのに役立ちます：', '이 쿠키는 웹사이트 사용 현황 파악 및 성능 개선에 도움이 됩니다:', 'These cookies help us understand website usage and improve performance:')}
+                {t('这些 Cookie 记住您的偏好设置，以提供更个性化的体验：', '這些 Cookie 記住您的偏好設定，以提供更個性化的體驗：', 'これらの Cookie はお客様の設定を記憶し、よりパーソナライズされた体験を提供します：', '이 쿠키는 사용자의 환경설정을 기억하여 보다 개인화된 경험을 제공합니다:', 'These cookies remember your preferences to provide a more personalized experience:')}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>
-                  <strong>{t('分析Cookie', '分析Cookie', '分析Cookie', '분석 쿠키', 'Analytics Cookies')}</strong>：
-                  {t('收集匿名的使用统计信息', '收集匿名的使用統計信息', '匿名の利用統計情報を収集', '익명의 사용 통계 정보 수집', 'Collecting anonymous usage statistics')}
+                  <strong>{t('界面偏好', '介面偏好', 'インターフェース設定', '인터페이스 환경설정', 'Interface Preferences')}</strong>：
+                  {t('主题（深色/浅色）、语言区域、字体大小等界面设置', '主題（深色/淺色）、語言區域、字體大小等介面設定', 'テーマ（ダーク/ライト）、言語地域、フォントサイズなどのインターフェース設定', '테마(다크/라이트), 언어 지역, 글꼴 크기 등 인터페이스 설정', 'Theme (dark/light), locale, font size, and other interface settings')}
+                </li>
+                <li>
+                  <strong>{t('视图偏好', '視圖偏好', '表示設定', '표시 환경설정', 'View Preferences')}</strong>：
+                  {t('列表分页大小、默认排序方式、是否折叠侧边栏等', '列表分頁大小、預設排序方式、是否摺疊側邊欄等', 'リストのページサイズ、デフォルトの並び順、サイドバーの折りたたみ状態など', '목록 페이지 크기, 기본 정렬 방식, 사이드바 접힘 여부 등', 'List page size, default sort order, sidebar collapsed state, etc.')}
+                </li>
+                <li>
+                  <strong>{t('表单草稿', '表單草稿', 'フォームの下書き', '양식 임시 저장', 'Form Draft')}</strong>：
+                  {t('临时保存未提交的表单内容，避免意外丢失', '臨時保存未提交的表單內容，避免意外丟失', '送信前のフォーム内容を一時保存し、偶発的な損失を防止', '제출하지 않은 양식 내용을 임시 저장하여 실수로 인한 손실을 방지합니다', 'Temporarily saving unsubmitted form content to prevent accidental loss')}
+                </li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-3">
+                {t('2.3 统计 Cookie', '2.3 統計 Cookie', '2.3 統計 Cookie', '2.3 통계 쿠키', '2.3 Statistics Cookies')}
+              </h3>
+              <p className="mb-4">
+                {t('这些 Cookie 帮助我们了解站点的使用情况（通常匿名），以便持续改进：', '這些 Cookie 幫助我們瞭解站點的使用情況（通常匿名），以便持續改進：', 'これらの Cookie は、サイトの利用状況（通常は匿名）を把握し、継続的な改善に役立ちます：', '이 쿠키는 사이트의 이용 현황(보통 익명)을 파악하여 지속적인 개선에 도움이 됩니다:', 'These cookies help us understand how the site is used (typically anonymously) so we can keep improving it:')}
+              </p>
+              <ul className="list-disc list-inside mb-4 space-y-2">
+                <li>
+                  <strong>{t('访问统计', '訪問統計', 'アクセス統計', '접근 통계', 'Access Statistics')}</strong>：
+                  {t('记录访问量、页面浏览量、停留时间等汇总指标', '記錄訪問量、頁面瀏覽量、停留時間等匯總指標', 'アクセス数、ページビュー、滞在時間などの集計指標を記録', '방문 수, 페이지뷰, 체류 시간 등 집계 지표를 기록', 'Recording aggregate metrics such as visit counts, page views, and time on page')}
                 </li>
                 <li>
                   <strong>{t('性能监控', '性能監控', 'パフォーマンス監視', '성능 모니터링', 'Performance Monitoring')}</strong>：
-                  {t('监控页面加载时间和错误', '監控頁面加載時間和錯誤', 'ページ読み込み時間とエラーを監視', '페이지 로딩 시간 및 오류 모니터링', 'Monitoring page load times and errors')}
+                  {t('监控页面加载时间、错误率等性能指标', '監控頁面加載時間、錯誤率等性能指標', 'ページ読み込み時間、エラー率などのパフォーマンス指標を監視', '페이지 로딩 시간, 오류율 등 성능 지표를 모니터링', 'Monitoring page load times, error rates, and other performance metrics')}
                 </li>
                 <li>
-                  <strong>{t('功能使用', '功能使用', '機能利用', '기능 사용', 'Feature Usage')}</strong>：
-                  {t('了解哪些功能最受欢迎', '瞭解哪些功能最受歡迎', 'どの機能が最も人気があるかを把握', '가장 인기 있는 기능 파악', 'Understanding which features are most popular')}
+                  <strong>{t('功能使用情况', '功能使用情況', '機能の利用状況', '기능 이용 현황', 'Feature Usage')}</strong>：
+                  {t('了解哪些功能更受欢迎，以便优化迭代', '瞭解哪些功能更受歡迎，以便優化迭代', 'どの機能がより多く利用されているかを把握し、改善に活かす', '어떤 기능이 더 많이 사용되는지 파악하여 개선에 활용', 'Understanding which features are used more, to inform iteration priorities')}
                 </li>
               </ul>
 
               <h3 className="text-xl font-semibold mb-3">
-                {t('2.3 功能Cookie', '2.3 功能Cookie', '2.3 機能Cookie', '2.3 기능 쿠키', '2.3 Functional Cookies')}
+                {t('2.4 第三方 Cookie', '2.4 第三方 Cookie', '2.4 第三者 Cookie', '2.4 제3자 쿠키', '2.4 Third-Party Cookies')}
               </h3>
               <p className="mb-4">
-                {t('这些Cookie增强网站功能并提供个性化体验：', '這些Cookie增強網站功能並提供個性化體驗：', 'これらのCookieはウェブサイト機能を強化し、パーソナライズされた体験を提供します：', '이 쿠키는 웹사이트 기능을 강화하고 개인화된 경험을 제공합니다:', 'These cookies enhance website functionality and provide personalized experiences:')}
-              </p>
-              <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>
-                  <strong>{t('用户偏好', '用戶偏好', 'ユーザー設定', '사용자 환경설정', 'User Preferences')}</strong>：
-                  {t('记住您的主题、字体大小等设置', '記住您的主題、字體大小等設置', 'テーマ、フォントサイズなどの設定を記憶', '테마, 글꼴 크기 등 설정 기억', 'Remembering your theme, font size, and other settings')}
-                </li>
-                <li>
-                  <strong>{t('个性化内容', '個性化內容', 'パーソナライズされたコンテンツ', '맞춤형 콘텐츠', 'Personalized Content')}</strong>：
-                  {t('根据您的使用历史提供相关建议', '根據您的使用歷史提供相關建議', '利用履歴に基づいて関連する提案を提供', '이용 이력에 따라 관련 제안 제공', 'Providing relevant suggestions based on your usage history')}
-                </li>
-                <li>
-                  <strong>{t('表单数据', '表單數據', 'フォームデータ', '양식 데이터', 'Form Data')}</strong>：
-                  {t('暂时保存表单输入以防意外丢失', '暫時保存表單輸入以防意外丟失', 'フォーム入力を一時的に保存し、偶発的な損失を防止', '실수로 인한 손실을 방지하기 위해 양식 입력을 일시적으로 저장', 'Temporarily saving form inputs to prevent accidental loss')}
-                </li>
-                <li>
-                  <strong>{t('AI服务偏好', 'AI服務偏好', 'AIサービス設定', 'AI 서비스 설정', 'AI Service Preferences')}</strong>：
-                  {t('记住您常用的AI模型、参数设置和生成历史', '記住您常用的AI模型、參數設置和生成歷史', 'よく使うAIモデル、パラメータ設定、生成履歴を記憶', '자주 사용하는 AI 모델, 매개변수 설정 및 생성 이력 기억', 'Remembering your frequently used AI models, parameter settings, and generation history')}
-                </li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mb-3">
-                {t('2.4 第三方Cookie', '2.4 第三方Cookie', '2.4 第三者Cookie', '2.4 제3자 쿠키', '2.4 Third-Party Cookies')}
-              </h3>
-              <p className="mb-4">
-                {t('我们可能使用第三方服务提供商的Cookie：', '我們可能使用第三方服務提供商的Cookie：', '第三者サービス提供者のCookieを使用する場合があります：', '당사는 제3자 서비스 제공업체의 쿠키를 사용할 수 있습니다:', 'We may use cookies from third-party service providers:')}
+                {t('我们可能使用第三方服务商提供的 Cookie 来完成特定功能：', '我們可能使用第三方服務商提供的 Cookie 來完成特定功能：', '特定の機能を実現するために、第三者サービス提供者の Cookie を使用する場合があります：', '특정 기능을 구현하기 위해 제3자 서비스 제공업체의 쿠키를 사용할 수 있습니다:', 'We may use cookies from third-party providers to deliver specific functionality:')}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>
                   <strong>{t('支付处理', '支付處理', '決済処理', '결제 처리', 'Payment Processing')}</strong>：
-                  {t('安全处理支付交易', '安全處理支付交易', '決済トランザクションを安全に処理', '결제 거래를 안전하게 처리', 'Securely processing payment transactions')}
+                  {t('通过 Stripe 等支付服务商处理付款交易', '通過 Stripe 等支付服務商處理付款交易', 'Stripe などの決済サービス事業者を通じた決済処理', 'Stripe 등 결제 서비스 제공업체를 통한 결제 처리', 'Processing payment transactions through providers such as Stripe')}
                 </li>
                 <li>
-                  <strong>{t('客户支持', '客戶支持', 'カスタマーサポート', '고객 지원', 'Customer Support')}</strong>：
-                  {t('提供在线客服和帮助功能', '提供在線客服和幫助功能', 'オンラインカスタマーサービスとヘルプ機能を提供', '온라인 고객 서비스 및 도움말 기능 제공', 'Providing online customer service and help features')}
+                  <strong>{t('邮件投递与统计', '郵件投遞與統計', 'メール配信と統計', '이메일 전송 및 통계', 'Email Delivery and Stats')}</strong>：
+                  {t('用于事务性邮件（验证、密码重置、订阅提醒等）的投递与回执统计', '用於事務性郵件（驗證、密碼重設、訂閱提醒等）的投遞與回執統計', 'トランザクションメール（確認、パスワードリセット、サブスクリプション通知など）の配信および配信統計', '트랜잭션 메일(확인, 비밀번호 재설정, 구독 알림 등) 전송 및 수신 통계', 'Delivering transactional emails (verification, password reset, subscription reminders, etc.) and collecting delivery statistics')}
                 </li>
                 <li>
-                  <strong>{t('内容分发', '內容分發', 'コンテンツ配信', '콘텐츠 배포', 'Content Delivery')}</strong>：
-                  {t('优化内容加载速度', '優化內容加載速度', 'コンテンツ読み込み速度を最適化', '콘텐츠 로딩 속도 최적화', 'Optimizing content loading speed')}
+                  <strong>{t('站点的分析与监控', '站點的分析與監控', 'サイトの分析と監視', '사이트 분석 및 모니터링', 'Site Analytics and Monitoring')}</strong>：
+                  {t('通过分析服务了解访问量、来源、用户行为等聚合指标', '通過分析服務瞭解訪問量、來源、用戶行為等聚合指標', '分析サービスを通じたアクセス数、流入元、ユーザー行動などの集計指標の把握', '분석 서비스를 통한 방문 수, 유입 경로, 사용자 행동 등 집계 지표 파악', 'Aggregate metrics such as traffic, sources, and user behavior via analytics services')}
                 </li>
                 <li>
-                  <strong>{t('AI模型提供商', 'AI模型提供商', 'AIモデル提供者', 'AI 모델 제공업체', 'AI Model Providers')}</strong>：
-                  {t('第三方AI服务（如OpenAI、Replicate等）可能使用Cookie来提供服务', '第三方AI服務（如OpenAI、Replicate等）可能使用Cookie來提供服務', '第三者AIサービス（OpenAI、Replicateなど）がサービス提供のためにCookieを使用する場合があります', '제3자 AI 서비스(예: OpenAI, Replicate 등)는 서비스 제공을 위해 쿠키를 사용할 수 있습니다', 'Third-party AI services (such as OpenAI, Replicate, etc.) may use cookies to provide services')}
+                  <strong>{t('推广返利追踪', '推廣返利追蹤', '推薦・アフィリエイト追跡', '추천 및 제휴 추적', 'Referral and Affiliate Tracking')}</strong>：
+                  {t('记录推广链接来源，以便正确归因并结算推广佣金', '記錄推廣連結來源，以便正確歸因並結算推廣佣金', 'アフィリエイトリンクの参照元を記録し、正しく帰属してコミッションを精算するため', '제휴 링크의 유입 경로를 기록하여 올바르게 귀속하고 커미션을 정산하기 위해', 'Recording the source of referral links so commissions can be correctly attributed and settled')}
                 </li>
                 <li>
-                  <strong>{t('推广追踪', '推廣追蹤', 'アフィリエイト追跡', '제휴 추적', 'Affiliate Tracking')}</strong>：
-                  {t('记录推广来源以支持联盟营销计划', '記錄推廣來源以支持聯盟營銷計劃', 'アフィリエイトマーケティングプログラムを支援するreferrerを記録', '제휴 마케팅 프로그램을 지원하기 위해 추천 경로를 기록', 'Recording referral sources to support affiliate marketing programs')}
+                  <strong>{t('CDN 与对象存储', 'CDN 與對象存儲', 'CDN とオブジェクトストレージ', 'CDN 및 객체 스토리지', 'CDN and Object Storage')}</strong>：
+                  {t('通过内容分发网络加速静态资源加载', '通過內容分發網路加速靜態資源加載', 'コンテンツデリバリーネットワークによる静的リソースの配信高速化', '콘텐츠 전송 네트워크를 통한 정적 리소스 로딩 가속', 'Accelerating static-asset delivery via content delivery networks')}
                 </li>
               </ul>
             </section>
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">
-                {t('3. Cookie的用途', '3. Cookie的用途', '3. Cookieの目的', '3. 쿠키의 용도', '3. Cookie Purposes')}
+                {t('3. Cookie 的保留期限', '3. Cookie 的保留期限', '3. Cookie の保持期間', '3. 쿠키 보존 기간', '3. Cookie Retention')}
               </h2>
               <p className="mb-4">
-                {t('我们使用Cookie来实现以下目标：', '我們使用Cookie來實現以下目標：', '次の目標を達成するためにCookieを使用します：', '당사는 다음의 목표를 달성하기 위해 쿠키를 사용합니다:', 'We use cookies to achieve the following goals:')}
+                {t('不同类型的 Cookie 具有不同的保留期限：', '不同類型的 Cookie 具有不同的保留期限：', 'Cookie の種類により保持期間は異なります：', '쿠키 유형에 따라 보존 기간이 다릅니다:', 'Different cookies have different retention periods:')}
               </p>
-
-              <h3 className="text-xl font-semibold mb-3">
-                {t('3.1 用户体验优化', '3.1 用戶體驗優化', '3.1 ユーザー体験の最適化', '3.1 사용자 경험 최적화', '3.1 User Experience Optimization')}
-              </h3>
               <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>{t('提供流畅的导航体验', '提供流暢的導航體驗', 'スムーズなナビゲーション体験を提供', '원활한 탐색 경험 제공', 'Providing smooth navigation experience')}</li>
-                <li>{t('记住您的偏好设置', '記住您的偏好設置', 'お客様の設定を記憶', '사용자의 환경설정을 기억', 'Remembering your preference settings')}</li>
-                <li>{t('减少重复输入信息', '減少重複輸入信息', '繰り返し情報入力を削減', '반복적인 정보 입력 감소', 'Reducing repetitive information input')}</li>
-                <li>{t('提供个性化推荐', '提供個性化推薦', 'パーソナライズされたおすすめを提供', '맞춤형 추천 제공', 'Providing personalized recommendations')}</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mb-3">
-                {t('3.2 安全保护', '3.2 安全保護', '3.2 セキュリティ保護', '3.2 보안 보호', '3.2 Security Protection')}
-              </h3>
-              <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>{t('防止未授权访问', '防止未授權訪問', '不正アクセスを防止', '무단 액세스 방지', 'Preventing unauthorized access')}</li>
-                <li>{t('检测和防止恶意活动', '檢測和防止惡意活動', '悪意のある活動を検知および防止', '악의적인 활동 탐지 및 방지', 'Detecting and preventing malicious activities')}</li>
-                <li>{t('保护账户安全', '保護賬戶安全', 'アカウントセキュリティを保護', '계정 보안 보호', 'Protecting account security')}</li>
-                <li>{t('验证用户身份', '驗證用戶身份', 'ユーザーIDを確認', '사용자 신원 확인', 'Verifying user identity')}</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold mb-3">
-                {t('3.3 服务改进', '3.3 服務改進', '3.3 サービス改善', '3.3 서비스 개선', '3.3 Service Improvement')}
-              </h3>
-              <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>{t('分析用户行为模式', '分析用戶行為模式', 'ユーザーの行動パターンを分析', '사용자 행동 패턴 분석', 'Analyzing user behavior patterns')}</li>
-                <li>{t('识别和修复技术问题', '識別和修復技術問題', '技術的問題を特定および修正', '기술적 문제 식별 및 수정', 'Identifying and fixing technical issues')}</li>
-                <li>{t('优化网站性能', '優化網站性能', 'ウェブサイトのパフォーマンスを最適化', '웹사이트 성능 최적화', 'Optimizing website performance')}</li>
-                <li>{t('开发新功能', '開發新功能', '新機能を開発', '새로운 기능 개발', 'Developing new features')}</li>
+                <li>
+                  <strong>{t('会话 Cookie', '會話 Cookie', 'セッション Cookie', '세션 쿠키', 'Session Cookies')}</strong>：
+                  {t('浏览器关闭时自动删除', '瀏覽器關閉時自動刪除', 'ブラウザーを閉じると自動的に削除されます', '브라우저를 닫으면 자동으로 삭제됩니다', 'Automatically deleted when the browser is closed')}
+                </li>
+                <li>
+                  <strong>{t('偏好 Cookie', '偏好 Cookie', '設定 Cookie', '환경설정 쿠키', 'Preference Cookies')}</strong>：
+                  {t('通常保留 30 天到 1 年', '通常保留 30 天到 1 年', '通常 30 日から 1 年保持されます', '보통 30일에서 1년 동안 보존됩니다', 'Typically retained from 30 days up to 1 year')}
+                </li>
+                <li>
+                  <strong>{t('统计 Cookie', '統計 Cookie', '統計 Cookie', '통계 쿠키', 'Statistics Cookies')}</strong>：
+                  {t('通常保留 3 个月到 2 年', '通常保留 3 個月到 2 年', '通常 3 か月から 2 年保持されます', '보통 3개월에서 2년 동안 보존됩니다', 'Typically retained from 3 months up to 2 years')}
+                </li>
               </ul>
             </section>
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">
-                {t('4. Cookie管理', '4. Cookie管理', '4. Cookie管理', '4. 쿠키 관리', '4. Cookie Management')}
+                {t('4. 如何管理 Cookie', '4. 如何管理 Cookie', '4. Cookie の管理方法', '4. 쿠키 관리 방법', '4. How to Manage Cookies')}
               </h2>
-              <p className="mb-4">
-                {t('您可以通过以下方式管理Cookie：', '您可以通過以下方式管理Cookie：', '次の方法でCookieを管理できます：', '다음 방법으로 쿠키를 관리할 수 있습니다:', 'You can manage cookies in the following ways:')}
-              </p>
 
               <h3 className="text-xl font-semibold mb-3">
                 {t('4.1 浏览器设置', '4.1 瀏覽器設置', '4.1 ブラウザー設定', '4.1 브라우저 설정', '4.1 Browser Settings')}
               </h3>
               <p className="mb-4">
-                {t('大多数浏览器允许您：', '大多數瀏覽器允許您：', 'ほとんどのブラウザーで次のことができます：', '대부분의 브라우저에서 다음 작업을 수행할 수 있습니다:', 'Most browsers allow you to:')}
+                {t('大多数浏览器允许您查看、删除或屏蔽 Cookie。常见操作包括：', '大多數瀏覽器允許您查看、刪除或封鎖 Cookie。常見操作包括：', 'ほとんどのブラウザーでは、Cookie の確認、削除、ブロックが可能です。一般的な操作は次の通りです：', '대부분의 브라우저에서 쿠키를 확인, 삭제 또는 차단할 수 있습니다. 일반적인 작업은 다음과 같습니다:', 'Most browsers let you view, delete, or block cookies. Typical options include:')}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>{t('查看已存储的Cookie', '查看已存儲的Cookie', '保存されたCookieを確認', '저장된 쿠키 확인', 'View stored cookies')}</li>
-                <li>{t('删除特定或所有Cookie', '刪除特定或所有Cookie', '特定のCookieまたはすべてのCookieを削除', '특정 또는 모든 쿠키 삭제', 'Delete specific or all cookies')}</li>
-                <li>{t('阻止Cookie的设置', '阻止Cookie的設置', 'Cookie設定をブロック', '쿠키 설정 차단', 'Block cookie settings')}</li>
-                <li>{t('设置Cookie到期时间', '設置Cookie到期時間', 'Cookieの有効期限を設定', '쿠키 만료 시간 설정', 'Set cookie expiration time')}</li>
+                <li>{t('查看设备上已存储的所有 Cookie', '查看設備上已存儲的所有 Cookie', 'デバイスに保存されているすべての Cookie を確認する', '장치에 저장된 모든 쿠키 확인', 'View all cookies stored on your device')}</li>
+                <li>{t('删除特定 Cookie 或全部 Cookie', '刪除特定 Cookie 或全部 Cookie', '特定の Cookie またはすべての Cookie を削除する', '특정 쿠키 또는 모든 쿠키 삭제', 'Delete specific cookies or all cookies')}</li>
+                <li>{t('阻止 Cookie 的设置或限制其使用范围', '阻止 Cookie 的設置或限制其使用範圍', 'Cookie の設定をブロックまたは使用範囲を制限する', '쿠키 설정을 차단하거나 사용 범위를 제한', 'Block cookie settings or restrict their scope')}</li>
+                <li>{t('设置 Cookie 到期时间', '設置 Cookie 到期時間', 'Cookie の有効期限を設定する', '쿠키 만료 시간 설정', 'Set cookie expiration')}</li>
               </ul>
-
-              <h3 className="text-xl font-semibold mb-3">
-                {t('4.2 Cookie保留期', '4.2 Cookie保留期', '4.2 Cookieの保持期間', '4.2 쿠키 보존 기간', '4.2 Cookie Retention Period')}
-              </h3>
               <p className="mb-4">
-                {t('不同类型的Cookie有不同的保留期：', '不同類型的Cookie有不同的保留期：', 'Cookieの種類により保持期間が異なります：', '쿠키 유형에 따라 보존 기간이 다릅니다:', 'Different types of cookies have different retention periods:')}
+                {t('请注意：禁用必要 Cookie 可能导致站点核心功能（例如登录、订阅）无法正常使用。', '請注意：禁用必要 Cookie 可能導致站點核心功能（例如登入、訂閱）無法正常使用。', 'ご注意：必須 Cookie を無効にすると、サイトのコア機能（ログイン、サブスクリプションなど）が正常に動作しなくなる可能性があります。', '참고: 필수 쿠키를 비활성화하면 사이트의 핵심 기능(로그인, 구독 등)이 정상적으로 작동하지 않을 수 있습니다.', 'Note: disabling strictly necessary cookies may prevent core site functionality (such as sign-in and subscriptions) from working properly.')}
               </p>
-              <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>
-                  <strong>{t('会话Cookie', '會話Cookie', 'セッションCookie', '세션 쿠키', 'Session Cookies')}</strong>：
-                  {t('浏览器关闭时自动删除', '瀏覽器關閉時自動刪除', 'ブラウザー終了時に自動的に削除', '브라우저를 닫을 때 자동으로 삭제', 'Automatically deleted when browser is closed')}
-                </li>
-                <li>
-                  <strong>{t('持久Cookie', '持久Cookie', '永続Cookie', '지속 쿠키', 'Persistent Cookies')}</strong>：
-                  {t('根据设定的到期日期删除，最长不超过2年', '根據設定的到期日期刪除，最長不超過2年', '設定された有効期限に従って削除（最長2年）', '설정된 만료일에 따라 삭제되며, 최대 2년', 'Deleted based on set expiration date, maximum 2 years')}
-                </li>
-                <li>
-                  <strong>{t('功能Cookie', '功能Cookie', '機能Cookie', '기능 쿠키', 'Functional Cookies')}</strong>：
-                  {t('通常保留30天到1年', '通常保留30天到1年', '通常30日から1年保持', '보통 30일에서 1년 동안 보존', 'Usually retained for 30 days to 1 year')}
-                </li>
-              </ul>
 
               <h3 className="text-xl font-semibold mb-3">
-                {t('4.3 撤回同意', '4.3 撤回同意', '4.3 同意の撤回', '4.3 동의 철회', '4.3 Withdrawing Consent')}
+                {t('4.2 撤回同意', '4.2 撤回同意', '4.2 同意の撤回', '4.2 동의 철회', '4.2 Withdrawing Consent')}
               </h3>
               <p className="mb-4">
                 {t(
-                  '您可以随时撤回对非必要Cookie的同意。请注意，这可能会影响某些网站功能的正常使用。',
-                  '您可以隨時撤回對非必要Cookie的同意。請注意，這可能會影響某些網站功能的正常使用。',
-                  '不要なCookieへの同意はいつでも撤回できます。これにより一部のウェブサイト機能が正常使用できなくなる可能性があることにご注意ください。',
-                  '필수가 아닌 쿠키에 대한 동의는 언제든지 철회할 수 있습니다. 이로 인해 일부 웹사이트 기능의 정상적인 사용이 영향을 받을 수 있습니다.',
-                  'You can withdraw consent for non-essential cookies at any time. Please note that this may affect the normal use of certain website features.'
+                  '您可以随时撤回对非必要 Cookie 的同意。请通过本政策末尾的联系方式告知我们，或在下次访问站点时通过 Cookie 偏好设置重新选择。',
+                  '您可以隨時撤回對非必要 Cookie 的同意。請通過本政策末尾的聯繫方式告知我們，或在下次訪問站點時通過 Cookie 偏好設定重新選擇。',
+                  '不要な Cookie への同意はいつでも撤回できます。本ポリシー末尾のお問い合わせ先にご連絡いただくか、次回サイト訪問時に Cookie 設定で再選択してください。',
+                  '필수가 아닌 쿠키에 대한 동의는 언제든지 철회할 수 있습니다. 본 정책 하단의 연락처로 알려주시거나, 다음 방문 시 쿠키 환경설정에서 다시 선택하실 수 있습니다.',
+                  'You can withdraw consent for non-essential cookies at any time. Please notify us via the contact details at the end of this policy, or adjust your cookie preferences the next time you visit the site.'
                 )}
               </p>
             </section>
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">
-                {t('5. 移动应用中的Cookie', '5. 移動應用中的Cookie', '5. モバイルアプリのCookie', '5. 모바일 앱의 쿠키', '5. Cookies in Mobile Apps')}
+                {t('5. 政策的变更', '5. 政策的變更', '5. ポリシーの変更', '5. 정책의 변경', '5. Changes to This Policy')}
               </h2>
               <p className="mb-4">
-                {t(
-                  '在我们的移动应用中，我们使用类似Cookie的技术来实现相同的功能。这些技术包括：',
-                  '在我們的移動應用中，我們使用類似Cookie的技術來實現相同的功能。這些技術包括：',
-                  'モバイルアプリでは、Cookie類似技術を利用して同等の機能を実現しています。これらの技術には以下が含まれます：',
-                  '당사의 모바일 앱에서는 쿠키와 유사한 기술을 사용하여 동일한 기능을 구현합니다. 이러한 기술은 다음과 같습니다:',
-                  'In our mobile apps, we use cookie-like technologies to achieve the same functionality. These technologies include:'
-                )}
+                {t('我们可能根据业务或法律变化不时更新本 Cookie 政策。重大变更将通过站点公告或邮件等方式通知。继续使用服务即视为您接受更新后的政策。', '我們可能根據業務或法律變化不時更新本 Cookie 政策。重大變更將通過站點公告或郵件等方式通知。繼續使用服務即視為您接受更新後的政策。', '当社は、業務上または法令上の変更にともない、本 Cookie ポリシーを随時更新する場合があります。重要な変更については、サイト通知やメールなどでお知らせします。サービスの継続利用は、更新後のポリシーに同意したものとみなされます。', '당사는 업무 또는 법률 변경에 따라 본 쿠키 정책을 수시로 업데이트할 수 있습니다. 중요한 변경은 사이트 공지 또는 이메일을 통해 알려 드리며, 서비스를 계속 이용하시면 업데이트된 정책에 동의하는 것으로 간주됩니다.', 'We may update this Cookie Policy from time to time to reflect changes in our operations or in the law. Material changes will be announced via site notice or email; continued use of the service indicates your acceptance of the updated policy.')}
               </p>
-              <ul className="list-disc list-inside mb-4 space-y-2">
-                <li>
-                  <strong>{t('本地存储', '本地存儲', 'ローカルストレージ', '로컬 스토리지', 'Local Storage')}</strong>：
-                  {t('在设备上存储偏好设置和配置信息', '在設備上存儲偏好設置和配置信息', 'デバイスに設定と構成情報を保存', '기기에 환경설정 및 구성 정보를 저장', 'Storing preferences and configuration information on the device')}
-                </li>
-                <li>
-                  <strong>{t('设备标识符', '設備標識符', 'デバイス識別子', '기기 식별자', 'Device Identifiers')}</strong>：
-                  {t('用于分析和个性化服务', '用於分析和個性化服務', '分析およびパーソナライズサービスに使用', '분석 및 개인화된 서비스에 사용', 'Used for analytics and personalized services')}
-                </li>
-                <li>
-                  <strong>{t('推送通知令牌', '推送通知令牌', 'プッシュ通知トークン', '푸시 알림 토큰', 'Push Notification Tokens')}</strong>：
-                  {t('发送相关通知和更新', '發送相關通知和更新', '関連する通知および更新を送信', '관련 알림 및 업데이트 발송', 'Sending relevant notifications and updates')}
-                </li>
-              </ul>
             </section>
 
             <section className="mb-8">
@@ -289,13 +228,7 @@ export function CookieContent() {
                 {t('6. 联系我们', '6. 聯繫我們', '6. お問い合わせ', '6. 문의하기', '6. Contact Us')}
               </h2>
               <p className="mb-4">
-                {t(
-                  '如果您对我们的Cookie政策有任何疑问或需要帮助管理Cookie设置，请联系我们：',
-                  '如果您對我們的Cookie政策有任何疑問或需要幫助管理Cookie設置，請聯繫我們：',
-                  'Cookieポリシーに関するご質問がある場合、またはCookie設定の管理についてサポートが必要な場合は、当社までご連絡ください：',
-                  '당사의 쿠키 정책에 대해 궁금한 점이 있거나 쿠키 설정 관리에 도움이 필요하신 경우 당사에 문의하시기 바랍니다:',
-                  'If you have any questions about our Cookie Policy or need help managing cookie settings, please contact us:'
-                )}
+                {t('如果您对我们的 Cookie 政策有任何疑问，请通过以下方式联系我们：', '如果您對我們的 Cookie 政策有任何疑問，請通過以下方式聯繫我們：', '本 Cookie ポリシーに関してご質問がございましたら、以下の方法でお問い合わせください：', '본 쿠키 정책에 대해 궁금한 점이 있으시면 다음의 방법으로 당사에 문의하시기 바랍니다:', 'If you have any questions about this Cookie Policy, please contact us:')}
               </p>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 <li>{t('邮箱：app@itusi.cn', '郵箱：app@itusi.cn', 'メール：app@itusi.cn', '이메일: app@itusi.cn', 'Email: app@itusi.cn')}</li>

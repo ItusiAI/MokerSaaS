@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = () => {
 
           {/* Brand & Mission (4 cols on lg) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href={`/${locale}`} className="flex items-center gap-2">
               <div className="relative w-8 h-8">
                 <Image
                   src="/logo.png"
