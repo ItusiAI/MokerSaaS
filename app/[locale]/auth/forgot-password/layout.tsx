@@ -8,19 +8,16 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  
+
   const t = await getTranslations({ locale, namespace: 'forgot_password' })
-  
+
   return {
     title: t('meta_title'),
     description: t('meta_description'),
+    robots: { index: false },
   }
 }
 
-export default function ForgotPasswordLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export default function ForgotPasswordLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 } 

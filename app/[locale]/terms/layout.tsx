@@ -2,9 +2,32 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-interface TermsLayoutProps {
-  children: React.ReactNode
+const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
+const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
+
+function resolveLocale(locale: string) {
+  if (locale === 'zh-CN') return 'zh_CN'
+  if (locale === 'zh-TW') return 'zh_TW'
+  if (locale === 'ja') return 'ja_JP'
+  if (locale === 'ko') return 'ko_KR'
+  return 'en_US'
+}
+
+export function generateHtmlAttributes({
+  params,
+}: {
   params: Promise<{ locale: string }>
+}) {
+  return params.then(async ({ locale }) => {
+    const localeMap: Record<string, string> = {
+      'en': 'en-US',
+      'zh-CN': 'zh-CN',
+      'zh-TW': 'zh-TW',
+      'ja': 'ja-JP',
+      'ko': 'ko-KR',
+    }
+    return { lang: localeMap[locale] ?? locale }
+  })
 }
 
 export async function generateMetadata({
@@ -13,27 +36,109 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  // 验证 locale 是否有效
-  const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
   if (!locales.includes(locale)) {
     notFound()
   }
 
   const t = await getTranslations({ locale, namespace: 'metadata.terms' })
-  
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+
+  const localizedBase = (loc: string): string =>
+    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+
+  const currentUrl = `${localizedBase(locale)}/terms`
+  const ogImageUrl = `${baseUrl}/images/og.png`
+
   return {
     title: t('title'),
-    description: t('description')
+    description: t('description'),
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: currentUrl,
+      languages: {
+        'x-default': `${baseUrl}/terms`,
+        'en': `${baseUrl}/terms`,
+        'zh-CN': `${baseUrl}/zh-CN/terms`,
+        'zh-TW': `${baseUrl}/zh-TW/terms`,
+        'ja': `${baseUrl}/ja/terms`,
+        'ko': `${baseUrl}/ko/terms`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: resolveLocale(locale),
+      url: currentUrl,
+      title: t('title'),
+      description: t('description'),
+      siteName: 'MokerSaaS',
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: 'MokerSaaS' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: [ogImageUrl],
+    },
   }
 }
 
-export default async function TermsLayout({ children, params }: TermsLayoutProps) {
+export default async function TermsLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
   const { locale } = await params
-  // 验证 locale 是否有效
-  const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
   if (!locales.includes(locale)) {
     notFound()
   }
 
-  return children
-} 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+
+  const t = await getTranslations({ locale, namespace: 'metadata.terms' })
+
+  const languages: Record<string, string> = {
+    'x-default': `${baseUrl}/terms`,
+    'en': `${baseUrl}/terms`,
+    'zh-CN': `${baseUrl}/zh-CN/terms`,
+    'zh-TW': `${baseUrl}/zh-TW/terms`,
+    'ja': `${baseUrl}/ja/terms`,
+    'ko': `${baseUrl}/ko/terms`,
+  }
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: t('title'),
+    url: `${baseUrl}/terms`,
+    description: t('description'),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
+  return (
+    <>
+      <head>
+        {Object.entries(languages).map(([lang, href]) => (
+          <link key={lang} rel="alternate" hrefLang={lang} href={href} />
+        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      {children}
+    </>
+  )
+}

@@ -7,6 +7,16 @@ import { SiteChrome } from '@/components/home/site-chrome'
 
 const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
+const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
+
+function resolveLocale(locale: string) {
+  if (locale === 'zh-CN') return 'zh_CN'
+  if (locale === 'zh-TW') return 'zh_TW'
+  if (locale === 'ja') return 'ja_JP'
+  if (locale === 'ko') return 'ko_KR'
+  return 'en_US'
+}
+
 export async function generateMetadata({
   params
 }: {
@@ -14,26 +24,27 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
 
-  // 验证locale是否有效
   if (!locales.includes(locale)) {
     notFound()
   }
 
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
-  // 获取基础URL（优先 SEO 专用 URL；向后兼容 NEXT_PUBLIC_APP_URL）
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL ||
     process.env.NEXT_PUBLIC_APP_URL ||
-    ''
-  // 默认 locale (en) 不带 URL 前缀
-  const localizedBase = (loc: string): string => loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
-  const currentUrl = baseUrl ? localizedBase(locale) : ''
+    DEFAULT_BASE_URL
+
+  const localizedBase = (loc: string): string =>
+    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+
+  const currentUrl = localizedBase(locale)
+  const ogImageUrl = `${baseUrl}/images/og.png`
 
   return {
     title: {
       default: t('title'),
-      template: `%s | ${t('shortTitle')}`
+      template: `%s | ${t('shortTitle')}`,
     },
     description: t('description'),
     keywords: t('keywords'),
@@ -52,39 +63,40 @@ export async function generateMetadata({
       shortcut: '/favicon.ico',
       apple: '/favicon.ico',
     },
-    metadataBase: baseUrl ? new URL(baseUrl) : null,
-    alternates: baseUrl ? {
+    metadataBase: new URL(baseUrl),
+    alternates: {
       canonical: currentUrl,
       languages: {
+        'x-default': baseUrl,
+        'en': baseUrl,
         'zh-CN': `${baseUrl}/zh-CN`,
         'zh-TW': `${baseUrl}/zh-TW`,
-        'en': baseUrl,
         'ja': `${baseUrl}/ja`,
         'ko': `${baseUrl}/ko`,
       },
-    } : undefined,
+    },
     openGraph: {
       type: 'website',
-      locale: locale === 'zh-CN' ? 'zh_CN' : locale === 'zh-TW' ? 'zh_TW' : locale === 'ja' ? 'ja_JP' : locale === 'ko' ? 'ko_KR' : 'en_US',
+      locale: resolveLocale(locale),
       url: currentUrl,
       title: t('title'),
       description: t('description'),
-      siteName: 'MokerSaaS - Open Source SaaS Template',
-      images: baseUrl ? [
+      siteName: 'MokerSaaS',
+      images: [
         {
-          url: `${baseUrl}/images/homehaibao.png`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: t('title'),
+          alt: 'MokerSaaS - Open Source SaaS Template',
         },
-      ] : [],
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
       creator: '@zyailive',
-      images: baseUrl ? [`${baseUrl}/images/homehaibao.png`] : [],
+      images: [ogImageUrl],
     },
     robots: {
       index: true,
@@ -102,8 +114,6 @@ export async function generateMetadata({
       yandex: process.env.YANDEX_VERIFICATION,
       yahoo: process.env.YAHOO_VERIFICATION,
     },
-    category: 'technology',
-    classification: 'Open Source SaaS Template, Web Development, Enterprise Software',
     other: {
       'theme-color': '#00F0FF',
       'apple-mobile-web-app-capable': 'yes',
@@ -113,6 +123,22 @@ export async function generateMetadata({
   }
 }
 
+export async function generateHtmlAttributes({
+  params
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const localeMap: Record<string, string> = {
+    'en': 'en-US',
+    'zh-CN': 'zh-CN',
+    'zh-TW': 'zh-TW',
+    'ja': 'ja-JP',
+    'ko': 'ko-KR',
+  }
+  return { lang: localeMap[locale] ?? locale }
+}
+
 export default async function LocaleLayout({
   children,
   params
@@ -120,22 +146,73 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: Promise<{ locale: string }>
 }) {
-  // 在Next.js 16中，params需要被await
   const { locale } = await params
-  
-  // 验证locale是否有效
+
   if (!locales.includes(locale)) {
     notFound()
   }
 
-  // 使用getMessages从i18n配置获取翻译，传递locale参数
   const messages = await getMessages({ locale })
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+
+  const languages: Record<string, string> = {
+    'x-default': baseUrl,
+    'en': baseUrl,
+    'zh-CN': `${baseUrl}/zh-CN`,
+    'zh-TW': `${baseUrl}/zh-TW`,
+    'ja': `${baseUrl}/ja`,
+    'ko': `${baseUrl}/ko`,
+  }
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MokerSaaS',
+    url: baseUrl,
+    description: t('description'),
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
-      <div data-locale={locale}>
-        <SiteChrome>{children}</SiteChrome>
-      </div>
-    </NextIntlClientProvider>
+    <>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {Object.entries(languages).map(([lang, href]) => (
+          <link
+            key={lang}
+            rel="alternate"
+            hrefLang={lang}
+            href={href}
+          />
+        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        <div data-locale={locale}>
+          <SiteChrome>{children}</SiteChrome>
+        </div>
+      </NextIntlClientProvider>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "MokerSaaS - SaaS를 빠르게 구축 · 몇 시간 만에 출시 · 무료 오픈소스",
-    "description": "번개 같은 속도로 SaaS를 구축하고, 몇 시간 만에 제품을 출시하세요. MokerSaaS는 인증, Stripe 결제, 다국어 i18n, SEO 최적화, 관리자 대시보드, 추천 및 제휴 시스템을 기본 제공하는 즉시 사용 가능한 엔터프라이즈급 SaaS 솔루션을 제공합니다. Next.js 최신 기술 스택을 기반으로 아이디어에서 수익까지의 시간을 획기적으로 단축합니다.",
+    "title": "오픈소스 SaaS 템플릿 - MokerSaaS · 몇 시간 만에 출시",
+    "description": "몇 시간 만에 SaaS 를 출시하세요. MokerSaaS 는 Next.js 16, Stripe 결제, 인증, 다국어 i18n, 관리자 대시보드, 추천 시스템 등을 기본 제공합니다. 영구 무료.",
     "shortTitle": "MokerSaaS - SaaS 빠른 구축",
     "keywords": "MokerSaaS, SaaS 빠른 구축, 오픈소스 SaaS, SaaS 템플릿, Next.js 템플릿, 무료 SaaS, TypeScript SaaS, Stripe 통합, i18n SaaS, 관리자 대시보드, 추천 시스템, 제휴 프로그램, 몇 시간 출시",
     "terms": {

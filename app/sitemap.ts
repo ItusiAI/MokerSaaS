@@ -16,7 +16,7 @@ import { MetadataRoute } from 'next'
  *   - 必须由 NEXT_PUBLIC_BASE_URL 注入(绝对 URL,例如 https://mokersaas.com)
  *   - 未设置时使用占位 https://example.com,避免输出相对路径;生产环境必须在 .env.local 中显式配置
  */
-const DEFAULT_BASE_URL = 'https://mokersaas.com'
+const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // 优先用 SEO 专用 URL；向后兼容 NEXT_PUBLIC_APP_URL
