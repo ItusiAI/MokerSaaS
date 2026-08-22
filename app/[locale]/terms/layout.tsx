@@ -115,11 +115,35 @@ export default async function TermsLayout({
 
   const messages = await getMessages({ locale })
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+
+  const t = await getTranslations({ locale, namespace: 'metadata.terms' })
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: t('title'),
+    url: `${baseUrl}/terms`,
+    description: t('description'),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   return (
     <>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>

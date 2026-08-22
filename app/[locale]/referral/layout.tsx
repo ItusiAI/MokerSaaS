@@ -143,11 +143,42 @@ export default async function ReferralLayout({
 
   const messages = await getMessages({ locale })
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    DEFAULT_BASE_URL
+
+  const t = await getTranslations({ locale, namespace: 'referral_page' })
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MokerSaaS - Referral Program',
+    url: `${baseUrl}/referral`,
+    description: t('subtitle'),
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
+
   return (
     <>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <NextIntlClientProvider messages={messages} locale={locale}>
         <div data-locale={locale}>
