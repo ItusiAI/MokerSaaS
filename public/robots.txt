@@ -1,8 +1,11 @@
 User-agent: *
 Allow: /
 
-# 允许所有搜索引擎访问
+# 显式允许所有主流爬虫
 User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 User-agent: Bingbot
@@ -20,6 +23,24 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 # 禁止访问的路径
 Disallow: /api/
 Disallow: /_next/
@@ -31,8 +52,6 @@ Disallow: /unauthorized/
 
 # 站点地图
 Sitemap: https://mokersaas.com/sitemap.xml
-Sitemap: https://mokersaas.com/sitemap-zh.xml
-Sitemap: https://mokersaas.com/sitemap-en.xml
 
 # 爬取延迟（毫秒）
 Crawl-delay: 1

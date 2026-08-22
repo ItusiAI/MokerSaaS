@@ -402,7 +402,7 @@
     },
     "home": {
       "brand": {
-        "name": "MokerSaaS 开源模板",
+        "name": "MokerSaaS",
         "description": "基于 Next.js 16、Neon Postgres 与 Stripe 打造的全栈商业化 SaaS 开发模版，助您快速搭建产品、打通订阅并开始获客变现。",
         "statusBadge": "系统与 API 运行正常"
       },
@@ -436,10 +436,15 @@
         "networkError": "网络错误，请检查连接后重试"
       },
       "bottomBar": {
-        "copyright": "© {year} MokerSaaS 开源模板. 基于 Next.js 16, Neon Postgres & Stripe 打造.",
+        "copyright": "© {year} MokerSaaS. 基于 Next.js 16, Neon Postgres & Stripe 打造.",
         "social": {
           "github": "GitHub 仓库",
           "twitter": "X / Twitter"
+        },
+        "legal": {
+          "terms": "服务条款",
+          "privacy": "隐私政策",
+          "cookies": "Cookie 政策"
         }
       }
     }

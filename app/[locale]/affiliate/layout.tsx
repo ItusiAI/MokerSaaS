@@ -10,8 +10,12 @@ export async function generateMetadata({
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'affiliate_page' })
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
-  const currentUrl = baseUrl ? `${baseUrl}/${locale}/affiliate` : ''
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    ''
+  const localizedBase = (loc: string): string => loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+  const currentUrl = baseUrl ? `${localizedBase(locale)}/affiliate` : ''
   const title = t('title')
   const description = t('subtitle')
   const keywords = t('keywords')
@@ -38,7 +42,7 @@ export async function generateMetadata({
           languages: {
             'zh-CN': `${baseUrl}/zh-CN/affiliate`,
             'zh-TW': `${baseUrl}/zh-TW/affiliate`,
-            en: `${baseUrl}/en/affiliate`,
+            en: `${baseUrl}/affiliate`,
             ja: `${baseUrl}/ja/affiliate`,
             ko: `${baseUrl}/ko/affiliate`,
           },

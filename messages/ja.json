@@ -402,7 +402,7 @@
     },
     "home": {
       "brand": {
-        "name": "MokerSaaS オープンソーステンプレート",
+        "name": "MokerSaaS",
         "description": "Next.js 16、Neon Postgres、Stripe上に構築されたフルスタック・収益化可能なSaaSスターター — プロダクトをリリースし、サブスクリプションを接続し、迅速に顧客獲得を始めましょう。",
         "statusBadge": "全システムとAPI稼働中"
       },
@@ -436,10 +436,15 @@
         "networkError": "ネットワークエラー。接続を確認して再試行してください。"
       },
       "bottomBar": {
-        "copyright": "© {year} MokerSaaS オープンソーステンプレート。Next.js 16、Neon Postgres、Stripeで構築。",
+        "copyright": "© {year} MokerSaaS。Next.js 16、Neon Postgres、Stripeで構築。",
         "social": {
           "github": "GitHubリポジトリ",
           "twitter": "X / Twitter"
+        },
+        "legal": {
+          "terms": "利用規約",
+          "privacy": "プライバシーポリシー",
+          "cookies": "Cookieポリシー"
         }
       }
     }

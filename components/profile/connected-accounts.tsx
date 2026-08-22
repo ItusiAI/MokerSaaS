@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -17,6 +17,7 @@ interface ConnectedAccount {
 
 export function ConnectedAccounts() {
   const t = useTranslations('profile')
+  const locale = useLocale()
   const [accounts, setAccounts] = useState<ConnectedAccount[]>([])
   const [loading, setLoading] = useState(true)
   const [connecting, setConnecting] = useState<string | null>(null)
@@ -42,7 +43,9 @@ export function ConnectedAccounts() {
   const handleConnect = async (provider: string) => {
     setConnecting(provider)
     try {
-      await signIn(provider, { callbackUrl: '/profile' })
+      // 登录后回到当前 locale 的 profile 页
+      const profilePath = locale === 'en' ? '/profile' : `/${locale}/profile`
+      await signIn(provider, { callbackUrl: profilePath })
     } catch (error) {
       console.error('连接失败:', error)
       toast.error(t('account_connection_failed'))

@@ -402,7 +402,7 @@
     },
     "home": {
       "brand": {
-        "name": "MokerSaaS Open-Source Template",
+        "name": "MokerSaaS",
         "description": "A full-stack, monetizable SaaS starter built on Next.js 16, Neon Postgres and Stripe—ship your product, wire up subscriptions, and start acquiring customers faster.",
         "statusBadge": "All systems & APIs operational"
       },
@@ -436,10 +436,15 @@
         "networkError": "Network error. Please check your connection and retry."
       },
       "bottomBar": {
-        "copyright": "© {year} MokerSaaS Open-Source Template. Built with Next.js 16, Neon Postgres & Stripe.",
+        "copyright": "© {year} MokerSaaS. Built with Next.js 16, Neon Postgres & Stripe.",
         "social": {
           "github": "GitHub Repository",
           "twitter": "X / Twitter"
+        },
+        "legal": {
+          "terms": "Terms",
+          "privacy": "Privacy",
+          "cookies": "Cookies"
         }
       }
     }

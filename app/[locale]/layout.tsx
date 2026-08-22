@@ -21,9 +21,14 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
-  // 获取基础URL，如果未设置环境变量则为空
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
-  const currentUrl = baseUrl ? `${baseUrl}/${locale}` : ''
+  // 获取基础URL（优先 SEO 专用 URL；向后兼容 NEXT_PUBLIC_APP_URL）
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    ''
+  // 默认 locale (en) 不带 URL 前缀
+  const localizedBase = (loc: string): string => loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+  const currentUrl = baseUrl ? localizedBase(locale) : ''
 
   return {
     title: {
@@ -53,7 +58,7 @@ export async function generateMetadata({
       languages: {
         'zh-CN': `${baseUrl}/zh-CN`,
         'zh-TW': `${baseUrl}/zh-TW`,
-        'en': `${baseUrl}/en`,
+        'en': baseUrl,
         'ja': `${baseUrl}/ja`,
         'ko': `${baseUrl}/ko`,
       },

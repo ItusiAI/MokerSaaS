@@ -402,7 +402,7 @@
     },
     "home": {
       "brand": {
-        "name": "MokerSaaS 오픈소스 템플릿",
+        "name": "MokerSaaS",
         "description": "Next.js 16, Neon Postgres, Stripe를 기반으로 구축된 풀스택, 수익화 가능한 SaaS 스타터 — 제품을 출시하고, 구독을 연결하고, 더 빠르게 고객 확보를 시작하세요.",
         "statusBadge": "모든 시스템 & API 작동 중"
       },
@@ -436,10 +436,15 @@
         "networkError": "네트워크 오류. 연결을 확인하고 재시도해 주세요."
       },
       "bottomBar": {
-        "copyright": "© {year} MokerSaaS 오픈소스 템플릿. Next.js 16, Neon Postgres & Stripe로 구축.",
+        "copyright": "© {year} MokerSaaS. Next.js 16, Neon Postgres & Stripe로 구축.",
         "social": {
           "github": "GitHub 리포지토리",
           "twitter": "X / Twitter"
+        },
+        "legal": {
+          "terms": "이용약관",
+          "privacy": "개인정보처리방침",
+          "cookies": "쿠키 정책"
         }
       }
     }

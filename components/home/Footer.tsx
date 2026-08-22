@@ -1,45 +1,22 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter, usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Mail, ArrowRight, Check, AlertCircle, Loader2 } from 'lucide-react';
 
-interface FooterProps {
-  onOpenDocs?: () => void;
-  onOpenDeploy?: () => void;
-  onOpenSignIn?: () => void;
-}
+interface FooterProps {}
 
 type SubscribeStatus = 'idle' | 'loading' | 'success' | 'error';
 
-export const Footer: React.FC<FooterProps> = ({ onOpenDocs, onOpenDeploy, onOpenSignIn }) => {
+export const Footer: React.FC<FooterProps> = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<SubscribeStatus>('idle');
   const [message, setMessage] = useState('');
   const t = useTranslations('footer.home');
   const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
 
-  const getLocalizedPath = (path: string) => `/${locale}${path}`;
-
-  const scrollToSection = (id: string) => {
-    const NAVBAR_OFFSET = 80;
-    const scrollToEl = () => {
-      const el = document.getElementById(id);
-      if (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    };
-    const isOnHome = pathname === getLocalizedPath('/') || pathname === '/';
-    if (isOnHome) {
-      scrollToEl();
-      return;
-    }
-    router.push(`${getLocalizedPath('/')}#${id}`);
-  };
+  const getLocalizedPath = (path: string) =>
+    locale === 'en' ? path : `/${locale}${path}`;
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,19 +90,28 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDocs, onOpenDeploy, onOpen
             </h4>
             <ul className="space-y-2.5 font-sans text-sm text-[var(--color-text-secondary)]">
               <li>
-                <button onClick={() => scrollToSection('orchestration')} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">
+                <Link
+                  href={getLocalizedPath('/#orchestration')}
+                  className="hover:text-[var(--color-primary)] transition-colors"
+                >
                   {t('products.items.orchestration')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => scrollToSection('mission-control')} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">
+                <Link
+                  href={getLocalizedPath('/#mission-control')}
+                  className="hover:text-[var(--color-primary)] transition-colors"
+                >
                   {t('products.items.missionControl')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => scrollToSection('pricing')} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">
+                <Link
+                  href={getLocalizedPath('/#pricing')}
+                  className="hover:text-[var(--color-primary)] transition-colors"
+                >
                   {t('products.items.pricing')}
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
@@ -237,9 +223,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDocs, onOpenDeploy, onOpen
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-mono-code text-xs text-[var(--color-text-secondary)]">
-            {t('bottomBar.copyright', { year: new Date().getFullYear() })}
-          </p>
+          {/* Copyright + Legal Links */}
+          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-3 font-mono-code text-xs text-[var(--color-text-secondary)]">
+            <span>{t('bottomBar.copyright', { year: new Date().getFullYear() })}</span>
+            <span className="hidden md:inline opacity-40">|</span>
+            <Link href={getLocalizedPath('/terms')} className="hover:text-[var(--color-primary)] transition-colors">{t('bottomBar.legal.terms')}</Link>
+            <span className="opacity-40">·</span>
+            <Link href={getLocalizedPath('/privacy')} className="hover:text-[var(--color-primary)] transition-colors">{t('bottomBar.legal.privacy')}</Link>
+            <span className="opacity-40">·</span>
+            <Link href={getLocalizedPath('/cookies')} className="hover:text-[var(--color-primary)] transition-colors">{t('bottomBar.legal.cookies')}</Link>
+          </div>
 
           {/* Social Icons */}
           <div className="flex items-center gap-5 text-[var(--color-text-secondary)]">
@@ -260,4 +253,3 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDocs, onOpenDeploy, onOpen
     </footer>
   );
 };
-

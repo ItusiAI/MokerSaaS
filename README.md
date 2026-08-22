@@ -36,7 +36,8 @@ MokerSaaS 是一个面向出海团队的 SaaS 启动模版，集成用户认证�
 - `lib/points-manager.ts` 统一消费、退还、过期流水
 
 ### 🌐 多语言与 SEO
-- 内置中 / 英 / 日 / 韩 / 繁五语（`next-intl`），URL 形如 `/zh-CN/...` `/en/...` `/ja/...` `/ko/...` `/zh-TW/...` （BCP47 locale）
+- 内置中 / 英 / 日 / 韩 / 繁五语（`next-intl`），URL 形如 `/zh-CN/...` `/ja/...` `/ko/...` `/zh-TW/...` ；**英文版（默认 locale）走根路径** `/`、`/terms`、`/profile` 等（无前缀）
+- **不基于 Accept-Language / IP 自动重定向** —— 用户首次访问根路径 `/` 永远是英文；切换语言需要主动点击切换器链接；`localeDetection: false`
 - 完整 i18n 元数据、hreflang、`sitemap.xml`、JSON-LD 结构化数据
 - Open Graph 与 Twitter Card 分享预览
 - 语言标识采用 BCP47 标准（`zh-CN` / `zh-TW`），数据库中已通过 `0010_locale_bcp47_normalization.sql` 迁移把历史 `zh` / `tw` 数据归一化
@@ -174,6 +175,10 @@ GOOGLE_CLIENT_ID="<your-google-client-id>"
 GOOGLE_CLIENT_SECRET="<your-google-client-secret>"
 GITHUB_ID="<your-github-id>"
 GITHUB_SECRET="<your-github-secret>"
+
+// 站点 URL（Sitemap、hreflang、Canonical URL 必须填）
+// 优先用 NEXT_PUBLIC_BASE_URL；未设则用 NEXT_PUBLIC_APP_URL（向后兼容）
+NEXT_PUBLIC_BASE_URL="https://mokersaas.com"
 
 # Umami 流量分析（管理员后台使用，可选）
 NEXT_PUBLIC_UMAMI_WEBSITE_ID="your-website-id"

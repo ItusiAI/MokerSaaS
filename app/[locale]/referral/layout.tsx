@@ -10,8 +10,12 @@ export async function generateMetadata({
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'referral_page' })
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
-  const currentUrl = baseUrl ? `${baseUrl}/${locale}/referral` : ''
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    ''
+  const localizedBase = (loc: string): string => loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+  const currentUrl = baseUrl ? `${localizedBase(locale)}/referral` : ''
   const title = t('title')
   const description = t('subtitle')
   const keywords = t('keywords')
@@ -27,7 +31,7 @@ export async function generateMetadata({
           languages: {
             'zh-CN': `${baseUrl}/zh-CN/referral`,
             'zh-TW': `${baseUrl}/zh-TW/referral`,
-            en: `${baseUrl}/en/referral`,
+            en: `${baseUrl}/referral`,
             ja: `${baseUrl}/ja/referral`,
             ko: `${baseUrl}/ko/referral`,
           },
