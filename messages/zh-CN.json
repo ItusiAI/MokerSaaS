@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "开源 SaaS 模板 — 数小时上线你的下一个 SaaS",
+    "title": "Next.js 开源 SaaS 模板 — 数小时上线你的 SaaS | MokerSaaS",
     "description": "数小时完成 SaaS 上线。MokerSaaS 内置 Next.js 16、Neon Postgres、Stripe 支付、用户认证、多语言 i18n、后台管理、推荐系统，永久免费使用。",
     "shortTitle": "MokerSaaS - 极速构建SaaS",
     "keywords": "MokerSaaS, 极速构建SaaS, 开源SaaS, SaaS模版, Next.js模版, 免费SaaS, TypeScript SaaS, Stripe集成, 多语言SaaS, 后台管理, 推荐系统, 推广返利, 数小时上线",
