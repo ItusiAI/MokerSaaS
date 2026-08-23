@@ -45,9 +45,9 @@
     "switchToDark": "切换至暗色模式"
   },
   "hero": {
-    "title": "极速构建 SaaS，",
-    "highlight": "数小时完成产品上线。",
-    "description": "提供开箱即用的企业级 SaaS 解决方案，内置用户认证、Stripe 支付、多语言国际化、SEO 优化、后台管理、推荐与推广系统等完整功能。基于 Next.js 现代化技术栈，帮助您大幅缩短从想法到盈利的时间。",
+    "title": "开源 SaaS 模板 —",
+    "highlight": "数小时上线你的下一个 SaaS。",
+    "description": "面向 Next.js 的开源 SaaS 模板 —— 数小时上线你的下一个 SaaS。MokerSaaS 开箱即用集成用户认证、Stripe 订阅、多语言 i18n、SEO 优化、后台管理、推荐与推广返利系统，大幅缩短从想法到盈利的时间。",
     "badge": "100% 开源免费",
     "primaryCta": "免费获取模板",
     "secondaryCta": "查看架构",

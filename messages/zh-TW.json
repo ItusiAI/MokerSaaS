@@ -45,9 +45,9 @@
     "switchToDark": "切換至暗色模式"
   },
   "hero": {
-    "title": "極速構建 SaaS，",
-    "highlight": "數小時完成產品上線。",
-    "description": "提供開箱即用的企業級 SaaS 解決方案，內置用戶認證、Stripe 支付、多語言國際化、SEO 優化、後臺管理、推薦與推廣系統等完整功能。基於 Next.js 現代化技術棧，幫助您大幅縮短從想法到盈利的時間。",
+    "title": "開源 SaaS 模板 —",
+    "highlight": "數小時上線您的下一個 SaaS。",
+    "description": "面向 Next.js 的開源 SaaS 模板 —— 數小時上線您的下一個 SaaS。MokerSaaS 開箱即用整合用戶認證、Stripe 訂閱、多語言 i18n、SEO 優化、後臺管理、推薦與推廣返利系統，大幅縮短從想法到盈利的時間。",
     "badge": "100% 開源免費",
     "primaryCta": "免費獲取模板",
     "secondaryCta": "查看架構",

@@ -45,9 +45,9 @@
     "switchToDark": "Switch to Dark Mode"
   },
   "hero": {
-    "title": "Build SaaS at Lightning Speed,",
-    "highlight": "Launch in Hours.",
-    "description": "MokerSaaS delivers enterprise-ready SaaS solutions out of the box, featuring built-in authentication, Stripe payments, multi-language i18n, SEO optimization, admin dashboard, referral and affiliate systems. Built on Next.js modern tech stack to dramatically cut your time from idea to revenue.",
+    "title": "Open Source SaaS Template —",
+    "highlight": "Ship Your Next SaaS in Hours.",
+    "description": "The Open Source SaaS Template for Next.js — ship your next SaaS in hours. MokerSaaS ships enterprise-ready authentication, Stripe billing, multi-language i18n, SEO, an admin dashboard, and built-in referral and affiliate systems, so you can cut your time from idea to revenue.",
     "badge": "100% Open Source & Free",
     "primaryCta": "Get Template Free",
     "secondaryCta": "View Architecture",

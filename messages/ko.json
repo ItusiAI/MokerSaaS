@@ -45,9 +45,9 @@
     "switchToDark": "다크 모드로 전환"
   },
   "hero": {
-    "title": "번개 같은 속도로 SaaS를 구축하고,",
-    "highlight": "몇 시간 만에 출시하세요.",
-    "description": "인증, Stripe 결제, 다국어 i18n, SEO 최적화, 관리자 대시보드, 추천 및 제휴 시스템을 기본 제공하는 즉시 사용 가능한 엔터프라이즈급 SaaS 솔루션을 제공합니다. Next.js 최신 기술 스택을 기반으로 아이디어에서 수익까지의 시간을 획기적으로 단축합니다.",
+    "title": "오픈소스 SaaS 템플릿 —",
+    "highlight": "몇 시간 만에 다음 SaaS를 출시하세요.",
+    "description": "Next.js 기반 오픈소스 SaaS 템플릿 — 몇 시간 만에 다음 SaaS를 출시하세요. MokerSaaS는 인증, Stripe 결제, 다국어 i18n, SEO 최적화, 관리자 대시보드, 추천 및 제휴 시스템을 기본 제공하여 아이디어에서 수익까지의 시간을 획기적으로 단축합니다.",
     "badge": "100% 오픈소스 & 무료",
     "primaryCta": "템플릿 무료로 받기",
     "secondaryCta": "아키텍처 보기",
