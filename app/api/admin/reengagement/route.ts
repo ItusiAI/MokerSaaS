@@ -12,11 +12,11 @@ function escapeLikePattern(input: string): string {
 
 // 沉睡用户分桶阈值(天数)
 const BUCKET_THRESHOLDS = {
-  active: 7,        // < 7 天 -> 活跃
-  warm: 30,         // 7 - 30 天 -> 早期沉睡
-  dormant: 90,      // 30 - 90 天 -> 中度沉睡
-  inactive: 180,    // 90 - 180 天 -> 重度沉睡
-  // >= 180 天 -> 流失
+  active: 7,
+  warm: 31,         // [7, 31)   = 业务上的 [7, 30]
+  dormant: 91,      // [31, 91)  = 业务上的 [31, 90]
+  inactive: 181,    // [91, 181) = 业务上的 [91, 180]
+  churned: Number.MAX_SAFE_INTEGER,
 } as const
 
 type DormantBucket = 'active' | 'warm' | 'dormant' | 'inactive' | 'churned'

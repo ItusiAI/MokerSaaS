@@ -1350,8 +1350,8 @@
         "active_hint": "Active in last 7 days",
         "warm": "Warm (7-30d)",
         "warm_hint": "Send gentle reminders",
-        "dormant": "Dormant (30-90d)",
-        "inactive": "Inactive (90-180d)",
+        "dormant": "Dormant (31-90d)",
+        "inactive": "Inactive (91-180d)",
         "churned": "Churned (>180d)",
         "dormant_paid": "Dormant + Past Paid",
         "dormant_paid_hint": "High-value win-back"
@@ -1371,8 +1371,8 @@
         "bucket": "Inactivity Bucket",
         "all_buckets": "All Dormant",
         "bucket_warm": "Warm (7-30d)",
-        "bucket_dormant": "Dormant (30-90d)",
-        "bucket_inactive": "Inactive (90-180d)",
+        "bucket_dormant": "Dormant (31-90d)",
+        "bucket_inactive": "Inactive (91-180d)",
         "bucket_churned": "Churned (≥180d)",
         "subscription": "Subscription",
         "all_subscriptions": "All Subscriptions",
@@ -1468,8 +1468,8 @@
         },
         "bucket": {
           "warm": "Warm (7-30d)",
-          "dormant": "Dormant (30-90d)",
-          "inactive": "Inactive (90-180d)",
+          "dormant": "Dormant (31-90d)",
+          "inactive": "Inactive (91-180d)",
           "churned": "Churned (180d+)",
           "sleeping_paid": "Sleeping + Paid"
         },

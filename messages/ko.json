@@ -1350,8 +1350,8 @@
         "active_hint": "최근 7일 활동",
         "warm": "경도 휴면 (7-30일)",
         "warm_hint": "부드러운 알림 발송",
-        "dormant": "중도 휴면 (30-90일)",
-        "inactive": "중증 휴면 (90-180일)",
+        "dormant": "중도 휴면 (31-90일)",
+        "inactive": "중증 휴면 (91-180일)",
         "churned": "이탈 (≥180일)",
         "dormant_paid": "휴면+과거 유료",
         "dormant_paid_hint": "고가치 복귀 대상"
@@ -1371,8 +1371,8 @@
         "bucket": "휴면 버킷",
         "all_buckets": "전체 휴면",
         "bucket_warm": "경도 휴면 (7-30일)",
-        "bucket_dormant": "중도 휴면 (30-90일)",
-        "bucket_inactive": "중증 휴면 (90-180일)",
+        "bucket_dormant": "중도 휴면 (31-90일)",
+        "bucket_inactive": "중증 휴면 (91-180일)",
         "bucket_churned": "이탈 (≥180일)",
         "subscription": "구독 상태",
         "all_subscriptions": "전체 구독",
@@ -1468,8 +1468,8 @@
         },
         "bucket": {
           "warm": "가벼운 휴면 (7-30일)",
-          "dormant": "중간 휴면 (30-90일)",
-          "inactive": "심각한 휴면 (90-180일)",
+          "dormant": "중간 휴면 (31-90일)",
+          "inactive": "심각한 휴면 (91-180일)",
           "churned": "이탈 사용자 (180일+)",
           "sleeping_paid": "휴면+유료 고객"
         },

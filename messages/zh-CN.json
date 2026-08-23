@@ -1350,8 +1350,8 @@
         "active_hint": "近 7 天活跃",
         "warm": "轻度沉睡(7-30天)",
         "warm_hint": "可发温和提醒",
-        "dormant": "中度沉睡(30-90天)",
-        "inactive": "重度沉睡(90-180天)",
+        "dormant": "中度沉睡(31-90天)",
+        "inactive": "重度沉睡(91-180天)",
         "churned": "已流失(>180天)",
         "dormant_paid": "沉睡+曾付费",
         "dormant_paid_hint": "高价值挽回对象"
@@ -1371,8 +1371,8 @@
         "bucket": "沉睡分桶",
         "all_buckets": "全部沉睡",
         "bucket_warm": "轻度沉睡 (7-30天)",
-        "bucket_dormant": "中度沉睡 (30-90天)",
-        "bucket_inactive": "重度沉睡 (90-180天)",
+        "bucket_dormant": "中度沉睡 (31-90天)",
+        "bucket_inactive": "重度沉睡 (91-180天)",
         "bucket_churned": "已流失 (≥180天)",
         "subscription": "订阅状态",
         "all_subscriptions": "全部订阅",
@@ -1468,8 +1468,8 @@
         },
         "bucket": {
           "warm": "轻度沉睡 (7-30天)",
-          "dormant": "中度沉睡 (30-90天)",
-          "inactive": "重度沉睡 (90-180天)",
+          "dormant": "中度沉睡 (31-90天)",
+          "inactive": "重度沉睡 (91-180天)",
           "churned": "流失用户 (180天+)",
           "sleeping_paid": "沉睡+曾付费"
         },

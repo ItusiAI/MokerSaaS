@@ -1350,8 +1350,8 @@
         "active_hint": "過去7日間に活動",
         "warm": "軽度休眠 (7-30日)",
         "warm_hint": "穏やかなリマインドを送信",
-        "dormant": "中度休眠 (30-90日)",
-        "inactive": "重度休眠 (90-180日)",
+        "dormant": "中度休眠 (31-90日)",
+        "inactive": "重度休眠 (91-180日)",
         "churned": "離脱済み (≥180日)",
         "dormant_paid": "休眠+過去の有料",
         "dormant_paid_hint": "高価値復帰対象"
@@ -1371,8 +1371,8 @@
         "bucket": "休眠バケット",
         "all_buckets": "全休眠",
         "bucket_warm": "轻度休眠 (7-30日)",
-        "bucket_dormant": "中度休眠 (30-90日)",
-        "bucket_inactive": "重度休眠 (90-180日)",
+        "bucket_dormant": "中度休眠 (31-90日)",
+        "bucket_inactive": "重度休眠 (91-180日)",
         "bucket_churned": "離脱済み (≥180日)",
         "subscription": "購読状態",
         "all_subscriptions": "全購読",
@@ -1468,8 +1468,8 @@
         },
         "bucket": {
           "warm": "轻度休眠 (7-30日)",
-          "dormant": "中度休眠 (30-90日)",
-          "inactive": "重度休眠 (90-180日)",
+          "dormant": "中度休眠 (31-90日)",
+          "inactive": "重度休眠 (91-180日)",
           "churned": "離脱ユーザー (180日+)",
           "sleeping_paid": "休眠+有料顧客"
         },
