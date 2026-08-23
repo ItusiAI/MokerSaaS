@@ -1,33 +1,77 @@
-"use client"
-
-import { useEffect } from "react"
+import { getTranslations } from 'next-intl/server'
 import { HomePageClient } from "@/components/home/home-page-client"
+import { JsonLdServer } from "@/components/seo/json-ld-server"
 
-const NAVBAR_OFFSET = 80
+export default async function LocaleHome({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
 
-const scrollToHash = (hash: string) => {
-  const element = document.getElementById(hash)
-  if (element) {
-    const y = element.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET
-    window.scrollTo({ top: y, behavior: "smooth" })
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    'https://mokersaas.com'
+
+  const localizedBase = (loc: string): string =>
+    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
+
+  const url = localizedBase(locale)
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+  const description = t('description')
+
+  const webSiteLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'MokerSaaS',
+    url,
+    description,
+    inLanguage: locale,
+    publisher: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
   }
-}
 
-export default function ChinesePage() {
-  useEffect(() => {
-    const hash = window.location.hash.replace('#', '')
-    if (hash) {
-      setTimeout(() => scrollToHash(hash), 100)
-    }
-  }, [])
+  const organizationLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'MokerSaaS',
+    url: baseUrl,
+    logo: `${baseUrl}/favicon.ico`,
+    sameAs: [],
+  }
 
-  const handleOpenDeploy = () => scrollToHash('pricing')
-  const handleOpenDocs = () => scrollToHash('orchestration')
+  const softwareApplicationLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MokerSaaS',
+    url,
+    description,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    inLanguage: locale,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MokerSaaS',
+      url: baseUrl,
+    },
+  }
 
   return (
-    <HomePageClient
-      onOpenDeploy={handleOpenDeploy}
-      onOpenDocs={handleOpenDocs}
-    />
+    <>
+      <JsonLdServer data={webSiteLd} />
+      <JsonLdServer data={organizationLd} />
+      <JsonLdServer data={softwareApplicationLd} />
+      <HomePageClient />
+    </>
   )
 }

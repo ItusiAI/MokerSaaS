@@ -1,11 +1,8 @@
 import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
 import type { Metadata } from 'next'
-import { SiteChrome } from '@/components/home/site-chrome'
-import { JsonLd } from '@/components/seo/json-ld'
+import { JsonLdServer } from '@/components/seo/json-ld-server'
 
 const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mokersaas.com'
@@ -133,20 +130,10 @@ export default async function CookieLayout({
     },
   }
 
-  const messages = await getMessages({ locale })
-
   return (
     <>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <JsonLd data={jsonLd} />
-      </head>
-      <NextIntlClientProvider messages={messages} locale={locale}>
-        <div data-locale={locale}>
-          <SiteChrome>{children}</SiteChrome>
-        </div>
-      </NextIntlClientProvider>
+      <JsonLdServer data={jsonLd} />
+      {children}
     </>
   )
 }

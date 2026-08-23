@@ -4,7 +4,6 @@ import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { SiteChrome } from '@/components/home/site-chrome'
-import { JsonLd } from '@/components/seo/json-ld'
 
 const locales = ['en', 'zh-CN', 'ja', 'ko', 'zh-TW']
 
@@ -137,58 +136,13 @@ export default async function LocaleLayout({
     notFound()
   }
 
-  const [t, messages] = await Promise.all([
-    getTranslations({ locale, namespace: 'metadata' }),
-    getMessages({ locale }),
-  ])
-
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    DEFAULT_BASE_URL
-
-  const localizedBase = (loc: string): string =>
-    loc === 'en' ? baseUrl : `${baseUrl}/${loc}`
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'MokerSaaS',
-    url: localizedBase(locale),
-    description: t('description'),
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
-    inLanguage: locale,
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'MokerSaaS',
-      url: baseUrl,
-    },
-    provider: {
-      '@type': 'Organization',
-      name: 'MokerSaaS',
-      url: baseUrl,
-    },
-  }
+  const messages = await getMessages({ locale })
 
   return (
-    <>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <JsonLd data={jsonLd} />
-      </head>
-      <NextIntlClientProvider messages={messages} locale={locale}>
-        <div data-locale={locale}>
-          <SiteChrome>{children}</SiteChrome>
-        </div>
-      </NextIntlClientProvider>
-    </>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <div data-locale={locale}>
+        <SiteChrome>{children}</SiteChrome>
+      </div>
+    </NextIntlClientProvider>
   )
 }
