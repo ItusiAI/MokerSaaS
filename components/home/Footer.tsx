@@ -63,14 +63,13 @@ export const Footer: React.FC<FooterProps> = () => {
           {/* Brand & Mission (4 cols on lg) */}
           <div className="lg:col-span-4 space-y-4">
             <Link href={`/${locale}`} className="flex items-center gap-2">
-              <div className="relative w-8 h-8">
-                <Image
-                  src="/logo.png"
-                  alt="MokerSaaS Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              <Image
+                src="/logo.png"
+                alt="MokerSaaS Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-xl font-bold text-[#F59E0B] tracking-tight">{t('brand.name')}</span>
             </Link>
             <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed max-w-sm">

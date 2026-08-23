@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import {
   Users,
@@ -212,11 +213,14 @@ export const MissionControl: React.FC = () => {
 
                   {/* Image Preview: 统一图片展示区 */}
                   <div className="relative w-full min-w-0 rounded-xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)] group/image">
-                    <img
+                    <Image
                       src={PREVIEW_IMAGES[activeTab]}
                       alt={tPrev(`${activeTab}.imageAlt`)}
+                      width={1200}
+                      height={675}
                       loading="lazy"
                       decoding="async"
+                      sizes="(min-width: 1024px) 640px, 100vw"
                       className="w-full h-auto object-cover block"
                     />
                     {/* Image Caption Overlay */}

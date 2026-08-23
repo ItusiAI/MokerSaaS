@@ -25,26 +25,24 @@ export const Navbar: React.FC<NavbarProps> = ({
   const locale = useLocale();
   const t = useTranslations("navbar");
   const pathname = usePathname();
-  const [langPopoverOpen, setLangPopoverOpen] = useState(false);
 
   const getLocalizedPath = (path: string) => {
     // en 是默认 locale (无前缀);其他 locale 需要前缀
     return locale === 'en' ? path : `/${locale}${path}`
   }
 
-  /**
-   * 把当前路径切换到另一种 locale.
-   *   /foo        (en)  →  /zh-CN/foo
-   *   /zh-CN/foo         →  /foo   (en)
-   *   /zh-CN/foo         →  /ja/foo
-   */
-  const switchToLocalePath = (targetLocale: string): string => {
-    if (!pathname) return '/'
-    const rest = pathname.replace(/^\/(en|zh-CN|ja|ko|zh-TW)(?=\/|$)/, '')
-    if (targetLocale === 'en') {
-      return rest === '' ? '/' : rest
+
+  const switchLocale = (targetLocale: string) => {
+    if (!pathname) {
+      window.location.href = targetLocale === 'en' ? '/' : `/${targetLocale}`
+      return
     }
-    return `/${targetLocale}${rest === '' ? '' : rest}`
+    const rest = pathname.replace(/^\/(en|zh-CN|ja|ko|zh-TW)(?=\/|$)/, '')
+    const target =
+      targetLocale === 'en'
+        ? (rest === '' ? '/' : rest)
+        : `/${targetLocale}${rest === '' ? '' : rest}`
+    window.location.href = target
   }
 
   const handleSignOut = async () => {
@@ -67,14 +65,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           href={getLocalizedPath('/')}
           className="cursor-pointer flex items-center gap-2 group"
         >
-          <div className="relative w-8 h-8">
-            <Image
-              src="/logo.png"
-              alt="MokerSaaS Logo"
-              fill
-              className="object-contain"
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="MokerSaaS Logo"
+            width={32}
+            height={32}
+            priority
+            className="w-8 h-8 object-contain"
+          />
           <span className="text-xl md:text-2xl font-bold text-[#F59E0B] tracking-tighter font-sans">
             MokerSaaS
           </span>
@@ -138,40 +136,45 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[110px] p-1 bg-[var(--color-surface)] border-[var(--color-border)]/50">
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/zh-CN">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-CN" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇨🇳 {t("chinese")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('zh-CN')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-CN" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇨🇳 {t("chinese")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/en">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "en" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇺🇸 {t("english")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('en')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "en" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇺🇸 {t("english")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/ja">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ja" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇯🇵 {t("japanese")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('ja')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ja" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇯🇵 {t("japanese")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/ko">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ko" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇰🇷 {t("korean")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('ko')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ko" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇰🇷 {t("korean")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/zh-TW">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-TW" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇹🇼 {t("traditionalChinese")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('zh-TW')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-TW" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇹🇼 {t("traditionalChinese")}
+                </span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -272,40 +275,45 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[110px] p-1 bg-[var(--color-surface)] border-[var(--color-border)]/50">
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/zh-CN">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-CN" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇨🇳 {t("chinese")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('zh-CN')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-CN" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇨🇳 {t("chinese")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/en">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "en" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇺🇸 {t("english")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('en')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "en" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇺🇸 {t("english")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/ja">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ja" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇯🇵 {t("japanese")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('ja')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ja" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇯🇵 {t("japanese")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/ko">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ko" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇰🇷 {t("korean")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('ko')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "ko" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇰🇷 {t("korean")}
+                </span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5">
-                <a href="/zh-TW">
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-TW" ? "bg-[var(--color-primary)] text-white" : ""}`}>
-                    🇹🇼 {t("traditionalChinese")}
-                  </span>
-                </a>
+              <DropdownMenuItem
+                onClick={() => switchLocale('zh-TW')}
+                className="justify-center cursor-pointer hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] rounded-md py-1.5"
+              >
+                <span className={`px-2 py-0.5 rounded-full text-xs ${locale === "zh-TW" ? "bg-[var(--color-primary)] text-white" : ""}`}>
+                  🇹🇼 {t("traditionalChinese")}
+                </span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
